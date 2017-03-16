@@ -29,7 +29,7 @@ class UFOScene: BaseScene{
     var ufoController: UFOController!
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int, pathAnimationConfiguration: PathAnimationConfiguration) {
         
         self.init(size: size)
         
@@ -49,7 +49,7 @@ class UFOScene: BaseScene{
         
         //Configuration of UFO Controller
 
-        self.ufoController = UFOController(hud2: self.hud2, ufoSpawningInterval: spawnInterval, minUFOSpawnedPerInterval: minUFOSpawnedPerInterval, maxUFOSpawnedPerInterval: maxUFOSpawnedPerInterval)
+        self.ufoController = UFOController(hud2: self.hud2, ufoSpawningInterval: spawnInterval, minUFOSpawnedPerInterval: minUFOSpawnedPerInterval, maxUFOSpawnedPerInterval: maxUFOSpawnedPerInterval, pathAnimationConfiguration: pathAnimationConfiguration)
        
     }
     
@@ -74,7 +74,8 @@ class UFOScene: BaseScene{
         player.zPosition = 15
         
         //Spawn initial number of UFOs
-        ufoController.spawnUFOs(numberOfUFOs: self.initialNumberOfEnemiesSpawned)
+        ufoController.spawnUFOs(forParentNode: self, numberOfUFOs: self.initialNumberOfEnemiesSpawned)
+        
         self.addChild(ufoController)
     }
     
@@ -100,6 +101,8 @@ class UFOScene: BaseScene{
         
         if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
             //Load next scene
+            self.isPaused = true
+            print("You win!")
         }
         
         
@@ -109,8 +112,14 @@ class UFOScene: BaseScene{
         
         
         //Update UFOs managed by the controller
-        ufoController.update(currentTime: currentTime)
+        ufoController.update(withParentNode: self, currentTime: currentTime)
         
+        //Update all of the UFO nodes spawned up to this point
+        for node in self.children{
+            if let node = node as? UFO{
+                node.update(currentTime: currentTime)
+            }
+        }
        
         lastUpdateTime = currentTime
     }
@@ -168,15 +177,20 @@ class UFOScene: BaseScene{
                
                 player.run(shootingSound)
                 
-                ufoController.respondToTouch(touchLocation: touchLocation)
+                if let node = node as? UFO{
+                    if(node.respondToTouch()){
+                        currentNumberOfEnemies -= 1
+                        numberOfEnemiesKilled += 1
+                        
+                        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+                        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+                        
+                        
+                    }
+                }
                 
-                /**
-                currentNumberOfEnemies -= 1
-                numberOfEnemiesKilled += 1
                 
-                hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-                **/
+                
             }
         }
         

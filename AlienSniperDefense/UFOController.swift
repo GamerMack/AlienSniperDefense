@@ -36,7 +36,9 @@ class UFOController: SKNode{
     private var totalNumberOfUFOSpawned: Int = 0
     private var totalNumberOfUFOKilled: Int = 0
     
-
+    
+    //MARK: ************ PATH ANIMATION CONFIGURATION passed in to help configure different speeds for the newly spawned UFOs
+    private var pathAnimationConfiguration: PathAnimationConfiguration!
     
     //MARK: ************ INITIALIZERS
     
@@ -49,13 +51,16 @@ class UFOController: SKNode{
         setup()
     }
     
-    convenience init(hud2: HUD2, ufoSpawningInterval: TimeInterval = 10.00, minUFOSpawnedPerInterval: Int = 0,  maxUFOSpawnedPerInterval: Int = 1) {
+    convenience init(hud2: HUD2, ufoSpawningInterval: TimeInterval = 10.00, minUFOSpawnedPerInterval: Int = 0,  maxUFOSpawnedPerInterval: Int = 1, pathAnimationConfiguration: PathAnimationConfiguration) {
         
         self.init()
         setup()
         
         //Initialize HUD2 passed in from scene
         self.hud2 = hud2
+        
+        //Initialize path animation configuration
+        self.pathAnimationConfiguration = pathAnimationConfiguration
         
         //Initialize controller spawning parameters
         self.minimumUFOSpawnedPerInterval = minUFOSpawnedPerInterval
@@ -94,20 +99,12 @@ class UFOController: SKNode{
         
     }
     
-    func update(currentTime: TimeInterval){
+    func update(withParentNode parentNode: UFOScene, currentTime: TimeInterval){
         
         frameCount += currentTime - lastUpdateTime
         
         if(frameCount > ufoSpawningInterval){
-            spawnRandomNumberOfUFOsFrom(minimum: self.minimumUFOSpawnedPerInterval, toMaximum: self.maximumUFOSpawnedPerInterval)
-            
-            
-            //Update all UFOs in the node
-            for node in self.children{
-                if let node = node as? UFO{
-                    node.update(currentTime: currentTime)
-                }
-            }
+            spawnRandomNumberOfUFOsFrom(forParentNode: parentNode, minimum: self.minimumUFOSpawnedPerInterval, toMaximum: self.maximumUFOSpawnedPerInterval)
             
             frameCount = 0
         }
@@ -121,7 +118,7 @@ class UFOController: SKNode{
     //MARK: ********** Spawning Functions
    
     
-    func spawnUFOs(numberOfUFOs: Int){
+    func spawnUFOs(forParentNode parentNode: UFOScene, numberOfUFOs: Int){
         
         for _ in 0...numberOfUFOs{
             
@@ -129,72 +126,47 @@ class UFOController: SKNode{
             
            
             
-            let randomDist = GKRandomDistribution(lowestValue: 100, highestValue: 150)
             
-            let duration1 = Double(randomDist.nextUniform())
-            let duration2 = Double(randomDist.nextUniform())
-            let duration3 = Double(randomDist.nextUniform())
-            let duration4 = Double(randomDist.nextUniform())
-            let duration5 = Double(randomDist.nextUniform())
+            let duration1 = self.pathAnimationConfiguration.duration1
+            let duration2 = self.pathAnimationConfiguration.duration2
+            let duration3 = self.pathAnimationConfiguration.duration3
+            let duration4 = self.pathAnimationConfiguration.duration4
+            let duration5 = self.pathAnimationConfiguration.duration5
             
             ufoClone.performUFOConfiguration(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
          
-            self.addChild(ufoClone)
+            parentNode.addChild(ufoClone)
             
-            totalNumberOfUFOSpawned += 1
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
+            parentNode.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: parentNode.currentNumberOfEnemies)
         }
         
     }
     
-    func spawnRandomNumberOfUFOsFrom(minimum: Int, toMaximum maximum: Int){
+    func spawnRandomNumberOfUFOsFrom(forParentNode parentNode: UFOScene, minimum: Int, toMaximum maximum: Int){
         let numberOfUFO = GKRandomDistribution(lowestValue: minimum, highestValue: maximum).nextInt()
         
         for _ in 0...numberOfUFO{
             
             let ufoClone = ufoArray[ufoIndex].copy() as! UFO
             
-            let randomDist = GKRandomDistribution(lowestValue: 100, highestValue: 150)
-            
-            let duration1 = Double(randomDist.nextUniform())
-            let duration2 = Double(randomDist.nextUniform())
-            let duration3 = Double(randomDist.nextUniform())
-            let duration4 = Double(randomDist.nextUniform())
-            let duration5 = Double(randomDist.nextUniform())
-            
-
+            let duration1 = self.pathAnimationConfiguration.duration1
+            let duration2 = self.pathAnimationConfiguration.duration2
+            let duration3 = self.pathAnimationConfiguration.duration3
+            let duration4 = self.pathAnimationConfiguration.duration4
+            let duration5 = self.pathAnimationConfiguration.duration5
             
             ufoClone.performUFOConfiguration(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
             
-            self.addChild(ufoClone)
+            parentNode.addChild(ufoClone)
             
-            totalNumberOfUFOSpawned += 1
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
+            parentNode.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: parentNode.currentNumberOfEnemies)
         }
         
     }
     
-    
-    //MARK: ********** Touch Response Functions
-    
-    func respondToTouch(touchLocation: CGPoint){
-        
-        for node in self.children{
-            if let node = node as? UFO{
-                if node.contains(touchLocation){
-                    node.respondToTouch()
-                    totalNumberOfUFOSpawned -= 1
-                    totalNumberOfUFOKilled += 1
-                    
-                    //Update HUD
-                    hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
-                    hud2.setNumberOfEnemiesKilledTo(numberKilled: totalNumberOfUFOKilled)
-                    
-                }
-            }
-        }
-        
-    }
+   
     
     func getTotalNumberOfUFOSpawned() -> Int{
         return totalNumberOfUFOSpawned

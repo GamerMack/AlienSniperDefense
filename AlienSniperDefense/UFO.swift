@@ -263,11 +263,13 @@ class UFO: SKSpriteNode{
     
     //MARK: ************** User touch/hit handlers
     
-    func respondToTouch(){
+    func respondToTouch() -> Bool{
         
-        if(inFieldEmittingMode) { return }
+        if(inFieldEmittingMode) { return false }
         
-            die()
+        die()
+        
+        return true
         
     }
     
