@@ -1,0 +1,757 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD07A3F71E7A560800B52128 /* Bat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A3F61E7A560800B52128 /* Bat.swift */; };
+		BD07A3F91E7A561400B52128 /* BatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A3F81E7A561400B52128 /* BatController.swift */; };
+		BD07A3FB1E7A562B00B52128 /* SpaceShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A3FA1E7A562B00B52128 /* SpaceShip.swift */; };
+		BD07A3FD1E7A563C00B52128 /* BackgroundObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A3FC1E7A563C00B52128 /* BackgroundObject.swift */; };
+		BD07A3FF1E7A564B00B52128 /* UFO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A3FE1E7A564B00B52128 /* UFO.swift */; };
+		BD07A4021E7A56B200B52128 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4011E7A56B200B52128 /* Typography.swift */; };
+		BD07A4081E7A56BD00B52128 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4031E7A56BD00B52128 /* Math.swift */; };
+		BD07A4091E7A56BD00B52128 /* RandomVectorGaussian.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4041E7A56BD00B52128 /* RandomVectorGaussian.swift */; };
+		BD07A40A1E7A56BD00B52128 /* RandomVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4051E7A56BD00B52128 /* RandomVector.swift */; };
+		BD07A40B1E7A56BD00B52128 /* RandomPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4061E7A56BD00B52128 /* RandomPoint.swift */; };
+		BD07A40C1E7A56BD00B52128 /* RandomVectorUniform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4071E7A56BD00B52128 /* RandomVectorUniform.swift */; };
+		BD07A4101E7A56C900B52128 /* SoundLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A40D1E7A56C900B52128 /* SoundLoader.swift */; };
+		BD07A4111E7A56C900B52128 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A40E1E7A56C900B52128 /* BackgroundMusic.swift */; };
+		BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A40F1E7A56C900B52128 /* SoundEffects.swift */; };
+		BD07A4191E7A56D300B52128 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4131E7A56D300B52128 /* Constants.swift */; };
+		BD07A41A1E7A56D300B52128 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4141E7A56D300B52128 /* HelperFunctions.swift */; };
+		BD07A41B1E7A56D300B52128 /* SceneInterfaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4151E7A56D300B52128 /* SceneInterfaceManager.swift */; };
+		BD07A41C1E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4161E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift */; };
+		BD07A41D1E7A56D300B52128 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4171E7A56D300B52128 /* ScreenSize.swift */; };
+		BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */; };
+		BD07A4201E7A56F700B52128 /* StarryNight.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A41F1E7A56F700B52128 /* StarryNight.sks */; };
+		BD07A4221E7A57F500B52128 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A4211E7A57F500B52128 /* Fire.sks */; };
+		BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */; };
+		BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */; };
+		BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF631E7A4C4E00808B90 /* Main.storyboard */; };
+		BD4BBF671E7A4C4E00808B90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF661E7A4C4E00808B90 /* Assets.xcassets */; };
+		BD4BBF6A1E7A4C4E00808B90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF681E7A4C4E00808B90 /* LaunchScreen.storyboard */; };
+		BD4BBF731E7A4C7300808B90 /* GameplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD4BBF721E7A4C7300808B90 /* GameplayKit.framework */; };
+		BD4BBF8E1E7A500700808B90 /* Alpha Dance.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF7B1E7A500700808B90 /* Alpha Dance.mp3 */; };
+		BD4BBF8F1E7A500700808B90 /* Cheerful Annoyance.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF7C1E7A500700808B90 /* Cheerful Annoyance.mp3 */; };
+		BD4BBF901E7A500700808B90 /* Drumming Sticks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF7D1E7A500700808B90 /* Drumming Sticks.mp3 */; };
+		BD4BBF911E7A500700808B90 /* Farm Frolics.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF7E1E7A500700808B90 /* Farm Frolics.mp3 */; };
+		BD4BBF921E7A500700808B90 /* Flowing Rocks.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF7F1E7A500700808B90 /* Flowing Rocks.mp3 */; };
+		BD4BBF931E7A500700808B90 /* Game Over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF801E7A500700808B90 /* Game Over.mp3 */; };
+		BD4BBF941E7A500700808B90 /* German Virtue.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF811E7A500700808B90 /* German Virtue.mp3 */; };
+		BD4BBF951E7A500700808B90 /* Infinite Descent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF821E7A500700808B90 /* Infinite Descent.mp3 */; };
+		BD4BBF961E7A500700808B90 /* Italian Mom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF831E7A500700808B90 /* Italian Mom.mp3 */; };
+		BD4BBF971E7A500700808B90 /* Mishief Stroll.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF841E7A500700808B90 /* Mishief Stroll.mp3 */; };
+		BD4BBF981E7A500700808B90 /* Mission Plausible.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF851E7A500700808B90 /* Mission Plausible.mp3 */; };
+		BD4BBF991E7A500700808B90 /* Night at the Beach.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF861E7A500700808B90 /* Night at the Beach.mp3 */; };
+		BD4BBF9A1E7A500700808B90 /* Polka Train.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF871E7A500700808B90 /* Polka Train.mp3 */; };
+		BD4BBF9B1E7A500700808B90 /* Sad Descent.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF881E7A500700808B90 /* Sad Descent.mp3 */; };
+		BD4BBF9C1E7A500700808B90 /* Sad Town.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF891E7A500700808B90 /* Sad Town.mp3 */; };
+		BD4BBF9D1E7A500700808B90 /* Space Cadet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF8A1E7A500700808B90 /* Space Cadet.mp3 */; };
+		BD4BBF9E1E7A500700808B90 /* Swinging Pants.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF8B1E7A500700808B90 /* Swinging Pants.mp3 */; };
+		BD4BBF9F1E7A500700808B90 /* Time Driving.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF8C1E7A500700808B90 /* Time Driving.mp3 */; };
+		BD4BBFA01E7A500700808B90 /* Wacky Waiting.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF8D1E7A500700808B90 /* Wacky Waiting.mp3 */; };
+		BD4BBFA51E7A50AC00808B90 /* Beat ident.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFA21E7A50AC00808B90 /* Beat ident.mp3 */; };
+		BD4BBFA61E7A50AC00808B90 /* Country ident.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFA31E7A50AC00808B90 /* Country ident.mp3 */; };
+		BD4BBFA71E7A50AC00808B90 /* Polka ident.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFA41E7A50AC00808B90 /* Polka ident.mp3 */; };
+		BD4BBFA91E7A50C500808B90 /* Serious ident.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFA81E7A50C500808B90 /* Serious ident.mp3 */; };
+		BD4BBFB41E7A532E00808B90 /* click1.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAA1E7A532E00808B90 /* click1.wav */; };
+		BD4BBFB51E7A532E00808B90 /* click3.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAB1E7A532E00808B90 /* click3.wav */; };
+		BD4BBFB61E7A532E00808B90 /* click4.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAC1E7A532E00808B90 /* click4.wav */; };
+		BD4BBFB71E7A532E00808B90 /* click5.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAD1E7A532E00808B90 /* click5.wav */; };
+		BD4BBFB81E7A532E00808B90 /* laser8.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAE1E7A532E00808B90 /* laser8.wav */; };
+		BD4BBFB91E7A532E00808B90 /* laser9.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFAF1E7A532E00808B90 /* laser9.wav */; };
+		BD4BBFBA1E7A532E00808B90 /* mouseclick1.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFB01E7A532E00808B90 /* mouseclick1.wav */; };
+		BD4BBFBB1E7A532E00808B90 /* rumble1.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFB11E7A532E00808B90 /* rumble1.wav */; };
+		BD4BBFBC1E7A532E00808B90 /* rumble2.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFB21E7A532E00808B90 /* rumble2.wav */; };
+		BD4BBFBD1E7A532E00808B90 /* rumble3.wav in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBFB31E7A532E00808B90 /* rumble3.wav */; };
+		BD4BBFBF1E7A540300808B90 /* TextureAtlasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFBE1E7A540300808B90 /* TextureAtlasManager.swift */; };
+		BD4BBFC71E7A54F800808B90 /* Wingman.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFC61E7A54F800808B90 /* Wingman.swift */; };
+		BD4BBFC91E7A550000808B90 /* CrossHair.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFC81E7A550000808B90 /* CrossHair.swift */; };
+		BD4BBFCB1E7A550600808B90 /* HUD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFCA1E7A550600808B90 /* HUD2.swift */; };
+		BD4BBFCD1E7A550D00808B90 /* FlyingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFCC1E7A550D00808B90 /* FlyingAlien.swift */; };
+		BD6313611E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */; };
+		BD6313621E7A58A800EB10F9 /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313591E7A58A800EB10F9 /* BaseScene.swift */; };
+		BD6313631E7A58A800EB10F9 /* BatScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135A1E7A58A800EB10F9 /* BatScene.swift */; };
+		BD6313641E7A58A800EB10F9 /* DeprecatedCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135B1E7A58A800EB10F9 /* DeprecatedCode.swift */; };
+		BD6313651E7A58A800EB10F9 /* StealthShipScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */; };
+		BD6313661E7A58A800EB10F9 /* FlyingAlienScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135D1E7A58A800EB10F9 /* FlyingAlienScene.swift */; };
+		BD6313671E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135E1E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift */; };
+		BD6313681E7A58A800EB10F9 /* BatSceneLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135F1E7A58A800EB10F9 /* BatSceneLevelLoader.swift */; };
+		BD6313691E7A58A800EB10F9 /* UFOScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313601E7A58A800EB10F9 /* UFOScene.swift */; };
+		BD63136D1E7A58BE00EB10F9 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136B1E7A58BE00EB10F9 /* GameOverScene.swift */; };
+		BD63136E1E7A58BE00EB10F9 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */; };
+		BD6313701E7A590300EB10F9 /* ButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136F1E7A590300EB10F9 /* ButtonManager.swift */; };
+		BD6313721E7A590900EB10F9 /* UserOptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */; };
+		BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313731E7A591100EB10F9 /* AnimationsManager.swift */; };
+		BD6313761E7A592800EB10F9 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313751E7A592800EB10F9 /* ButtonFactory.swift */; };
+		BD6313791E7A596600EB10F9 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313781E7A596600EB10F9 /* Enemy.swift */; };
+		BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63137A1E7A59A700EB10F9 /* WingmanScene.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BD07A3F61E7A560800B52128 /* Bat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bat.swift; sourceTree = "<group>"; };
+		BD07A3F81E7A561400B52128 /* BatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatController.swift; sourceTree = "<group>"; };
+		BD07A3FA1E7A562B00B52128 /* SpaceShip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceShip.swift; sourceTree = "<group>"; };
+		BD07A3FC1E7A563C00B52128 /* BackgroundObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundObject.swift; sourceTree = "<group>"; };
+		BD07A3FE1E7A564B00B52128 /* UFO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFO.swift; sourceTree = "<group>"; };
+		BD07A4011E7A56B200B52128 /* Typography.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		BD07A4031E7A56BD00B52128 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		BD07A4041E7A56BD00B52128 /* RandomVectorGaussian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomVectorGaussian.swift; sourceTree = "<group>"; };
+		BD07A4051E7A56BD00B52128 /* RandomVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomVector.swift; sourceTree = "<group>"; };
+		BD07A4061E7A56BD00B52128 /* RandomPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomPoint.swift; sourceTree = "<group>"; };
+		BD07A4071E7A56BD00B52128 /* RandomVectorUniform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomVectorUniform.swift; sourceTree = "<group>"; };
+		BD07A40D1E7A56C900B52128 /* SoundLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundLoader.swift; sourceTree = "<group>"; };
+		BD07A40E1E7A56C900B52128 /* BackgroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
+		BD07A40F1E7A56C900B52128 /* SoundEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundEffects.swift; sourceTree = "<group>"; };
+		BD07A4131E7A56D300B52128 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BD07A4141E7A56D300B52128 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		BD07A4151E7A56D300B52128 /* SceneInterfaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneInterfaceManager.swift; sourceTree = "<group>"; };
+		BD07A4161E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneInterfaceManagerDelegate.swift; sourceTree = "<group>"; };
+		BD07A4171E7A56D300B52128 /* ScreenSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
+		BD07A41F1E7A56F700B52128 /* StarryNight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarryNight.sks; sourceTree = "<group>"; };
+		BD07A4211E7A57F500B52128 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
+		BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlienSniperDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		BD4BBF641E7A4C4E00808B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BD4BBF661E7A4C4E00808B90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BD4BBF691E7A4C4E00808B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BD4BBF6B1E7A4C4E00808B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD4BBF721E7A4C7300808B90 /* GameplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameplayKit.framework; path = System/Library/Frameworks/GameplayKit.framework; sourceTree = SDKROOT; };
+		BD4BBF7B1E7A500700808B90 /* Alpha Dance.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alpha Dance.mp3"; sourceTree = "<group>"; };
+		BD4BBF7C1E7A500700808B90 /* Cheerful Annoyance.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cheerful Annoyance.mp3"; sourceTree = "<group>"; };
+		BD4BBF7D1E7A500700808B90 /* Drumming Sticks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Drumming Sticks.mp3"; sourceTree = "<group>"; };
+		BD4BBF7E1E7A500700808B90 /* Farm Frolics.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Farm Frolics.mp3"; sourceTree = "<group>"; };
+		BD4BBF7F1E7A500700808B90 /* Flowing Rocks.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flowing Rocks.mp3"; sourceTree = "<group>"; };
+		BD4BBF801E7A500700808B90 /* Game Over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Game Over.mp3"; sourceTree = "<group>"; };
+		BD4BBF811E7A500700808B90 /* German Virtue.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "German Virtue.mp3"; sourceTree = "<group>"; };
+		BD4BBF821E7A500700808B90 /* Infinite Descent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Infinite Descent.mp3"; sourceTree = "<group>"; };
+		BD4BBF831E7A500700808B90 /* Italian Mom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Italian Mom.mp3"; sourceTree = "<group>"; };
+		BD4BBF841E7A500700808B90 /* Mishief Stroll.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mishief Stroll.mp3"; sourceTree = "<group>"; };
+		BD4BBF851E7A500700808B90 /* Mission Plausible.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mission Plausible.mp3"; sourceTree = "<group>"; };
+		BD4BBF861E7A500700808B90 /* Night at the Beach.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Night at the Beach.mp3"; sourceTree = "<group>"; };
+		BD4BBF871E7A500700808B90 /* Polka Train.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Polka Train.mp3"; sourceTree = "<group>"; };
+		BD4BBF881E7A500700808B90 /* Sad Descent.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sad Descent.mp3"; sourceTree = "<group>"; };
+		BD4BBF891E7A500700808B90 /* Sad Town.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sad Town.mp3"; sourceTree = "<group>"; };
+		BD4BBF8A1E7A500700808B90 /* Space Cadet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Space Cadet.mp3"; sourceTree = "<group>"; };
+		BD4BBF8B1E7A500700808B90 /* Swinging Pants.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Swinging Pants.mp3"; sourceTree = "<group>"; };
+		BD4BBF8C1E7A500700808B90 /* Time Driving.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Time Driving.mp3"; sourceTree = "<group>"; };
+		BD4BBF8D1E7A500700808B90 /* Wacky Waiting.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Wacky Waiting.mp3"; sourceTree = "<group>"; };
+		BD4BBFA21E7A50AC00808B90 /* Beat ident.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Beat ident.mp3"; sourceTree = "<group>"; };
+		BD4BBFA31E7A50AC00808B90 /* Country ident.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Country ident.mp3"; sourceTree = "<group>"; };
+		BD4BBFA41E7A50AC00808B90 /* Polka ident.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Polka ident.mp3"; sourceTree = "<group>"; };
+		BD4BBFA81E7A50C500808B90 /* Serious ident.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Serious ident.mp3"; sourceTree = "<group>"; };
+		BD4BBFAA1E7A532E00808B90 /* click1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click1.wav; sourceTree = "<group>"; };
+		BD4BBFAB1E7A532E00808B90 /* click3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click3.wav; sourceTree = "<group>"; };
+		BD4BBFAC1E7A532E00808B90 /* click4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click4.wav; sourceTree = "<group>"; };
+		BD4BBFAD1E7A532E00808B90 /* click5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click5.wav; sourceTree = "<group>"; };
+		BD4BBFAE1E7A532E00808B90 /* laser8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser8.wav; sourceTree = "<group>"; };
+		BD4BBFAF1E7A532E00808B90 /* laser9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser9.wav; sourceTree = "<group>"; };
+		BD4BBFB01E7A532E00808B90 /* mouseclick1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mouseclick1.wav; sourceTree = "<group>"; };
+		BD4BBFB11E7A532E00808B90 /* rumble1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rumble1.wav; sourceTree = "<group>"; };
+		BD4BBFB21E7A532E00808B90 /* rumble2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rumble2.wav; sourceTree = "<group>"; };
+		BD4BBFB31E7A532E00808B90 /* rumble3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = rumble3.wav; sourceTree = "<group>"; };
+		BD4BBFBE1E7A540300808B90 /* TextureAtlasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureAtlasManager.swift; sourceTree = "<group>"; };
+		BD4BBFC61E7A54F800808B90 /* Wingman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wingman.swift; sourceTree = "<group>"; };
+		BD4BBFC81E7A550000808B90 /* CrossHair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossHair.swift; sourceTree = "<group>"; };
+		BD4BBFCA1E7A550600808B90 /* HUD2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD2.swift; sourceTree = "<group>"; };
+		BD4BBFCC1E7A550D00808B90 /* FlyingAlien.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlien.swift; sourceTree = "<group>"; };
+		BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanSceneLevelLoader.swift; sourceTree = "<group>"; };
+		BD6313591E7A58A800EB10F9 /* BaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScene.swift; sourceTree = "<group>"; };
+		BD63135A1E7A58A800EB10F9 /* BatScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatScene.swift; sourceTree = "<group>"; };
+		BD63135B1E7A58A800EB10F9 /* DeprecatedCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeprecatedCode.swift; sourceTree = "<group>"; };
+		BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StealthShipScene.swift; sourceTree = "<group>"; };
+		BD63135D1E7A58A800EB10F9 /* FlyingAlienScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlienScene.swift; sourceTree = "<group>"; };
+		BD63135E1E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StealthShipSceneLevelLoader.swift; sourceTree = "<group>"; };
+		BD63135F1E7A58A800EB10F9 /* BatSceneLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatSceneLevelLoader.swift; sourceTree = "<group>"; };
+		BD6313601E7A58A800EB10F9 /* UFOScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOScene.swift; sourceTree = "<group>"; };
+		BD63136B1E7A58BE00EB10F9 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		BD63136F1E7A590300EB10F9 /* ButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonManager.swift; sourceTree = "<group>"; };
+		BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOptionsManager.swift; sourceTree = "<group>"; };
+		BD6313731E7A591100EB10F9 /* AnimationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsManager.swift; sourceTree = "<group>"; };
+		BD6313751E7A592800EB10F9 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
+		BD6313781E7A596600EB10F9 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		BD63137A1E7A59A700EB10F9 /* WingmanScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanScene.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BD4BBF531E7A4C4E00808B90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD4BBF731E7A4C7300808B90 /* GameplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BD07A4001E7A56A800B52128 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				BD07A4131E7A56D300B52128 /* Constants.swift */,
+				BD07A4141E7A56D300B52128 /* HelperFunctions.swift */,
+				BD07A4151E7A56D300B52128 /* SceneInterfaceManager.swift */,
+				BD07A4161E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift */,
+				BD07A4171E7A56D300B52128 /* ScreenSize.swift */,
+				BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */,
+				BD07A40D1E7A56C900B52128 /* SoundLoader.swift */,
+				BD07A40E1E7A56C900B52128 /* BackgroundMusic.swift */,
+				BD07A40F1E7A56C900B52128 /* SoundEffects.swift */,
+				BD07A4031E7A56BD00B52128 /* Math.swift */,
+				BD07A4041E7A56BD00B52128 /* RandomVectorGaussian.swift */,
+				BD07A4051E7A56BD00B52128 /* RandomVector.swift */,
+				BD07A4061E7A56BD00B52128 /* RandomPoint.swift */,
+				BD07A4071E7A56BD00B52128 /* RandomVectorUniform.swift */,
+				BD07A4011E7A56B200B52128 /* Typography.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		BD4BBF4D1E7A4C4E00808B90 = {
+			isa = PBXGroup;
+			children = (
+				BD4BBF581E7A4C4E00808B90 /* AlienSniperDefense */,
+				BD4BBF571E7A4C4E00808B90 /* Products */,
+				BD4BBF711E7A4C7300808B90 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BD4BBF571E7A4C4E00808B90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BD4BBF581E7A4C4E00808B90 /* AlienSniperDefense */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313771E7A593E00EB10F9 /* Factories */,
+				BD07A4001E7A56A800B52128 /* Utility */,
+				BD4BBFC51E7A54E500808B90 /* Characters */,
+				BD4BBFC01E7A549500808B90 /* SKSfiles */,
+				BD4BBFA11E7A502400808B90 /* Idents */,
+				BD4BBF7A1E7A4FC600808B90 /* Singletons */,
+				BD4BBF791E7A4FBE00808B90 /* Controllers */,
+				BD4BBF781E7A4FB600808B90 /* Scenes */,
+				BD4BBF761E7A4F3400808B90 /* BackgroundMusics */,
+				BD4BBF751E7A4F2D00808B90 /* SoundEffects */,
+				BD4BBF741E7A4C9000808B90 /* StoryBoards */,
+				BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */,
+				BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */,
+				BD4BBF661E7A4C4E00808B90 /* Assets.xcassets */,
+				BD4BBF6B1E7A4C4E00808B90 /* Info.plist */,
+			);
+			path = AlienSniperDefense;
+			sourceTree = "<group>";
+		};
+		BD4BBF711E7A4C7300808B90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBF721E7A4C7300808B90 /* GameplayKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD4BBF741E7A4C9000808B90 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBF681E7A4C4E00808B90 /* LaunchScreen.storyboard */,
+				BD4BBF631E7A4C4E00808B90 /* Main.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		BD4BBF751E7A4F2D00808B90 /* SoundEffects */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBFAA1E7A532E00808B90 /* click1.wav */,
+				BD4BBFAB1E7A532E00808B90 /* click3.wav */,
+				BD4BBFAC1E7A532E00808B90 /* click4.wav */,
+				BD4BBFAD1E7A532E00808B90 /* click5.wav */,
+				BD4BBFAE1E7A532E00808B90 /* laser8.wav */,
+				BD4BBFAF1E7A532E00808B90 /* laser9.wav */,
+				BD4BBFB01E7A532E00808B90 /* mouseclick1.wav */,
+				BD4BBFB11E7A532E00808B90 /* rumble1.wav */,
+				BD4BBFB21E7A532E00808B90 /* rumble2.wav */,
+				BD4BBFB31E7A532E00808B90 /* rumble3.wav */,
+			);
+			name = SoundEffects;
+			sourceTree = "<group>";
+		};
+		BD4BBF761E7A4F3400808B90 /* BackgroundMusics */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBF7B1E7A500700808B90 /* Alpha Dance.mp3 */,
+				BD4BBF7C1E7A500700808B90 /* Cheerful Annoyance.mp3 */,
+				BD4BBF7D1E7A500700808B90 /* Drumming Sticks.mp3 */,
+				BD4BBF7E1E7A500700808B90 /* Farm Frolics.mp3 */,
+				BD4BBF7F1E7A500700808B90 /* Flowing Rocks.mp3 */,
+				BD4BBF801E7A500700808B90 /* Game Over.mp3 */,
+				BD4BBF811E7A500700808B90 /* German Virtue.mp3 */,
+				BD4BBF821E7A500700808B90 /* Infinite Descent.mp3 */,
+				BD4BBF831E7A500700808B90 /* Italian Mom.mp3 */,
+				BD4BBF841E7A500700808B90 /* Mishief Stroll.mp3 */,
+				BD4BBF851E7A500700808B90 /* Mission Plausible.mp3 */,
+				BD4BBF861E7A500700808B90 /* Night at the Beach.mp3 */,
+				BD4BBF871E7A500700808B90 /* Polka Train.mp3 */,
+				BD4BBF881E7A500700808B90 /* Sad Descent.mp3 */,
+				BD4BBF891E7A500700808B90 /* Sad Town.mp3 */,
+				BD4BBF8A1E7A500700808B90 /* Space Cadet.mp3 */,
+				BD4BBF8B1E7A500700808B90 /* Swinging Pants.mp3 */,
+				BD4BBF8C1E7A500700808B90 /* Time Driving.mp3 */,
+				BD4BBF8D1E7A500700808B90 /* Wacky Waiting.mp3 */,
+			);
+			name = BackgroundMusics;
+			sourceTree = "<group>";
+		};
+		BD4BBF781E7A4FB600808B90 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BD63137F1E7A618E00EB10F9 /* DeprecatedCode */,
+				BD63137E1E7A617600EB10F9 /* LevelLoaders */,
+				BD63137D1E7A614100EB10F9 /* DerivedScenes */,
+				BD63137C1E7A606600EB10F9 /* BaseScene */,
+				BD63136A1E7A58B200EB10F9 /* TransitionalScenes */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		BD4BBF791E7A4FBE00808B90 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BD07A3F81E7A561400B52128 /* BatController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		BD4BBF7A1E7A4FC600808B90 /* Singletons */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313731E7A591100EB10F9 /* AnimationsManager.swift */,
+				BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */,
+				BD63136F1E7A590300EB10F9 /* ButtonManager.swift */,
+				BD4BBFBE1E7A540300808B90 /* TextureAtlasManager.swift */,
+			);
+			name = Singletons;
+			sourceTree = "<group>";
+		};
+		BD4BBFA11E7A502400808B90 /* Idents */ = {
+			isa = PBXGroup;
+			children = (
+				BD4BBFA81E7A50C500808B90 /* Serious ident.mp3 */,
+				BD4BBFA21E7A50AC00808B90 /* Beat ident.mp3 */,
+				BD4BBFA31E7A50AC00808B90 /* Country ident.mp3 */,
+				BD4BBFA41E7A50AC00808B90 /* Polka ident.mp3 */,
+			);
+			name = Idents;
+			sourceTree = "<group>";
+		};
+		BD4BBFC01E7A549500808B90 /* SKSfiles */ = {
+			isa = PBXGroup;
+			children = (
+				BD07A41F1E7A56F700B52128 /* StarryNight.sks */,
+				BD07A4211E7A57F500B52128 /* Fire.sks */,
+			);
+			name = SKSfiles;
+			sourceTree = "<group>";
+		};
+		BD4BBFC51E7A54E500808B90 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313781E7A596600EB10F9 /* Enemy.swift */,
+				BD07A3FE1E7A564B00B52128 /* UFO.swift */,
+				BD07A3FC1E7A563C00B52128 /* BackgroundObject.swift */,
+				BD07A3FA1E7A562B00B52128 /* SpaceShip.swift */,
+				BD07A3F61E7A560800B52128 /* Bat.swift */,
+				BD4BBFCC1E7A550D00808B90 /* FlyingAlien.swift */,
+				BD4BBFCA1E7A550600808B90 /* HUD2.swift */,
+				BD4BBFC81E7A550000808B90 /* CrossHair.swift */,
+				BD4BBFC61E7A54F800808B90 /* Wingman.swift */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		BD63136A1E7A58B200EB10F9 /* TransitionalScenes */ = {
+			isa = PBXGroup;
+			children = (
+				BD63136B1E7A58BE00EB10F9 /* GameOverScene.swift */,
+				BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */,
+			);
+			name = TransitionalScenes;
+			sourceTree = "<group>";
+		};
+		BD6313771E7A593E00EB10F9 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313751E7A592800EB10F9 /* ButtonFactory.swift */,
+			);
+			name = Factories;
+			sourceTree = "<group>";
+		};
+		BD63137C1E7A606600EB10F9 /* BaseScene */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313591E7A58A800EB10F9 /* BaseScene.swift */,
+			);
+			name = BaseScene;
+			sourceTree = "<group>";
+		};
+		BD63137D1E7A614100EB10F9 /* DerivedScenes */ = {
+			isa = PBXGroup;
+			children = (
+				BD63135A1E7A58A800EB10F9 /* BatScene.swift */,
+				BD63137A1E7A59A700EB10F9 /* WingmanScene.swift */,
+				BD63135D1E7A58A800EB10F9 /* FlyingAlienScene.swift */,
+				BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */,
+				BD6313601E7A58A800EB10F9 /* UFOScene.swift */,
+			);
+			name = DerivedScenes;
+			sourceTree = "<group>";
+		};
+		BD63137E1E7A617600EB10F9 /* LevelLoaders */ = {
+			isa = PBXGroup;
+			children = (
+				BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */,
+				BD63135F1E7A58A800EB10F9 /* BatSceneLevelLoader.swift */,
+				BD63135E1E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift */,
+			);
+			name = LevelLoaders;
+			sourceTree = "<group>";
+		};
+		BD63137F1E7A618E00EB10F9 /* DeprecatedCode */ = {
+			isa = PBXGroup;
+			children = (
+				BD63135B1E7A58A800EB10F9 /* DeprecatedCode.swift */,
+			);
+			name = DeprecatedCode;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BD4BBF551E7A4C4E00808B90 /* AlienSniperDefense */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD4BBF6E1E7A4C4E00808B90 /* Build configuration list for PBXNativeTarget "AlienSniperDefense" */;
+			buildPhases = (
+				BD4BBF521E7A4C4E00808B90 /* Sources */,
+				BD4BBF531E7A4C4E00808B90 /* Frameworks */,
+				BD4BBF541E7A4C4E00808B90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlienSniperDefense;
+			productName = AlienSniperDefense;
+			productReference = BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BD4BBF4E1E7A4C4E00808B90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = AlexMakedonski;
+				TargetAttributes = {
+					BD4BBF551E7A4C4E00808B90 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BD4BBF511E7A4C4E00808B90 /* Build configuration list for PBXProject "AlienSniperDefense" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BD4BBF4D1E7A4C4E00808B90;
+			productRefGroup = BD4BBF571E7A4C4E00808B90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BD4BBF551E7A4C4E00808B90 /* AlienSniperDefense */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BD4BBF541E7A4C4E00808B90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD4BBFB61E7A532E00808B90 /* click4.wav in Resources */,
+				BD07A4201E7A56F700B52128 /* StarryNight.sks in Resources */,
+				BD4BBF961E7A500700808B90 /* Italian Mom.mp3 in Resources */,
+				BD4BBF941E7A500700808B90 /* German Virtue.mp3 in Resources */,
+				BD4BBF9A1E7A500700808B90 /* Polka Train.mp3 in Resources */,
+				BD4BBFB81E7A532E00808B90 /* laser8.wav in Resources */,
+				BD4BBFBB1E7A532E00808B90 /* rumble1.wav in Resources */,
+				BD4BBFBC1E7A532E00808B90 /* rumble2.wav in Resources */,
+				BD4BBFB51E7A532E00808B90 /* click3.wav in Resources */,
+				BD4BBF8F1E7A500700808B90 /* Cheerful Annoyance.mp3 in Resources */,
+				BD4BBF9B1E7A500700808B90 /* Sad Descent.mp3 in Resources */,
+				BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */,
+				BD4BBF9C1E7A500700808B90 /* Sad Town.mp3 in Resources */,
+				BD4BBFB71E7A532E00808B90 /* click5.wav in Resources */,
+				BD4BBFA51E7A50AC00808B90 /* Beat ident.mp3 in Resources */,
+				BD4BBF9D1E7A500700808B90 /* Space Cadet.mp3 in Resources */,
+				BD4BBF9E1E7A500700808B90 /* Swinging Pants.mp3 in Resources */,
+				BD4BBF671E7A4C4E00808B90 /* Assets.xcassets in Resources */,
+				BD4BBF971E7A500700808B90 /* Mishief Stroll.mp3 in Resources */,
+				BD4BBF981E7A500700808B90 /* Mission Plausible.mp3 in Resources */,
+				BD4BBFB41E7A532E00808B90 /* click1.wav in Resources */,
+				BD4BBF991E7A500700808B90 /* Night at the Beach.mp3 in Resources */,
+				BD4BBFA71E7A50AC00808B90 /* Polka ident.mp3 in Resources */,
+				BD4BBFBA1E7A532E00808B90 /* mouseclick1.wav in Resources */,
+				BD4BBF901E7A500700808B90 /* Drumming Sticks.mp3 in Resources */,
+				BD4BBF9F1E7A500700808B90 /* Time Driving.mp3 in Resources */,
+				BD4BBFBD1E7A532E00808B90 /* rumble3.wav in Resources */,
+				BD4BBFB91E7A532E00808B90 /* laser9.wav in Resources */,
+				BD4BBF8E1E7A500700808B90 /* Alpha Dance.mp3 in Resources */,
+				BD4BBF6A1E7A4C4E00808B90 /* LaunchScreen.storyboard in Resources */,
+				BD4BBF931E7A500700808B90 /* Game Over.mp3 in Resources */,
+				BD4BBF911E7A500700808B90 /* Farm Frolics.mp3 in Resources */,
+				BD4BBFA91E7A50C500808B90 /* Serious ident.mp3 in Resources */,
+				BD4BBFA01E7A500700808B90 /* Wacky Waiting.mp3 in Resources */,
+				BD4BBF951E7A500700808B90 /* Infinite Descent.mp3 in Resources */,
+				BD4BBF921E7A500700808B90 /* Flowing Rocks.mp3 in Resources */,
+				BD4BBFA61E7A50AC00808B90 /* Country ident.mp3 in Resources */,
+				BD07A4221E7A57F500B52128 /* Fire.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BD4BBF521E7A4C4E00808B90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD6313671E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift in Sources */,
+				BD07A4021E7A56B200B52128 /* Typography.swift in Sources */,
+				BD4BBFC91E7A550000808B90 /* CrossHair.swift in Sources */,
+				BD6313681E7A58A800EB10F9 /* BatSceneLevelLoader.swift in Sources */,
+				BD6313631E7A58A800EB10F9 /* BatScene.swift in Sources */,
+				BD63136E1E7A58BE00EB10F9 /* MenuScene.swift in Sources */,
+				BD07A3FB1E7A562B00B52128 /* SpaceShip.swift in Sources */,
+				BD07A41B1E7A56D300B52128 /* SceneInterfaceManager.swift in Sources */,
+				BD07A4091E7A56BD00B52128 /* RandomVectorGaussian.swift in Sources */,
+				BD07A41D1E7A56D300B52128 /* ScreenSize.swift in Sources */,
+				BD4BBFBF1E7A540300808B90 /* TextureAtlasManager.swift in Sources */,
+				BD07A4191E7A56D300B52128 /* Constants.swift in Sources */,
+				BD07A40C1E7A56BD00B52128 /* RandomVectorUniform.swift in Sources */,
+				BD6313661E7A58A800EB10F9 /* FlyingAlienScene.swift in Sources */,
+				BD07A3FD1E7A563C00B52128 /* BackgroundObject.swift in Sources */,
+				BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */,
+				BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */,
+				BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */,
+				BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */,
+				BD07A3FF1E7A564B00B52128 /* UFO.swift in Sources */,
+				BD6313611E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift in Sources */,
+				BD6313651E7A58A800EB10F9 /* StealthShipScene.swift in Sources */,
+				BD6313701E7A590300EB10F9 /* ButtonManager.swift in Sources */,
+				BD4BBFCB1E7A550600808B90 /* HUD2.swift in Sources */,
+				BD07A40A1E7A56BD00B52128 /* RandomVector.swift in Sources */,
+				BD07A4111E7A56C900B52128 /* BackgroundMusic.swift in Sources */,
+				BD4BBFC71E7A54F800808B90 /* Wingman.swift in Sources */,
+				BD6313761E7A592800EB10F9 /* ButtonFactory.swift in Sources */,
+				BD07A4101E7A56C900B52128 /* SoundLoader.swift in Sources */,
+				BD07A41C1E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift in Sources */,
+				BD07A40B1E7A56BD00B52128 /* RandomPoint.swift in Sources */,
+				BD6313621E7A58A800EB10F9 /* BaseScene.swift in Sources */,
+				BD63136D1E7A58BE00EB10F9 /* GameOverScene.swift in Sources */,
+				BD07A41A1E7A56D300B52128 /* HelperFunctions.swift in Sources */,
+				BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */,
+				BD4BBFCD1E7A550D00808B90 /* FlyingAlien.swift in Sources */,
+				BD6313791E7A596600EB10F9 /* Enemy.swift in Sources */,
+				BD6313691E7A58A800EB10F9 /* UFOScene.swift in Sources */,
+				BD6313721E7A590900EB10F9 /* UserOptionsManager.swift in Sources */,
+				BD6313641E7A58A800EB10F9 /* DeprecatedCode.swift in Sources */,
+				BD07A3F71E7A560800B52128 /* Bat.swift in Sources */,
+				BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */,
+				BD07A3F91E7A561400B52128 /* BatController.swift in Sources */,
+				BD07A4081E7A56BD00B52128 /* Math.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BD4BBF631E7A4C4E00808B90 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD4BBF641E7A4C4E00808B90 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BD4BBF681E7A4C4E00808B90 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD4BBF691E7A4C4E00808B90 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BD4BBF6C1E7A4C4E00808B90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BD4BBF6D1E7A4C4E00808B90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BD4BBF6F1E7A4C4E00808B90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AlienSniperDefense/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexMakedonski.AlienSniperDefense;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BD4BBF701E7A4C4E00808B90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AlienSniperDefense/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexMakedonski.AlienSniperDefense;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BD4BBF511E7A4C4E00808B90 /* Build configuration list for PBXProject "AlienSniperDefense" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD4BBF6C1E7A4C4E00808B90 /* Debug */,
+				BD4BBF6D1E7A4C4E00808B90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD4BBF6E1E7A4C4E00808B90 /* Build configuration list for PBXNativeTarget "AlienSniperDefense" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD4BBF6F1E7A4C4E00808B90 /* Debug */,
+				BD4BBF701E7A4C4E00808B90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BD4BBF4E1E7A4C4E00808B90 /* Project object */;
+}
