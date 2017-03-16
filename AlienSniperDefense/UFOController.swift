@@ -20,6 +20,9 @@ class UFOController: SKNode{
     private var maximumUFOSpawnedPerInterval: Int = 1
     
     
+    //MARK: ********** HUD: Controller stores a reference to the HUD that must be updated
+    var hud2: HUD2!
+    
     //MARK: ************ Variables related to UFO array
     private var ufoArray = [UFO]()
     private var ufoIndex: Int {
@@ -29,9 +32,9 @@ class UFOController: SKNode{
     }
     
     
-    //MARK: ************* TOTAL NUMBER OF BATS SPAWNED
+    //MARK: ************* TOTAL NUMBER OF UFO SPAWNED AND KILLED
     private var totalNumberOfUFOSpawned: Int = 0
-    
+    private var totalNumberOfUFOKilled: Int = 0
     
 
     
@@ -46,39 +49,44 @@ class UFOController: SKNode{
         setup()
     }
     
-    convenience init(ufoSpawningInterval: TimeInterval = 10.00, minUFOSpawnedPerInterval: Int = 0,  maxUFOSpawnedPerInterval: Int = 1) {
+    convenience init(hud2: HUD2, ufoSpawningInterval: TimeInterval = 10.00, minUFOSpawnedPerInterval: Int = 0,  maxUFOSpawnedPerInterval: Int = 1) {
         
         self.init()
         setup()
         
+        //Initialize HUD2 passed in from scene
+        self.hud2 = hud2
+        
+        //Initialize controller spawning parameters
         self.minimumUFOSpawnedPerInterval = minUFOSpawnedPerInterval
         self.maximumUFOSpawnedPerInterval = maxUFOSpawnedPerInterval
         self.ufoSpawningInterval = ufoSpawningInterval
         
         self.totalNumberOfUFOSpawned = 0
+        self.totalNumberOfUFOKilled = 0
     }
     
     private func setup(){
         
         //Populate UFO array with UFOs of different speed and color
-        if let ufo1 = UFO(ufoType: .Blue, pathAnimationDuration: 3.00),
-            let ufo2 = UFO(ufoType: .Green, pathAnimationDuration: 6.00),
-            let ufo3 = UFO(ufoType: .Red, pathAnimationDuration: 10.00),
-            let ufo4 = UFO(ufoType: .Yellow, pathAnimationDuration: 15.0),
-            let ufo5 = UFO(ufoType: .Blue, pathAnimationDuration: 10.00),
-            let ufo6 = UFO(ufoType: .Red, pathAnimationDuration: 6.00),
-            let ufo7 = UFO(ufoType: .Yellow, pathAnimationDuration: 4.00),
-            let ufo8 = UFO(ufoType: .Green, pathAnimationDuration: 4.00){
+        if let ufo1 = UFO(ufoType: .Blue, pathAnimationConfiguration: PathAnimationConfiguration(d1: 10, d2: 10, d3: 10, d4: 10, d5: 10)),
+            let ufo2 = UFO(ufoType: .Green, pathAnimationConfiguration: PathAnimationConfiguration(d1: 20, d2: 20, d3: 20, d4: 20, d5: 20)),
+            let ufo3 = UFO(ufoType: .Red, pathAnimationConfiguration: PathAnimationConfiguration(d1: 5, d2: 10, d3: 15, d4: 20, d5: 25)),
+            let ufo4 = UFO(ufoType: .Yellow, pathAnimationConfiguration: PathAnimationConfiguration(d1: 25, d2: 20, d3: 15, d4: 10, d5: 5)),
+            let ufo5 = UFO(ufoType: .Blue, pathAnimationConfiguration: PathAnimationConfiguration(d1: 30, d2: 30, d3: 30, d4: 30, d5: 30)),
+            let ufo6 = UFO(ufoType: .Red, pathAnimationConfiguration: PathAnimationConfiguration(d1: 9, d2: 8, d3: 7, d4: 6, d5: 5)),
+            let ufo7 = UFO(ufoType: .Yellow, pathAnimationConfiguration: PathAnimationConfiguration(d1: 5, d2: 6, d3: 7, d4: 8, d5: 9)),
+            let ufo8 = UFO(ufoType: .Green, pathAnimationConfiguration: PathAnimationConfiguration(d1: 15, d2: 15, d3: 15, d4: 15, d5: 15)){
             
             ufoArray = [
-                ufo1,   //Fast Blue UFO
-                ufo2,   //Average Green UFO
-                ufo3,   //Slow Red UFO
-                ufo4,   //Slow Yellow UFO
-                ufo5,   //Slow Blue UFO
-                ufo6,   //Average Red UFO
-                ufo7,    //Fast Yellow UFO
-                ufo8    //Fast Green UFO
+                ufo1,   //Blue UFO
+                ufo2,   //Green UFO
+                ufo3,   //Red UFO
+                ufo4,   //Yellow UFO
+                ufo5,   //Blue UFO
+                ufo6,   //Red UFO
+                ufo7,    //Yellow UFO
+                ufo8    //Green UFO
                 
                 ]
         }
@@ -119,17 +127,22 @@ class UFOController: SKNode{
             
             let ufoClone = ufoArray[ufoIndex].copy() as! UFO
             
-            let randomPathDuration = Double(GKRandomDistribution(lowestValue: 10, highestValue: 15).nextUniform())
+           
             
-            ufoClone.performUFOConfiguration(withPathAnimationDurationOf: randomPathDuration)
-            /**
-            ufoClone.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-            ufoClone.physicsBody?.affectedByGravity = false
-            ufoClone.physicsBody?.allowsRotation = false
-            ufoClone.physicsBody?.linearDamping = 0.0
-             **/
+            let randomDist = GKRandomDistribution(lowestValue: 100, highestValue: 150)
+            
+            let duration1 = Double(randomDist.nextUniform())
+            let duration2 = Double(randomDist.nextUniform())
+            let duration3 = Double(randomDist.nextUniform())
+            let duration4 = Double(randomDist.nextUniform())
+            let duration5 = Double(randomDist.nextUniform())
+            
+            ufoClone.performUFOConfiguration(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
+         
             self.addChild(ufoClone)
+            
             totalNumberOfUFOSpawned += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
         }
         
     }
@@ -141,20 +154,22 @@ class UFOController: SKNode{
             
             let ufoClone = ufoArray[ufoIndex].copy() as! UFO
             
-            let randomPathDuration = Double(GKRandomDistribution(lowestValue: 10, highestValue: 15).nextUniform())
+            let randomDist = GKRandomDistribution(lowestValue: 100, highestValue: 150)
             
-            ufoClone.performUFOConfiguration(withPathAnimationDurationOf: randomPathDuration)
+            let duration1 = Double(randomDist.nextUniform())
+            let duration2 = Double(randomDist.nextUniform())
+            let duration3 = Double(randomDist.nextUniform())
+            let duration4 = Double(randomDist.nextUniform())
+            let duration5 = Double(randomDist.nextUniform())
             
-            /**
-            let radius = ufoClone.size.width/2.0
-            ufoClone.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-            ufoClone.physicsBody?.affectedByGravity = false
-            ufoClone.physicsBody?.allowsRotation = false
-            ufoClone.physicsBody?.linearDamping = 0.0
-             **/
+
+            
+            ufoClone.performUFOConfiguration(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
+            
             self.addChild(ufoClone)
             
             totalNumberOfUFOSpawned += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
         }
         
     }
@@ -168,6 +183,13 @@ class UFOController: SKNode{
             if let node = node as? UFO{
                 if node.contains(touchLocation){
                     node.respondToTouch()
+                    totalNumberOfUFOSpawned -= 1
+                    totalNumberOfUFOKilled += 1
+                    
+                    //Update HUD
+                    hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfUFOSpawned)
+                    hud2.setNumberOfEnemiesKilledTo(numberKilled: totalNumberOfUFOKilled)
+                    
                 }
             }
         }

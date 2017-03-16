@@ -8,7 +8,24 @@
 
 import Foundation
 import SpriteKit
+import GameplayKit
 
+
+struct PathAnimationConfiguration{
+    var duration1: Double = 10.00
+    var duration2: Double = 10.00
+    var duration3: Double = 10.00
+    var duration4: Double = 10.00
+    var duration5: Double = 10.00
+    
+    init(d1: Double, d2: Double, d3: Double, d4: Double, d5: Double){
+        duration1 = d1
+        duration2 = d2
+        duration3 = d3
+        duration4 = d4
+        duration5 = d5
+    }
+}
 
 class UFO: SKSpriteNode{
     
@@ -39,8 +56,14 @@ class UFO: SKSpriteNode{
     //MARK: Actions
     var emittingAnimation = SKAction()
     var pathAction = SKAction()
-    var damageAction = SKAction()
     var shapeOverlay = SKShapeNode()
+    
+    var moveDuration1: Double = 15.00
+    var moveDuration2: Double = 15.00
+    var moveDuration3: Double = 15.00
+    var moveDuration4: Double = 15.00
+    var moveDuration5: Double = 15.00
+
     
     //MARK: RandomPoint Generator
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
@@ -65,7 +88,7 @@ class UFO: SKSpriteNode{
         super.init(texture: texture, color: color, size: size)
     }
     
-    convenience init?(ufoType: UFOType, pathAnimationDuration: Double) {
+    convenience init?(ufoType: UFOType, pathAnimationConfiguration: PathAnimationConfiguration) {
         
         guard let textureAtlas = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO) else { return nil }
         
@@ -100,20 +123,26 @@ class UFO: SKSpriteNode{
         shapeOverlay.alpha = 0
         self.addChild(shapeOverlay)
         
-        //Set duration of path animation: longer means slower UFO spped, short means faster speed
-        self.pathAnimationDuration = pathAnimationDuration
 
      
         configurePosition()
         configurePhysics(physicsBodyRadius: ufoSize.width/2)
-        configureAnimations()
+        
+        let duration1 = pathAnimationConfiguration.duration1
+        let duration2 = pathAnimationConfiguration.duration2
+        let duration3 = pathAnimationConfiguration.duration3
+        let duration4 = pathAnimationConfiguration.duration4
+        let duration5 = pathAnimationConfiguration.duration5
+        
+        configurePathAction(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
+        configureEmittingAction()
         configureInitialHealth(initialHealth: 1)
     }
     
     
     //MARK: ************* Public configuration method used for UFO copies, since the copy() function called by the controller does not pefrom a deep copy
     
-    func performUFOConfiguration(withPathAnimationDurationOf duration: Double){
+    func performUFOConfiguration(duration1: Double, duration2: Double, duration3: Double, duration4: Double, duration5: Double){
         //Configure shape overlay, which appear in die animation
         
         let ufoSize = self.size
@@ -126,12 +155,13 @@ class UFO: SKSpriteNode{
         self.addChild(shapeOverlay)
         
         //Set duration of path animation: longer means slower UFO spped, short means faster speed
-        self.pathAnimationDuration = duration
-        
         
         configurePosition()
         configurePhysics(physicsBodyRadius: ufoSize.width/2)
-        configureAnimations()
+
+        
+        configurePathAction(duration1: duration1, duration2: duration2, duration3: duration3, duration4: duration4, duration5: duration5)
+        configureEmittingAction()
         configureInitialHealth(initialHealth: 1)
         
     }
@@ -163,13 +193,6 @@ class UFO: SKSpriteNode{
     
     //MARK: ********* Configuration for animations
     
-    private func configureAnimations(){
-        configurePathAction()
-        configureDamageAction()
-        configureEmittingAction()
-    
-    }
-    
     private func configureEmittingAction(){
         let colorizeAction = SKAction.colorize(with: UIColor.init(colorLiteralRed: 0.40, green: 0.80, blue: 0.80, alpha: 0.40), colorBlendFactor: 2.00, duration: 0.50)
         let reverseColorizeAction = SKAction.reversed(colorizeAction)()
@@ -187,27 +210,32 @@ class UFO: SKSpriteNode{
     }
     
     
-    private func configureDamageAction(){
-        let action = SKAction.sequence([
-            SKAction.fadeAlpha(to: 0.4, duration: 1.0),
-            SKAction.fadeAlpha(to: 0.8, duration: 1.0)
-            ])
-        
-        damageAction = SKAction.repeatForever(action)
-    }
+   
     
-    private func configurePathAction(){
+    private func configurePathAction(duration1: Double, duration2: Double, duration3: Double, duration4: Double, duration5: Double){
         
      
+        //Get random points in 4 Screen quadrants
+        let point1 = randomPointGenerator.getRandomPointInRandomQuadrant()
+        let point2 = randomPointGenerator.getRandomPointInRandomQuadrant()
+        let point3 = randomPointGenerator.getRandomPointInRandomQuadrant()
+        let point4 = randomPointGenerator.getRandomPointInRandomQuadrant()
         
-        let cgRect = CGRect(x: self.position.x, y: self.position.y, width: 100, height: 100)
-        let path = CGPath(ellipseIn: cgRect, transform: nil)
-        let pathAnimation = SKAction.follow(path, duration: self.pathAnimationDuration)
-        let reversePathAnimation = SKAction.reversed(pathAnimation)()
+        
+        
+        let moveToStartPoint = SKAction.move(to: point1, duration: duration1)
+        self.run(moveToStartPoint)
+        
+        let moveToPoint2 = SKAction.move(to: point2, duration: duration2)
+        let moveToPoint3 = SKAction.move(to: point3, duration: duration3)
+        let moveToPoint4 = SKAction.move(to: point4, duration: duration4)
+        let returnToPoint1 = SKAction.move(to: point1, duration: duration5)
         
         let pathActionSequence = SKAction.sequence([
-            pathAnimation,
-            reversePathAnimation
+            moveToPoint2,
+            moveToPoint3,
+            moveToPoint4,
+            returnToPoint1
             ])
         
         pathAction = SKAction.repeatForever(pathActionSequence)
@@ -226,19 +254,11 @@ class UFO: SKSpriteNode{
             frameCount = 0
         }
         
-        if(isOffScreen()){
-            configurePosition()
-        }
         
         lastUpdateTime = currentTime
     }
     
     
-    private func isOffScreen() -> Bool{
-        if(isDead) { return false }
-        
-        return (self.position.x < -ScreenSizeFloatConstants.HalfScreenWidth || self.position.x > ScreenSizeFloatConstants.HalfScreenWidth || self.position.y < -ScreenSizeFloatConstants.HalfScreenHeight || self.position.y > ScreenSizeFloatConstants.HalfScreenHeight)
-    }
     
     
     //MARK: ************** User touch/hit handlers
@@ -247,28 +267,11 @@ class UFO: SKSpriteNode{
         
         if(inFieldEmittingMode) { return }
         
-        switch(self.getHealth()){
-      
-        case 1:
-            takeDamage()
-            decreaseHealthBy(healthUnits: 1)
-            break
-        case 0:
             die()
-            break
-        default:
-            takeDamage()
-        }
         
     }
     
     
-    func takeDamage(){
-        
-        self.run(damageAction, withKey: "damageAction")
-    }
-    
-  
     
     func die(){
         

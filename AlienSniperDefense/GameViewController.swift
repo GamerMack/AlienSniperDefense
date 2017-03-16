@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
         
         
         
-            let ufoScene = UFOScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the UFOs", enemyName: "UFO", crossHairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 3, minUFOSpawnedPerInterval: 1, maxUFOSpawnedPerInterval: 2, minimumKillsForLevelCompletion: 20, maximumAllowableSpawnedUFO: 10)
+            let ufoScene = UFOScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the UFOs", enemyName: "UFO", crossHairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 1, minUFOSpawnedPerInterval: 1, maxUFOSpawnedPerInterval: 2, minimumKillsForLevelCompletion: 20, maximumAllowableSpawnedUFO: 10)
                 
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
