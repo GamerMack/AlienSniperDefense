@@ -31,6 +31,7 @@
 		BD07A4221E7A57F500B52128 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A4211E7A57F500B52128 /* Fire.sks */; };
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
+		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
 		BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */; };
 		BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */; };
 		BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF631E7A4C4E00808B90 /* Main.storyboard */; };
@@ -119,6 +120,7 @@
 		BD07A4211E7A57F500B52128 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
+		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
 		BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlienSniperDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */,
 				BD6313601E7A58A800EB10F9 /* UFOScene.swift */,
 				BD2777211E7A95F2009F641C /* UFOController.swift */,
+				BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */,
 			);
 			name = DerivedScenes;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				BD4BBFC71E7A54F800808B90 /* Wingman.swift in Sources */,
 				BD6313761E7A592800EB10F9 /* ButtonFactory.swift in Sources */,
 				BD07A4101E7A56C900B52128 /* SoundLoader.swift in Sources */,
+				BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */,
 				BD07A41C1E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift in Sources */,
 				BD07A40B1E7A56BD00B52128 /* RandomPoint.swift in Sources */,
 				BD6313621E7A58A800EB10F9 /* BaseScene.swift in Sources */,

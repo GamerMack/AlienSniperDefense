@@ -18,7 +18,7 @@ import AVFoundation
  
  **/
 
-/**
+
 
 class MenuScene: SKScene{
     
@@ -49,7 +49,7 @@ class MenuScene: SKScene{
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.GermanVirtue, forParentNode: self)
         
         //Setup background image
-        configureBackground()
+        //configureBackground()
         
         //Setup game title
         setupGameTitle()
@@ -134,7 +134,7 @@ class MenuScene: SKScene{
                 }))
                 hardButton.run(SKAction.wait(forDuration: 5.0))
                 
-                 self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
+                // self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
                 
                 // noTimeLimitModeButton.zPosition = 2
                 // timeLimitModeButton.zPosition = 2
@@ -156,7 +156,7 @@ class MenuScene: SKScene{
                 }))
                 mediumButton.run(SKAction.wait(forDuration: 5.0))
                 
-                 self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
+                 //self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
                 
                // noTimeLimitModeButton.zPosition = 2
               //  timeLimitModeButton.zPosition = 2
@@ -176,7 +176,7 @@ class MenuScene: SKScene{
                 }))
                 easyButton.run(SKAction.wait(forDuration: 5.0))
                 
-                self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 1, enemiesSpawnedPerInterval: 1, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
+              //  self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 1, enemiesSpawnedPerInterval: 1, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
                 
                 //noTimeLimitModeButton.zPosition = 2
                 //timeLimitModeButton.zPosition = 2
@@ -202,6 +202,7 @@ class MenuScene: SKScene{
         
     }
     
+    /**
     private func configureBackground(){
         let backgroundTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .BackgroundScenes)?.textureNamed("colored_forest")
         
@@ -212,6 +213,7 @@ class MenuScene: SKScene{
         backgroundImage.zPosition = -5
         self.addChild(backgroundImage)
     }
+ **/
     
     private func setupGameTitle(){
         //Build the label for the GameTitle
@@ -315,4 +317,4 @@ class MenuScene: SKScene{
     }
     
 }
-**/
+

@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         
             let pathAnimationConfiguration = PathAnimationConfiguration(d1: 50, d2: 50, d3: 50, d4: 50, d5: 50)
         
-        let ufoScene = UFOScene(size: self.view.bounds.size, levelNumber: 5, levelDescription: "Kill em!", enemyName: "ETs", crossHairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 4, spawnInterval: 3.0, initialNumberOfEnemiesSpawned: 1, minUFOSpawnedPerInterval: 0, maxUFOSpawnedPerInterval: 1, minimumKillsForLevelCompletion: 2, maximumAllowableSpawnedUFO: 10, pathAnimationConfiguration: pathAnimationConfiguration)
+        let ufoScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill

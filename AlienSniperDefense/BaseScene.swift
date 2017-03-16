@@ -342,6 +342,10 @@ extension BaseScene{
     }
     
     
+    final func loadMenuScene(){
+        let transition = SKTransition.crossFade(withDuration: 2.00)
+        self.view?.presentScene(MenuScene(size: self.size), transition: transition)
+    }
     
 
     

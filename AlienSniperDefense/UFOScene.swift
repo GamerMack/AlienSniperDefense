@@ -103,6 +103,7 @@ class UFOScene: BaseScene{
             //Load next scene
             self.isPaused = true
             print("You win!")
+            loadNextLevel()
         }
         
         
@@ -158,11 +159,12 @@ class UFOScene: BaseScene{
         
         
         if(restartButton.contains(touchLocation)){
-            
+            reloadCurrentLevel()
         }
         
         
         if(menuButton.contains(touchLocation)){
+            loadMenuScene()
         }
         
         
@@ -208,5 +210,47 @@ class UFOScene: BaseScene{
     
     
     
+}
+
+
+
+extension UFOScene{
+    
+    func loadNextLevel(){
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        var nextLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+            case 2:
+                nextLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: .Easy)
+            case 1:
+                nextLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: .Easy)
+            default:
+                nextLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+        
+        
+    }
+    
+    func reloadCurrentLevel(){
+        
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        var currentLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+            case 2:
+                currentLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: .Easy)
+            case 1:
+                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+            default:
+                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(currentLevelScene, transition: mainTransition)
+
+        
+    }
 }
 
