@@ -14,32 +14,29 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SoundLoader.preloadSounds()
+
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
-        if let scene = GKScene(fileNamed: "GameScene") {
-            
-            // Get the SKScene from the loaded GKScene
-            if let sceneNode = scene.rootNode as! GameScene? {
+        
+        
+        
+            let ufoScene = UFOScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the UFOs", enemyName: "UFO", crossHairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 3, minUFOSpawnedPerInterval: 1, maxUFOSpawnedPerInterval: 2, minimumKillsForLevelCompletion: 20, maximumAllowableSpawnedUFO: 10)
                 
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
+            // Set the scale mode to scale to fit the window
+            ufoScene.scaleMode = .aspectFill
                 
-                // Set the scale mode to scale to fit the window
-                sceneNode.scaleMode = .aspectFill
-                
-                // Present the scene
-                if let view = self.view as! SKView? {
-                    view.presentScene(sceneNode)
+            // Present the scene
+            if let view = self.view as! SKView? {
+                view.presentScene(ufoScene)
                     
-                    view.ignoresSiblingOrder = true
+                view.ignoresSiblingOrder = true
                     
-                    view.showsFPS = true
-                    view.showsNodeCount = true
+                view.showsFPS = true
+                view.showsNodeCount = true
                 }
-            }
-        }
+        
+        
     }
 
     override var shouldAutorotate: Bool {

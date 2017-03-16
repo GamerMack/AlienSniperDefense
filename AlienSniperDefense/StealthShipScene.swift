@@ -6,6 +6,7 @@
 //  Copyright © 2017 AlexMakedonski. All rights reserved.
 //
 
+/**
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -335,64 +336,66 @@ class StealthShipScene: BaseScene{
 }
 
 
-
-
-extension SpaceShipLevel{
-    
-    func processResponseForSpaceShipNode(_ spaceShipNode: SpaceShip){
-        
-        let isInStealthMode = spaceShipNode.userData?.value(forKey: "isInStealthMode") as! Bool
-        
-        let health = spaceShipNode.userData?.value(forKey: "health") as! Int
-        
-        if(isInStealthMode) { return }
-        
-    
-            switch(health){
-            case 2:
-                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .NormalRunning)
-                emitterNode.position = CGPoint(x: 0, y: -10)
-                emitterNode.zPosition = 2
-                spaceShipNode.addChild(emitterNode)
-                spaceShipNode.userData?.setValue(1, forKey: "health")
-                break
-            case 1:
-                self.removeAllChildren()
-                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .Accelerated)
-                emitterNode.position = CGPoint(x: 0, y: -10)
-                emitterNode.zPosition = 2
-                
-                spaceShipNode.addChild(emitterNode)
-                spaceShipNode.userData?.setValue(0, forKey: "health")
-                break
-            case 0:
-                
-                spaceShipNode.run(SKAction.sequence([
-                            explosionSound,
-                            explosionAnimation
-                        ]))
-                
-                spaceShipNode.run(SKAction.sequence([
-                    SKAction.wait(forDuration: 2.0),
-                    SKAction.removeFromParent()
-                    ]))
-                break
-            default:
-                spaceShipNode.run(SKAction.sequence([
-                    explosionSound,
-                    explosionAnimation
-                    ]))
-                
-                spaceShipNode.run(SKAction.sequence([
-                    SKAction.wait(forDuration: 2.0),
-                    SKAction.removeFromParent()
-                    ]))
-            }
-        
-    
-    
-    
-}
-
-
-}
+//
+//
+//extension SpaceShipLevel{
+//    
+//    func processResponseForSpaceShipNode(_ spaceShipNode: SpaceShip){
+//        
+//        let isInStealthMode = spaceShipNode.userData?.value(forKey: "isInStealthMode") as! Bool
+//        
+//        let health = spaceShipNode.userData?.value(forKey: "health") as! Int
+//        
+//        if(isInStealthMode) { return }
+//        
+//    
+//            switch(health){
+//            case 2:
+//                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .NormalRunning)
+//                emitterNode.position = CGPoint(x: 0, y: -10)
+//                emitterNode.zPosition = 2
+//                spaceShipNode.addChild(emitterNode)
+//                spaceShipNode.userData?.setValue(1, forKey: "health")
+//                break
+//            case 1:
+//                self.removeAllChildren()
+//                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .Accelerated)
+//                emitterNode.position = CGPoint(x: 0, y: -10)
+//                emitterNode.zPosition = 2
+//                
+//                spaceShipNode.addChild(emitterNode)
+//                spaceShipNode.userData?.setValue(0, forKey: "health")
+//                break
+//            case 0:
+//                
+//                spaceShipNode.run(SKAction.sequence([
+//                            explosionSound,
+//                            explosionAnimation
+//                        ]))
+//                
+//                spaceShipNode.run(SKAction.sequence([
+//                    SKAction.wait(forDuration: 2.0),
+//                    SKAction.removeFromParent()
+//                    ]))
+//                break
+//            default:
+//                spaceShipNode.run(SKAction.sequence([
+//                    explosionSound,
+//                    explosionAnimation
+//                    ]))
+//                
+//                spaceShipNode.run(SKAction.sequence([
+//                    SKAction.wait(forDuration: 2.0),
+//                    SKAction.removeFromParent()
+//                    ]))
+//            }
+//        
+//    
+//    
+//    
+//}
+//
+//
+//}
+ 
+ **/

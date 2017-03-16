@@ -77,13 +77,13 @@ class TextureAtlasManager{
     }
     
     private func setup(){
-        crosshairAtlas = SKTextureAtlas(named: "CrossHair")
-        enemiesAtlas = SKTextureAtlas(named: "Enemies")
-        batsAtlas = SKTextureAtlas(named: "Bats")
-        hudAtlas = SKTextureAtlas(named: "HUD")
-        flyingAliensAtlas = SKTextureAtlas(named: "FlyingAliens")
-        regularExplosionAtlas = SKTextureAtlas(named: "RegularExplosion")
-        backgroundObjectsAtlas = SKTextureAtlas(named: "BackgroundObjects")
+        crosshairAtlas = SKTextureAtlas(named: "CrossHair.atlas")
+        enemiesAtlas = SKTextureAtlas(named: "Enemies.atlas")
+        batsAtlas = SKTextureAtlas(named: "Bats.atlas")
+        hudAtlas = SKTextureAtlas(named: "HUD.atlas")
+        flyingAliensAtlas = SKTextureAtlas(named: "FlyingAliens.atlas")
+        regularExplosionAtlas = SKTextureAtlas(named: "RegularExplosion.atlas")
+        backgroundObjectsAtlas = SKTextureAtlas(named: "BackgroundObjects.atlas")
         ufoAtlas = SKTextureAtlas(named: "UFO.atlas")
         userInterfaceAtlas = SKTextureAtlas(named: "UI.atlas")
         spaceShipsAtlas = SKTextureAtlas(named: "SpaceShips.atlas")

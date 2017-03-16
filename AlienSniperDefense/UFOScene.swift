@@ -14,75 +14,67 @@
 //  Copyright © 2017 AlexMakedonski. All rights reserved.
 //
 
+
 import Foundation
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
+/** NOTE: Background music has to be configured manually for this scene. An unknown bug prevents the derived class from calling the base class function that adds and activates the AVAudioNode **/
 
 class UFOScene: BaseScene{
     
   
     //MARK: UFO-related variables
-    var ufo: UFO!
+    var ufoController: UFOController!
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int) {
         
         self.init(size: size)
+        
         self.levelNumber = levelNumber
-        self.spawnInterval = spawnInterval
-        self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
-        self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
+        self.levelDescription = levelDescription
+        self.enemyName = enemyName
+        self.playerType = crossHairType
+        self.backGroundMusic = backGroundMusic
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
+        self.spawnInterval = spawnInterval
+        self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
+        self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
+
+        self.maximumNumberOFEnemies = maximumAllowableSpawnedUFO
+        self.minimumKillsForLevelCompletion = minimumKillsForLevelCompletion
+        
+        
+        //Configuration of UFO Controller
+        self.ufoController = UFOController(ufoSpawningInterval: spawnInterval, minUFOSpawnedPerInterval: minUFOSpawnedPerInterval, maxUFOSpawnedPerInterval: maxUFOSpawnedPerInterval)
+       
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+  
+    override init(size: CGSize) {
+        super.init(size: size)
     }
     
     override func didMove(to view: SKView) {
         
+        //Basic configuration
+        super.performBasicSceneConfiguration()
+
+        //Configure Background music (this function does not get  the base class's
+        BackgroundMusic.configureBackgroundMusicFrom(fileNamed: "Drumming Sticks.mp3", forParentNode: self)
         
-        //Set anchor point of current scene to center
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.backgroundColor = SKColor.black
+        //Set zPosition of Player CrossHair
+        player.zPosition = 15
         
-        //Configure SceneInterfaceManagerDelegate
-        sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: "Wingman likes to hide", enemyName: "Wingman", spawningLimit: self.maximumNumberOFEnemies)
-        
-        
-        //Configure particle emitter for background
-        
-        
-        let emitterPath = Bundle.main.path(forResource: "StarryNight", ofType: "sks")!
-        let emitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as! SKEmitterNode
-        emitterNode.targetNode = self
-        emitterNode.move(toParent: self)
-        
-        
-        
-        //Configure initial HUD display
-        currentNumberOfEnemies = 0
-        numberOfEnemiesKilled = 0
-        self.addChild(hud2)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-        
-        //Configure player
-        player = CrossHair(crossHairType: .BlueLarge)
-        self.addChild(player)
-        
-        //Configure Background music
-        BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
-        
-        //Add first UFO
-        //spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
-        ufo = UFO(ufoType: .Blue)
-        
-        //Spawn Background Objects
-        spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
-        
-        
-        
-        
-        
-        
+        //Spawn initial number of UFOs
+        ufoController.spawnUFOs(numberOfUFOs: self.initialNumberOfEnemiesSpawned)
+        self.addChild(ufoController)
     }
     
     
@@ -105,20 +97,36 @@ class UFOScene: BaseScene{
             
         }
         
-        player.update()
-        
-        ufo.update(currentTime: currentTime)
-        
-        if(frameCount > spawnInterval){
-            //spawnEnemyFromPrototype(numberOfEnemy: enemiesSpawnedPerInterval)
-            frameCount = 0
+        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+            //Load next scene
         }
         
         
+        //Update player CrossHair
+        player.update()
+        checkPlayerPositionForReposition()
         
+        
+        //Update UFOs managed by the controller
+        ufoController.update(currentTime: currentTime)
+        
+       
         lastUpdateTime = currentTime
     }
     
+    
+    //MARK: *************** Reset Player to onscreen position in case removed by gravity field
+    private func checkPlayerPositionForReposition(){
+        
+        if(playerIsOffscreen()){
+            let randomOnScreenPoint = randomPointGenerator.getRandomPointInRandomQuadrant()
+            player.position = randomOnScreenPoint
+        }
+    }
+    
+    private func playerIsOffscreen() -> Bool{
+        return (player.position.x < -ScreenSizeFloatConstants.HalfScreenWidth || player.position.x > ScreenSizeFloatConstants.HalfScreenWidth || player.position.y < -ScreenSizeFloatConstants.HalfScreenHeight || player.position.y > ScreenSizeFloatConstants.HalfScreenHeight)
+    }
     
     
     //MARK: ******************* USER INPUT HANDLERS
@@ -141,14 +149,10 @@ class UFOScene: BaseScene{
         
         if(restartButton.contains(touchLocation)){
             
-            WingmanLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: .Hard)
-            //self.view?.presentScene(self, transition: transition)
         }
         
         
         if(menuButton.contains(touchLocation)){
-            let transition = SKTransition.crossFade(withDuration: 2.0)
-            self.view?.presentScene(MenuScene(size: self.size), transition: transition)
         }
         
         
@@ -163,11 +167,7 @@ class UFOScene: BaseScene{
                
                 player.run(shootingSound)
                 
-                for node in nodes(at: touchLocation){
-                    if let node = node as? UFO{
-                        node.respondToTouch()
-                    }
-                }
+                ufoController.respondToTouch(touchLocation: touchLocation)
                 
                 /**
                 currentNumberOfEnemies -= 1
@@ -185,30 +185,6 @@ class UFOScene: BaseScene{
     
    
     
-    
-    
-    private func spawnEnemyFromPrototype(numberOfEnemy: Int){
-        
-        for _ in 0..<numberOfEnemy{
-            let randomScaleFactor = RandomFloatRange(min: 0.4, max: 0.7)
-            
-            let enemy = self.enemy as! Wingman
-            let enemyCopy = enemy.copy() as! Wingman
-            
-            enemyCopy.xScale *= randomScaleFactor
-            enemyCopy.yScale *= randomScaleFactor
-            let randomSpawnPoint = randomPointGenerator.getRandomPointInRandomQuadrant()
-            enemyCopy.position = randomSpawnPoint
-            enemyCopy.name = "wingman"
-            
-            currentNumberOfEnemies += 1
-            enemyCopy.move(toParent: self)
-            
-        }
-        
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        
-    }
     
     
     

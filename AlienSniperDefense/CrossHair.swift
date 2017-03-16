@@ -86,7 +86,7 @@ class CrossHair: SKSpriteNode{
     private func configureLighting(){
         let crosshairLight = SKLightNode()
         crosshairLight.name = NodeNames.CrossHairLight
-        crosshairLight.categoryBitMask = 1
+        crosshairLight.categoryBitMask = PhysicsCategory.Player
         crosshairLight.lightColor = SKColor.yellow
         crosshairLight.shadowColor = SKColor.gray
         crosshairLight.ambientColor = SKColor.clear
@@ -96,7 +96,11 @@ class CrossHair: SKSpriteNode{
     private func configurePhysics(){
         let radius = self.size.width/2.0
         self.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        
         self.physicsBody?.fieldBitMask = PhysicsCategory.Player
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        self.physicsBody?.collisionBitMask = ~PhysicsCategory.Enemy
+        
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = false
     

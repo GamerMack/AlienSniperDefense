@@ -29,6 +29,8 @@
 		BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */; };
 		BD07A4201E7A56F700B52128 /* StarryNight.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A41F1E7A56F700B52128 /* StarryNight.sks */; };
 		BD07A4221E7A57F500B52128 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A4211E7A57F500B52128 /* Fire.sks */; };
+		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
+		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
 		BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */; };
 		BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */; };
 		BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF631E7A4C4E00808B90 /* Main.storyboard */; };
@@ -115,6 +117,8 @@
 		BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 		BD07A41F1E7A56F700B52128 /* StarryNight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarryNight.sks; sourceTree = "<group>"; };
 		BD07A4211E7A57F500B52128 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
+		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
+		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
 		BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlienSniperDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -242,11 +246,10 @@
 				BD4BBF7A1E7A4FC600808B90 /* Singletons */,
 				BD4BBF791E7A4FBE00808B90 /* Controllers */,
 				BD4BBF781E7A4FB600808B90 /* Scenes */,
-				BD4BBF761E7A4F3400808B90 /* BackgroundMusics */,
+				BD4BBF761E7A4F3400808B90 /* BackgroundMusic */,
 				BD4BBF751E7A4F2D00808B90 /* SoundEffects */,
 				BD4BBF741E7A4C9000808B90 /* StoryBoards */,
 				BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */,
-				BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */,
 				BD4BBF661E7A4C4E00808B90 /* Assets.xcassets */,
 				BD4BBF6B1E7A4C4E00808B90 /* Info.plist */,
 			);
@@ -287,7 +290,7 @@
 			name = SoundEffects;
 			sourceTree = "<group>";
 		};
-		BD4BBF761E7A4F3400808B90 /* BackgroundMusics */ = {
+		BD4BBF761E7A4F3400808B90 /* BackgroundMusic */ = {
 			isa = PBXGroup;
 			children = (
 				BD4BBF7B1E7A500700808B90 /* Alpha Dance.mp3 */,
@@ -310,7 +313,7 @@
 				BD4BBF8C1E7A500700808B90 /* Time Driving.mp3 */,
 				BD4BBF8D1E7A500700808B90 /* Wacky Waiting.mp3 */,
 			);
-			name = BackgroundMusics;
+			name = BackgroundMusic;
 			sourceTree = "<group>";
 		};
 		BD4BBF781E7A4FB600808B90 /* Scenes */ = {
@@ -328,6 +331,7 @@
 		BD4BBF791E7A4FBE00808B90 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */,
 				BD07A3F81E7A561400B52128 /* BatController.swift */,
 			);
 			name = Controllers;
@@ -360,6 +364,7 @@
 			children = (
 				BD07A41F1E7A56F700B52128 /* StarryNight.sks */,
 				BD07A4211E7A57F500B52128 /* Fire.sks */,
+				BD27771F1E7A7D1D009F641C /* TestScene.sks */,
 			);
 			name = SKSfiles;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				BD63135D1E7A58A800EB10F9 /* FlyingAlienScene.swift */,
 				BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */,
 				BD6313601E7A58A800EB10F9 /* UFOScene.swift */,
+				BD2777211E7A95F2009F641C /* UFOController.swift */,
 			);
 			name = DerivedScenes;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				BD4BBF9C1E7A500700808B90 /* Sad Town.mp3 in Resources */,
 				BD4BBFB71E7A532E00808B90 /* click5.wav in Resources */,
 				BD4BBFA51E7A50AC00808B90 /* Beat ident.mp3 in Resources */,
+				BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */,
 				BD4BBF9D1E7A500700808B90 /* Space Cadet.mp3 in Resources */,
 				BD4BBF9E1E7A500700808B90 /* Swinging Pants.mp3 in Resources */,
 				BD4BBF671E7A4C4E00808B90 /* Assets.xcassets in Resources */,
@@ -558,6 +565,7 @@
 				BD6313661E7A58A800EB10F9 /* FlyingAlienScene.swift in Sources */,
 				BD07A3FD1E7A563C00B52128 /* BackgroundObject.swift in Sources */,
 				BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */,
+				BD2777221E7A95F2009F641C /* UFOController.swift in Sources */,
 				BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */,
 				BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */,
 				BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */,

@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 /**  The Base Scene represent the essential functionality for scenes in different Game Tracks, including the Wingman Track, Bat Track, UFO Track, Flying Aliens Track, and Stealth Ship Track; Derived classes that inherit from the Base Scene will have unique game logic related to the AI for specific enemy characters as well as their own custom, convenience initializers that can be called in their respective level loaders but which will call the convenience initializer defined here for initializing basic scene properties (maximumNumberOfEnemies, numberOfEnemiesKilled, etc.)
  
@@ -28,7 +29,7 @@ class BaseScene: SKScene{
     
     //MARK: ********************* Explosion Animation (cached in the scene file for efficiency)
     var explosionAnimation = SKAction()
-    var explosionSound = SKAction.playSoundFileNamed(SoundEffects.Explosion3, waitForCompletion: false)
+    var explosionSound = SKAction.playSoundFileNamed(SoundEffects.Explosion1, waitForCompletion: false)
     
     //MARK: ************** Background Objects Array and other related variables
     lazy var backgroundObjects: [BackgroundObject] = [
@@ -52,6 +53,7 @@ class BaseScene: SKScene{
     var currentNumberOfEnemies: Int = 0
     var maximumNumberOFEnemies: Int = 10
     var numberOfEnemiesKilled: Int = 0
+    var minimumKillsForLevelCompletion: Int = 0
     
     var initialNumberOfEnemiesSpawned: Int = 2
     var levelDescription = String()
@@ -74,11 +76,11 @@ class BaseScene: SKScene{
     //MARK: ***************** Player Variables
     var player: CrossHair!
     var playerType: CrossHair.CrossHairType!
-    var shootingSound = SKAction.playSoundFileNamed(SoundEffects.Laser3, waitForCompletion: false)
+    var shootingSound = SKAction.playSoundFileNamed(SoundEffects.Laser9, waitForCompletion: false)
     
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumNumberOfEnemiesAllowed: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
     
         self.init(size: size)
         
@@ -97,6 +99,7 @@ class BaseScene: SKScene{
         self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
         self.maximumNumberOFEnemies = maximumNumberOfEnemiesAllowed
+        self.minimumKillsForLevelCompletion = minimumKillsForLevelCompletion
         
         //Configure background objects
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
@@ -106,10 +109,11 @@ class BaseScene: SKScene{
         
         //Basic scene configuration
         performBasicSceneConfiguration()
-    
-
-    
         
+        //Configure Background music
+        BackgroundMusic.configureBackgroundMusicFrom(fileNamed: self.backGroundMusic, forParentNode: self)
+        
+
     }
     
     
@@ -137,9 +141,6 @@ class BaseScene: SKScene{
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
-        
-        //Configure Background music
-        BackgroundMusic.configureBackgroundMusicFrom(fileNamed: self.backGroundMusic, forParentNode: self)
         
         
         //Configure initial HUD display

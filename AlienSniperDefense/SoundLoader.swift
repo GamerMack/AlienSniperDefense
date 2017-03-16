@@ -19,14 +19,9 @@ class SoundLoader{
     static func preloadSounds() {
         do {
             let sounds: [String] = [
+                SoundEffectsNoFileExtension.Explosion1,
                 SoundEffectsNoFileExtension.Explosion2,
                 SoundEffectsNoFileExtension.Explosion3,
-                SoundEffectsNoFileExtension.Laser2,
-                SoundEffectsNoFileExtension.Laser3,
-                SoundEffectsNoFileExtension.Laser4,
-                SoundEffectsNoFileExtension.Laser5,
-                SoundEffectsNoFileExtension.Laser6,
-                SoundEffectsNoFileExtension.Laser7,
                 SoundEffectsNoFileExtension.Laser8,
                 SoundEffectsNoFileExtension.Laser9
             ]

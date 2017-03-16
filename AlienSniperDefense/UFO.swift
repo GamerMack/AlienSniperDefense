@@ -22,25 +22,18 @@ class UFO: SKSpriteNode{
     
     var inFieldEmittingMode: Bool = false {
         didSet{
-            if let gravityNode = self.childNode(withName: NodeNames.UFOFieldNode) as? SKFieldNode{
-                gravityNode.isEnabled = inFieldEmittingMode ? true : false
-            }
             
             if(inFieldEmittingMode){
                 self.run(emittingAnimation, withKey: "emittingAnimation")
             }else{
                 self.removeAction(forKey: "emittingAnimation")
             }
+            
+            
         }
     }
     
-    lazy var gravityField: SKFieldNode = {
-        let gravityNode = SKFieldNode.noiseField(withSmoothness: 2.00, animationSpeed: 2.00)
-        gravityNode.isEnabled = false
-        gravityNode.name = NodeNames.UFOFieldNode
-        return gravityNode
-    
-    }()
+ 
     
    
     //MARK: Actions
@@ -59,6 +52,8 @@ class UFO: SKSpriteNode{
     
     //MARK: Variables related to health
     var health: Int = 1
+    var pathAnimationDuration: Double = 5.00
+    var isDead: Bool = false
     
     //MARK: *********** INITIALIZERS
     
@@ -70,7 +65,7 @@ class UFO: SKSpriteNode{
         super.init(texture: texture, color: color, size: size)
     }
     
-    convenience init?(ufoType: UFOType) {
+    convenience init?(ufoType: UFOType, pathAnimationDuration: Double) {
         
         guard let textureAtlas = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO) else { return nil }
         
@@ -78,16 +73,16 @@ class UFO: SKSpriteNode{
         
         switch(ufoType){
         case .Red:
-            texture = textureAtlas.textureNamed("elephant")
+            texture = textureAtlas.textureNamed("ufoRed")
             break
         case .Green:
-            texture = textureAtlas.textureNamed("giraffe")
+            texture = textureAtlas.textureNamed("ufoGreen")
             break
         case .Yellow:
-            texture = textureAtlas.textureNamed("monkey")
+            texture = textureAtlas.textureNamed("ufoYellow")
             break
         case .Blue:
-            texture = textureAtlas.textureNamed("penguin")
+            texture = textureAtlas.textureNamed("ufoBlue")
             break
         
         }
@@ -97,19 +92,48 @@ class UFO: SKSpriteNode{
         self.init(texture: texture, color: .clear, size: ufoSize)
         
         
+        //Configure shape overlay, which appear in die animation
         shapeOverlay = SKShapeNode(circleOfRadius: ufoSize.width/2)
         shapeOverlay.fillColor = SKColor.red
         shapeOverlay.strokeColor = SKColor.clear
         shapeOverlay.zPosition = -15
         shapeOverlay.alpha = 0
-        
         self.addChild(shapeOverlay)
         
+        //Set duration of path animation: longer means slower UFO spped, short means faster speed
+        self.pathAnimationDuration = pathAnimationDuration
+
+     
+        configurePosition()
         configurePhysics(physicsBodyRadius: ufoSize.width/2)
         configureAnimations()
-        configurePosition()
+        configureInitialHealth(initialHealth: 1)
+    }
+    
+    
+    //MARK: ************* Public configuration method used for UFO copies, since the copy() function called by the controller does not pefrom a deep copy
+    
+    func performUFOConfiguration(withPathAnimationDurationOf duration: Double){
+        //Configure shape overlay, which appear in die animation
         
-        self.health = 1
+        let ufoSize = self.size
+        
+        let shapeOverlay = SKShapeNode(circleOfRadius: ufoSize.width/2)
+        shapeOverlay.fillColor = SKColor.red
+        shapeOverlay.strokeColor = SKColor.clear
+        shapeOverlay.zPosition = -15
+        shapeOverlay.alpha = 0
+        self.addChild(shapeOverlay)
+        
+        //Set duration of path animation: longer means slower UFO spped, short means faster speed
+        self.pathAnimationDuration = duration
+        
+        
+        configurePosition()
+        configurePhysics(physicsBodyRadius: ufoSize.width/2)
+        configureAnimations()
+        configureInitialHealth(initialHealth: 1)
+        
     }
     
     
@@ -119,11 +143,20 @@ class UFO: SKSpriteNode{
         self.position = randomPoint
     }
     
+    //MARK: ************ Configuration for intiial health
+    private func configureInitialHealth(initialHealth: Int){
+        self.health = initialHealth
+    }
+    
     //MARK: *********** Configuration for physics body
     private func configurePhysics(physicsBodyRadius: CGFloat){
         self.physicsBody = SKPhysicsBody(circleOfRadius: physicsBodyRadius)
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
+        self.physicsBody?.fieldBitMask = ~PhysicsCategory.Player
+        
+        self.physicsBody?.contactTestBitMask = ~PhysicsCategory.Player
+        self.physicsBody?.collisionBitMask = ~PhysicsCategory.Player
     
     }
     
@@ -138,7 +171,7 @@ class UFO: SKSpriteNode{
     }
     
     private func configureEmittingAction(){
-        let colorizeAction = SKAction.colorize(with: UIColor.red, colorBlendFactor: 2.00, duration: 2.00)
+        let colorizeAction = SKAction.colorize(with: UIColor.init(colorLiteralRed: 0.40, green: 0.80, blue: 0.80, alpha: 0.40), colorBlendFactor: 2.00, duration: 0.50)
         let reverseColorizeAction = SKAction.reversed(colorizeAction)()
         
         emittingAnimation = SKAction.repeatForever(SKAction.sequence([
@@ -164,9 +197,20 @@ class UFO: SKSpriteNode{
     }
     
     private func configurePathAction(){
+        
+     
+        
         let cgRect = CGRect(x: self.position.x, y: self.position.y, width: 100, height: 100)
         let path = CGPath(ellipseIn: cgRect, transform: nil)
-        pathAction = SKAction.repeatForever(SKAction.follow(path, duration: 2.00))
+        let pathAnimation = SKAction.follow(path, duration: self.pathAnimationDuration)
+        let reversePathAnimation = SKAction.reversed(pathAnimation)()
+        
+        let pathActionSequence = SKAction.sequence([
+            pathAnimation,
+            reversePathAnimation
+            ])
+        
+        pathAction = SKAction.repeatForever(pathActionSequence)
         self.run(pathAction, withKey: "pathAction")
     }
     
@@ -182,7 +226,18 @@ class UFO: SKSpriteNode{
             frameCount = 0
         }
         
+        if(isOffScreen()){
+            configurePosition()
+        }
+        
         lastUpdateTime = currentTime
+    }
+    
+    
+    private func isOffScreen() -> Bool{
+        if(isDead) { return false }
+        
+        return (self.position.x < -ScreenSizeFloatConstants.HalfScreenWidth || self.position.x > ScreenSizeFloatConstants.HalfScreenWidth || self.position.y < -ScreenSizeFloatConstants.HalfScreenHeight || self.position.y > ScreenSizeFloatConstants.HalfScreenHeight)
     }
     
     
@@ -190,7 +245,9 @@ class UFO: SKSpriteNode{
     
     func respondToTouch(){
         
-        switch(getHealth()){
+        if(inFieldEmittingMode) { return }
+        
+        switch(self.getHealth()){
       
         case 1:
             takeDamage()
@@ -200,34 +257,43 @@ class UFO: SKSpriteNode{
             die()
             break
         default:
-            die()
+            takeDamage()
         }
         
     }
     
     
     func takeDamage(){
+        
         self.run(damageAction, withKey: "damageAction")
     }
     
   
     
     func die(){
+        
         self.removeAllActions()
         
-        let fallOffAction = SKAction.falloff(by: 2.00, duration: 3.00)
-        shapeOverlay.zPosition = 15
-        shapeOverlay.alpha = 1
+        for node in self.children{
+            if let node = node as? SKShapeNode{
+                node.zPosition = 15
+                node.alpha = 0.50
+            }
+        }
         
         self.physicsBody?.affectedByGravity = true
+        self.isDead = true
         
         self.run(SKAction.sequence([
-            fallOffAction,
-            SKAction.wait(forDuration: 5.00),
+            SKAction.wait(forDuration: 1.00),
             SKAction.removeFromParent()
             ]))
         
         
+    }
+    
+    func setHealthTo(healthValue: Int){
+        self.health = healthValue
     }
     
     func getHealth() -> Int{

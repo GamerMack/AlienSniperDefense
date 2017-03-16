@@ -14,6 +14,7 @@
 //  Copyright © 2017 AlexMakedonski. All rights reserved.
 //
 
+/**
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -509,3 +510,4 @@ extension FlyingAlienScene{
     
 }
 
+**/
