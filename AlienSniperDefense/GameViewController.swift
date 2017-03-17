@@ -31,8 +31,7 @@ class GameViewController: UIViewController {
         let wingmanScene = WingmanScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill all the wingman", enemyName: "Wingman", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 10.00, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 5)
         
         let stealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
-        let flyingAlienScene = FlyingAlienScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill the flying aliens", enemyName: "Flying Aliens", crosshairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, fieldActionInterval: 5.00, numberOfBackgroundObjects: 2, spawnInterval: 10.0, enemiesSpawnedPerInterval: 2, initialNumberOfEnemiesSpawned: 2, maximumNumberOfEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10)
-        
+        let flyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill

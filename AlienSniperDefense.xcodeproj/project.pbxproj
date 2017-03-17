@@ -32,6 +32,7 @@
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
 		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
+		BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */; };
 		BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */; };
 		BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */; };
 		BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF631E7A4C4E00808B90 /* Main.storyboard */; };
@@ -121,6 +122,7 @@
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
 		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
+		BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlienLevelLoader.swift; sourceTree = "<group>"; };
 		BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlienSniperDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */,
 				BD63135F1E7A58A800EB10F9 /* BatSceneLevelLoader.swift */,
 				BD63135E1E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift */,
+				BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */,
 			);
 			name = LevelLoaders;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 			files = (
 				BD6313671E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift in Sources */,
 				BD07A4021E7A56B200B52128 /* Typography.swift in Sources */,
+				BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */,
 				BD4BBFC91E7A550000808B90 /* CrossHair.swift in Sources */,
 				BD6313681E7A58A800EB10F9 /* BatSceneLevelLoader.swift in Sources */,
 				BD6313631E7A58A800EB10F9 /* BatScene.swift in Sources */,

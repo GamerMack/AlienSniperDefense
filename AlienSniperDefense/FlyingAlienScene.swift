@@ -48,7 +48,10 @@ class FlyingAlienScene: BaseScene{
     var velocityUpdateCounter: TimeInterval = 0.00
     var velocityUpdateInterval: TimeInterval = 5.00
     
+    //Random Vector Configuration (for providing level-specific customization of velocity changes)
+    var randomVectorConfiguration: RandomVectorConfiguration!
     //Random Point Generator
+    
     var randomDistFromBackgroundObjectsArray: GKRandomDistribution {
         
         get{
@@ -58,7 +61,7 @@ class FlyingAlienScene: BaseScene{
     
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crosshairType: CrossHair.CrossHairType, backgroundMusic: String, fieldActionInterval: TimeInterval, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, enemiesSpawnedPerInterval: Int, initialNumberOfEnemiesSpawned: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crosshairType: CrossHair.CrossHairType, backgroundMusic: String, fieldActionInterval: TimeInterval, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, enemiesSpawnedPerInterval: Int, initialNumberOfEnemiesSpawned: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, randomVectorConfiguration: RandomVectorConfiguration) {
         
         self.init(size: size)
         
@@ -84,6 +87,9 @@ class FlyingAlienScene: BaseScene{
         
         //Configure unique aspects of scene
         self.fieldActionInterval = fieldActionInterval
+        
+        //Configure randomVectorConfiguration
+        self.randomVectorConfiguration = randomVectorConfiguration
     
     
     }
@@ -299,7 +305,15 @@ class FlyingAlienScene: BaseScene{
         for node in self.children{
             if let node = node as? FlyingAlien{
                 
-                node.updatePhysics()
+                let maxVectorX = self.randomVectorConfiguration.maxVectorX
+                let minVectorX = self.randomVectorConfiguration.minVectorX
+                
+                let maxVectorY = self.randomVectorConfiguration.maxVectorY
+                let minVectorY = self.randomVectorConfiguration.minVectorY
+                
+                let randomVector = RandomVector(yComponentMin: minVectorY, yComponentMax: maxVectorY, xComponentMin: minVectorX, xComponentMax: maxVectorX)
+                
+                node.updatePhysics(randomVector: randomVector)
                 
             }
         }
@@ -373,12 +387,53 @@ class FlyingAlienScene: BaseScene{
 extension FlyingAlienScene{
     override func loadNextLevel() {
         //TODO: Implement loadNextLevel function
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        var nextLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+        case 5:
+            //TODO: Load next track
+            break
+        case 4:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: .Easy)
+        case 3:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: .Easy)
+        case 2:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: .Easy)
+        case 1:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: .Easy)
+        default:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(nextLevelScene, transition: mainTransition)
     }
         
     
     
     override func reloadCurrentLevel() {
         //TODO: Implement reload current level function
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        
+        var currentLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+        case 5:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: .Easy)
+        case 4:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: .Easy)
+        case 3:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: .Easy)
+        case 2:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: .Easy)
+        case 1:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        default:
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(currentLevelScene, transition: mainTransition)
+
     }
     
 }
@@ -424,7 +479,6 @@ extension FlyingAlienScene{
     }
     
     
-
-    
-    
 }
+
+
