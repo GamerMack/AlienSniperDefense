@@ -17,29 +17,8 @@ class BatScene: BaseScene
     
     //MARK: ******************** BAT CONFIGURATION PARAMTERS
 
-    lazy var prototypeBatArray: [Bat] = {
+    lazy var prototypeBat = Bat(scalingFactor: 0.80, startingHealth: 1, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10)!
         
-        var batsArray = [Bat]()
-        
-        if let bat1 = Bat(scalingFactor: 0.3), let bat2 = Bat(scalingFactor: 0.6), let bat3 = Bat(scalingFactor: 1.0), let bat4 = Bat(scalingFactor: 2.0), let bat5 = Bat(scalingFactor: 4.0){
-            
-            batsArray.append(bat1)
-            batsArray.append(bat2)
-            batsArray.append(bat3)
-            batsArray.append(bat4)
-            batsArray.append(bat5)
-            
-        }
-        
-        return batsArray
-    
-    }()
-    
-    var batIndex: Int {
-        get{
-            return GKRandomDistribution(lowestValue: 0, highestValue: prototypeBatArray.count-1).nextInt()
-        }
-    }
     
     var minBatsSpawned: Int = 0
     var maxBatsSpawned: Int = 0
@@ -346,7 +325,7 @@ extension BatScene{
         
         for _ in 0...numberOfBatsToSpawn{
             
-            let batClone = prototypeBatArray[batIndex].copy() as! Bat
+            let batClone = prototypeBat.copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
             self.addChild(batClone)
             self.currentNumberOfEnemies += 1
@@ -359,7 +338,7 @@ extension BatScene{
         
         for _ in 0...numberOfBats{
             
-            let batClone = prototypeBatArray[batIndex].copy() as! Bat
+            let batClone = prototypeBat.copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
             self.addChild(batClone)
             self.currentNumberOfEnemies += 1
