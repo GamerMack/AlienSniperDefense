@@ -151,24 +151,13 @@ class BatScene: BaseScene
     }
     
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
         frameCount += currentTime - lastUpdateTime
-        
-        if(numberOfEnemiesKilled > minimumBatsKilledForLevelCompletion){
-            loadNextScene(difficultyLevel: .Easy)
-        }
-        
-        if(self.currentNumberOfEnemies > maximumNumberOFEnemies){
-          //  self.isPaused = true
-           // self.showRestartButtons()
-            
-        }
-        
     
-        player.update()
         
         if(frameCount > spawnInterval){
             //Update the Bat Controller
-            
            spawnRandomNumberOfBatsFrom(minimum: self.minBatsSpawned, toMaximum: self.maxBatsSpawned)
             frameCount = 0.00
         }
@@ -195,22 +184,10 @@ class BatScene: BaseScene
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        super.touchesBegan(touches, with: event)
+        
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
-        
-        
-        
-        
-        if(restartButton.contains(touchLocation)){
-            
-            reloadCurrentScene(difficultyLevel: .Easy)
-        }
-        
-        
-        if(menuButton.contains(touchLocation)){
-            let transition = SKTransition.crossFade(withDuration: 2.0)
-            self.view?.presentScene(MenuScene(size: self.size), transition: transition)
-        }
         
         
         

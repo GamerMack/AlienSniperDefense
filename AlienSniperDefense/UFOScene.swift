@@ -91,24 +91,11 @@ class UFOScene: BaseScene{
     }
     
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
         frameCount += currentTime - lastUpdateTime
         
-        if(currentNumberOfEnemies > maximumNumberOFEnemies){
-            self.isPaused = true
-            self.showRestartButtons()
-            
-        }
-        
-        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
-            //Load next scene
-            self.isPaused = true
-            print("You win!")
-            loadNextLevel()
-        }
-        
-        
         //Update player CrossHair
-        player.update()
         checkPlayerPositionForReposition()
         
         

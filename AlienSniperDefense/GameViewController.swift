@@ -30,13 +30,19 @@ class GameViewController: UIViewController {
         
         let wingmanScene = WingmanScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill all the wingman", enemyName: "Wingman", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 10.00, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 5)
         
+        let stealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        
+        
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
             batScene.scaleMode = .aspectFill
             wingmanScene.scaleMode = .aspectFill
+            stealthShipScene.scaleMode = .aspectFill
+        
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(wingmanScene)
+                view.presentScene(stealthShipScene)
                     
                 view.ignoresSiblingOrder = true
                     

@@ -6,7 +6,7 @@
 //  Copyright © 2017 AlexMakedonski. All rights reserved.
 //
 
-/**
+
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -47,16 +47,34 @@ class StealthShipScene: BaseScene{
     
 
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, spaceShipTravelSpeed: TimeInterval, spaceShipTransitionInterval: TimeInterval) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, spaceShipTravelSpeed: TimeInterval, spaceShipTransitionInterval: TimeInterval, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
         
         self.init(size: size)
+        
+        //Configure spaceship parameters
+        self.spaceShipTransitionInterval = spaceShipTransitionInterval
+        self.spaceShipFlySpeed = spaceShipTravelSpeed
+        
+        //Configure Opening/Intro Start Window
         self.levelNumber = levelNumber
+        self.levelDescription = levelDescription
+        self.enemyName = enemyName
+        
+        //Configure Player Type and Background Music
+        self.playerType = playerType
+        self.backGroundMusic = backgroundMusic
+        
+        
+        //Configure Game Rules and basic AI logic
         self.spawnInterval = spawnInterval
         self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
+        self.maximumNumberOFEnemies = maximumNumberOfEnemiesAllowed
+        self.minimumKillsForLevelCompletion = minimumKillsForLevelCompletion
+        
+        //Configure background objects
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
-        self.spaceShipTransitionInterval = spaceShipTransitionInterval
-        self.spaceShipFlySpeed = spaceShipTravelSpeed
+
         
     }
     
@@ -76,54 +94,15 @@ class StealthShipScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
-        
-        
-        //Set anchor point of current scene to center
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        self.backgroundColor = SKColor.black
-        
-        //Configure SceneInterfaceManagerDelegate
-        sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: "Stealth ships appear and disappear!", enemyName: "Stealth Fighters", spawningLimit: self.maximumNumberOFEnemies)
-        
-        
-        //Configure particle emitter for background
-        let emitterPath = Bundle.main.path(forResource: "StarryNight", ofType: "sks")!
-        let emitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as! SKEmitterNode
-        emitterNode.targetNode = self
-        emitterNode.move(toParent: self)
-        
-        
-        //Configure explosion animation
-        configureExplosionAnimation()
-        
-        //Configure initial HUD display
-        currentNumberOfEnemies = 0
-        numberOfEnemiesKilled = 0
-        self.addChild(hud2)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-        
-        //Configure player
-        player = CrossHair(crossHairType: .BlueLarge)
-        player.zPosition = 10
-        self.addChild(player)
+        //Basic scene configuration
+        performBasicSceneConfiguration()
         
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
-        
-      
         //Spawn first spaceship
         spawnSpaceShipFromArray()
 
-        
-        //Spawn Background Objects
-        spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
-        
-        
-        
-        
     }
     
     
@@ -135,16 +114,9 @@ class StealthShipScene: BaseScene{
     }
     
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
         frameCount += currentTime - lastUpdateTime
-        
-        player.update()
-
-        
-        if(currentNumberOfEnemies > maximumNumberOFEnemies){
-            self.isPaused = true
-            self.showRestartButtons()
-            
-        }
         
         if(frameCount > spawnInterval){
             //spawn the spaceships from an array
@@ -180,30 +152,10 @@ class StealthShipScene: BaseScene{
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        super.touchesBegan(touches, with: event)
+        
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
-        
-
-        
-        if(restartButton.contains(touchLocation)){
-            
-            WingmanLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: .Hard)
-            //self.view?.presentScene(self, transition: transition)
-        }
-        
-        
-        if(menuButton.contains(touchLocation)){
-            let transition = SKTransition.crossFade(withDuration: 2.0)
-            self.view?.presentScene(MenuScene(size: self.size), transition: transition)
-        }
-        
-        for node in nodes(at: touchLocation){
-            
-            if node.name == NodeNames.StartButton{
-                node.removeFromParent()
-            }
-            
-        }
         
         
         if player.contains(touchLocation){
@@ -271,6 +223,13 @@ class StealthShipScene: BaseScene{
         
     }
     
+    override func spawnEnemyFromPrototype(numberOfEnemy: Int) {
+        for _ in 0..<numberOfEnemy{
+            
+            spawnSpaceShipFromArray()
+            
+        }
+    }
     
     private func spawnSpaceShipFromArray(){
         
@@ -309,93 +268,64 @@ class StealthShipScene: BaseScene{
         
     }
     
-    
- 
 
-    
-    private func configureExplosionAnimation(){
-        if let textureAtlas = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .RegularExplosion){
-            
-            self.explosionAnimation = SKAction.animate(with: [
-                textureAtlas.textureNamed("regularExplosion00"),
-                textureAtlas.textureNamed("regularExplosion01"),
-                textureAtlas.textureNamed("regularExplosion02"),
-                textureAtlas.textureNamed("regularExplosion03"),
-                textureAtlas.textureNamed("regularExplosion04"),
-                textureAtlas.textureNamed("regularExplosion05"),
-                textureAtlas.textureNamed("regularExplosion06"),
-                textureAtlas.textureNamed("regularExplosion07"),
-                textureAtlas.textureNamed("regularExplosion08")
-                ], timePerFrame: 0.25)
-            
-        }
-    }
+  
     
     
     
 }
 
 
-//
-//
-//extension SpaceShipLevel{
-//    
-//    func processResponseForSpaceShipNode(_ spaceShipNode: SpaceShip){
-//        
-//        let isInStealthMode = spaceShipNode.userData?.value(forKey: "isInStealthMode") as! Bool
-//        
-//        let health = spaceShipNode.userData?.value(forKey: "health") as! Int
-//        
-//        if(isInStealthMode) { return }
-//        
-//    
-//            switch(health){
-//            case 2:
-//                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .NormalRunning)
-//                emitterNode.position = CGPoint(x: 0, y: -10)
-//                emitterNode.zPosition = 2
-//                spaceShipNode.addChild(emitterNode)
-//                spaceShipNode.userData?.setValue(1, forKey: "health")
-//                break
-//            case 1:
-//                self.removeAllChildren()
-//                let emitterNode = SmokeEmitterManager.sharedInstance.createSmokeEmitterFor(engineState: .Accelerated)
-//                emitterNode.position = CGPoint(x: 0, y: -10)
-//                emitterNode.zPosition = 2
-//                
-//                spaceShipNode.addChild(emitterNode)
-//                spaceShipNode.userData?.setValue(0, forKey: "health")
-//                break
-//            case 0:
-//                
-//                spaceShipNode.run(SKAction.sequence([
-//                            explosionSound,
-//                            explosionAnimation
-//                        ]))
-//                
-//                spaceShipNode.run(SKAction.sequence([
-//                    SKAction.wait(forDuration: 2.0),
-//                    SKAction.removeFromParent()
-//                    ]))
-//                break
-//            default:
-//                spaceShipNode.run(SKAction.sequence([
-//                    explosionSound,
-//                    explosionAnimation
-//                    ]))
-//                
-//                spaceShipNode.run(SKAction.sequence([
-//                    SKAction.wait(forDuration: 2.0),
-//                    SKAction.removeFromParent()
-//                    ]))
-//            }
-//        
-//    
-//    
-//    
-//}
-//
-//
-//}
- 
- **/
+extension StealthShipScene{
+    
+    override func reloadCurrentLevel() {
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        
+        var currentLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+        case 5:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+        case 4:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+        case 3:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+        case 2:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+        case 1:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        default:
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(currentLevelScene, transition: mainTransition)
+        
+        
+    }
+    
+    override func loadNextLevel() {
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+        var nextLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        switch(self.levelNumber){
+        case 5:
+            //TODO: Load next track
+            break
+        case 4:
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+        case 3:
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+        case 2:
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+        case 1:
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+        default:
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        }
+        
+        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+    }
+    
+}
+
+

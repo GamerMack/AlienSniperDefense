@@ -116,19 +116,11 @@ class WingmanScene: BaseScene{
     
     override func update(_ currentTime: TimeInterval) {
         
+        super.update(currentTime)
+        
     
         frameCount += currentTime - lastUpdateTime
         hideIntervalFrameCount += currentTime - lastUpdateTime
-    
-        if(currentNumberOfEnemies > maximumNumberOFEnemies){
-                self.isPaused = true
-                self.showRestartButtons()
-    
-        }
-        
-        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
-            loadNextLevel()
-        }
     
         player.update()
     

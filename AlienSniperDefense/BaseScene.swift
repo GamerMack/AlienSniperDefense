@@ -161,7 +161,9 @@ class BaseScene: SKScene{
     //MARK: *************** GAME LOOP FUNCTIONS (these will be overriden and customized in subclasses)
     
     override func update(_ currentTime: TimeInterval) {
-        frameCount += currentTime - lastUpdateTime
+        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+            loadNextLevel()
+        }
         
         if(currentNumberOfEnemies > maximumNumberOFEnemies){
             self.isPaused = true
@@ -170,15 +172,8 @@ class BaseScene: SKScene{
         }
         
         player.update()
+       
         
-        if(frameCount > spawnInterval){
-            //Call private helper function to spawn enemies
-            frameCount = 0
-        }
-        
-        
-        
-        lastUpdateTime = currentTime
     }
     
   
