@@ -109,6 +109,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
         setAlienColorTo(alienColor: alienColor)
         setup()
         self.health = startingHealth
+        self.userData?.setValue(2, forKey: "health")
     }
     
     private func setAlienColorTo(alienColor: AlienColor){
@@ -157,7 +158,9 @@ class FlyingAlien: SKSpriteNode, Enemy{
         
         var randomVector: RandomVector
         
-        switch(self.health){
+        guard let health = self.userData?.value(forKey: "health") as? Int else { return RandomVector().getVector() }
+        
+        switch(health){
         case 2:
             randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
             randomVector.randomizeXComponentSign()
@@ -189,7 +192,9 @@ class FlyingAlien: SKSpriteNode, Enemy{
         
         if(!isManned) { return }
         
-            switch(self.health){
+        guard let health = self.userData?.value(forKey: "health") as? Int else {return}
+        
+            switch(health){
             case 2:
                 self.run(SKAction.sequence([
                     SKAction.rotate(byAngle: 90, duration: 0.50),
