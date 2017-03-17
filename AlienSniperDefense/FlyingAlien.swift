@@ -151,24 +151,25 @@ class FlyingAlien: SKSpriteNode, Enemy{
     
     func updatePhysics(){
         
-        self.physicsBody?.velocity = getRandomVectorAjustedForHealth()
-
-    }
-    
-    private func getRandomVectorAjustedForHealth() -> CGVector{
-        
         var randomVector: RandomVector
         
-        guard let health = self.userData?.value(forKey: "health") as? Int else { return RandomVector().getVector() }
+        guard let userData = self.userData else {
+            self.userData = NSMutableDictionary()
+            self.userData?.setValue(2, forKey: "health")
+            return
+        }
+        
+        let health = userData.value(forKey: "health") as! Int
+        
         
         switch(health){
         case 2:
-            randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
+            randomVector = RandomVector(yComponentMin: 0, yComponentMax: 100, xComponentMin: 0, xComponentMax: 100)
             randomVector.randomizeXComponentSign()
             randomVector.randomizeYComponentSign()
             break
         case 1:
-            randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
+            randomVector = RandomVector(yComponentMin: 100, yComponentMax: 200, xComponentMin: 100, xComponentMax: 200)
             randomVector.randomizeYComponentSign()
             randomVector.randomizeYComponentSign()
             break
@@ -179,13 +180,15 @@ class FlyingAlien: SKSpriteNode, Enemy{
             break
         default:
             randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
-                randomVector.randomizeXComponentSign()
-                randomVector.randomizeYComponentSign()
+            randomVector.randomizeXComponentSign()
+            randomVector.randomizeYComponentSign()
             break
         }
         
-        return randomVector.getVector()
+
         
+        self.physicsBody?.velocity = randomVector.getVector()
+
     }
     
     
@@ -193,7 +196,13 @@ class FlyingAlien: SKSpriteNode, Enemy{
         
         if(!isManned) { return }
         
-        guard let health = self.userData?.value(forKey: "health") as? Int else {return}
+        guard let userData = self.userData else {
+            self.userData = NSMutableDictionary()
+            self.userData?.setValue(2, forKey: "health")
+            return
+        }
+        
+        let health = userData.value(forKey: "health") as! Int
         
             switch(health){
             case 2:

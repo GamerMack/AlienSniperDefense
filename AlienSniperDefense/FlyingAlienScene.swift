@@ -87,7 +87,7 @@ class FlyingAlienScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
-        
+
         //Basic scene configuration
         performBasicSceneConfiguration()
         
@@ -96,13 +96,27 @@ class FlyingAlienScene: BaseScene{
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
         //Configure barrier node
+        configureBarrierNode()
+   
+ 
+        //Spawn initial number of flying aliens
+        spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
+       
+        
+        
+    }
+    
+    
+    //MARK: ************* Configure barrier node for containing Flying Aliens
+    
+    private func configureBarrierNode(){
         let barrierNode = SKSpriteNode(texture: nil, color: .clear, size: self.size)
         barrierNode.zPosition = 2
         barrierNode.anchorPoint = CGPoint(x: 0, y: 0)
         barrierNode.position = CGPoint.zero
         
-        let cgSize = CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.6, height: ScreenSizeFloatConstants.ScrrenHeight*0.6)
-        let startingPoint = CGPoint(x: 0.00, y: 0.00)
+        let cgSize = CGSize(width: ScreenSizeFloatConstants.ScreenWidth, height: ScreenSizeFloatConstants.ScrrenHeight)
+        let startingPoint = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth, y: -ScreenSizeFloatConstants.HalfScreenHeight)
         let cgRect = CGRect(origin: startingPoint, size: cgSize)
         barrierNode.physicsBody = SKPhysicsBody(edgeLoopFrom: cgRect)
         
@@ -114,14 +128,6 @@ class FlyingAlienScene: BaseScene{
         barrierNode.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         
         self.addChild(barrierNode)
- 
-       
-        
-        //Spawn initial number of flying aliens
-        spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
-       
-        
-
         
     }
    
