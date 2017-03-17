@@ -164,6 +164,9 @@ class Bat: SKSpriteNode{
         self.physicsBody = SKPhysicsBody(circleOfRadius: circleRadius)
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.allowsRotation = false
+        self.physicsBody?.collisionBitMask = ~PhysicsCategory.Player
+        self.physicsBody?.contactTestBitMask = ~PhysicsCategory.Player
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         
     }
    

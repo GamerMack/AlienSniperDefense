@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-/**
+
 
 class BatSceneLevelLoader{
     
@@ -24,6 +24,7 @@ class BatSceneLevelLoader{
     
     static func loadLevel5From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
         
+        /**
    
         var nextScene: SKScene
         
@@ -40,12 +41,12 @@ class BatSceneLevelLoader{
         }
         
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
+        currentScene.view?.presentScene(nextScene, transition: mainTransition) **/
     }
     
     
     static func loadLevel4From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
-        
+        /**
      
         var nextScene: SKScene
         
@@ -62,12 +63,13 @@ class BatSceneLevelLoader{
         }
         
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
+        currentScene.view?.presentScene(nextScene, transition: mainTransition) **/
     }
     
     
     static func loadLevel3From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
         
+        /**
      
         
         var nextScene: SKScene
@@ -85,14 +87,14 @@ class BatSceneLevelLoader{
         }
         
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
+        currentScene.view?.presentScene(nextScene, transition: mainTransition) **/
     }
     
     
     static func loadLevel2From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
         
      
-        
+        /**
         var nextScene: SKScene
         
         switch(difficultyLevel){
@@ -107,14 +109,15 @@ class BatSceneLevelLoader{
             break
         }
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
+        currentScene.view?.presentScene(nextScene, transition: mainTransition) **/
 
     }
     
         
     static func loadLevel1From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
-            
         
+    
+        /**
             var nextScene: SKScene
             
             switch(difficultyLevel){
@@ -130,14 +133,15 @@ class BatSceneLevelLoader{
             }
 
         
+    
         
-        
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
+        currentScene.view?.presentScene(nextScene, transition: mainTransition) **/
     }
     
     static func getLevel1Scene(size: CGSize, difficultyLevel: DifficultyLevel) -> SKScene{
         
-        
+        return SKScene(size: size)
+        /*
         switch(difficultyLevel){
         case .Hard:
             return BatScene(size: size, levelNumber: 1, levelDescription: "Can you shoot the hidden bats?", numberOfBackgroundObjects: 5, spawnInterval: 13, initialNumberOfEnemiesSpawned: 2, minBatsSpawned: 0, maxBatsSpawned: 1, minBatComponentVelocity: 0, maxBatComponentVelocity: 20, lightNodeFallOff: 3, maximumBatsAllowedToSpawn: 40, minimumBatsKilledForLevelCompletion: 10)
@@ -149,7 +153,7 @@ class BatSceneLevelLoader{
             return BatScene(size: size, levelNumber: 1, levelDescription: "Can you shoot the hidden bats?", numberOfBackgroundObjects: 5, spawnInterval: 15, initialNumberOfEnemiesSpawned: 1, minBatsSpawned: 0, maxBatsSpawned: 1, minBatComponentVelocity: 0, maxBatComponentVelocity: 20, lightNodeFallOff: 3, maximumBatsAllowedToSpawn: 40, minimumBatsKilledForLevelCompletion: 10)
             
         }
-        
+        */
         
     }
     
@@ -157,13 +161,15 @@ class BatSceneLevelLoader{
     static private func loadSceneFrom(_ currentScene: SKScene, withLevelNumber levelNumber: Int, numberOfBackgroundObjects: Int, levelDescription: String, enemySpawnInterval: TimeInterval, initialNumberOfEnemies: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double, lightNodeFalloff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompleition: Int) -> SKScene{
         
         
-        let scene = BatScene(size: currentScene.size, levelNumber: levelNumber, levelDescription: levelDescription, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: enemySpawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemies, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumBatsAllowedToSpawn, minimumBatsKilledForLevelCompletion: minimumBatsKilledForLevelCompleition)
+        //let scene = BatScene(size: currentScene.size, levelNumber: levelNumber, levelDescription: levelDescription, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: enemySpawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemies, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumBatsAllowedToSpawn, minimumBatsKilledForLevelCompletion: minimumBatsKilledForLevelCompleition)
         
-        return scene
+        //return scene
+        
+        return SKScene(size: currentScene.size)
     }
     
     
     
 }
 
-**/
+

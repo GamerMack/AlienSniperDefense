@@ -7,7 +7,7 @@
 //
 
 
-/**
+
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -16,7 +16,31 @@ class BatScene: BaseScene
 {
     
     //MARK: ******************** BAT CONFIGURATION PARAMTERS
-    var batController = BatController(batSpawningInterval: 4.00, minBatsSpawned: 0, maxBatsSpawned: 0)
+
+    lazy var prototypeBatArray: [Bat] = {
+        
+        var batsArray = [Bat]()
+        
+        if let bat1 = Bat(scalingFactor: 0.3), let bat2 = Bat(scalingFactor: 0.6), let bat3 = Bat(scalingFactor: 1.0), let bat4 = Bat(scalingFactor: 2.0), let bat5 = Bat(scalingFactor: 4.0){
+            
+            batsArray.append(bat1)
+            batsArray.append(bat2)
+            batsArray.append(bat3)
+            batsArray.append(bat4)
+            batsArray.append(bat5)
+            
+        }
+        
+        return batsArray
+    
+    }()
+    
+    var batIndex: Int {
+        get{
+            return GKRandomDistribution(lowestValue: 0, highestValue: prototypeBatArray.count-1).nextInt()
+        }
+    }
+    
     var minBatsSpawned: Int = 0
     var maxBatsSpawned: Int = 0
     var minBatComponentVelocity: Double = 0
@@ -27,31 +51,46 @@ class BatScene: BaseScene
     //MARK: ****************** CrossHair LightNode Configuration
     var lightNodeFallOff: CGFloat = 2.0
     
-    
-    //MARK: ******************** Start Button Configuration Parameters
-    var levelDescription: String = ""
+   
     
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int) {
         
+        //Configure Opening/Intro Start Window
         self.init(size: size)
         self.levelNumber = levelNumber
         self.levelDescription = levelDescription
+        self.enemyName = enemyName
+        
+        //Configure Player Type and Background Music
+        self.playerType = playerType
+        self.backGroundMusic = backgroundMusic
+        
+        //Configure background
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
+        
+        //Configure bat spawning parameters
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
+        self.currentNumberOfEnemies = initialNumberOfEnemiesSpawned
         self.spawnInterval = spawnInterval
         self.minBatsSpawned = minBatsSpawned
         self.maxBatsSpawned = maxBatsSpawned
-        self.batController = BatController(batSpawningInterval: spawnInterval, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned)
+       
         self.maxBatComponentVelocity = maxBatComponentVelocity
         self.minBatComponentVelocity = minBatComponentVelocity
         self.lightNodeFallOff = lightNodeFallOff
+        
+        //Configure game rules
         self.maximumBatsAllowedToSpawn = maximumBatsAllowedToSpawn
         self.minimumBatsKilledForLevelCompletion = minimumBatsKilledForLevelCompletion
         
+      
+
     }
     
+
+
     
     override func didMove(to view: SKView) {
         
@@ -59,7 +98,7 @@ class BatScene: BaseScene
         //Set anchor point of current scene to center
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.backgroundColor = SKColor.black
-    
+        self.frameCount = 0.00
         
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
@@ -80,9 +119,10 @@ class BatScene: BaseScene
         //Configure initial HUD display
         currentNumberOfEnemies = 0
         numberOfEnemiesKilled = 0
-        self.addChild(hud2)
         hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-        
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        self.addChild(hud2)
+
         //Configure player
         player = CrossHair(crossHairType: .BlueLarge)
         player.zPosition = 15
@@ -94,18 +134,15 @@ class BatScene: BaseScene
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
-        //Spawn inital number of bats
-        self.addChild(batController)
-        batController.spawnBats(numberOfBats: self.initialNumberOfEnemiesSpawned)
-        let totalNumberOfBatsSpawned = batController.getTotalNumberOfBatsSpawned()
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: totalNumberOfBatsSpawned)
-        
-        //Spawn Background Objects
+
+        //Spawn Background Objectsr
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
         
         
-        
-        
+        //Spawn initial number of bats
+        spawnBats(numberOfBats: nil)
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+
         
         
     }
@@ -115,32 +152,52 @@ class BatScene: BaseScene
     //MARK: *************** GAME LOOP FUNCTIONS
     
     override func didSimulatePhysics() {
-        batController.checkForRepositioning()
+        
+        var randomVector = RandomVector(yComponentMin: self.minBatComponentVelocity, yComponentMax: self.maxBatComponentVelocity, xComponentMin: self.minBatComponentVelocity, xComponentMax: self.maxBatComponentVelocity)
+        
+        randomVector.randomizeXComponentSign()
+        randomVector.randomizeYComponentSign()
+        
+        
+        for node in self.children{
+            if let bat = node as? Bat{
+                checkForRepositioning()
+                bat.physicsBody?.velocity = randomVector.getVector()
+            }
+        }
+        
+        
+        
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
         frameCount += currentTime - lastUpdateTime
-        hideIntervalFrameCount += currentTime - lastUpdateTime
-        
         
         if(numberOfEnemiesKilled > minimumBatsKilledForLevelCompletion){
             loadNextScene(difficultyLevel: .Easy)
         }
         
-        if(batController.getTotalNumberOfBatsSpawned() > maximumNumberOFEnemies){
-            self.isPaused = true
-            self.showRestartButtons()
+        if(self.currentNumberOfEnemies > maximumNumberOFEnemies){
+          //  self.isPaused = true
+           // self.showRestartButtons()
             
         }
         
-        
-        
-        player.update()
-        batController.update(currentTime: currentTime)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: batController.getTotalBatCount())
     
+        player.update()
+        
+        if(frameCount > spawnInterval){
+            //Update the Bat Controller
+            
+           spawnRandomNumberOfBatsFrom(minimum: self.minBatsSpawned, toMaximum: self.maxBatsSpawned)
+            frameCount = 0.00
+        }
+        
         
         lastUpdateTime = currentTime
+
+        
     }
     
     
@@ -191,9 +248,10 @@ class BatScene: BaseScene
                     ]))
                 
                 numberOfEnemiesKilled += 1
+                currentNumberOfEnemies -= 1
+                
                 hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: batController.getTotalBatCount())
-               
+                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
                 
             } else {
                 player.run(shootingSound)
@@ -215,25 +273,6 @@ class BatScene: BaseScene
         
     }
     
-    
-    
-    private func configureExplosionAnimation(){
-        if let textureAtlas = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .RegularExplosion){
-            
-            self.explosionAnimation = SKAction.animate(with: [
-                textureAtlas.textureNamed("regularExplosion00"),
-                textureAtlas.textureNamed("regularExplosion01"),
-                textureAtlas.textureNamed("regularExplosion02"),
-                textureAtlas.textureNamed("regularExplosion03"),
-                textureAtlas.textureNamed("regularExplosion04"),
-                textureAtlas.textureNamed("regularExplosion05"),
-                textureAtlas.textureNamed("regularExplosion06"),
-                textureAtlas.textureNamed("regularExplosion07"),
-                textureAtlas.textureNamed("regularExplosion08")
-                ], timePerFrame: 0.25)
-            
-        }
-    }
     
     
     private func reloadCurrentScene(difficultyLevel: BatSceneLevelLoader.DifficultyLevel){
@@ -283,5 +322,80 @@ class BatScene: BaseScene
     }
     
     
+    private func removeExcessNodes(numberToRemove: Int){
+        var counter = 0
+        
+        for node in self.children{
+            if let node = node as? Bat, counter < numberToRemove{
+                node.removeFromParent()
+                currentNumberOfEnemies -= 1
+                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+                counter += 1
+            }
+        }
+    }
 }
-*/
+
+
+extension BatScene{
+    //MARK: **************** Bat Spawning Functions
+    
+    func spawnBats(numberOfBats: Int?){
+        
+        let numberOfBatsToSpawn = numberOfBats ?? initialNumberOfEnemiesSpawned
+        
+        for _ in 0...numberOfBatsToSpawn{
+            
+            let batClone = prototypeBatArray[batIndex].copy() as! Bat
+            configurePhysicsForClone(batClone: batClone)
+            self.addChild(batClone)
+            self.currentNumberOfEnemies += 1
+        }
+        
+    }
+    
+    func spawnRandomNumberOfBatsFrom(minimum: Int, toMaximum maximum: Int){
+        let numberOfBats = GKRandomDistribution(lowestValue: minimum, highestValue: maximum).nextInt()
+        
+        for _ in 0...numberOfBats{
+            
+            let batClone = prototypeBatArray[batIndex].copy() as! Bat
+            configurePhysicsForClone(batClone: batClone)
+            self.addChild(batClone)
+            self.currentNumberOfEnemies += 1
+        }
+        
+    }
+    
+    //MARK: ************* Configure properites on bat clone
+    private func configurePhysicsForClone(batClone: Bat){
+        let radius = batClone.size.width/2.0
+        batClone.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        batClone.physicsBody?.affectedByGravity = false
+        batClone.physicsBody?.allowsRotation = false
+        batClone.physicsBody?.linearDamping = 0.0
+        batClone.physicsBody?.collisionBitMask = ~PhysicsCategory.Player
+        batClone.physicsBody?.contactTestBitMask = ~PhysicsCategory.Player
+        batClone.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
+    }
+    
+    
+    func checkForRepositioning(){
+        for node in self.children{
+            if let bat = node as? Bat{
+                if(bat.position.x < -ScreenSizeFloatConstants.HalfScreenWidth*0.8 || bat.position.x > ScreenSizeFloatConstants.HalfScreenHeight*0.8){
+                    bat.setPosition()
+                }
+                
+                if(bat.position.y < -ScreenSizeFloatConstants.HalfScreenHeight*0.8 || bat.position.y > ScreenSizeFloatConstants.HalfScreenHeight*0.8){
+                    bat.setPosition()
+                }
+            }
+        }
+    }
+    
+
+    
+    
+}
+

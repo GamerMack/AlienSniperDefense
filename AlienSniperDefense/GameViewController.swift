@@ -24,12 +24,15 @@ class GameViewController: UIViewController {
         
         let ufoScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
         
+        let batScene = BatScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill the bats", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, minBatsSpawned: 5, maxBatsSpawned: 10, minBatComponentVelocity: 60.00, maxBatComponentVelocity: 80.00, lightNodeFallOff: 2.00, maximumBatsAllowedToSpawn: 40, minimumBatsKilledForLevelCompletion: 5)
+        
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
-                
+            batScene.scaleMode = .aspectFill
+        
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(ufoScene)
+                view.presentScene(batScene)
                     
                 view.ignoresSiblingOrder = true
                     
