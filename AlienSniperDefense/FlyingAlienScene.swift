@@ -90,9 +90,11 @@ class FlyingAlienScene: BaseScene{
     
     override func didMove(to view: SKView) {
 
-        //Basic scene configuration
+        //Basic scene configuration (calls base class's version of spawnBackgroundObjects)
         performBasicSceneConfiguration()
         
+        //Call overridden version of spawnBackGroundObjects
+        self.spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects)
         
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
@@ -336,6 +338,31 @@ class FlyingAlienScene: BaseScene{
             }
         }
     }
+    
+    private func spawnBackgroundObjects(numberOfBackgroundObjects: Int){
+        
+        let numberOfObjects: Int = numberOfBackgroundObjects > (backgroundObjects.count-1) ? (backgroundObjects.count-1) : numberOfBackgroundObjects
+        
+        
+        for index in 0..<numberOfObjects{
+            
+            let randomSpawnPoint = index % 2 == 0 ? randomPointGenerator.getUpperScreenPoint() : randomPointGenerator.getLowerScreenPoint()
+            
+            backgroundObjects[index].name = "backgroundObject\(index)"
+            backgroundObjects[index].zPosition = -1
+            backgroundObjects[index].position = randomSpawnPoint
+            backgroundObjectsPositions.append(randomSpawnPoint)
+            
+            let gravityFieldNode = SKFieldNode.radialGravityField()
+            gravityFieldNode.isEnabled = false
+            gravityFieldNode.categoryBitMask = PhysicsCategory.Enemy
+            gravityFieldNode.strength = 200.0
+            gravityFieldNode.minimumRadius = 200.0
+            backgroundObjects[index].addChild(gravityFieldNode)
+            
+            self.addChild(backgroundObjects[index])
+        }
+    }
    
     
 
@@ -353,5 +380,51 @@ extension FlyingAlienScene{
     override func reloadCurrentLevel() {
         //TODO: Implement reload current level function
     }
+    
+}
+
+
+extension FlyingAlienScene{
+    
+    //MARK: ************** Override basic scene configuration so that base class version of spawnBackgroundObjects is not called
+    
+    override func performBasicSceneConfiguration(){
+        //Set anchor point of current scene to center
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        self.backgroundColor = SKColor.black
+        
+        //Configure player
+        player = CrossHair(crossHairType: self.playerType)
+        self.addChild(player)
+        
+        //Configure explosion animation
+        configureExplosionAnimation()
+        
+        //Configure particle emitter for background
+        let emitterPath = Bundle.main.path(forResource: "StarryNight", ofType: "sks")!
+        let emitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as! SKEmitterNode
+        emitterNode.targetNode = self
+        emitterNode.move(toParent: self)
+        
+        
+        //Configure SceneInterfaceManagerDelegate
+        sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
+        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
+        
+        
+        //Configure initial HUD display
+        currentNumberOfEnemies = 0
+        numberOfEnemiesKilled = 0
+        self.addChild(hud2)
+        
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+        
+    
+    }
+    
+    
+
+    
     
 }
