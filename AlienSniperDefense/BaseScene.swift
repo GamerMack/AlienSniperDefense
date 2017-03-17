@@ -200,28 +200,31 @@ class BaseScene: SKScene{
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
         
-        
-       
         if(restartButton.contains(touchLocation)){
-            //Call a private reload function that uses level loader for a particular scene subclass
+            reloadCurrentLevel()
         }
-        
         
         if(menuButton.contains(touchLocation)){
-           //Load the main menu
+           loadMenuScene()
         }
         
-        
-        
+        if(currentNumberOfEnemies > maximumNumberOFEnemies){
+            loadNextLevel()
+        }
+    
         for node in nodes(at: touchLocation){
             
             if node.name == NodeNames.StartButton{
                 //Remove the start window to begin game
                 node.removeFromParent()
             }
-            
          
         }
+        
+    }
+    
+    func spawnEnemyFromPrototype(numberOfEnemy: Int){
+        //This method is to be overrided in derived classes
         
     }
     
@@ -347,6 +350,13 @@ extension BaseScene{
         self.view?.presentScene(MenuScene(size: self.size), transition: transition)
     }
     
+    func reloadCurrentLevel(){
+        //To be overridden in derived classes
+    }
+    
+    func loadNextLevel(){
+        //To be overridden in derived classes
+    }
 
     
 }

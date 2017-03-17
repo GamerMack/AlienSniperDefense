@@ -40,8 +40,7 @@ class Wingman: SKSpriteNode, Enemy{
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.linearDamping = 0.0
         self.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
-        self.physicsBody?.collisionBitMask = ~PhysicsCategory.Enemy
-        
+        self.physicsBody?.collisionBitMask = ~PhysicsCategory.Player
         
         self.xScale *= scalingFactor
         self.yScale *= scalingFactor
@@ -95,7 +94,10 @@ class Wingman: SKSpriteNode, Enemy{
     
     func updatePhysicsWith(randomVectorConfiguration: RandomVectorConfiguration){
         
-        let randomVector = RandomVector.init(randomVectorConfiguration: randomVectorConfiguration)
+        var randomVector = RandomVector.init(randomVectorConfiguration: randomVectorConfiguration)
+        
+        randomVector.randomizeXComponentSign()
+        randomVector.randomizeYComponentSign()
         
         self.physicsBody?.velocity = randomVector.getVector()
     }

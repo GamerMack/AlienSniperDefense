@@ -144,59 +144,47 @@ class UFOScene: BaseScene{
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let node = touches.first! as UITouch
-        let touchLocation = node.location(in: self)
+        super.touchesMoved(touches, with: event)
+       
         
-        player.updateTargetPosition(position: touchLocation)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        super.touchesBegan(touches, with: event)
         
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
         
         
         
-        
-        if(restartButton.contains(touchLocation)){
-            reloadCurrentLevel()
-        }
-        
-        
-        if(menuButton.contains(touchLocation)){
-            loadMenuScene()
-        }
-        
-        
-        
-        for node in nodes(at: touchLocation){
-            
-            if node.name == NodeNames.StartButton{
-                node.removeFromParent()
-            }
             
             if player.contains(touchLocation){
                
                 player.run(shootingSound)
                 
-                if let node = node as? UFO{
-                    if(node.respondToTouch()){
-                        currentNumberOfEnemies -= 1
-                        numberOfEnemiesKilled += 1
+                for node in nodes(at: touchLocation){
+                    if let node = node as? UFO{
+                        if(node.respondToTouch()){
+                            currentNumberOfEnemies -= 1
+                            numberOfEnemiesKilled += 1
                         
-                        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-                        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+                            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+                            hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
                         
                         
+                        }
                     }
                 }
                 
                 
-                
-            }
         }
         
+        
+        
     }
+    
+}
     
     
     
@@ -210,13 +198,13 @@ class UFOScene: BaseScene{
     
     
     
-}
+
 
 
 
 extension UFOScene{
     
-    func loadNextLevel(){
+    override func loadNextLevel(){
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         var nextLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
         
@@ -234,7 +222,7 @@ extension UFOScene{
         
     }
     
-    func reloadCurrentLevel(){
+    override func reloadCurrentLevel(){
         
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         var currentLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)

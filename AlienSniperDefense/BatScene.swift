@@ -327,7 +327,7 @@ extension BatScene{
             
             let batClone = prototypeBat.copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
-            self.addChild(batClone)
+            batClone.move(toParent: self)
             self.currentNumberOfEnemies += 1
         }
         
@@ -340,7 +340,7 @@ extension BatScene{
             
             let batClone = prototypeBat.copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
-            self.addChild(batClone)
+            batClone.move(toParent: self)
             self.currentNumberOfEnemies += 1
         }
         
