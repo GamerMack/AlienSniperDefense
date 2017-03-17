@@ -109,6 +109,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
         setAlienColorTo(alienColor: alienColor)
         setup()
         self.health = startingHealth
+        self.userData = NSMutableDictionary()
         self.userData?.setValue(2, forKey: "health")
     }
     
@@ -202,8 +203,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.rotate(byAngle: 90, duration: 0.50),
                     SKAction.rotate(byAngle: 90, duration: 0.50)
                     ]))
-                print("Health Level 2, now decreased to Level 1")
-                self.health -= 1
+                self.userData?.setValue(1, forKey: "health")
                 break
             case 1:
                 self.run(SKAction.sequence([
@@ -212,11 +212,9 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.rotate(byAngle: 90, duration: 0.50),
                     SKAction.rotate(byAngle: 90, duration: 0.50)
                     ]))
-                print("Health Level 1, now decreased to Level 0")
-                self.health -= 1
+                self.userData?.setValue(0, forKey: "health")
                 break
             case 0:
-                print("About to explode...")
 
                 AnimationsFactory.createExplosionFor(spriteNode: self)
                 self.run(SKAction.sequence([

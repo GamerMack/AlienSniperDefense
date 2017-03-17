@@ -113,7 +113,7 @@ class FlyingAlienScene: BaseScene{
         barrierNode.physicsBody?.collisionBitMask = PhysicsCategory.Enemy
         barrierNode.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
         
-        //self.addChild(barrierNode)
+        self.addChild(barrierNode)
  
        
         
@@ -177,6 +177,7 @@ class FlyingAlienScene: BaseScene{
             configurePhysicsForEnemyCopy(enemyCopy: enemyCopy)
             
             //Set initial health of flying alien to 2
+            enemyCopy.userData = NSMutableDictionary()
             enemyCopy.userData?.setValue(2, forKey: "health")
             
             enemyCopy.xScale *= randomScaleFactor
@@ -251,11 +252,12 @@ class FlyingAlienScene: BaseScene{
             
             
             if player.contains(touchLocation){
+                    player.run(shootingSound)
+
                     performResponseForSpawnedAliens(touchLocation: touchLocation)
                 
-            } else {
-                player.run(shootingSound)
             }
+            
         }
         
     }
