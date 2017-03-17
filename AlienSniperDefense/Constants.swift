@@ -23,30 +23,7 @@ let kDebug = true
     let kHard = "Hard"
  */
 
-class UserSettings{
-    
-    static let ValidDifficultyLevels = [
-        DifficultyLevel.Easy,
-        DifficultyLevel.Medium,
-        DifficultyLevel.Hard
-    ]
-    
-    static let ValidGamePlayModes = [
-        GamePlayMode.NoTimeLimit,
-        GamePlayMode.TimeLimit
-    ]
-    
-    class GamePlayMode{
-        static let NoTimeLimit = "NoTimeLimit"
-        static let TimeLimit = "TimeLimit"
-    }
-    
-    class DifficultyLevel{
-        static let Easy = "Easy"
-        static let Medium = "Medium"
-        static let Hard = "Hard"
-    }
-}
+
 
 
 //Player Stats
@@ -61,14 +38,6 @@ class UserSettings{
     let kShootingAccuracy = "ShootingAccuracy"
 **/
 
-class PlayerStats{
-    static let TotalKillCount = "TotalKillCount"
-    static let TotalBulletsFired = "TotalBulletsFired"
-    static let TotalTimeElapsed = "TotalTimeElapsed"
-    static let TotalLevelsCompleted = "TotalLevelsCompleted"
-    static let AverageLevelCompletionTime = "AverageLevelCompletionTime"
-    static let OverallShootingAccuracy = "OverallShootingAccuracy"
-}
 
 
 

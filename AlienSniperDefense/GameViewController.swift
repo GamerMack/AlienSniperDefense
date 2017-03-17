@@ -33,6 +33,8 @@ class GameViewController: UIViewController {
         let stealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
         let flyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
         
+        let menuScene = MenuScene(size: self.view.bounds.size)
+        
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
             batScene.scaleMode = .aspectFill
@@ -40,9 +42,11 @@ class GameViewController: UIViewController {
             stealthShipScene.scaleMode = .aspectFill
             flyingAlienScene.scaleMode = .aspectFill
         
+            menuScene.scaleMode = .aspectFill
+        
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(flyingAlienScene)
+                view.presentScene(menuScene)
                     
                 view.ignoresSiblingOrder = true
                     

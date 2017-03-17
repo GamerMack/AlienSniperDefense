@@ -35,21 +35,24 @@ class MenuScene: SKScene{
     
     //GamePlayMode Configuration Buttons
     var noTimeLimitModeButton = SKSpriteNode()
-    var timeLimitModeButton = SKSpriteNode()
+    var minimumKillsModeButton = SKSpriteNode()
     
     //User Options Manager
     let userOptionsManager = UserOptionsManager.sharedInstance
     
+    //Random Point Generator (for generating randomized background decorations)
+    let randomPointGenerator = RandomPoint(algorithmType: .Faster)
+    
     override func didMove(to view: SKView) {
         
-    
+        //Configure Anchor Point
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
         
         //Setup background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.GermanVirtue, forParentNode: self)
         
-        //Setup background image
-        //configureBackground()
+        //Set up particle emitter node in background
+        configureBackground()
         
         //Setup game title
         setupGameTitle()
@@ -57,47 +60,24 @@ class MenuScene: SKScene{
         //Setup start button
         setupStartButton()
         
-        
+
         //Add characters for background decoration
         setupBackgroundDecoration()
      
-        
-        //Build difficulty options buttons
-        setupDifficultyOptionsButtons()
-        
-        //Build GamePlayMode buttons
-        setupGamePlayModeButtons()
-        
     }
     
-    func getButtonWith(textureNamed textureName: String, andWithTextOf buttonText: String, atPosition position: CGPoint, andWithSizeOf size: CGSize = CGSize(width: 295, height: 75)) ->SKSpriteNode {
+    private func configureBackground(){
+        //Set background color
+        self.backgroundColor = SKColor.black
         
-        guard let textureAtlas = self.textureAtlas else { return SKSpriteNode() }
-        
-        var button = SKSpriteNode()
-        
-        let buttonTexture = textureAtlas.textureNamed(textureName)
-        button = SKSpriteNode(texture: buttonTexture)
-        button.anchorPoint = CGPoint.zero
-        button.size = size
-        button.name = buttonText
-        button.position = position
-        button.zPosition = -20
-        
-        let buttonTextLabel = SKLabelNode(fontNamed: kFuturaCondensedMedium)
-        buttonTextLabel.text = buttonText
-        buttonTextLabel.verticalAlignmentMode = .center
-        buttonTextLabel.position = CGPoint(x: 100, y: 40)
-        buttonTextLabel.fontSize = 40
-        buttonTextLabel.fontColor = SKColor.blue
-        buttonTextLabel.name = buttonText
-        buttonTextLabel.zPosition = 3
-        
-        button.addChild(buttonTextLabel)
-        
-        return button
+        //Setup emitter node
+        let emitterPath = Bundle.main.path(forResource: "StarryNight", ofType: "sks")!
+        let emitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: emitterPath) as! SKEmitterNode
+        emitterNode.targetNode = self
+        emitterNode.move(toParent: self)
         
     }
+ 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -106,128 +86,86 @@ class MenuScene: SKScene{
             let touchLocation = t.location(in: self)
             let nodeTouched = nodes(at: touchLocation)[0]
             
+            
+            //User hits start button
             if nodeTouched.name == NodeNames.StartButton{
                 startButton.removeAllActions()
-                startButton.run(SKAction.run({
-                    self.startButton.zPosition = -10
-                }))
-                startButton.run(SKAction.wait(forDuration: 5.0))
-                
-                hardButton.zPosition = 2
-                mediumButton.zPosition = 2
-                easyButton.zPosition = 2
-                
-                
+                startButton.run(SKAction.removeFromParent())
+        
+                setupDifficultyOptionsButtons()
+             
             }
             
+            
+            //User selects difficulty options
             if nodeTouched.name == "Hard"{
                 userOptionsManager.setDifficultyLevel(userSelection: "Hard")
                 
-                hardButton.run(SKAction.run({
-                    self.hardButton.zPosition = -10
-                    
-                    for node in self.hardButton.children{
-                        if let node = node as? SKLabelNode{
-                            node.zPosition = -10
-                        }
-                    }
-                }))
-                hardButton.run(SKAction.wait(forDuration: 5.0))
+                hardButton.run(SKAction.wait(forDuration: 1.0))
+                removeDifficultyOptionsButtons()
                 
-                // self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
-                
-                // noTimeLimitModeButton.zPosition = 2
-                // timeLimitModeButton.zPosition = 2
-
+                setupGamePlayModeButtons()
+        
             }
             
 
             if nodeTouched.name == "Medium"{
                 userOptionsManager.setDifficultyLevel(userSelection: "Medium")
                 
-                mediumButton.run(SKAction.run({
-                    self.mediumButton.zPosition = -10
-                    
-                    for node in self.mediumButton.children{
-                        if let node = node as? SKLabelNode{
-                            node.zPosition = -10
-                        }
-                    }
-                }))
-                mediumButton.run(SKAction.wait(forDuration: 5.0))
-                
-                 //self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 3, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
-                
-               // noTimeLimitModeButton.zPosition = 2
-              //  timeLimitModeButton.zPosition = 2
+                mediumButton.run(SKAction.wait(forDuration: 1.0))
+                removeDifficultyOptionsButtons()
+                setupGamePlayModeButtons()
+             
             }
             
             if nodeTouched.name == "Easy"{
                 userOptionsManager.setDifficultyLevel(userSelection: "Easy")
                 
-                easyButton.run(SKAction.run({
-                    self.easyButton.zPosition = -10
-                    
-                    for node in self.easyButton.children{
-                        if let node = node as? SKLabelNode{
-                            node.zPosition = -10
-                        }
-                    }
-                }))
+            
                 easyButton.run(SKAction.wait(forDuration: 5.0))
-                
-              //  self.view?.presentScene(TestScene8(size: self.size, levelNumber: 1, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 5.00, initialNumberOfEnemiesSpawned: 1, enemiesSpawnedPerInterval: 1, randomVectorConfigurationForUpdate: RandomVectorConfiguration(minimumVectorYComponent: -10, maximumVectorYComponent: 10, minimumVectorXComponent: -10, maximumVectorXComponent: 10)))
-                
-                //noTimeLimitModeButton.zPosition = 2
-                //timeLimitModeButton.zPosition = 2
+                removeDifficultyOptionsButtons()
+                setupGamePlayModeButtons()
+    
                 
             }
             
             
-            /** Gameplay Mode may not be implemented
-            
+            //User selects GamePlayMode
             if nodeTouched.name == "No Time Limit"{
-                //userOptionsManager.setGamePlayModeTo(gamePlayMode: "NoTimeLimit")
-                self.view?.presentScene(TLScene1(size: self.size))
+                userOptionsManager.setGamePlayModeTo(gamePlayMode: "NoTimeLimi")
+                removeGamePlayModeButtons()
+                //TODO: Load the first game scene or load a menu for different tracks
+            
 
             }
             
-            if nodeTouched.name == "Unlimited Ammunition"{
-                //userOptionsManager.setGamePlayModeTo(gamePlayMode: "TimeLimit")
-                self.view?.presentScene(TLScene1(size: self.size))
+            if nodeTouched.name == "Minimum Kills"{
+                userOptionsManager.setGamePlayModeTo(gamePlayMode: "MinimumKills")
+                removeGamePlayModeButtons()
+                //TODO: Load the first game scene or load a menu for different tracks
+
 
             }
-            **/
+            
         }
         
     }
     
-    /**
-    private func configureBackground(){
-        let backgroundTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .BackgroundScenes)?.textureNamed("colored_forest")
-        
-        let backgroundImage = SKSpriteNode(texture: backgroundTexture)
-        backgroundImage.size = CGSize(width: self.size.width, height: self.size.height)
-        backgroundImage.position = CGPoint.zero
-        backgroundImage.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        backgroundImage.zPosition = -5
-        self.addChild(backgroundImage)
-    }
- **/
+
     
     private func setupGameTitle(){
         //Build the label for the GameTitle
         let topTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        topTitleNode.fontColor = SKColor.black
-        topTitleNode.text = "Stealthy Sniper"
+        topTitleNode.fontColor = SKColor.blue
+        topTitleNode.text = "Sneaky Alien"
         topTitleNode.zPosition = 2
         topTitleNode.position = CGPoint(x: 0.0, y: 100)
         topTitleNode.fontSize = 60
         self.addChild(topTitleNode)
         
         let bottomTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        bottomTitleNode.fontColor = SKColor.black
-        bottomTitleNode.text = "against the Alien Invasion"
+        bottomTitleNode.fontColor = SKColor.blue
+        bottomTitleNode.text = "Sniper Defense"
         bottomTitleNode.position = CGPoint(x: 0.0, y: 40)
         bottomTitleNode.zPosition = 2
         bottomTitleNode.fontSize = 60
@@ -268,33 +206,64 @@ class MenuScene: SKScene{
         startButton.run(pulseAnimation, withKey: "startPulseAnimation")
     }
     
+    
+    //MARK: ********** Helper function for setting up randomized background decoration
+    
     private func setupBackgroundDecoration(){
         
-
+        let randomPoint1 = randomPointGenerator.getLowerLeftQuadrantPoint()
+        let randomPoint2 = randomPointGenerator.getLowerRightQuadrantPoint()
+        let randomPoint3 = randomPointGenerator.getUpperLeftQuadrantPoint()
+        let randomPoint4 = randomPointGenerator.getUpperRightQuadrantPoint()
+        
         //Add some alien enemies
         guard let wingmanTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Enemies)?.textureNamed("wingMan1") else { return }
         
         let wingmanNode = SKSpriteNode(texture: wingmanTexture)
         wingmanNode.xScale *= 1.2
         wingmanNode.yScale *= 1.2
-        wingmanNode.position = CGPoint(x: -180, y: -140)
+        wingmanNode.position = randomPoint1
         wingmanNode.zPosition = 1
         wingmanNode.zRotation = -30
         self.addChild(wingmanNode)
         
         
-        guard let flymanTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Enemies)?.textureNamed("flyMan_fly") else {return}
+        guard let ufoTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO)?.textureNamed("ufoRed") else {return}
         
-        let flymanNode = SKSpriteNode(texture: flymanTexture)
-        flymanNode.xScale *= 1.2
-        flymanNode.yScale *= 1.2
-        flymanNode.position = CGPoint(x: 150, y: 100)
-        flymanNode.zPosition = 1
-        flymanNode.zRotation = 120
-        self.addChild(flymanNode)
+        let ufoNode = SKSpriteNode(texture: ufoTexture)
+        ufoNode.xScale *= 1.2
+        ufoNode.yScale *= 1.2
+        ufoNode.position = randomPoint2
+        ufoNode.zPosition = 1
+        ufoNode.zRotation = 120
+        self.addChild(ufoNode)
+        
+        
+        guard let flyingAliensTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipBlue_manned") else {return}
+        
+        let flyingAlienNode = SKSpriteNode(texture: flyingAliensTexture)
+        flyingAlienNode.xScale *= 1.2
+        flyingAlienNode.yScale *= 1.2
+        flyingAlienNode.position = randomPoint3
+        flyingAlienNode.zPosition = 1
+        flyingAlienNode.zRotation = 120
+        self.addChild(flyingAlienNode)
+        
+        guard let stealthShipTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip1_red") else {return}
+        
+        let stealthShipNode = SKSpriteNode(texture: stealthShipTexture)
+        stealthShipNode.xScale *= 1.2
+        stealthShipNode.yScale *= 1.2
+        stealthShipNode.position = randomPoint4
+        stealthShipNode.zPosition = 1
+        stealthShipNode.zRotation = 120
+        self.addChild(stealthShipNode)
         
         
     }
+    
+    
+    //MARK: *********** Helper Functions for setting up menu buttons
     
     private func setupDifficultyOptionsButtons(){
         hardButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Hard", atPosition: CGPoint(x: 0, y: 100))
@@ -309,11 +278,54 @@ class MenuScene: SKScene{
     private func setupGamePlayModeButtons(){
         noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "No Time Limit", atPosition: CGPoint(x: 0, y: 100))
         
-        timeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Unlimited Ammunition", atPosition: CGPoint(x: 0, y: 10))
+        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Minimum Kills", atPosition: CGPoint(x: 0, y: 10))
         
         self.addChild(noTimeLimitModeButton)
-        self.addChild(timeLimitModeButton)
+        self.addChild(minimumKillsModeButton)
         
+    }
+    
+    
+    //MARK: ************ Helper Function for setting up Difficulty/GamePlayMode buttons
+    private func getButtonWith(textureNamed textureName: String, andWithTextOf buttonText: String, atPosition position: CGPoint, andWithSizeOf size: CGSize = CGSize(width: 295, height: 75)) ->SKSpriteNode {
+        
+        guard let textureAtlas = self.textureAtlas else { return SKSpriteNode() }
+        
+        var button = SKSpriteNode()
+        
+        let buttonTexture = textureAtlas.textureNamed(textureName)
+        button = SKSpriteNode(texture: buttonTexture)
+        button.anchorPoint = CGPoint.zero
+        button.size = size
+        button.name = buttonText
+        button.position = position
+        button.zPosition = 15
+        
+        let buttonTextLabel = SKLabelNode(fontNamed: kFuturaCondensedMedium)
+        buttonTextLabel.text = buttonText
+        buttonTextLabel.verticalAlignmentMode = .center
+        buttonTextLabel.position = CGPoint(x: 100, y: 40)
+        buttonTextLabel.fontSize = 40
+        buttonTextLabel.fontColor = SKColor.blue
+        buttonTextLabel.name = buttonText
+        buttonTextLabel.zPosition = 20
+        
+        button.addChild(buttonTextLabel)
+        
+        return button
+        
+    }
+    
+    //MARK: ********** Helper Function for removing user options buttons
+    private func removeDifficultyOptionsButtons(){
+        hardButton.removeFromParent()
+        mediumButton.removeFromParent()
+        easyButton.removeFromParent()
+    }
+    
+    private func removeGamePlayModeButtons(){
+        minimumKillsModeButton.removeFromParent()
+        noTimeLimitModeButton.removeFromParent()
     }
     
 }

@@ -32,6 +32,14 @@ class UserOptionsManager{
         userChoiceDict[GamePlaySettings.DifficultyLevel] = userSelection
     }
     
+    func setGamePlayModeTo(gamePlayMode: String){
+        userChoiceDict[GamePlaySettings.GamePlayMode] = gamePlayMode
+    }
+
+    func getGamePlayMode() -> String{
+        return userChoiceDict[GamePlaySettings.GamePlayMode]!
+    }
+    
     
     private init(){
     }
