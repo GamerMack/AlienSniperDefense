@@ -45,6 +45,8 @@ class FlyingAlienScene: BaseScene{
     var fieldActionIntervalCounter: TimeInterval = 0.00
     var fieldActionInterval: TimeInterval = 8.00
     
+    var velocityUpdateCounter: TimeInterval = 0.00
+    var velocityUpdateInterval: TimeInterval = 5.00
     
     //Random Point Generator
     var randomDistFromBackgroundObjectsArray: GKRandomDistribution {
@@ -135,7 +137,13 @@ class FlyingAlienScene: BaseScene{
     //MARK: *************** GAME LOOP FUNCTIONS
     
     override func didSimulatePhysics() {
-        updatePhysicsForFlyingAliens()
+        
+        if(velocityUpdateCounter > velocityUpdateInterval){
+            updatePhysicsForFlyingAliens()
+
+            velocityUpdateCounter = 0
+        }
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -143,6 +151,7 @@ class FlyingAlienScene: BaseScene{
         
         frameCount += currentTime - lastUpdateTime
         fieldActionIntervalCounter += currentTime - lastUpdateTime
+        velocityUpdateCounter += currentTime - lastUpdateTime
         
         if(frameCount > spawnInterval){
             spawnEnemyFromPrototype(numberOfEnemy: self.enemiesSpawnedPerInterval)
@@ -273,55 +282,13 @@ class FlyingAlienScene: BaseScene{
     private func performResponseForSpawnedAliens(touchLocation: CGPoint){
         for node in nodes(at: touchLocation){
             if let node = node as? FlyingAlien{
-                node.respondToHit()
+                let userDict = node.userData
+                node.respondToHit(userDictionary: userDict)
             }
         }
     }
     
     
-    
-    /**
-    private func performResponseForFlyingAlien(){
-        
-        guard let health = flyingAlien.userData?.value(forKey: "health") as? Int else { return }
-        
-        switch(health){
-        case 2:
-            flyingAlien.run(SKAction.sequence([
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50)
-                ]))
-            flyingAlien.userData?.setValue(1, forKey: "health")
-            break
-        case 1:
-            flyingAlien.run(SKAction.sequence([
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50),
-                SKAction.rotate(byAngle: 90, duration: 0.50)
-                ]))
-            flyingAlien.userData?.setValue(0, forKey: "health")
-            break
-        case 0:
-            AnimationsFactory.createExplosionFor(spriteNode: flyingAlien)
-            flyingAlien.run(SKAction.sequence([
-                SKAction.wait(forDuration: 2.0),
-                SKAction.removeFromParent()
-                ]))
-            break
-        default:
-            AnimationsFactory.createExplosionFor(spriteNode: flyingAlien)
-            flyingAlien.run(SKAction.sequence([
-                SKAction.wait(forDuration: 2.0),
-                SKAction.removeFromParent()
-                ]))
-            
-        }
-        
-    }
-    **/
     
     //MARK: ************** Helper Function that uses user dictionary to update physics and handle touch input for individual alien node
     
@@ -330,27 +297,8 @@ class FlyingAlienScene: BaseScene{
         for node in self.children{
             if let node = node as? FlyingAlien{
                 
-                var randomVector: RandomVector
+                node.updatePhysics()
                 
-                guard let health = node.userData?.value(forKey: "health") as? Int else { return}
-                
-                switch(health){
-                case 2:
-                    randomVector = RandomVector(yComponentMin: -40, yComponentMax: 40, xComponentMin: -40, xComponentMax: 40)
-                    break
-                case 1:
-                    randomVector = RandomVector(yComponentMin: -30, yComponentMax: 30, xComponentMin: -30, xComponentMax: 30)
-                    break
-                case 0:
-                    randomVector = RandomVector(yComponentMin: -10, yComponentMax: 10, xComponentMin: -10, xComponentMax: 10)
-                    break
-                default:
-                    randomVector = RandomVector(yComponentMin: -10, yComponentMax: 10, xComponentMin: -10, xComponentMax: 10)
-                    break
-                }
-                
-                
-                node.physicsBody?.velocity = randomVector.getVector()
             }
         }
         

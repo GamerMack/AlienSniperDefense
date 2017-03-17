@@ -164,22 +164,22 @@ class FlyingAlien: SKSpriteNode, Enemy{
         
         switch(health){
         case 2:
-            randomVector = RandomVector(yComponentMin: 0, yComponentMax: 100, xComponentMin: 0, xComponentMax: 100)
+            randomVector = RandomVector(yComponentMin: -100, yComponentMax: 100, xComponentMin: -100, xComponentMax: 100)
             randomVector.randomizeXComponentSign()
             randomVector.randomizeYComponentSign()
             break
         case 1:
-            randomVector = RandomVector(yComponentMin: 100, yComponentMax: 200, xComponentMin: 100, xComponentMax: 200)
+            randomVector = RandomVector(yComponentMin: -100, yComponentMax: 200, xComponentMin: -100, xComponentMax: 200)
             randomVector.randomizeYComponentSign()
             randomVector.randomizeYComponentSign()
             break
         case 0:
-            randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
+            randomVector = RandomVector(yComponentMin: -200, yComponentMax: 300, xComponentMin: -200, xComponentMax: 300)
             randomVector.randomizeYComponentSign()
             randomVector.randomizeXComponentSign()
             break
         default:
-            randomVector = RandomVector(yComponentMin: 200, yComponentMax: 300, xComponentMin: 200, xComponentMax: 300)
+            randomVector = RandomVector(yComponentMin: -200, yComponentMax: 300, xComponentMin: -200, xComponentMax: 300)
             randomVector.randomizeXComponentSign()
             randomVector.randomizeYComponentSign()
             break
@@ -192,17 +192,13 @@ class FlyingAlien: SKSpriteNode, Enemy{
     }
     
     
-    func respondToHit(){
+    func respondToHit(userDictionary: NSMutableDictionary?){
         
         if(!isManned) { return }
         
-        guard let userData = self.userData else {
-            self.userData = NSMutableDictionary()
-            self.userData?.setValue(2, forKey: "health")
-            return
-        }
+      
         
-        let health = userData.value(forKey: "health") as! Int
+        let health = userDictionary?.value(forKey: "health") as! Int
         
             switch(health){
             case 2:
@@ -212,8 +208,8 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.rotate(byAngle: 90, duration: 0.50),
                     SKAction.rotate(byAngle: 90, duration: 0.50)
                     ]))
-                self.userData?.setValue(1, forKey: "health")
-                break
+                userDictionary?.setValue(1, forKey: "health")
+                return
             case 1:
                 self.run(SKAction.sequence([
                     SKAction.rotate(byAngle: 90, duration: 0.50),
@@ -221,8 +217,8 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.rotate(byAngle: 90, duration: 0.50),
                     SKAction.rotate(byAngle: 90, duration: 0.50)
                     ]))
-                self.userData?.setValue(0, forKey: "health")
-                break
+                userDictionary?.setValue(0, forKey: "health")
+                return
             case 0:
 
                 AnimationsFactory.createExplosionFor(spriteNode: self)
@@ -230,7 +226,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.wait(forDuration: 2.0),
                     SKAction.removeFromParent()
                     ]))
-                break
+                return
             default:
                 AnimationsFactory.createExplosionFor(spriteNode: self)
                 self.run(SKAction.sequence([
