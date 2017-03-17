@@ -6,7 +6,7 @@
 //  Copyright © 2017 AlexMakedonski. All rights reserved.
 //
 
-/**
+
 import Foundation
 import SpriteKit
 
@@ -18,111 +18,121 @@ class WingmanSceneLevelLoader{
         case Easy
     }
     
-    static let mainTransition = SKTransition.crossFade(withDuration: 2.0)
     
-    
-    static func loadLevel5From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
+    static func loadLevel5(difficultyLevel: DifficultyLevel) -> WingmanScene{
         
-        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -50, maximumVectorYComponent: 50, minimumVectorXComponent: -50, maximumVectorXComponent: 50)
+        let randomVectorConfigurationEasy = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 20, minimumVectorXComponent: 0, maximumVectorXComponent: 20)
         
-        var nextScene: SKScene
+        let randomVectorConfigurationMedium = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 30, minimumVectorXComponent: 0, maximumVectorXComponent: 30)
         
-        switch(difficultyLevel){
-            case .Hard:
-                nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
-            case .Medium:
-                nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
-        case .Easy:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
-        }
-        
-        
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
-    }
-    
-    
-    static func loadLevel4From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
-        
-        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -40, maximumVectorYComponent: 40, minimumVectorXComponent: -40, maximumVectorXComponent: 40)
-        
-        var nextScene: SKScene
+        let randomVectorConfigurationHard = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 40, minimumVectorXComponent: 0, maximumVectorXComponent: 40)
         
         switch(difficultyLevel){
         case .Hard:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationHard)
         case .Medium:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationMedium)
         case .Easy:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
         }
         
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
     }
     
     
-    static func loadLevel3From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
+    static func loadLevel4(difficultyLevel: DifficultyLevel) -> WingmanScene{
         
-        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -30, maximumVectorYComponent: 30, minimumVectorXComponent: -30, maximumVectorXComponent: 30)
+        let randomVectorConfigurationEasy = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 20, minimumVectorXComponent: 0, maximumVectorXComponent: 20)
         
-        var nextScene: SKScene
+        let randomVectorConfigurationMedium = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 30, minimumVectorXComponent: 0, maximumVectorXComponent: 30)
+        
+        let randomVectorConfigurationHard = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 40, minimumVectorXComponent: 0, maximumVectorXComponent: 40)
         
         switch(difficultyLevel){
         case .Hard:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationHard)
         case .Medium:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationMedium)
         case .Easy:
-            nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-            break
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
         }
         
         
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
     }
     
+    
+    static func loadLevel3(difficultyLevel: DifficultyLevel) -> WingmanScene{
+        
+        let randomVectorConfigurationEasy = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 20, minimumVectorXComponent: 0, maximumVectorXComponent: 20)
+        
+        let randomVectorConfigurationMedium = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 30, minimumVectorXComponent: 0, maximumVectorXComponent: 30)
+        
+        let randomVectorConfigurationHard = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 40, minimumVectorXComponent: 0, maximumVectorXComponent: 40)
+        
+        switch(difficultyLevel){
+        case .Hard:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationHard)
+        case .Medium:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationMedium)
+        case .Easy:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
+        }
+        
+        
+    }
+    
+   
+    static func loadLevel2(difficultyLevel: DifficultyLevel) -> WingmanScene{
+        
+        let randomVectorConfigurationEasy = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 20, minimumVectorXComponent: 0, maximumVectorXComponent: 20)
+        
+        let randomVectorConfigurationMedium = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 30, minimumVectorXComponent: 0, maximumVectorXComponent: 30)
+        
+        let randomVectorConfigurationHard = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 40, minimumVectorXComponent: 0, maximumVectorXComponent: 40)
+        
+        switch(difficultyLevel){
+        case .Hard:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationHard)
+        case .Medium:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationMedium)
+        case .Easy:
+            return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
+        }
+        
+        
+    }
 
-    static func loadLevel2From(currentScene: SKScene, difficultyLevel: DifficultyLevel){
+    static func loadLevel1(difficultyLevel: DifficultyLevel) -> WingmanScene{
         
-        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -20, maximumVectorYComponent: 20, minimumVectorXComponent: -20, maximumVectorXComponent: 20)
+        let randomVectorConfigurationEasy = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 20, minimumVectorXComponent: 0, maximumVectorXComponent: 20)
         
-        var nextScene: SKScene
+         let randomVectorConfigurationMedium = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 30, minimumVectorXComponent: 0, maximumVectorXComponent: 30)
+        
+         let randomVectorConfigurationHard = RandomVectorConfiguration(minimumVectorYComponent: 0, maximumVectorYComponent: 40, minimumVectorXComponent: 0, maximumVectorXComponent: 40)
         
         switch(difficultyLevel){
             case .Hard:
-                nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-                break
+                return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationHard)
             case .Medium:
-                nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-                break
+                return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationMedium)
             case .Easy:
-                nextScene = loadSceneFrom(currentScene, withLevelNumber: 2, numberOfBackgroundObjects: 3, enemyHideInterval: 6, enemySpawnInterval: 6, initialNumberOfEnemies: 2, perIntervalSpawningRate: 2, randomVectorConfigurationForEnemyUpdate: randomVectorConfiguration)
-                break
+                return makeLevel1(numberOfBackgroundObjects: 4, hideInterval: 10.0, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
         }
         
         
-        
-        currentScene.view?.presentScene(nextScene, transition: mainTransition)
     }
     
     
-    static private func loadSceneFrom(_ currentScene: SKScene, withLevelNumber levelNumber: Int, numberOfBackgroundObjects: Int, enemyHideInterval: TimeInterval, enemySpawnInterval: TimeInterval, initialNumberOfEnemies: Int, perIntervalSpawningRate: Int, randomVectorConfigurationForEnemyUpdate: RandomVectorConfiguration) -> SKScene{
+    static private func makeLevel1(numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, randomVectorConfiguration: RandomVectorConfiguration) -> WingmanScene{
         
+    
         
-        let scene = TestScene8(size: currentScene.size, levelNumber: levelNumber, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: enemyHideInterval, spawnInterval: enemySpawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemies, enemiesSpawnedPerInterval: perIntervalSpawningRate, randomVectorConfigurationForUpdate: randomVectorConfigurationForEnemyUpdate)
-        
-        return scene
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: "Shhot all the wingman!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+            
+       
     }
     
     
     
 }
- **/
+

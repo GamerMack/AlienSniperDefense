@@ -208,9 +208,7 @@ class BaseScene: SKScene{
            loadMenuScene()
         }
         
-        if(currentNumberOfEnemies > maximumNumberOFEnemies){
-            loadNextLevel()
-        }
+    
     
         for node in nodes(at: touchLocation){
             

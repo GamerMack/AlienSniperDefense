@@ -421,7 +421,6 @@
 				BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */,
 				BD6313601E7A58A800EB10F9 /* UFOScene.swift */,
 				BD2777211E7A95F2009F641C /* UFOController.swift */,
-				BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */,
 			);
 			name = DerivedScenes;
 			sourceTree = "<group>";
@@ -429,6 +428,7 @@
 		BD63137E1E7A617600EB10F9 /* LevelLoaders */ = {
 			isa = PBXGroup;
 			children = (
+				BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */,
 				BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */,
 				BD63135F1E7A58A800EB10F9 /* BatSceneLevelLoader.swift */,
 				BD63135E1E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift */,

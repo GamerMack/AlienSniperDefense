@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         
         let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: 20.0, maximumVectorYComponent: 40.0, minimumVectorXComponent: 10.0, maximumVectorXComponent: 20.0)
         
-        let wingmanScene = WingmanScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill all the wingman", enemyName: "Wingman", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 10.00, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 20)
+        let wingmanScene = WingmanScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill all the wingman", enemyName: "Wingman", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 10.00, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 5)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
