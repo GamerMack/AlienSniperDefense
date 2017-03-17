@@ -31,6 +31,7 @@
 		BD07A4221E7A57F500B52128 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A4211E7A57F500B52128 /* Fire.sks */; };
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
+		BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */; };
 		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
 		BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */; };
 		BD3A48891E7C21020072B576 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48881E7C21020072B576 /* UserSettings.swift */; };
@@ -91,7 +92,6 @@
 		BD63136D1E7A58BE00EB10F9 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136B1E7A58BE00EB10F9 /* GameOverScene.swift */; };
 		BD63136E1E7A58BE00EB10F9 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */; };
 		BD6313701E7A590300EB10F9 /* ButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63136F1E7A590300EB10F9 /* ButtonManager.swift */; };
-		BD6313721E7A590900EB10F9 /* UserOptionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */; };
 		BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313731E7A591100EB10F9 /* AnimationsManager.swift */; };
 		BD6313761E7A592800EB10F9 /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313751E7A592800EB10F9 /* ButtonFactory.swift */; };
 		BD6313791E7A596600EB10F9 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313781E7A596600EB10F9 /* Enemy.swift */; };
@@ -123,6 +123,7 @@
 		BD07A4211E7A57F500B52128 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
+		BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
 		BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlienLevelLoader.swift; sourceTree = "<group>"; };
 		BD3A48881E7C21020072B576 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -185,7 +186,6 @@
 		BD63136B1E7A58BE00EB10F9 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		BD63136F1E7A590300EB10F9 /* ButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonManager.swift; sourceTree = "<group>"; };
-		BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserOptionsManager.swift; sourceTree = "<group>"; };
 		BD6313731E7A591100EB10F9 /* AnimationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationsManager.swift; sourceTree = "<group>"; };
 		BD6313751E7A592800EB10F9 /* ButtonFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		BD6313781E7A596600EB10F9 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -407,9 +407,9 @@
 			isa = PBXGroup;
 			children = (
 				BD6313731E7A591100EB10F9 /* AnimationsManager.swift */,
-				BD6313711E7A590900EB10F9 /* UserOptionsManager.swift */,
 				BD63136F1E7A590300EB10F9 /* ButtonManager.swift */,
 				BD4BBFBE1E7A540300808B90 /* TextureAtlasManager.swift */,
+				BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */,
 			);
 			name = Singletons;
 			sourceTree = "<group>";
@@ -619,6 +619,7 @@
 			files = (
 				BD6313671E7A58A800EB10F9 /* StealthShipSceneLevelLoader.swift in Sources */,
 				BD07A4021E7A56B200B52128 /* Typography.swift in Sources */,
+				BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */,
 				BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */,
 				BD4BBFC91E7A550000808B90 /* CrossHair.swift in Sources */,
 				BD6313681E7A58A800EB10F9 /* BatSceneLevelLoader.swift in Sources */,
@@ -660,7 +661,6 @@
 				BD4BBFCD1E7A550D00808B90 /* FlyingAlien.swift in Sources */,
 				BD6313791E7A596600EB10F9 /* Enemy.swift in Sources */,
 				BD6313691E7A58A800EB10F9 /* UFOScene.swift in Sources */,
-				BD6313721E7A590900EB10F9 /* UserOptionsManager.swift in Sources */,
 				BD6313641E7A58A800EB10F9 /* DeprecatedCode.swift in Sources */,
 				BD07A3F71E7A560800B52128 /* Bat.swift in Sources */,
 				BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */,

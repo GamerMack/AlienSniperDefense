@@ -38,7 +38,7 @@ class MenuScene: SKScene{
     var minimumKillsModeButton = SKSpriteNode()
     
     //User Options Manager
-    let userOptionsManager = UserOptionsManager.sharedInstance
+    let gameSettingsManager = GameSettings.sharedInstance
     
     //Random Point Generator (for generating randomized background decorations)
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
@@ -99,7 +99,7 @@ class MenuScene: SKScene{
             
             //User selects difficulty options
             if nodeTouched.name == "Hard"{
-                userOptionsManager.setDifficultyLevel(userSelection: "Hard")
+                gameSettingsManager.setGameDifficultyLevel(difficulty: .valueHard)
                 
                 hardButton.run(SKAction.wait(forDuration: 1.0))
                 removeDifficultyOptionsButtons()
@@ -110,7 +110,7 @@ class MenuScene: SKScene{
             
 
             if nodeTouched.name == "Medium"{
-                userOptionsManager.setDifficultyLevel(userSelection: "Medium")
+                gameSettingsManager.setGameDifficultyLevel(difficulty: .valueMedium)
                 
                 mediumButton.run(SKAction.wait(forDuration: 1.0))
                 removeDifficultyOptionsButtons()
@@ -119,8 +119,7 @@ class MenuScene: SKScene{
             }
             
             if nodeTouched.name == "Easy"{
-                userOptionsManager.setDifficultyLevel(userSelection: "Easy")
-                
+                gameSettingsManager.setGameDifficultyLevel(difficulty: .valueEasy)
             
                 easyButton.run(SKAction.wait(forDuration: 5.0))
                 removeDifficultyOptionsButtons()
@@ -131,16 +130,15 @@ class MenuScene: SKScene{
             
             
             //User selects GamePlayMode
-            if nodeTouched.name == "No Time Limit"{
-                userOptionsManager.setGamePlayModeTo(gamePlayMode: "NoTimeLimi")
-                removeGamePlayModeButtons()
+            if nodeTouched.name == "Time Limit"{
+                gameSettingsManager.setGamePlayMode(gamePlayMode: .valueTimeLimit)
                 //TODO: Load the first game scene or load a menu for different tracks
             
 
             }
             
             if nodeTouched.name == "Minimum Kills"{
-                userOptionsManager.setGamePlayModeTo(gamePlayMode: "MinimumKills")
+                gameSettingsManager.setGamePlayMode(gamePlayMode: .valueMinimumKills)
                 removeGamePlayModeButtons()
                 //TODO: Load the first game scene or load a menu for different tracks
 
@@ -276,7 +274,7 @@ class MenuScene: SKScene{
     }
     
     private func setupGamePlayModeButtons(){
-        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "No Time Limit", atPosition: CGPoint(x: 0, y: 100))
+        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Time Limit", atPosition: CGPoint(x: 0, y: 100))
         
         minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Minimum Kills", atPosition: CGPoint(x: 0, y: 10))
         
