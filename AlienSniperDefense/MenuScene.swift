@@ -132,15 +132,19 @@ class MenuScene: SKScene{
             //User selects GamePlayMode
             if nodeTouched.name == "Time Limit"{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueTimeLimit)
-                //TODO: Load the first game scene or load a menu for different tracks
-            
+                let transition = SKTransition.doorsOpenHorizontal(withDuration: 2.00)
+                removeGamePlayModeButtons()
+                let trackScene = TrackScene(size: self.size)
+                self.view?.presentScene(trackScene, transition: transition)
 
             }
             
             if nodeTouched.name == "Minimum Kills"{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueMinimumKills)
                 removeGamePlayModeButtons()
-                //TODO: Load the first game scene or load a menu for different tracks
+                let transition = SKTransition.doorsOpenHorizontal(withDuration: 2.00)
+                let trackScene = TrackScene(size: self.size)
+                self.view?.presentScene(trackScene, transition: transition)
 
 
             }
