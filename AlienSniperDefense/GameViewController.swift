@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         
         let menuScene = MenuScene(size: self.view.bounds.size)
         let trackScene = TrackScene(size: self.view.bounds.size)
-        let instructionScene = InstructionScene(size: self.view.bounds.size, selectedTrackType: .StealthShip)
+        let instructionScene = InstructionScene(size: self.view.bounds.size, selectedTrackType: .Wingman)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill

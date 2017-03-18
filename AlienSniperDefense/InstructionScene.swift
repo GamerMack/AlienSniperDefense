@@ -78,8 +78,31 @@ class InstructionScene: SKScene{
     private func configureNodeForWingmanTrack(mainNode: SKNode){
         mainNode.name = NodeNames.WingmanTrackButton
         
-      
+        //Configure arrow texture
+        let arrowTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_sliderRight")
+        let arrowSprite = SKSpriteNode(texture: arrowTexture)
+        arrowSprite.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
         
+        //Configure hidden and unhiddenWingman
+        let unhiddenWingman = Wingman(scalingFactor: 0.6)
+        
+        let cloud = BackgroundObject(backgroundObjectType: .FullMoon)
+        let hiddenWingman = Wingman(scalingFactor: 0.6)
+        
+        if let hiddenWingman = hiddenWingman, let unhiddenWingman = unhiddenWingman{
+            hiddenWingman.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.30)
+            cloud.position = CGPoint(x: hiddenWingman.position.x + 20, y: hiddenWingman.position.y - 20)
+            cloud.zPosition = 30
+            unhiddenWingman.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.30)
+            
+            mainNode.addChild(unhiddenWingman)
+            mainNode.addChild(hiddenWingman)
+            mainNode.addChild(cloud)
+            mainNode.addChild(arrowSprite)
+        }
+        
+        
+      
         makeLabelForNode(node: mainNode,
                          withTextOf: "Wingman can hide behind sky objects.",
                          text2: "When hiding, they cannot be hit",
@@ -155,14 +178,73 @@ class InstructionScene: SKScene{
         mainNode.name = NodeNames.UFOTrackButton
         
         
+        //Configure manned ship
+        let ufoTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO)?.textureNamed("ufoRed")
+        let animatedUFO = SKSpriteNode(texture: ufoTexture)
+        animatedUFO.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+        
+        animatedUFO.run(SKAction.repeatForever(SKAction.sequence([
+            SKAction.group([
+                SKAction.fadeOut(withDuration: 2.00),
+                SKAction.scale(to: 0.4, duration: 2.00)
+                ]),
+            SKAction.group([
+                SKAction.fadeIn(withDuration: 2.00),
+                SKAction.scale(to: 1.00, duration: 2.00)
+                ])
+            ])))
+        
+        //Configure unmanned ship
+        let nonAnimatedUFO = SKSpriteNode(texture: ufoTexture)
+        nonAnimatedUFO.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+        
+        //Configure arrow texture
+        let arrowTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_sliderRight")
+        let arrowSprite = SKSpriteNode(texture: arrowTexture)
+        arrowSprite.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+        
+        
+        mainNode.addChild(animatedUFO)
+        mainNode.addChild(nonAnimatedUFO)
+        mainNode.addChild(arrowSprite)
+        
         makeLabelForNode(node: mainNode,
-                         withTextOf: "When in stealth mode, stealth ships fade out.",
-                         text2: "When in stealth mode, they cannot take damage.",
-                         text3: "Stealth mode require multiple hits to be destroyed")
+                         withTextOf: "When in emitting mode, UFOreos expand and contract.",
+                         text2: "In emitting mode, UFOreos cannot take damage, and",
+                         text3: "may emit gravity fields that disrupt player movement")
     }
     
     private func configureNodeForBatTrack(mainNode: SKNode){
         mainNode.name = NodeNames.BatTrackButton
+        
+        //Reconfigure background color
+        backgroundColor = UIColor(colorLiteralRed: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        
+        //Configure non-illuminated bat
+        let batSprite = Bat(scalingFactor: 3.0, startingHealth: 3, xVelocity: 0.00, yVelocity: 0.00, applyImpulseInterval: 0.00)
+        batSprite?.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+
+        //Configure arrow texture
+        let arrowTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_sliderRight")
+        let arrowSprite = SKSpriteNode(texture: arrowTexture)
+        arrowSprite.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+        
+        //Configure illuminated bat
+        let illuminatedBat = Bat(scalingFactor: 3.0, startingHealth: 3, minXVelocity: 0.00, maxXVelocity: 0.00, minYVelocity: 0.00, maxYVelocity: 0.00)
+        illuminatedBat?.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.40, y: ScreenSizeFloatConstants.HalfScreenHeight*0.40)
+        
+        if let player = CrossHair(crossHairType: .OutlineLarge), let batSprite = batSprite, let illuminatedBat = illuminatedBat{
+            player.position = illuminatedBat.position
+            mainNode.addChild(player)
+            mainNode.addChild(batSprite)
+            mainNode.addChild(illuminatedBat)
+            mainNode.addChild(arrowSprite)
+
+
+        }
+        
+      
+    
         
         makeLabelForNode(node: mainNode,
                          withTextOf: "Bats can be hard to see in the dark.",
