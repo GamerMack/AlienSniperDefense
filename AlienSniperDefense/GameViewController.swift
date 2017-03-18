@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
         
         let menuScene = MenuScene(size: self.view.bounds.size)
         let trackScene = TrackScene(size: self.view.bounds.size)
+        let instructionScene = InstructionScene(size: self.view.bounds.size, selectedTrackType: .FlyingAlien)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
@@ -44,10 +45,11 @@ class GameViewController: UIViewController {
             flyingAlienScene.scaleMode = .aspectFill
             trackScene.scaleMode = .aspectFill
             menuScene.scaleMode = .aspectFill
+            instructionScene.scaleMode = .aspectFill
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(menuScene)
+                view.presentScene(instructionScene)
                     
                 view.ignoresSiblingOrder = true
                     
