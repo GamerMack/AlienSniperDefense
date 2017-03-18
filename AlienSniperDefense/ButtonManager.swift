@@ -18,7 +18,31 @@ class ButtonManager{
     static let sharedInstance = ButtonManager()
     
     private var introMessageButton: SKSpriteNode?
-
+    
+    
+    static func getPauseButton() -> SKSpriteNode?{
+        
+        let buttonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_button09")
+        
+        let pauseNode = SKSpriteNode(texture: buttonTexture)
+        pauseNode.name = NodeNames.PauseButton
+        pauseNode.userData = NSMutableDictionary()
+        pauseNode.userData?.setValue(false, forKey: "isPaused")
+        pauseNode.zPosition = 15
+        
+        let pauseLabel = SKLabelNode(fontNamed: FontTypes.FuturaMediumItalic)
+        pauseLabel.text = "Pause"
+        pauseLabel.name = NodeNames.PauseButton
+        pauseNode.addChild(pauseLabel)
+        pauseLabel.horizontalAlignmentMode = .center
+        pauseLabel.verticalAlignmentMode = .center
+        pauseLabel.position = CGPoint(x: pauseNode.position.x, y: pauseNode.position.y)
+        pauseLabel.zPosition = 16
+        pauseLabel.fontSize = 15.0
+        
+        return pauseNode
+    }
+    
     
     func getIntroMessageButton(withLevelTitleOf levelTitle: String, levelDescriptionOf levelDescription: String, andWithTimeLimitOf timeLimit: TimeInterval, andWithTextureNamed textureName: String = "yellow_panel") -> SKSpriteNode?{
         
@@ -64,6 +88,7 @@ class ButtonManager{
     private func setup(){
         introMessageButton = GenerateIntroMessageBoxWith(levelTitle: "Level 1", levelDescription: "Shoot Enemies", levelTimeLimitWarning: "Time Limit: 30.00")
     }
+    
     
     
     private func GenerateIntroMessageBoxWith(levelTitle: String, levelDescription: String, levelTimeLimitWarning: String, textureName: String = "yellow_panel") -> SKSpriteNode?{

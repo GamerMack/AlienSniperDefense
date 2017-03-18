@@ -21,7 +21,9 @@ class BaseScene: SKScene{
     //MARK: *****************Number for the Current Level
     var levelNumber: Int = 1
     
+    
     //MARK: ******************** UI Buttons
+    var pauseButton = SKSpriteNode()
     var menuButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
     var sceneInterfaceManagerDelegate: SceneInterfaceManagerDelegate!
@@ -30,6 +32,14 @@ class BaseScene: SKScene{
     //MARK: ********************* Explosion Animation (cached in the scene file for efficiency)
     var explosionAnimation = SKAction()
     var explosionSound = SKAction.playSoundFileNamed(SoundEffects.Explosion1, waitForCompletion: false)
+    
+    
+    //MARK: *******************  GameState
+    enum GameState{
+        case Paused, Running
+    }
+    
+    var currentGameState: GameState = .Running
     
     //MARK: ************** Background Objects Array and other related variables
     lazy var backgroundObjects: [BackgroundObject] = [
@@ -124,6 +134,9 @@ class BaseScene: SKScene{
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.backgroundColor = SKColor.black
         
+        //Set initial game state to running
+        self.currentGameState = .Running
+        
         //Configure player
         player = CrossHair(crossHairType: self.playerType)
         self.addChild(player)
@@ -154,6 +167,12 @@ class BaseScene: SKScene{
         
         //Spawn Background Objects
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
+        
+        
+        //Add the pause button
+        configurePauseButton()
+    
+        
     }
     
  
@@ -161,6 +180,10 @@ class BaseScene: SKScene{
     //MARK: *************** GAME LOOP FUNCTIONS (these will be overriden and customized in subclasses)
     
     override func update(_ currentTime: TimeInterval) {
+        
+        if(currentGameState == .Paused) { return }
+        
+        
         if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
             loadNextLevel()
         }
@@ -184,6 +207,8 @@ class BaseScene: SKScene{
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        if(currentGameState == .Paused) { return }
+        
         let node = touches.first! as UITouch
         let touchLocation = node.location(in: self)
         
@@ -195,6 +220,46 @@ class BaseScene: SKScene{
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
         
+        for node in nodes(at: touchLocation){
+            
+            if node.name == NodeNames.PauseButton{
+                print("Game is now paused")
+                //Reconfigure Pause Button to become a Resume button
+                node.name = NodeNames.ResumeButton
+                    
+                for subNode in node.children{
+                    if let subNode = subNode as? SKLabelNode{
+                        subNode.text = "Resume"
+                        subNode.name = NodeNames.ResumeButton
+                    }
+                }
+                
+                currentGameState = .Paused
+                self.isPaused = true
+
+                
+            } else if node.name == NodeNames.ResumeButton{
+                print("Game is now resumed")
+                //Reconfigure Pause Button to become a Resume button
+                node.name = NodeNames.PauseButton
+                    
+                for subNode in node.children{
+                    if let subNode = subNode as? SKLabelNode{
+                        subNode.text = "Pause"
+                        subNode.name = NodeNames.PauseButton
+                    }
+                }
+                
+                currentGameState = .Running
+                self.isPaused = false
+
+                
+            }
+            
+        }
+        
+        if(currentGameState == .Paused) { return }
+        
         if(restartButton.contains(touchLocation)){
             reloadCurrentLevel()
         }
@@ -203,14 +268,14 @@ class BaseScene: SKScene{
            loadMenuScene()
         }
         
-    
-    
+
         for node in nodes(at: touchLocation){
             
             if node.name == NodeNames.StartButton{
                 //Remove the start window to begin game
                 node.removeFromParent()
             }
+            
          
         }
         
@@ -238,7 +303,27 @@ class BaseScene: SKScene{
         }
     }
     
+    
+    final func configurePauseButton(){
+        if let newPauseButton = ButtonManager.getPauseButton(){
+            pauseButton = newPauseButton
+            pauseButton.name = NodeNames.PauseButton
 
+            let xPos = -ScreenSizeFloatConstants.HalfScreenWidth*0.85
+            let yPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.90
+            
+            let buttonWidth =  ScreenSizeFloatConstants.HalfScreenWidth*0.20
+            let buttonHeight = ScreenSizeFloatConstants.HalfScreenHeight*0.15
+            
+            let size = CGSize(width: buttonWidth, height: buttonHeight)
+            pauseButton.position = CGPoint(x: xPos, y: yPos)
+            pauseButton.size = size
+            pauseButton.zPosition = 15
+            self.addChild(pauseButton)
+            
+        }
+        
+    }
 
 
     final func configureExplosionAnimation(){

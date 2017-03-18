@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(menuScene)
+                view.presentScene(stealthShipScene)
                     
                 view.ignoresSiblingOrder = true
                     
