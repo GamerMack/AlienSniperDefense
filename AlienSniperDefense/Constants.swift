@@ -53,6 +53,13 @@ class NodeNames{
     static let CrossHairLight = "CrossHairLight"
     static let UFOFieldNode = "UFOFieldNode"
     
+    static let WingmanTrackButton = "WingmanTrack"
+    static let BatTrackButton = "BatTrack"
+    static let StealthShipTrackButton = "StealthShipTrack"
+    static let FlyingAlienTrackButton = "FlyingAlienTrack"
+    static let UFOTrackButton = "UFOTrack"
+
+    
 }
 
 //ZPosition Constants

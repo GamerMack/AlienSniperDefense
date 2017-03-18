@@ -15,9 +15,97 @@ import SpriteKit
 
 class ButtonManager{
     
+    enum TrackType{
+        case Wingman
+        case Bat
+        case StealthShip
+        case FlyingAlien
+        case UFO
+    }
+    
     static let sharedInstance = ButtonManager()
     
     private var introMessageButton: SKSpriteNode?
+    
+    static func getTrackButton(isCompleted: Bool, trackType: TrackType, size: CGSize, position: CGPoint) -> SKSpriteNode{
+        
+        //Configure Track Node properties
+        let trackNode = SKSpriteNode()
+        trackNode.size = size
+        trackNode.position = position
+        trackNode.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        //For incomplete level, the tickmark is shown
+        let boxTickTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_boxTick")
+        
+        //For completed levels, a checkmark is shown
+        let checkMarkTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_boxCheckmakr")
+        
+        //Indicator node is initialized based on completion status of the track
+        let indicatorNode = isCompleted ? SKSpriteNode(texture: checkMarkTexture) : SKSpriteNode(texture: boxTickTexture)
+        
+        
+        
+        var trackTexture: SKTexture?
+        var labelText: String
+        var scaleFactor: CGFloat = 1.00
+        
+        switch(trackType){
+            case .Bat:
+                trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Bats)?.textureNamed("bat")
+                labelText = "Fluorescent Bats"
+                scaleFactor = 2
+                break
+            case .FlyingAlien:
+                trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipBlue_manned")
+                scaleFactor = 0.70
+                labelText = "Hover Borgs"
+                break
+            case .StealthShip:
+                trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip2_blue")
+                labelText = "Stealth Ships"
+                break
+            case .UFO:
+                trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO)?.textureNamed("ufoGreen")
+                labelText = "UFOreos"
+                break
+            case .Wingman:
+                trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Enemies)?.textureNamed("wingMan1")
+                labelText = "Wingman"
+                scaleFactor = 0.70
+                break
+        }
+        
+        
+        //Configure the icon for the track node
+        let iconNode = SKSpriteNode(texture: trackTexture)
+        iconNode.xScale *= scaleFactor
+        iconNode.yScale *= scaleFactor
+        let iconNodeYPos = trackNode.size.height*0.20
+        iconNode.position = CGPoint(x: 0, y: iconNodeYPos)
+        
+        //Configure the label for the track node
+        let labelNode = SKLabelNode(fontNamed: FontTypes.MarkerFeltThin)
+        labelNode.text = labelText
+        labelNode.fontSize = 18.0
+        labelNode.verticalAlignmentMode = .center
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.position = CGPoint.zero
+        
+        //Configure the indicator node
+        let indicatorNodeYPos = -trackNode.size.height*0.20
+        indicatorNode.position = CGPoint(x: 0, y: indicatorNodeYPos)
+        indicatorNode.xScale *= 1.7
+        indicatorNode.yScale *= 1.7
+        
+        //Add subnodes to the track node
+        trackNode.addChild(indicatorNode)
+        trackNode.addChild(iconNode)
+        trackNode.addChild(labelNode)
+        
+        return trackNode
+        
+    }
     
     
     static func getPauseButton() -> SKSpriteNode?{
