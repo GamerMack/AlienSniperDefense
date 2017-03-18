@@ -97,8 +97,8 @@ class WingmanScene: BaseScene{
 
 
     override func didMove(to view: SKView) {
-        //Basic Scene Configuratino
-        performBasicSceneConfiguration()
+        //Basic Scene Configuration, Register NSNotifications for Pause and Resume
+        super.didMove(to: view)
         
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)

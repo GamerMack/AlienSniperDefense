@@ -95,7 +95,9 @@ class FlyingAlienScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
-
+        //Register NSNotifications for Pause and Resume
+        registerNotifications()
+        
         //Basic scene configuration (calls base class's version of spawnBackgroundObjects)
         performBasicSceneConfiguration()
         

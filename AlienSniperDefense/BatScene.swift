@@ -73,6 +73,8 @@ class BatScene: BaseScene
     
     override func didMove(to view: SKView) {
         
+        //Register NSNotifications for Pause and Resume Method
+        registerNotifications()
         
         //Set anchor point of current scene to center
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)

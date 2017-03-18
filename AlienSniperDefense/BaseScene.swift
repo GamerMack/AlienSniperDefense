@@ -117,15 +117,27 @@ class BaseScene: SKScene{
     
     override func didMove(to view: SKView) {
         
+        //Register Pause and Resume notifications with NSNotification center
+        registerNotifications()
+        
         //Basic scene configuration
         performBasicSceneConfiguration()
         
-        //Configure Background music
-        BackgroundMusic.configureBackgroundMusicFrom(fileNamed: self.backGroundMusic, forParentNode: self)
-        
+    
 
     }
     
+    //MARK: ***************** Registration for NSNotifications
+    
+    func registerNotifications(){
+        
+        //Register Pause and Resume notifications with NSNotification center
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(BaseScene.pauseGame), name: Notification.Name(rawValue: "Pause"), object: nil)
+        
+        nc.addObserver(self, selector: #selector(BaseScene.resumeGame), name: Notification.Name(rawValue: "Resume"), object: nil)
+        
+    }
     
     //MARK: ************** Basic Scene Configuration
     
@@ -234,8 +246,7 @@ class BaseScene: SKScene{
                     }
                 }
                 
-                currentGameState = .Paused
-                self.isPaused = true
+                pauseGame()
 
                 
             } else if node.name == NodeNames.ResumeButton{
@@ -250,8 +261,7 @@ class BaseScene: SKScene{
                     }
                 }
                 
-                currentGameState = .Running
-                self.isPaused = false
+                resumeGame()
 
                 
             }
@@ -280,6 +290,9 @@ class BaseScene: SKScene{
         }
         
     }
+    
+    
+   
     
     func spawnEnemyFromPrototype(numberOfEnemy: Int){
         //This method is to be overrided in derived classes
@@ -344,6 +357,22 @@ class BaseScene: SKScene{
         }
     }
     
+    
+    //MARK: *************  Game State Functions (registered with NotificationCenter)
+    func pauseGame(){
+        currentGameState = .Paused
+        self.isPaused = true
+    }
+    
+    func resumeGame(){
+        currentGameState = .Running
+        self.isPaused = false
+    }
+    
+    //MARK: *********** Remove observers for Pause and Resume Notifications
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     
 }

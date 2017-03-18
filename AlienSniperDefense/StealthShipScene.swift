@@ -94,8 +94,8 @@ class StealthShipScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
-        //Basic scene configuration
-        performBasicSceneConfiguration()
+        //Perform basic scene configuration and register NSNotifications for pause and resume
+        super.didMove(to: view)
         
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)

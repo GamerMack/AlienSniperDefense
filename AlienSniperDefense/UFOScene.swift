@@ -64,8 +64,8 @@ class UFOScene: BaseScene{
     
     override func didMove(to view: SKView) {
         
-        //Basic configuration
-        super.performBasicSceneConfiguration()
+        //Perform basic configuration and register Notifications for Pause and Resume
+        super.didMove(to: view)
 
         //Configure Background music (this function does not get  the base class's
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: "Drumming Sticks.mp3", forParentNode: self)
