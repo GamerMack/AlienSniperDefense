@@ -52,6 +52,7 @@ class NodeNames{
     static let GameOverButton = "GameOver"
     static let CrossHairLight = "CrossHairLight"
     static let UFOFieldNode = "UFOFieldNode"
+    static let TimeUpDisplay = "TimeUpDisplay"
     
     static let WingmanTrackButton = "WingmanTrack"
     static let BatTrackButton = "BatTrack"

@@ -22,7 +22,9 @@ class GameViewController: UIViewController {
         
             let pathAnimationConfiguration = PathAnimationConfiguration(d1: 50, d2: 50, d3: 50, d4: 50, d5: 50)
         
+    
         let ufoScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        let ufoScene2 = UFOScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Get those UFOs", enemyName: "UFO", crossHairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, minUFOSpawnedPerInterval: 0, maxUFOSpawnedPerInterval: 5, minimumKillsForLevelCompletion: 10, maximumAllowableSpawnedUFO: 30, pathAnimationConfiguration: pathAnimationConfiguration)
         
         let batScene = BatScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill the bats", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 0, minBatsSpawned: 0, maxBatsSpawned: 5, minBatComponentVelocity: 60.00, maxBatComponentVelocity: 80.00, lightNodeFallOff: 2.00, maximumBatsAllowedToSpawn: 40, minimumBatsKilledForLevelCompletion: 5)
         
@@ -50,7 +52,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(summaryScene)
+                view.presentScene(menuScene)
                     
                 view.ignoresSiblingOrder = true
                     

@@ -91,7 +91,8 @@ class BaseScene: SKScene{
     var spawnInterval: TimeInterval = 5.00
     var enemiesSpawnedPerInterval: Int = 2
     var totalGameTime: TimeInterval = 0.00
-    var timeLimit: TimeInterval = 60.0 //Time Limit set for TimeLimit Mode only
+    var timeLimit: TimeInterval = 10.0 //Time Limit set for TimeLimit Mode only
+    var gameTimer: TimeInterval = 0.00
     
     //MARK: ******************** Random Point Generator
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
@@ -134,7 +135,9 @@ class BaseScene: SKScene{
     }
     
     override func didMove(to view: SKView) {
-       
+        //Set gameHasStarted to false
+        gameHasStarted = false
+        
         //Register Pause and Resume notifications with NSNotification center
         registerNotifications()
         
@@ -232,19 +235,25 @@ class BaseScene: SKScene{
     
     override func update(_ currentTime: TimeInterval) {
         //Keep track of total game time
-        totalGameTime += currentTime - lastUpdateTime
-        lastUpdateTime = currentTime
+        if(gameHasStarted){
+            totalGameTime += currentTime - lastUpdateTime
+            lastUpdateTime = currentTime
+        }
+        
         
         if(currentGameState == .Paused) { return }
         
         if(currentGamePlayMode == .TimeLimit){
             if(totalGameTime > timeLimit){
-                savePlayerStatsForLevel()
-                loadNextLevel()
+                self.isPaused = true
+                showTimeUpLabel()
+                self.showRestartButtons()
+
             }
         }
         
         if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+            savePlayerStatsForLevel()
             loadNextLevel()
         }
         
@@ -319,6 +328,14 @@ class BaseScene: SKScene{
         if(currentGameState == .Paused) { return }
         
         if(restartButton.contains(touchLocation)){
+            
+            //Remove time up display when restarting
+            for node in nodes(at: touchLocation){
+                if node.name == NodeNames.TimeUpDisplay{
+                    node.removeFromParent()
+                }
+            }
+            
             reloadCurrentLevel()
         }
         
@@ -506,6 +523,34 @@ extension BaseScene{
         let trackScene = TrackScene(size: self.size)
         self.view?.presentScene(trackScene, transition: transition)
     }
+    
+    final func showTimeUpLabel(){
+        
+        let timeUpTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("text_timeup")
+        let timeUpSprite = SKSpriteNode(texture: timeUpTexture)
+        timeUpSprite.position = CGPoint(x: 0.00, y: ScreenSizeFloatConstants.HalfScreenHeight*0.8)
+        
+        let originalZRotation = timeUpSprite.zRotation
+        
+        let scalingSequence = SKAction.sequence([
+            SKAction.group([
+                SKAction.scale(to: 1.30, duration: 1.0),
+                SKAction.rotate(toAngle: 20, duration: 1.0)
+                ]),
+            SKAction.group([
+                SKAction.scale(to: 0.70, duration: 1.0),
+                SKAction.rotate(toAngle: originalZRotation, duration: 1.0)
+                ])
+            ])
+        let scalingAction = SKAction.repeatForever(scalingSequence)
+        
+        timeUpSprite.run(scalingAction)
+        timeUpSprite.name = NodeNames.TimeUpDisplay
+        
+        self.addChild(timeUpSprite)
+        
+    }
+    
     
     func reloadCurrentLevel(){
         //To be overridden in derived classes
