@@ -28,7 +28,7 @@ class GameSettings{
     //MARK: *************** APP-WIDE PLAYER STAT KEYS
     
     //MARK: Private Class Constants
-    private let defaults = UserDefaults.standard
+    let defaults = UserDefaults.standard
     private let keyFirstRun = "FirstRun"
     private let keyTotalRunningTime = "TotalRunningTime"
     private let keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
@@ -148,39 +148,7 @@ class GameSettings{
     }
     
     
-    //MARK: Public retrieval methods for Full Game Stats
-    func getTotalRunningTime() -> Double{
-        return defaults.value(forKey: keyTotalRunningTime)! as! Double
-    }
-    
-    func getTotalNumberOfBulletsFired() -> Int{
-        return defaults.value(forKey: keyTotalNumberOfBulletsFired)! as! Int
-    }
-    
-    func getTotalNumberOfKills() -> Int{
-        return defaults.value(forKey: keyTotalNumberOfKills)! as! Int
-    }
-    
-    //TODO: Also include Total Enemies Spawned
-    
-    //MARK: Public Saving Methods for Full Game Stats
-    func saveTotalRunningTime(totalRunningTime: Double){
-        defaults.set(totalRunningTime, forKey: keyTotalRunningTime)
-        defaults.synchronize()
-    }
-    
-    func saveTotalNumberOfBulletsFired(totalBulletsFired: Int){
-        defaults.set(totalBulletsFired, forKey: keyTotalNumberOfBulletsFired)
-        defaults.synchronize()
-    }
-    
-    func saveTotalNumberOfKills(totalNumberOfKills: Int){
-        defaults.set(totalNumberOfKills, forKey: keyTotalNumberOfKills)
-        defaults.synchronize()
-    }
-    
-    //TODO: Also include Total Enemies Spawned
-
+   
 
 }
 
@@ -210,45 +178,357 @@ extension GameSettings{
         case valueEasy = "Easy"
     }
     
+    //MARK: TrackType
+    enum TrackType{
+        case Wingman, UFO, StealthShips, Bat, FlyingAlien
+    }
+
+    
+    //MARK: Level Number
+    enum Level{
+        case Level1, Level2, Level3, Level4, Level5
+    }
+    
+    //MARK:  Typealias for a tuple specifying track and level information
+    typealias LevelTuple = (trackName: TrackType, levelNumber: Level)
+    
+    //MARK: Public retrieval methods for Full Game Stats
+//    func getTotalRunningTime() -> Double{
+//        return defaults.value(forKey: keyTotalRunningTime)! as! Double
+//    }
+//    
+//    func getTotalNumberOfBulletsFired() -> Int{
+//        return defaults.value(forKey: keyTotalNumberOfBulletsFired)! as! Int
+//    }
+//    
+//    func getTotalNumberOfKills() -> Int{
+//        return defaults.value(forKey: keyTotalNumberOfKills)! as! Int
+//    }
+    
+    //TODO: Also include Total Enemies Spawned
+    
+    //MARK: Public Saving Methods for Individual Levels
+    func saveTotalRunningTime(totalRunningTime: Double, levelInfo: LevelTuple){
+        
+        switch(levelInfo){
+            //Save running time for Wingman levels
+            case (.Wingman, .Level1):
+                defaults.set(totalRunningTime, forKey: WingmanTrack.Level1.keyTotalRunningTime.rawValue)
+                break
+            case (.Wingman, .Level2):
+                defaults.set(totalRunningTime, forKey: WingmanTrack.Level2.keyTotalRunningTime.rawValue)
+                break
+            case (.Wingman, .Level3):
+                defaults.set(totalRunningTime, forKey: WingmanTrack.Level3.keyTotalRunningTime.rawValue)
+                break
+            case (.Wingman, .Level4):
+                defaults.set(totalRunningTime, forKey: WingmanTrack.Level4.keyTotalRunningTime.rawValue)
+                break
+            case (.Wingman, .Level5):
+                defaults.set(totalRunningTime, forKey: WingmanTrack.Level5.keyTotalRunningTime.rawValue)
+                break
+            
+            //Save running time for BatTrack Levels
+            case (.Bat, .Level1):
+                defaults.set(totalRunningTime, forKey: BatTrack.Level1.keyTotalRunningTime.rawValue)
+                break
+            case (.Bat, .Level2):
+                defaults.set(totalRunningTime, forKey: BatTrack.Level2.keyTotalRunningTime.rawValue)
+                break
+            case (.Bat, .Level3):
+                defaults.set(totalRunningTime, forKey: BatTrack.Level3.keyTotalRunningTime.rawValue)
+                break
+            case (.Bat, .Level4):
+                defaults.set(totalRunningTime, forKey: BatTrack.Level4.keyTotalRunningTime.rawValue)
+                break
+            case (.Bat, .Level5):
+                defaults.set(totalRunningTime, forKey: BatTrack.Level5.keyTotalRunningTime.rawValue)
+                break
+            
+            //Save running time data for UFO Levels
+            case (.UFO, .Level1):
+                defaults.set(totalRunningTime, forKey: UFOTrack.Level1.keyTotalRunningTime.rawValue)
+                break
+            case (.UFO, .Level2):
+                defaults.set(totalRunningTime, forKey: UFOTrack.Level2.keyTotalRunningTime.rawValue)
+                break
+            case (.UFO, .Level3):
+                defaults.set(totalRunningTime, forKey: UFOTrack.Level3.keyTotalRunningTime.rawValue)
+                break
+            case (.UFO, .Level4):
+                defaults.set(totalRunningTime, forKey: UFOTrack.Level4.keyTotalRunningTime.rawValue)
+                break
+            case (.UFO, .Level5):
+                defaults.set(totalRunningTime, forKey: UFOTrack.Level5.keyTotalRunningTime.rawValue)
+                break
+            
+            //Save running time data for FlyingAlien Levels
+            case (.FlyingAlien, .Level1):
+                defaults.set(totalRunningTime, forKey: FlyingAlienTrack.Level1.keyTotalRunningTime.rawValue)
+                break
+            case (.FlyingAlien, .Level2):
+              defaults.set(totalRunningTime, forKey: FlyingAlienTrack.Level2.keyTotalRunningTime.rawValue)
+                break
+            case (.FlyingAlien, .Level3):
+              defaults.set(totalRunningTime, forKey: FlyingAlienTrack.Level3.keyTotalRunningTime.rawValue)
+                break
+            case (.FlyingAlien, .Level4):
+              defaults.set(totalRunningTime, forKey: FlyingAlienTrack.Level4.keyTotalRunningTime.rawValue)
+                break
+            case (.FlyingAlien, .Level5):
+              defaults.set(totalRunningTime, forKey: FlyingAlienTrack.Level5.keyTotalRunningTime.rawValue)
+                break
+            
+            
+            //Save  running time data for StealthShip levels
+            case (.StealthShips, .Level1):
+                defaults.set(totalRunningTime, forKey: StealthShipTrack.Level1.keyTotalRunningTime.rawValue)
+                break
+            case (.StealthShips, .Level2):
+                defaults.set(totalRunningTime, forKey: StealthShipTrack.Level2.keyTotalRunningTime.rawValue)
+                break
+            case (.StealthShips, .Level3):
+                defaults.set(totalRunningTime, forKey: StealthShipTrack.Level3.keyTotalRunningTime.rawValue)
+                break
+            case (.StealthShips, .Level4):
+                defaults.set(totalRunningTime, forKey: StealthShipTrack.Level4.keyTotalRunningTime.rawValue)
+                break
+            case (.StealthShips, .Level5):
+                defaults.set(totalRunningTime, forKey: StealthShipTrack.Level5.keyTotalRunningTime.rawValue)
+                break
+        }
+        
+        defaults.synchronize()
+    }
+    
+    func saveTotalNumberOfKills(totalKills: Int, levelInfo: LevelTuple){
+        
+        switch(levelInfo){
+        //Save running time for Wingman levels
+        case (.Wingman, .Level1):
+            defaults.set(totalKills, forKey: WingmanTrack.Level1.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Wingman, .Level2):
+            defaults.set(totalKills, forKey: WingmanTrack.Level2.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Wingman, .Level3):
+            defaults.set(totalKills, forKey: WingmanTrack.Level3.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Wingman, .Level4):
+            defaults.set(totalKills, forKey: WingmanTrack.Level4.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Wingman, .Level5):
+            defaults.set(totalKills, forKey: WingmanTrack.Level5.keyTotalNumberOfKills.rawValue)
+            break
+            
+        //Save running time for BatTrack Levels
+        case (.Bat, .Level1):
+            defaults.set(totalKills, forKey: BatTrack.Level1.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Bat, .Level2):
+            defaults.set(totalKills, forKey: BatTrack.Level2.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Bat, .Level3):
+            defaults.set(totalKills, forKey: BatTrack.Level3.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Bat, .Level4):
+            defaults.set(totalKills, forKey: BatTrack.Level4.keyTotalNumberOfKills.rawValue)
+            break
+        case (.Bat, .Level5):
+            defaults.set(totalKills, forKey: BatTrack.Level5.keyTotalNumberOfKills.rawValue)
+            break
+            
+        //Save running time data for UFO Levels
+        case (.UFO, .Level1):
+            defaults.set(totalKills, forKey: UFOTrack.Level1.keyTotalNumberOfKills.rawValue)
+            break
+        case (.UFO, .Level2):
+            defaults.set(totalKills, forKey: UFOTrack.Level2.keyTotalNumberOfKills.rawValue)
+            break
+        case (.UFO, .Level3):
+            defaults.set(totalKills, forKey: UFOTrack.Level3.keyTotalNumberOfKills.rawValue)
+            break
+        case (.UFO, .Level4):
+            defaults.set(totalKills, forKey: UFOTrack.Level4.keyTotalNumberOfKills.rawValue)
+            break
+        case (.UFO, .Level5):
+            defaults.set(totalKills, forKey: UFOTrack.Level5.keyTotalNumberOfKills.rawValue)
+            break
+            
+        //Save running time data for FlyingAlien Levels
+        case (.FlyingAlien, .Level1):
+            defaults.set(totalKills, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfKills.rawValue)
+            break
+        case (.FlyingAlien, .Level2):
+            defaults.set(totalKills, forKey: FlyingAlienTrack.Level2.keyTotalNumberOfKills.rawValue)
+            break
+        case (.FlyingAlien, .Level3):
+            defaults.set(totalKills, forKey: FlyingAlienTrack.Level3.keyTotalNumberOfKills.rawValue)
+            break
+        case (.FlyingAlien, .Level4):
+            defaults.set(totalKills, forKey: FlyingAlienTrack.Level4.keyTotalNumberOfKills.rawValue)
+            break
+        case (.FlyingAlien, .Level5):
+            defaults.set(totalKills, forKey: FlyingAlienTrack.Level5.keyTotalNumberOfKills.rawValue)
+            break
+            
+            
+        //Save  running time data for StealthShip levels
+        case (.StealthShips, .Level1):
+            defaults.set(totalKills, forKey: StealthShipTrack.Level1.keyTotalNumberOfKills.rawValue)
+            break
+        case (.StealthShips, .Level2):
+            defaults.set(totalKills, forKey: StealthShipTrack.Level2.keyTotalNumberOfKills.rawValue)
+            break
+        case (.StealthShips, .Level3):
+            defaults.set(totalKills, forKey: StealthShipTrack.Level3.keyTotalNumberOfKills.rawValue)
+            break
+        case (.StealthShips, .Level4):
+            defaults.set(totalKills, forKey: StealthShipTrack.Level4.keyTotalNumberOfKills.rawValue)
+            break
+        case (.StealthShips, .Level5):
+            defaults.set(totalKills, forKey: StealthShipTrack.Level5.keyTotalNumberOfKills.rawValue)
+            break
+        }
+        
+        defaults.synchronize()
+    }
+    
+    func saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: Int, levelInfo: LevelTuple){
+        
+        switch(levelInfo){
+        //Save running time for Wingman levels
+        case (.Wingman, .Level1):
+            defaults.set(totalSpawnedEnemies, forKey: WingmanTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Wingman, .Level2):
+            defaults.set(totalSpawnedEnemies, forKey: WingmanTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Wingman, .Level3):
+            defaults.set(totalSpawnedEnemies, forKey: WingmanTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Wingman, .Level4):
+            defaults.set(totalSpawnedEnemies, forKey: WingmanTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Wingman, .Level5):
+            defaults.set(totalSpawnedEnemies, forKey: WingmanTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+            
+        //Save running time for BatTrack Levels
+        case (.Bat, .Level1):
+            defaults.set(totalSpawnedEnemies, forKey: BatTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Bat, .Level2):
+            defaults.set(totalSpawnedEnemies, forKey: BatTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Bat, .Level3):
+            defaults.set(totalSpawnedEnemies, forKey: BatTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Bat, .Level4):
+            defaults.set(totalSpawnedEnemies, forKey: BatTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.Bat, .Level5):
+            defaults.set(totalSpawnedEnemies, forKey: BatTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+            
+        //Save running time data for UFO Levels
+        case (.UFO, .Level1):
+            defaults.set(totalSpawnedEnemies, forKey: UFOTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.UFO, .Level2):
+            defaults.set(totalSpawnedEnemies, forKey: UFOTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.UFO, .Level3):
+            defaults.set(totalSpawnedEnemies, forKey: UFOTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.UFO, .Level4):
+            defaults.set(totalSpawnedEnemies, forKey: UFOTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.UFO, .Level5):
+            defaults.set(totalSpawnedEnemies, forKey: UFOTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+            
+        //Save running time data for FlyingAlien Levels
+        case (.FlyingAlien, .Level1):
+            defaults.set(totalSpawnedEnemies, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.FlyingAlien, .Level2):
+            defaults.set(totalSpawnedEnemies, forKey: FlyingAlienTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.FlyingAlien, .Level3):
+            defaults.set(totalSpawnedEnemies, forKey: FlyingAlienTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.FlyingAlien, .Level4):
+            defaults.set(totalSpawnedEnemies, forKey: FlyingAlienTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.FlyingAlien, .Level5):
+            defaults.set(totalSpawnedEnemies, forKey: FlyingAlienTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+            
+            
+        //Save  running time data for StealthShip levels
+        case (.StealthShips, .Level1):
+            defaults.set(totalSpawnedEnemies, forKey: StealthShipTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.StealthShips, .Level2):
+            defaults.set(totalSpawnedEnemies, forKey: StealthShipTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.StealthShips, .Level3):
+            defaults.set(totalSpawnedEnemies, forKey: StealthShipTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.StealthShips, .Level4):
+            defaults.set(totalSpawnedEnemies, forKey: StealthShipTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        case (.StealthShips, .Level5):
+            defaults.set(totalSpawnedEnemies, forKey: StealthShipTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+            break
+        }
+        
+        defaults.synchronize()
+    }
+
+
     
     //MARK: ************** TRACK-LEVEL, PLAYER STAT KEYS (Namespaced-Level Keys)
     enum WingmanTrack{
         
         enum Level1: String{
-            case keyTotalRunningTime = "TotalRunningTime"
-            case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
-            case keyTotalNumberOfKills = "TotalNumberOfKills"
-            case keyTotalNumberOfSpawnedEnemies = "TotalNumberOfSpawnedEnemies"
+            case keyTotalRunningTime = "WingmanLevel1TotalRunningTime"
+            case keyTotalNumberOfBulletsFired = "WingmanLevel1TotalNumberOfBulletsFired"
+            case keyTotalNumberOfKills = "WingmanLevel1TotalNumberOfKills"
+            case keyTotalNumberOfSpawnedEnemies = "WingmanLevel1TotalNumberOfSpawnedEnemies"
         }
         
         enum Level2: String{
-            case keyTotalRunningTime = "TotalRunningTime"
-            case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
-            case keyTotalNumberOfKills = "TotalNumberOfKills"
-            case keyTotalNumberOfSpawnedEnemies = "TotalNumberOfSpawnedEnemies"
+            case keyTotalRunningTime = "WingmanLevel2TotalRunningTime"
+            case keyTotalNumberOfBulletsFired = "WingmanLevel2TotalNumberOfBulletsFired"
+            case keyTotalNumberOfKills = "WingmanLevel2TotalNumberOfKills"
+            case keyTotalNumberOfSpawnedEnemies = "WingmanLevel2TotalNumberOfSpawnedEnemies"
         }
         
         enum Level3: String{
-            case keyTotalRunningTime = "TotalRunningTime"
-            case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
-            case keyTotalNumberOfKills = "TotalNumberOfKills"
-            case keyTotalNumberOfSpawnedEnemies = "TotalNumberOfSpawnedEnemies"
+            case keyTotalRunningTime = "WingmanLevel3TotalRunningTime"
+            case keyTotalNumberOfBulletsFired = "WingmanLevel3TotalNumberOfBulletsFired"
+            case keyTotalNumberOfKills = "WingmanLevel3TotalNumberOfKills"
+            case keyTotalNumberOfSpawnedEnemies = "WingmanLevel3TotalNumberOfSpawnedEnemies"
         }
         
         enum Level4: String{
-            case keyTotalRunningTime = "TotalRunningTime"
-            case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
-            case keyTotalNumberOfKills = "TotalNumberOfKills"
-            case keyTotalNumberOfSpawnedEnemies = "TotalNumberOfSpawnedEnemies"
+            case keyTotalRunningTime = "WingmanLevel4TotalRunningTime"
+            case keyTotalNumberOfBulletsFired = "WingmanLevel4TotalNumberOfBulletsFired"
+            case keyTotalNumberOfKills = "WingmanLevel4TotalNumberOfKills"
+            case keyTotalNumberOfSpawnedEnemies = "WingmanLevel4TotalNumberOfSpawnedEnemies"
         }
         
         enum Level5: String{
-            case keyTotalRunningTime = "TotalRunningTime"
-            case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
-            case keyTotalNumberOfKills = "TotalNumberOfKills"
-            case keyTotalNumberOfSpawnedEnemies = "TotalNumberOfSpawnedEnemies"
+            case keyTotalRunningTime = "WingmanLevel5TotalRunningTime"
+            case keyTotalNumberOfBulletsFired = "WingmanLevel5TotalNumberOfBulletsFired"
+            case keyTotalNumberOfKills = "WingmanLevel5TotalNumberOfKills"
+            case keyTotalNumberOfSpawnedEnemies = "WingmanLevel5TotalNumberOfSpawnedEnemies"
         }
     }
+    
+    
     
     enum UFOTrack{
         
