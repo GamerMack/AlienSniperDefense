@@ -12,6 +12,11 @@ import AVFoundation
 
 class TrackScene: SKScene{
     
+    enum TrackType{
+        case Wingman, Bat, FlyingAlien, StealthShip, UFO
+    }
+    
+    let gameSettings = GameSettings.sharedInstance
     
     override func didMove(to view: SKView) {
         //Configure Background Musics
@@ -46,27 +51,32 @@ class TrackScene: SKScene{
             
             switch(index){
                 case 0:
-                    let wingmanTrackButton = ButtonManager.getTrackButton(isCompleted: false, trackType: .Wingman, size: trackSize, position: CGPoint(x: xStartPos, y: 0))
+                    let completionStatus = getCompletionStatusFor(trackTypeOf: .Wingman)
+                    let wingmanTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Wingman, size: trackSize, position: CGPoint(x: xStartPos, y: 0))
                     wingmanTrackButton.name = NodeNames.WingmanTrackButton
                     self.addChild(wingmanTrackButton)
                     break
                 case 1:
-                    let batTrackButton = ButtonManager.getTrackButton(isCompleted: false, trackType: .Bat, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let completionStatus = getCompletionStatusFor(trackTypeOf: .Bat)
+                    let batTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Bat, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
                     batTrackButton.name = NodeNames.BatTrackButton
                     self.addChild(batTrackButton)
                     break
                 case 2:
-                    let ufoTrackButton = ButtonManager.getTrackButton(isCompleted: false, trackType: .UFO, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let completionStatus = getCompletionStatusFor(trackTypeOf: .UFO)
+                    let ufoTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .UFO, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
                     ufoTrackButton.name = NodeNames.UFOTrackButton
                     self.addChild(ufoTrackButton)
                     break
                 case 3:
-                    let stealthTrackButton = ButtonManager.getTrackButton(isCompleted: false, trackType: .StealthShip, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let completionStatus = getCompletionStatusFor(trackTypeOf: .StealthShip)
+                    let stealthTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .StealthShip, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
                     stealthTrackButton.name = NodeNames.StealthShipTrackButton
                     self.addChild(stealthTrackButton)
                     break
                 case 4:
-                    let flyingAlienButton = ButtonManager.getTrackButton(isCompleted: false, trackType: .FlyingAlien, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let completionStatus = getCompletionStatusFor(trackTypeOf: .FlyingAlien)
+                    let flyingAlienButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .FlyingAlien, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
                     flyingAlienButton.name = NodeNames.FlyingAlienTrackButton
                     self.addChild(flyingAlienButton)
                     break
@@ -136,7 +146,49 @@ class TrackScene: SKScene{
         
     }
     
-    
+    private func getCompletionStatusFor(trackTypeOf trackType: TrackType) -> Bool{
+        
+        switch(trackType){
+            case .Bat:
+                let level1Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Bat, .Level1))
+                let level2Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Bat, .Level2))
+                let level3Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Bat, .Level3))
+                let level4Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Bat, .Level4))
+                let level5Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Bat, .Level5))
+                return (level1Status && level2Status && level3Status && level4Status && level5Status)
+            case .FlyingAlien:
+                let level1Status = gameSettings.getLevelCompletionStatus(levelInfo: (.FlyingAlien, .Level1))
+                let level2Status = gameSettings.getLevelCompletionStatus(levelInfo: (.FlyingAlien, .Level2))
+                let level3Status = gameSettings.getLevelCompletionStatus(levelInfo: (.FlyingAlien, .Level3))
+                let level4Status = gameSettings.getLevelCompletionStatus(levelInfo: (.FlyingAlien, .Level4))
+                let level5Status = gameSettings.getLevelCompletionStatus(levelInfo: (.FlyingAlien, .Level5))
+                return (level1Status && level2Status && level3Status && level4Status && level5Status)
+            case .StealthShip:
+                let level1Status = gameSettings.getLevelCompletionStatus(levelInfo: (.StealthShips, .Level1))
+                let level2Status = gameSettings.getLevelCompletionStatus(levelInfo: (.StealthShips, .Level2))
+                let level3Status = gameSettings.getLevelCompletionStatus(levelInfo: (.StealthShips, .Level3))
+                let level4Status = gameSettings.getLevelCompletionStatus(levelInfo: (.StealthShips, .Level4))
+                let level5Status = gameSettings.getLevelCompletionStatus(levelInfo: (.StealthShips, .Level5))
+                return (level1Status && level2Status && level3Status && level4Status && level5Status)
+            case .UFO:
+                let level1Status = gameSettings.getLevelCompletionStatus(levelInfo: (.UFO, .Level1))
+                let level2Status = gameSettings.getLevelCompletionStatus(levelInfo: (.UFO, .Level2))
+                let level3Status = gameSettings.getLevelCompletionStatus(levelInfo: (.UFO, .Level3))
+                let level4Status = gameSettings.getLevelCompletionStatus(levelInfo: (.UFO, .Level4))
+                let level5Status = gameSettings.getLevelCompletionStatus(levelInfo: (.UFO, .Level5))
+                return (level1Status && level2Status && level3Status && level4Status && level5Status)
+            case .Wingman:
+                let level1Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Wingman, .Level1))
+                let level2Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Wingman, .Level2))
+                let level3Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Wingman, .Level3))
+                let level4Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Wingman, .Level4))
+                let level5Status = gameSettings.getLevelCompletionStatus(levelInfo: (.Wingman, .Level5))
+                return (level1Status && level2Status && level3Status && level4Status && level5Status)
+            
+        }
+        
+      
+    }
     
     
 }
