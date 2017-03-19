@@ -59,7 +59,7 @@ class SummaryScene: SKScene{
         self.addChild(title)
         
         
-        let titlePositionX = -ScreenSizeFloatConstants.HalfScreenWidth
+        let titlePositionX = ScreenSizeFloatConstants.HalfScreenWidth*0.20
         let labelPositionX = ScreenSizeFloatConstants.HalfScreenWidth*0.50
         let titleFont = FontTypes.MarkerFeltThin
         let labelFont = FontTypes.MarkerFeltThin
