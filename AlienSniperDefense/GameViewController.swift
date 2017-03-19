@@ -49,7 +49,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(batScene)
+                view.presentScene(menuScene)
                     
                 view.ignoresSiblingOrder = true
                     

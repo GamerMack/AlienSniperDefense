@@ -19,9 +19,7 @@ class ButtonFactory{
         guard let introBoxTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed(textureName) else { return nil }
         
         
-        
-        
-        
+
         
         //The IntroMessage Box dimensions for width and height are 40% of the width and 40% of the height of the UIScreen, respectively; zPosition is set at 10 so that the IntroMessage Box appears in front of all other game objets
         let introBox = SKSpriteNode(texture: introBoxTexture, color: .clear, size: CGSize(width: kViewWidth*0.4, height: kViewHeight*0.4))
@@ -78,7 +76,7 @@ class ButtonFactory{
 
     
     
-    static func createIntroMessageWith(levelTitle: String, levelDescription: String, levelTimeLimit: TimeInterval, textureName: String = "yellow_panel") -> SKSpriteNode?{
+    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: TimeInterval, textureName: String = "yellow_panel") -> SKSpriteNode?{
         
         
         //The texture for IntroMessage Box must be loaded in order for the rest of the function bloc to be executed
@@ -124,7 +122,7 @@ class ButtonFactory{
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.2 )
         introText3.fontSize = 20.0
-        introText3.text = "Time Limit: \(levelTimeLimit) seconds"
+        introText3.text = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
         

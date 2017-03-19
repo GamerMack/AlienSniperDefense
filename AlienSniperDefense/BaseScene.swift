@@ -17,8 +17,14 @@ import AVFoundation
 
 class BaseScene: SKScene{
     
+    
     //MARK: **************** Reference to Game Settings Singleton
     let currentGameSettings = GameSettings.sharedInstance
+    var currentGamePlayMode: CurrentGamePlayMode = .MinimumKills
+    
+    enum CurrentGamePlayMode{
+        case MinimumKills, TimeLimit
+    }
     
     //MARK: *****************Number for the Current Level
     var levelNumber: Int = 1
@@ -78,8 +84,9 @@ class BaseScene: SKScene{
     var lastUpdateTime: TimeInterval = 0.00
     var spawnInterval: TimeInterval = 5.00
     var enemiesSpawnedPerInterval: Int = 2
+    var totalGameTime: TimeInterval = 0.00
+    var timeLimit: TimeInterval = 60.0 //Time Limit set for TimeLimit Mode only
     
-
     //MARK: ******************** Random Point Generator
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
     
@@ -128,7 +135,8 @@ class BaseScene: SKScene{
         //Basic scene configuration
         performBasicSceneConfiguration()
         
-    
+        //Set current GamePlay mode
+        setCurrentGamePlayMode()
 
     }
     
@@ -142,6 +150,18 @@ class BaseScene: SKScene{
         
         nc.addObserver(self, selector: #selector(BaseScene.resumeGame), name: Notification.Name(rawValue: "Resume"), object: nil)
         
+    }
+    
+    //MARK: ****************** Set Current GamePlay Mode
+    func setCurrentGamePlayMode(){
+        switch(currentGameSettings.getGamePlayMode()){
+            case .valueMinimumKills:
+                currentGamePlayMode = .MinimumKills
+                break
+            case .valueTimeLimit:
+                currentGamePlayMode = .TimeLimit
+                break
+        }
     }
     
     //MARK: ************** Basic Scene Configuration
@@ -170,7 +190,15 @@ class BaseScene: SKScene{
         
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
+        
+        if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
+             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit)
+        }else{
+             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
+            
+        }
+        
+       
         
         
         //Configure initial HUD display
@@ -197,9 +225,17 @@ class BaseScene: SKScene{
     //MARK: *************** GAME LOOP FUNCTIONS (these will be overriden and customized in subclasses)
     
     override func update(_ currentTime: TimeInterval) {
+        //Keep track of total game time
+        totalGameTime += currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
         
         if(currentGameState == .Paused) { return }
         
+        if(currentGamePlayMode == .TimeLimit){
+            if(totalGameTime > timeLimit){
+                loadNextLevel()
+            }
+        }
         
         if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
             loadNextLevel()

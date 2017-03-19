@@ -11,7 +11,9 @@ import SpriteKit
 
 class InstructionScene: SKScene{
     
-  
+    //MARK: ************* Current Game Settings singleton
+    let gameSettings = GameSettings.sharedInstance
+    
     enum TrackType{
         case Wingman, FlyingAlien, UFO, Bat, StealthShip
     }
@@ -304,27 +306,99 @@ class InstructionScene: SKScene{
         
         for node in nodes(at: touchLocation){
             
+            let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+            var nextScene: SKScene?
             
             if node.name == NodeNames.WingmanTrackButton{
-                //TODO: load WingmanTrack Level 1
+                switch(gameSettings.getGameDifficulty()){
+                    case .valueHard:
+                        nextScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Hard)
+                        break
+                    case .valueMedium:
+                        nextScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Medium)
+                        break
+                    case .valueEasy:
+                        nextScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+                        break
+                    }
+                
+                if let nextScene = nextScene{
+                    self.view?.presentScene(nextScene, transition: mainTransition)
+                }
+
             }
             
             if node.name == NodeNames.UFOTrackButton{
-                //TODO: load UFO Track Level 1
+                switch(gameSettings.getGameDifficulty()){
+                    case .valueHard:
+                        nextScene = UFOLevelLoader.getLevel1(difficultyLevel: .Hard)
+                        break
+                    case .valueMedium:
+                        nextScene = UFOLevelLoader.getLevel1(difficultyLevel: .Medium)
+                        break
+                    case .valueEasy:
+                        nextScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+                        break
+                }
+                
+                if let nextScene = nextScene{
+                    self.view?.presentScene(nextScene, transition: mainTransition)
+                }
             }
             
             if node.name == NodeNames.StealthShipTrackButton{
-                //TODO: load StealthShipTrack Level 1
+                switch(gameSettings.getGameDifficulty()){
+                case .valueHard:
+                    nextScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Hard)
+                    break
+                case .valueMedium:
+                    nextScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Medium)
+                    break
+                case .valueEasy:
+                    nextScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+                    break
+                }
+                
+                if let nextScene = nextScene{
+                    self.view?.presentScene(nextScene, transition: mainTransition)
+                }
+                
                 
             }
             
             if node.name == NodeNames.BatTrackButton{
-                //TODO: load BatTrack Level 1
+                switch(gameSettings.getGameDifficulty()){
+                    case .valueHard:
+                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Hard)
+                        break
+                    case .valueMedium:
+                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Medium)
+                        break
+                    case .valueEasy:
+                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Easy)
+                        break
+                }
                 
             }
             
             if node.name == NodeNames.FlyingAlienTrackButton{
-                //TODO: load FlyingAlienTrack Level1
+                
+                switch(gameSettings.getGameDifficulty()){
+                case .valueHard:
+                    nextScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Hard)
+                    break
+                case .valueMedium:
+                    nextScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Medium)
+                    break
+                case .valueEasy:
+                    nextScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+                    break
+                }
+                
+                if let nextScene = nextScene{
+                    self.view?.presentScene(nextScene, transition: mainTransition)
+                }
+                
                 
             }
             
