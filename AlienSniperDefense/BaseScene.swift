@@ -27,6 +27,11 @@ class BaseScene: SKScene{
     }
     
     //MARK: *****************Number for the Current Level
+    enum CurrentTrack{
+        case Wingman, Bat, UFO, StealthShip, FlyingAlien, None
+    }
+    
+    var currenTrack: CurrentTrack = .None
     var levelNumber: Int = 1
     
     
@@ -73,6 +78,7 @@ class BaseScene: SKScene{
     var maximumNumberOFEnemies: Int = 10
     var numberOfEnemiesKilled: Int = 0
     var minimumKillsForLevelCompletion: Int = 0
+    var numberOfBulletsFired: Int = 0
     
     var initialNumberOfEnemiesSpawned: Int = 2
     var levelDescription = String()
@@ -233,6 +239,7 @@ class BaseScene: SKScene{
         
         if(currentGamePlayMode == .TimeLimit){
             if(totalGameTime > timeLimit){
+                savePlayerStatsForLevel()
                 loadNextLevel()
             }
         }
@@ -509,5 +516,119 @@ extension BaseScene{
     }
 
     
+}
+
+extension BaseScene{
+    
+    typealias LevelTuple = (currentTrack: CurrentTrack, currentLevelNumber: Int)
+    
+    func savePlayerStatsForLevel(){
+        
+        let currentLevelTuple: LevelTuple = (currentTrack: self.currenTrack, currentLevelNumber: self.levelNumber)
+        
+        switch(currentLevelTuple){
+        case (.Bat, 1):
+                currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.Bat, .Level1))
+                currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.Bat, .Level1))
+                currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.Bat, .Level1))
+                currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.Bat, .Level1))
+                currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.Bat, .Level1))
+            break
+        case (.Bat, 2):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.Bat, .Level2))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.Bat, .Level2))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.Bat, .Level2))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.Bat, .Level2))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.Bat, .Level2))
+            break
+        case (.Bat, 3):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.Bat, .Level3))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.Bat, .Level3))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.Bat, .Level3))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.Bat, .Level3))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.Bat, .Level3))
+           
+            break
+        case (.Bat, 4):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.Bat, .Level4))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.Bat, .Level4))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.Bat, .Level4))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.Bat, .Level4))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.Bat, .Level4))
+            
+            break
+        case (.Bat, 5):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.Bat, .Level5))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.Bat, .Level5))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.Bat, .Level5))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.Bat, .Level5))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.Bat, .Level5))
+            break
+            
+        case (.FlyingAlien, 1):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.FlyingAlien, .Level1))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.FlyingAlien, .Level1))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.FlyingAlien, .Level1))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.FlyingAlien, .Level1))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.FlyingAlien, .Level1))
+            break
+        case (.FlyingAlien, 2):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.FlyingAlien, .Level2))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.FlyingAlien, .Level2))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.FlyingAlien, .Level2))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.FlyingAlien, .Level2))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.FlyingAlien, .Level2))
+            break
+        case (.FlyingAlien, 3):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.FlyingAlien, .Level3))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.FlyingAlien, .Level3))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.FlyingAlien, .Level3))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.FlyingAlien, .Level3))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.FlyingAlien, .Level3))
+            break
+        case (.FlyingAlien, 4):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.FlyingAlien, .Level4))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.FlyingAlien, .Level4))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.FlyingAlien, .Level4))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.FlyingAlien, .Level4))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.FlyingAlien, .Level4))
+            break
+        case (.FlyingAlien, 5):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.FlyingAlien, .Level5))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.FlyingAlien, .Level5))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.FlyingAlien, .Level5))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.FlyingAlien, .Level5))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.FlyingAlien, .Level5))
+            break
+
+        case (.StealthShip, 1):
+            currentGameSettings.saveLevelCompletionStatus(isCompleted: true, levelInfo: (.StealthShips, .Level1))
+            currentGameSettings.saveTotalNumberOfBulletsFired(totalBulletsFired: self.numberOfBulletsFired, levelInfo: (.StealthShips, .Level1))
+            currentGameSettings.saveTotalNumberOfKills(totalKills: self.numberOfEnemiesKilled, levelInfo: (.StealthShips, .Level1))
+            currentGameSettings.saveTotalNumberOfSpawnedEnemies(totalSpawnedEnemies: self.currentNumberOfEnemies, levelInfo: (.StealthShips, .Level1))
+            currentGameSettings.saveTotalRunningTime(totalRunningTime: self.totalGameTime, levelInfo: (.StealthShips, .Level1))
+            break
+        case (.StealthShip, 2): break
+        case (.StealthShip, 3): break
+        case (.StealthShip, 4): break
+        case (.StealthShip, 5): break
+
+        case (.UFO, 1): break
+        case (.UFO, 2): break
+        case (.UFO, 3): break
+        case (.UFO, 4): break
+        case (.UFO, 5): break
+
+        case (.Wingman, 1): break
+        case (.Wingman, 2): break
+        case (.Wingman, 3): break
+        case (.Wingman, 4): break
+        case (.Wingman, 5): break
+
+        default:
+            break  //No stats saved
+        }
+    
+    }
 }
 
