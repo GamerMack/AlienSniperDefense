@@ -94,6 +94,10 @@ class StealthShipScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
+        //Set current track
+        currenTrack = .StealthShip
+        
+        
         //Perform basic scene configuration and register NSNotifications for pause and resume
         super.didMove(to: view)
         

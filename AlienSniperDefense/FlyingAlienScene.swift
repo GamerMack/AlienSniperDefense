@@ -95,6 +95,9 @@ class FlyingAlienScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
+        //Set current track
+        currenTrack = .FlyingAlien
+        
         //Register NSNotifications for Pause and Resume
         registerNotifications()
         

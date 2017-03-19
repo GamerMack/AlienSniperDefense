@@ -97,6 +97,9 @@ class WingmanScene: BaseScene{
 
 
     override func didMove(to view: SKView) {
+        //Set current track
+        currenTrack = .Wingman
+        
         //Basic Scene Configuration, Register NSNotifications for Pause and Resume
         super.didMove(to: view)
         

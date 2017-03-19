@@ -15,6 +15,7 @@ import GameplayKit
 class BatScene: BaseScene
 {
     
+
     //MARK: ******************** BAT CONFIGURATION PARAMTERS
 
     lazy var prototypeBat = Bat(scalingFactor: 0.80, startingHealth: 1, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10)!
@@ -75,7 +76,9 @@ class BatScene: BaseScene
 
     
     override func didMove(to view: SKView) {
-
+        //Set current track
+        currenTrack = .Bat
+        
         //Set framecount to zero
         frameCount = 0.00
         

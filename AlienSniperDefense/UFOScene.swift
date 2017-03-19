@@ -63,6 +63,9 @@ class UFOScene: BaseScene{
     }
     
     override func didMove(to view: SKView) {
+        //Set current track
+        currenTrack = .UFO
+        
         
         //Perform basic configuration and register Notifications for Pause and Resume
         super.didMove(to: view)
