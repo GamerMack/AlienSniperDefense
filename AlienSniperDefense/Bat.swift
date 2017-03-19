@@ -298,17 +298,15 @@ class Bat: SKSpriteNode{
     
     //MARK:  User input event handlers
     
-    func respondToHitAt(touchLocation: CGPoint){
+    func respondToHit(){
         
-        if self.contains(touchLocation){
-            
+        
                 AnimationsFactory.createExplosionFor(spriteNode: self)
                 self.run(SKAction.sequence([
                     SKAction.wait(forDuration: 2.0),
                     SKAction.removeFromParent()
                     ]))
                 
-        }
         
             
     }

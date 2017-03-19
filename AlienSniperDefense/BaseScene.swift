@@ -17,9 +17,12 @@ import AVFoundation
 
 class BaseScene: SKScene{
     
+    //MARK: **************** Reference to Game Settings Singleton
+    let currentGameSettings = GameSettings.sharedInstance
     
     //MARK: *****************Number for the Current Level
     var levelNumber: Int = 1
+    
     
     
     //MARK: ******************** UI Buttons
@@ -27,7 +30,7 @@ class BaseScene: SKScene{
     var menuButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
     var sceneInterfaceManagerDelegate: SceneInterfaceManagerDelegate!
-    
+    var gameHasStarted: Bool = false
     
     //MARK: ********************* Explosion Animation (cached in the scene file for efficiency)
     var explosionAnimation = SKAction()
@@ -113,10 +116,12 @@ class BaseScene: SKScene{
         
         //Configure background objects
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
+        
+       
     }
     
     override func didMove(to view: SKView) {
-        
+       
         //Register Pause and Resume notifications with NSNotification center
         registerNotifications()
         
@@ -283,6 +288,7 @@ class BaseScene: SKScene{
             
             if node.name == NodeNames.StartButton{
                 //Remove the start window to begin game
+                gameHasStarted = true
                 node.removeFromParent()
             }
             
@@ -454,7 +460,8 @@ extension BaseScene{
     
     final func loadMenuScene(){
         let transition = SKTransition.crossFade(withDuration: 2.00)
-        self.view?.presentScene(MenuScene(size: self.size), transition: transition)
+        let trackScene = TrackScene(size: self.size)
+        self.view?.presentScene(trackScene, transition: transition)
     }
     
     func reloadCurrentLevel(){

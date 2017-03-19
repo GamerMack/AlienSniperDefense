@@ -29,6 +29,7 @@
 		BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */; };
 		BD07A4201E7A56F700B52128 /* StarryNight.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A41F1E7A56F700B52128 /* StarryNight.sks */; };
 		BD07A4221E7A57F500B52128 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD07A4211E7A57F500B52128 /* Fire.sks */; };
+		BD10CDE41E7E331A00C6BC5F /* PlayerStatsSummaryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD10CDE31E7E331A00C6BC5F /* PlayerStatsSummaryScene.swift */; };
 		BD25E6191E7D418700D9F372 /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD25E6181E7D418700D9F372 /* InstructionScene.swift */; };
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
@@ -123,6 +124,7 @@
 		BD07A4181E7A56D300B52128 /* PhysicsCategories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 		BD07A41F1E7A56F700B52128 /* StarryNight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarryNight.sks; sourceTree = "<group>"; };
 		BD07A4211E7A57F500B52128 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
+		BD10CDE31E7E331A00C6BC5F /* PlayerStatsSummaryScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatsSummaryScene.swift; sourceTree = "<group>"; };
 		BD25E6181E7D418700D9F372 /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				BD63136C1E7A58BE00EB10F9 /* MenuScene.swift */,
 				BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */,
 				BD25E6181E7D418700D9F372 /* InstructionScene.swift */,
+				BD10CDE31E7E331A00C6BC5F /* PlayerStatsSummaryScene.swift */,
 			);
 			name = TransitionalScenes;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				BD07A41A1E7A56D300B52128 /* HelperFunctions.swift in Sources */,
 				BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */,
 				BD4BBFCD1E7A550D00808B90 /* FlyingAlien.swift in Sources */,
+				BD10CDE41E7E331A00C6BC5F /* PlayerStatsSummaryScene.swift in Sources */,
 				BD6313791E7A596600EB10F9 /* Enemy.swift in Sources */,
 				BD6313691E7A58A800EB10F9 /* UFOScene.swift in Sources */,
 				BD6313641E7A58A800EB10F9 /* DeprecatedCode.swift in Sources */,

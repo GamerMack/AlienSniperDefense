@@ -193,15 +193,41 @@ extension UFOScene{
     
     override func loadNextLevel(){
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
-        var nextLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        
+        
+        var nextLevelDifficulty: UFOLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            nextLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            nextLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            nextLevelDifficulty = .Easy
+            break
+        }
+        
+        
+        var nextLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: nextLevelDifficulty)
         
         switch(self.levelNumber){
+            case 5:
+                let transition = SKTransition.crossFade(withDuration: 2.00)
+                let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .UFO)
+                self.view?.presentScene(summaryScene, transition: transition)
+                break
+            case 4:
+                nextLevelScene = UFOLevelLoader.getLevel5(difficultyLevel: nextLevelDifficulty)
+            case 3:
+                nextLevelScene = UFOLevelLoader.getLevel4(difficultyLevel: nextLevelDifficulty)
             case 2:
-                nextLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: .Easy)
+                nextLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: nextLevelDifficulty)
             case 1:
-                nextLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: .Easy)
+                nextLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: nextLevelDifficulty)
             default:
-                nextLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+                nextLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
         self.view?.presentScene(nextLevelScene, transition: mainTransition)
@@ -212,15 +238,38 @@ extension UFOScene{
     override func reloadCurrentLevel(){
         
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
-        var currentLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+        
+        
+        var currentLevelDifficulty: UFOLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            currentLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            currentLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            currentLevelDifficulty = .Easy
+            break
+        }
+        
+        
+        var currentLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: currentLevelDifficulty)
         
         switch(self.levelNumber){
+            case 5:
+                currentLevelScene = UFOLevelLoader.getLevel5(difficultyLevel: currentLevelDifficulty)
+            case 4:
+                currentLevelScene = UFOLevelLoader.getLevel4(difficultyLevel: currentLevelDifficulty)
+            case 3:
+                currentLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: currentLevelDifficulty)
             case 2:
-                currentLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: .Easy)
+                currentLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: currentLevelDifficulty)
             case 1:
-                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: currentLevelDifficulty)
             default:
-                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
+                currentLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: currentLevelDifficulty)
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)

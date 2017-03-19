@@ -390,22 +390,44 @@ extension FlyingAlienScene{
     override func loadNextLevel() {
         //TODO: Implement loadNextLevel function
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
-        var nextLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+       
+        
+        var nextLevelDifficulty: FlyingAlienLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            nextLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            nextLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            nextLevelDifficulty = .Easy
+            break
+        }
+        
+        var nextLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
+        
+        
         
         switch(self.levelNumber){
         case 5:
-            //TODO: Load next track
+            //Load player status summary scene
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .FlyingAlien)
+            self.view?.presentScene(summaryScene, transition: transition)
+            
             break
         case 4:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
         case 3:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
         case 2:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
         case 1:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
         default:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
         self.view?.presentScene(nextLevelScene, transition: mainTransition)
@@ -417,21 +439,38 @@ extension FlyingAlienScene{
         //TODO: Implement reload current level function
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         
-        var currentLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        var currentLevelDifficulty: FlyingAlienLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            currentLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            currentLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            currentLevelDifficulty = .Easy
+            break
+        }
+        
+        
+        
+        var currentLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         
         switch(self.levelNumber){
         case 5:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
         case 4:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
         case 3:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
         case 2:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
         case 1:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         default:
-            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)

@@ -281,21 +281,36 @@ extension StealthShipScene{
     override func reloadCurrentLevel() {
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         
-        var currentLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        var currentLevelDifficulty: StealthShipSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            currentLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            currentLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            currentLevelDifficulty = .Easy
+            break
+        }
+        
+        
+        var currentLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         
         switch(self.levelNumber){
         case 5:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
         case 4:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
         case 3:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
         case 2:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
         case 1:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         default:
-            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)
@@ -307,20 +322,37 @@ extension StealthShipScene{
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         var nextLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
         
+        var nextLevelDifficulty: StealthShipSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            nextLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            nextLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            nextLevelDifficulty = .Easy
+            break
+        }
+        
         switch(self.levelNumber){
         case 5:
-            //TODO: Load next track
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .StealthShip)
+            self.view?.presentScene(summaryScene, transition: transition)
+            
             break
         case 4:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
         case 3:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
         case 2:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
         case 1:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
         default:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            nextLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
         self.view?.presentScene(nextLevelScene, transition: mainTransition)

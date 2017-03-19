@@ -24,8 +24,6 @@ class BatScene: BaseScene
     var maxBatsSpawned: Int = 0
     var minBatComponentVelocity: Double = 0
     var maxBatComponentVelocity: Double = 0
-    var maximumBatsAllowedToSpawn: Int = 0
-    var minimumBatsKilledForLevelCompletion: Int = 0
     
     //MARK: ****************** CrossHair LightNode Configuration
     var lightNodeFallOff: CGFloat = 2.0
@@ -36,8 +34,10 @@ class BatScene: BaseScene
     //MARK: ***************SCENE INITIALIZERS
     convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int) {
         
-        //Configure Opening/Intro Start Window
+        //Delegate to designated initializer
         self.init(size: size)
+        
+        //Configure Opening/Intro Start Window
         self.levelNumber = levelNumber
         self.levelDescription = levelDescription
         self.enemyName = enemyName
@@ -46,25 +46,28 @@ class BatScene: BaseScene
         self.playerType = playerType
         self.backGroundMusic = backgroundMusic
         
-        //Configure background
-        self.numberOfBackgroundObjects = numberOfBackgroundObjects
         
-        //Configure bat spawning parameters
+        //Configure basic AI logic
+        self.spawnInterval = spawnInterval
+        self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
         self.currentNumberOfEnemies = initialNumberOfEnemiesSpawned
-        self.spawnInterval = spawnInterval
         self.minBatsSpawned = minBatsSpawned
         self.maxBatsSpawned = maxBatsSpawned
-       
         self.maxBatComponentVelocity = maxBatComponentVelocity
         self.minBatComponentVelocity = minBatComponentVelocity
         self.lightNodeFallOff = lightNodeFallOff
         
-        //Configure game rules
-        self.maximumBatsAllowedToSpawn = maximumBatsAllowedToSpawn
-        self.minimumBatsKilledForLevelCompletion = minimumBatsKilledForLevelCompletion
         
-      
+        //Configure Game Rules
+        self.maximumNumberOFEnemies = maximumBatsAllowedToSpawn
+        self.minimumKillsForLevelCompletion = minimumBatsKilledForLevelCompletion
+        
+        //Configure background objects
+        self.numberOfBackgroundObjects = numberOfBackgroundObjects
+        
+        
+        
 
     }
     
@@ -72,7 +75,35 @@ class BatScene: BaseScene
 
     
     override func didMove(to view: SKView) {
+
+        //Set framecount to zero
+        frameCount = 0.00
         
+        //Perform basic scene configuration
+        performBasicSceneConfiguration()
+        
+        
+        //TODO: ********** Remove after debugging completed
+        self.backgroundColor = SKColor.gray
+        
+                
+        //Configure initial HUD display
+        currentNumberOfEnemies = 0
+        numberOfEnemiesKilled = 0
+        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        self.addChild(hud2)
+
+        
+        //Spawn initial number of bats
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        
+    }
+    
+    
+    //MARK: ************** Override performBasicConfiguration() helper method
+    
+    override func performBasicSceneConfiguration() {
         //Register NSNotifications for Pause and Resume Method
         registerNotifications()
         
@@ -83,7 +114,7 @@ class BatScene: BaseScene
         
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumBatsAllowedToSpawn)
+        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumNumberOFEnemies)
         
         
         //Configure particle emitter for background
@@ -94,37 +125,22 @@ class BatScene: BaseScene
         emitterNode.move(toParent: self)
         
         
-        //Configure explosion animation
-        configureExplosionAnimation()
-        
-        //Configure initial HUD display
-        currentNumberOfEnemies = 0
-        numberOfEnemiesKilled = 0
-        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        self.addChild(hud2)
-
         //Configure player
         player = CrossHair(crossHairType: .BlueLarge)
         player.zPosition = 15
         let lightNode = player.childNode(withName: NodeNames.CrossHairLight) as! SKLightNode
         lightNode.falloff = self.lightNodeFallOff
-    
         self.addChild(player)
+
+        //Configure explosion animation
+        configureExplosionAnimation()
         
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
-
-        //Spawn Background Objectsr
+        
+        //Spawn Background Objects
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
-        
-        
-        //Spawn initial number of bats
-        spawnBats(numberOfBats: nil)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-
-        
         
     }
 
@@ -152,19 +168,23 @@ class BatScene: BaseScene
         
     }
     
+    override func didEvaluateActions() {
+        if(frameCount > spawnInterval){
+            //Update the Bat Controller
+            spawnRandomNumberOfBatsFrom(minimum: self.minBatsSpawned, toMaximum: self.maxBatsSpawned)
+            frameCount = 0.00
+        }
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
+        
+        if(!gameHasStarted) { frameCount = 0 }
         
         frameCount += currentTime - lastUpdateTime
     
         
-        if(frameCount > spawnInterval){
-            //Update the Bat Controller
-           spawnRandomNumberOfBatsFrom(minimum: self.minBatsSpawned, toMaximum: self.maxBatsSpawned)
-            frameCount = 0.00
-        }
-        
-        
+      
         lastUpdateTime = currentTime
 
         
@@ -195,25 +215,25 @@ class BatScene: BaseScene
         
         for node in nodes(at: touchLocation){
             
-            if node.name == NodeNames.StartButton{
-                node.removeFromParent()
+            if player.contains(touchLocation){
+                
+                player.run(shootingSound)
+                
+                if let node = node as? Bat{
+                    
+                    node.respondToHit()
+                    self.numberOfEnemiesKilled += 1
+                    self.currentNumberOfEnemies -= 1
+                    
+                    self.hud2.setNumberOfEnemiesKilledTo(numberKilled: self.numberOfEnemiesKilled)
+                    self.hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
+                    
+            
+                }
             }
             
-            if let node = node as? Bat, player.contains(touchLocation){
-                node.run(SKAction.sequence([
-                    explosionSound,
-                    explosionAnimation
-                    ]))
-                
-                numberOfEnemiesKilled += 1
-                currentNumberOfEnemies -= 1
-                
-                hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-                
-            } else {
-                player.run(shootingSound)
-            }
+            
+          
         }
         
     }
@@ -232,66 +252,7 @@ class BatScene: BaseScene
     }
     
     
-    
-    private func reloadCurrentScene(difficultyLevel: BatSceneLevelLoader.DifficultyLevel){
-        switch(levelNumber){
-        case 1:
-            BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 2:
-            BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 3:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 4:
-            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 5:
-            BatSceneLevelLoader.loadLevel5From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        default:
-            //TODO: Not yet implemented
-            break
-        }
-    }
-    
-    private func loadNextScene(difficultyLevel: BatSceneLevelLoader.DifficultyLevel){
-        
-        switch(levelNumber){
-        case 1:
-            BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 2:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 3:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 4:
-            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: difficultyLevel)
-            break
-        case 5:
-            //TODO: Not yet implemented; load transitional scene or scene for next track
-            break
-        default:
-            break
-        }
-    }
-    
-    
-    private func removeExcessNodes(numberToRemove: Int){
-        var counter = 0
-        
-        for node in self.children{
-            if let node = node as? Bat, counter < numberToRemove{
-                node.removeFromParent()
-                currentNumberOfEnemies -= 1
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-                counter += 1
-            }
-        }
-    }
+  
 }
 
 
@@ -305,9 +266,12 @@ extension BatScene{
         for _ in 0...numberOfBatsToSpawn{
             
             let batClone = prototypeBat.copy() as! Bat
+            batClone.name = "bat"
             configurePhysicsForClone(batClone: batClone)
             batClone.move(toParent: self)
             self.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
+
         }
         
     }
@@ -315,12 +279,17 @@ extension BatScene{
     func spawnRandomNumberOfBatsFrom(minimum: Int, toMaximum maximum: Int){
         let numberOfBats = GKRandomDistribution(lowestValue: minimum, highestValue: maximum).nextInt()
         
+        if(frameCount < spawnInterval) { return }
+
+        
         for _ in 0...numberOfBats{
             
             let batClone = prototypeBat.copy() as! Bat
+            batClone.name = "bat"
             configurePhysicsForClone(batClone: batClone)
             batClone.move(toParent: self)
             self.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
         }
         
     }
@@ -357,3 +326,85 @@ extension BatScene{
     
 }
 
+extension BatScene{
+    
+    override func loadNextLevel() {
+        
+        var nextLevelDifficulty: BatSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+            case .valueHard:
+                nextLevelDifficulty = .Hard
+                break
+            case .valueMedium:
+                nextLevelDifficulty = .Medium
+                break
+            case .valueEasy:
+                nextLevelDifficulty = .Easy
+                break
+        }
+        
+        switch(levelNumber){
+            case 1:
+                BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            break
+        case 2:
+            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            break
+        case 3:
+            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            break
+        case 4:
+            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            break
+        case 5:
+            //Load player stats summary scene
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: PlayerStatsSummaryScene.TrackType.Bat)
+            self.view?.presentScene(summaryScene, transition: transition)
+            break
+        default:
+            break
+        }
+    }
+    
+    override func reloadCurrentLevel() {
+        
+        var currentLevelDifficulty: BatSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            currentLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            currentLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            currentLevelDifficulty = .Easy
+            break
+        }
+        
+        
+        switch(levelNumber){
+        case 1:
+            BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            break
+        case 2:
+            BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            break
+        case 3:
+            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            break
+        case 4:
+            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            break
+        case 5:
+            BatSceneLevelLoader.loadLevel5From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            break
+        default:
+            //TODO: Not yet implemented
+            break
+        }
+    }
+    
+}

@@ -87,30 +87,35 @@ class TrackScene: SKScene{
         
         for node in nodes(at: touchLocation){
             
+            let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+            
             if node.name == NodeNames.BatTrackButton{
-                BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Easy)
+                let instructionScene = InstructionScene(size: self.size, selectedTrackType: .Bat)
+
+                self.view?.presentScene(instructionScene, transition: mainTransition)
             }
             
             if node.name == NodeNames.StealthShipTrackButton{
-                let scene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
-                self.view?.presentScene(scene, transition: transition)
+                let instructionScene = InstructionScene(size: self.size, selectedTrackType: .StealthShip)
+
+                self.view?.presentScene(instructionScene, transition: mainTransition)
             }
             
             
             if node.name == NodeNames.UFOTrackButton{
-                let scene = UFOLevelLoader.getLevel1(difficultyLevel: .Easy)
-                self.view?.presentScene(scene, transition: transition)
+                let instructionScene = InstructionScene(size: self.size, selectedTrackType: .UFO)
+                self.view?.presentScene(instructionScene, transition: transition)
             }
             
             
             if node.name == NodeNames.WingmanTrackButton{
-                let scene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
-                self.view?.presentScene(scene, transition: transition)
+                let instructionScene = InstructionScene(size: self.size, selectedTrackType: .Wingman)
+                self.view?.presentScene(instructionScene, transition: transition)
             }
             
             if node.name == NodeNames.FlyingAlienTrackButton{
-                let scene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
-                self.view?.presentScene(scene, transition: transition)
+                let instructionScene = InstructionScene(size: self.size, selectedTrackType: .FlyingAlien)
+                self.view?.presentScene(instructionScene, transition: mainTransition)
             }
         }
     }

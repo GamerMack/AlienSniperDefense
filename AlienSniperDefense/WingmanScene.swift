@@ -221,21 +221,38 @@ extension WingmanScene{
     override func reloadCurrentLevel() {
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         
-        var currentLevelScene: WingmanScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+      
+        
+        var currentLevelDifficulty: WingmanSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            currentLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            currentLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            currentLevelDifficulty = .Easy
+            break
+        }
+        
+        var currentLevelScene: WingmanScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+        
         
         switch(self.levelNumber){
         case 5:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
         case 4:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
         case 3:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
         case 2:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
         case 1:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         default:
-            currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)
@@ -246,22 +263,42 @@ extension WingmanScene{
     
     override func loadNextLevel() {
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
-        var nextLevelScene: WingmanScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        var nextLevelDifficulty: WingmanSceneLevelLoader.DifficultyLevel
+        
+        switch(currentGameSettings.getGameDifficulty()){
+        case .valueHard:
+            nextLevelDifficulty = .Hard
+            break
+        case .valueMedium:
+            nextLevelDifficulty = .Medium
+            break
+        case .valueEasy:
+            nextLevelDifficulty = .Easy
+            break
+        }
+        
+        var nextLevelScene: WingmanScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
+        
+        
         
         switch(self.levelNumber){
         case 5:
-            //TODO: Load next track
+                //Load player status summary scene
+                let transition = SKTransition.crossFade(withDuration: 2.00)
+                let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .Wingman)
+                self.view?.presentScene(summaryScene, transition: transition)
             break
         case 4:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
+            nextLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
         case 3:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: .Easy)
+            nextLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
         case 2:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: .Easy)
+            nextLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
         case 1:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: .Easy)
+            nextLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
         default:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+            nextLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
         self.view?.presentScene(nextLevelScene, transition: mainTransition)
