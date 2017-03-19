@@ -57,45 +57,179 @@ class GameSettings{
         defaults.set(GameSettings.GamePlayModeVALUES.valueMinimumKills.rawValue, forKey: GameSettings.UserSettingKEYS.keyGamePlayMode.rawValue)
         
         //Initialize keys for WingmanTrack
-        defaults.set(0.00, forKey: WingmanTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level1.keyTotalRunningTime.rawValue)
 
-        defaults.set(0.00, forKey: WingmanTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level2.keyTotalRunningTime.rawValue)
         
-        defaults.set(0.00, forKey: WingmanTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: WingmanTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level3.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level3.keyTotalRunningTime.rawValue)
 
-        defaults.set(0.00, forKey: WingmanTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level4.keyTotalRunningTime.rawValue)
 
-        defaults.set(0.00, forKey: WingmanTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level5.keyTotalRunningTime.rawValue)
+        
+        defaults.set(false, forKey: WingmanTrack.isCompleted.Level1.rawValue)
+        defaults.set(false, forKey: WingmanTrack.isCompleted.Level2.rawValue)
+        defaults.set(false, forKey: WingmanTrack.isCompleted.Level3.rawValue)
+        defaults.set(false, forKey: WingmanTrack.isCompleted.Level4.rawValue)
+        defaults.set(false, forKey: WingmanTrack.isCompleted.Level5.rawValue)
+
+
 
         //TODO: Initialize keys for BAT TRACK
+        defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: BatTrack.Level1.keyTotalRunningTime.rawValue)
         
+        defaults.set(0, forKey: BatTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: BatTrack.Level2.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: BatTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: BatTrack.Level2.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: BatTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: BatTrack.Level3.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: BatTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: BatTrack.Level3.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: BatTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: BatTrack.Level4.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: BatTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: BatTrack.Level4.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: BatTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: BatTrack.Level5.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: BatTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: BatTrack.Level5.keyTotalRunningTime.rawValue)
+        
+        defaults.set(false, forKey: BatTrack.isCompleted.Level1.rawValue)
+        defaults.set(false, forKey: BatTrack.isCompleted.Level2.rawValue)
+        defaults.set(false, forKey: BatTrack.isCompleted.Level3.rawValue)
+        defaults.set(false, forKey: BatTrack.isCompleted.Level4.rawValue)
+        defaults.set(false, forKey: BatTrack.isCompleted.Level5.rawValue)
+
         //TODO: Initialize keys for STEALTH SHIP Track
+        defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: StealthShipTrack.Level1.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: StealthShipTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level2.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: StealthShipTrack.Level2.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: StealthShipTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level3.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: StealthShipTrack.Level3.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: StealthShipTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level4.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: StealthShipTrack.Level4.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: StealthShipTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level5.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: StealthShipTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: StealthShipTrack.Level5.keyTotalRunningTime.rawValue)
+        
+        
+        defaults.set(false, forKey: StealthShipTrack.isCompleted.Level1.rawValue)
+        defaults.set(false, forKey: StealthShipTrack.isCompleted.Level2.rawValue)
+        defaults.set(false, forKey: StealthShipTrack.isCompleted.Level3.rawValue)
+        defaults.set(false, forKey: StealthShipTrack.isCompleted.Level4.rawValue)
+        defaults.set(false, forKey: StealthShipTrack.isCompleted.Level5.rawValue)
+
         
         //TODO: Initialize keys for UFO Track
         
+        defaults.set(0, forKey: UFOTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level1.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: UFOTrack.Level1.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: UFOTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level2.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: UFOTrack.Level2.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: UFOTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level3.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: UFOTrack.Level3.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: UFOTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level4.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: UFOTrack.Level4.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: UFOTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level5.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: UFOTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: UFOTrack.Level5.keyTotalRunningTime.rawValue)
+        
+        defaults.set(false, forKey: UFOTrack.isCompleted.Level1.rawValue)
+        defaults.set(false, forKey: UFOTrack.isCompleted.Level2.rawValue)
+        defaults.set(false, forKey: UFOTrack.isCompleted.Level3.rawValue)
+        defaults.set(false, forKey: UFOTrack.isCompleted.Level4.rawValue)
+        defaults.set(false, forKey: UFOTrack.isCompleted.Level5.rawValue)
+        
+        
+        
         //TODO: Initialize keys for FLYING ALIENS Track
+        
+        defaults.set(0, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: FlyingAlienTrack.Level1.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: FlyingAlienTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level2.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: FlyingAlienTrack.Level2.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: FlyingAlienTrack.Level3.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level3.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: FlyingAlienTrack.Level3.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: FlyingAlienTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level4.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: FlyingAlienTrack.Level4.keyTotalRunningTime.rawValue)
+        
+        defaults.set(0, forKey: FlyingAlienTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level5.keyTotalNumberOfKills.rawValue)
+        defaults.set(0, forKey: FlyingAlienTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
+        defaults.set(0.00, forKey: FlyingAlienTrack.Level5.keyTotalRunningTime.rawValue)
+        
+        defaults.set(false, forKey: FlyingAlienTrack.isCompleted.Level1.rawValue)
+        defaults.set(false, forKey: FlyingAlienTrack.isCompleted.Level2.rawValue)
+        defaults.set(false, forKey: FlyingAlienTrack.isCompleted.Level3.rawValue)
+        defaults.set(false, forKey: FlyingAlienTrack.isCompleted.Level4.rawValue)
+        defaults.set(false, forKey: FlyingAlienTrack.isCompleted.Level5.rawValue)
+        
+        
         
         defaults.setValue(false, forKey: keyFirstRun)
         
         defaults.synchronize()
     }
-    
-    
     
     
     //MARK: Public Method for Game-Wide Settings
@@ -139,7 +273,6 @@ class GameSettings{
         
     }
     
-    
     func getGameDifficulty() -> GameSettings.DifficultyVALUES{
         
         let difficulty = defaults.value(forKey: GameSettings.UserSettingKEYS.keyDifficultyLevel.rawValue) as! String
@@ -148,8 +281,6 @@ class GameSettings{
     }
     
     
-   
-
 }
 
 
@@ -482,6 +613,77 @@ extension GameSettings{
         
     }
     
+    func getLevelCompletionStatus(levelInfo: LevelTuple) -> Bool{
+        
+        switch(levelInfo){
+        //Save running time for Wingman levels
+        case (.Wingman, .Level1):
+            return defaults.value(forKey: WingmanTrack.isCompleted.Level1.rawValue) as! Bool
+        case (.Wingman, .Level2):
+            return defaults.value(forKey: WingmanTrack.isCompleted.Level2.rawValue) as! Bool
+        case (.Wingman, .Level3):
+            return defaults.value(forKey: WingmanTrack.isCompleted.Level3.rawValue) as! Bool
+        case (.Wingman, .Level4):
+            return defaults.value(forKey: WingmanTrack.isCompleted.Level4.rawValue) as! Bool
+        case (.Wingman, .Level5):
+            return defaults.value(forKey: WingmanTrack.isCompleted.Level5.rawValue) as! Bool
+            
+        //Save running time for BatTrack Levels
+        case (.Bat, .Level1):
+            return defaults.value(forKey: BatTrack.isCompleted.Level1.rawValue) as! Bool
+        case (.Bat, .Level2):
+            return defaults.value(forKey: BatTrack.isCompleted.Level2.rawValue) as! Bool
+        case (.Bat, .Level3):
+            return defaults.value(forKey: BatTrack.isCompleted.Level3.rawValue) as! Bool
+        case (.Bat, .Level4):
+            return defaults.value(forKey: BatTrack.isCompleted.Level4.rawValue) as! Bool
+        case (.Bat, .Level5):
+            return defaults.value(forKey: BatTrack.isCompleted.Level5.rawValue) as! Bool
+            
+        //Save running time data for UFO Levels
+        case (.UFO, .Level1):
+            return defaults.value(forKey: UFOTrack.isCompleted.Level1.rawValue) as! Bool
+        case (.UFO, .Level2):
+            return defaults.value(forKey: UFOTrack.isCompleted.Level2.rawValue) as! Bool
+        case (.UFO, .Level3):
+            return defaults.value(forKey: UFOTrack.isCompleted.Level3.rawValue) as! Bool
+        case (.UFO, .Level4):
+            return defaults.value(forKey: UFOTrack.isCompleted.Level4.rawValue) as! Bool
+        case (.UFO, .Level5):
+            return defaults.value(forKey: UFOTrack.isCompleted.Level5.rawValue) as! Bool
+            
+        //Save running time data for FlyingAlien Levels
+        case (.FlyingAlien, .Level1):
+            return defaults.value(forKey: FlyingAlienTrack.isCompleted.Level1.rawValue) as! Bool
+        case (.FlyingAlien, .Level2):
+            return defaults.value(forKey: FlyingAlienTrack.isCompleted.Level2.rawValue) as! Bool
+        case (.FlyingAlien, .Level3):
+            return defaults.value(forKey: FlyingAlienTrack.isCompleted.Level3.rawValue) as! Bool
+        case (.FlyingAlien, .Level4):
+            return defaults.value(forKey: FlyingAlienTrack.isCompleted.Level4.rawValue) as! Bool
+        case (.FlyingAlien, .Level5):
+            return defaults.value(forKey: FlyingAlienTrack.isCompleted.Level5.rawValue) as! Bool
+            
+            
+        //Save  running time data for StealthShip levels
+        case (.StealthShips, .Level1):
+            return defaults.value(forKey: StealthShipTrack.isCompleted.Level1.rawValue) as! Bool
+            
+        case (.StealthShips, .Level2):
+            return defaults.value(forKey: StealthShipTrack.isCompleted.Level2.rawValue) as! Bool
+            
+        case (.StealthShips, .Level3):
+            return defaults.value(forKey: StealthShipTrack.isCompleted.Level3.rawValue) as! Bool
+            
+        case (.StealthShips, .Level4):
+            return defaults.value(forKey: StealthShipTrack.isCompleted.Level4.rawValue) as! Bool
+            
+        case (.StealthShips, .Level5):
+            return defaults.value(forKey: StealthShipTrack.isCompleted.Level5.rawValue) as! Bool
+            
+        }
+
+    }
     
     //MARK: Public Saving Methods for Individual Levels
     func saveTotalRunningTime(totalRunningTime: Double, levelInfo: LevelTuple){
@@ -856,10 +1058,111 @@ extension GameSettings{
         defaults.synchronize()
     }
 
-
+    func saveLevelCompletionStatus(isCompleted: Bool, levelInfo: LevelTuple){
+        
+        switch(levelInfo){
+        //Save running time for Wingman levels
+        case (.Wingman, .Level1):
+            defaults.set(isCompleted, forKey: WingmanTrack.isCompleted.Level1.rawValue)
+            break
+        case (.Wingman, .Level2):
+            defaults.set(isCompleted, forKey: WingmanTrack.isCompleted.Level2.rawValue)
+            break
+        case (.Wingman, .Level3):
+            defaults.set(isCompleted, forKey: WingmanTrack.isCompleted.Level3.rawValue)
+            break
+        case (.Wingman, .Level4):
+            defaults.set(isCompleted, forKey: WingmanTrack.isCompleted.Level4.rawValue)
+            break
+        case (.Wingman, .Level5):
+            defaults.set(isCompleted, forKey: WingmanTrack.isCompleted.Level5.rawValue)
+            break
+            
+        //Save running time for BatTrack Levels
+        case (.Bat, .Level1):
+            defaults.set(isCompleted, forKey: BatTrack.isCompleted.Level1.rawValue)
+            break
+        case (.Bat, .Level2):
+            defaults.set(isCompleted, forKey: BatTrack.isCompleted.Level2.rawValue)
+            break
+        case (.Bat, .Level3):
+            defaults.set(isCompleted, forKey: BatTrack.isCompleted.Level3.rawValue)
+            break
+        case (.Bat, .Level4):
+            defaults.set(isCompleted, forKey: BatTrack.isCompleted.Level4.rawValue)
+            break
+        case (.Bat, .Level5):
+            defaults.set(isCompleted, forKey: BatTrack.isCompleted.Level5.rawValue)
+            break
+            
+        //Save running time data for UFO Levels
+        case (.UFO, .Level1):
+            defaults.set(isCompleted, forKey: UFOTrack.isCompleted.Level1.rawValue)
+            break
+        case (.UFO, .Level2):
+            defaults.set(isCompleted, forKey: UFOTrack.isCompleted.Level2.rawValue)
+            break
+        case (.UFO, .Level3):
+            defaults.set(isCompleted, forKey: UFOTrack.isCompleted.Level3.rawValue)
+            break
+        case (.UFO, .Level4):
+            defaults.set(isCompleted, forKey: UFOTrack.isCompleted.Level4.rawValue)
+            break
+        case (.UFO, .Level5):
+            defaults.set(isCompleted, forKey: UFOTrack.isCompleted.Level5.rawValue)
+            break
+            
+        //Save running time data for FlyingAlien Levels
+        case (.FlyingAlien, .Level1):
+            defaults.set(isCompleted, forKey: FlyingAlienTrack.isCompleted.Level1.rawValue)
+            break
+        case (.FlyingAlien, .Level2):
+            defaults.set(isCompleted, forKey: FlyingAlienTrack.isCompleted.Level2.rawValue)
+            break
+        case (.FlyingAlien, .Level3):
+            defaults.set(isCompleted, forKey: FlyingAlienTrack.isCompleted.Level3.rawValue)
+            break
+        case (.FlyingAlien, .Level4):
+            defaults.set(isCompleted, forKey: FlyingAlienTrack.isCompleted.Level4.rawValue)
+            break
+        case (.FlyingAlien, .Level5):
+            defaults.set(isCompleted, forKey: FlyingAlienTrack.isCompleted.Level5.rawValue)
+            break
+            
+            
+        //Save  running time data for StealthShip levels
+        case (.StealthShips, .Level1):
+            defaults.set(isCompleted, forKey: StealthShipTrack.isCompleted.Level1.rawValue)
+            break
+        case (.StealthShips, .Level2):
+            defaults.set(isCompleted, forKey: StealthShipTrack.isCompleted.Level2.rawValue)
+            break
+        case (.StealthShips, .Level3):
+            defaults.set(isCompleted, forKey: StealthShipTrack.isCompleted.Level3.rawValue)
+            break
+        case (.StealthShips, .Level4):
+            defaults.set(isCompleted, forKey: StealthShipTrack.isCompleted.Level4.rawValue)
+            break
+        case (.StealthShips, .Level5):
+            defaults.set(isCompleted, forKey: StealthShipTrack.isCompleted.Level5.rawValue)
+            break
+        }
+        
+        defaults.synchronize()
+    }
+    
     
     //MARK: ************** TRACK-LEVEL, PLAYER STAT KEYS (Namespaced-Level Keys)
     enum WingmanTrack{
+        
+        enum isCompleted: String{
+            case Level1 = "isCompletedWingmanLevel1"
+            case Level2 = "isCompletedWingmanLevel2"
+            case Level3 = "isCompletedWingmanLevel3"
+            case Level4 = "isCompletedWingmanLevel4"
+            case Level5 = "isCompletedWingmanLevel5"
+
+        }
         
         enum Level1: String{
             case keyTotalRunningTime = "WingmanLevel1TotalRunningTime"
@@ -899,6 +1202,15 @@ extension GameSettings{
     
     enum UFOTrack{
         
+        enum isCompleted: String{
+            case Level1 = "isCompletedUFOLevel1"
+            case Level2 = "isCompletedUFOLevel2"
+            case Level3 = "isCompletedUFOLevel3"
+            case Level4 = "isCompletedUFOLevel4"
+            case Level5 = "isCompletedUFOLevel5"
+            
+        }
+        
         enum Level1: String{
             case keyTotalRunningTime = "TotalRunningTime"
             case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
@@ -936,6 +1248,16 @@ extension GameSettings{
     }
     
     enum StealthShipTrack{
+        
+        
+        enum isCompleted: String{
+            case Level1 = "isCompletedStealthShipLevel1"
+            case Level2 = "isCompletedStealthShipLevel2"
+            case Level3 = "isCompletedStealthShipLevel3"
+            case Level4 = "isCompletedStealthShipLevel4"
+            case Level5 = "isCompletedStealthShipLevel5"
+            
+        }
         
         enum Level1: String{
             case keyTotalRunningTime = "TotalRunningTime"
@@ -975,6 +1297,15 @@ extension GameSettings{
     
     enum BatTrack{
         
+        enum isCompleted: String{
+            case Level1 = "isCompletedBatTrackLevel1"
+            case Level2 = "isCompletedBatTrackLevel2"
+            case Level3 = "isCompletedBatTrackLevel3"
+            case Level4 = "isCompletedBatTrackLevel4"
+            case Level5 = "isCompletedBatTrackLevel5"
+            
+        }
+        
         enum Level1: String{
             case keyTotalRunningTime = "TotalRunningTime"
             case keyTotalNumberOfBulletsFired = "TotalNumberOfBulletsFired"
@@ -1012,6 +1343,16 @@ extension GameSettings{
     }
     
     enum FlyingAlienTrack{
+        
+        
+        enum isCompleted: String{
+            case Level1 = "isCompletedFlyingAlienLevel1"
+            case Level2 = "isCompletedFlyingAlienLevel2"
+            case Level3 = "isCompletedFlyingAlienLevel3"
+            case Level4 = "isCompletedFlyingAlienLevel4"
+            case Level5 = "isCompletedFlyingAlienLevel5"
+            
+        }
         
         enum Level1: String{
             case keyTotalRunningTime = "TotalRunningTime"
