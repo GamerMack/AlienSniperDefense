@@ -40,14 +40,14 @@ class GameSettings{
     
     //MARK: Init
     init(){
-        if (defaults.object(forKey: keyFirstRun) != nil){
+        if (defaults.object(forKey: keyFirstRun) == nil){
             firstLaunch()
         }
     }
     
     //MARK: Private helper methods
     private func firstLaunch(){
-        //Initialize Game-Wide, Player-State KEYS
+        //MARK: Initialize Game-Wide, Player-State KEYS
         defaults.set(0.00, forKey: keyTotalRunningTime)
         defaults.set(0, forKey: keyTotalNumberOfBulletsFired)
         defaults.set(0, forKey: keyTotalNumberOfKills)
@@ -56,7 +56,7 @@ class GameSettings{
         defaults.set(GameSettings.DifficultyVALUES.valueEasy.rawValue, forKey: GameSettings.UserSettingKEYS.keyDifficultyLevel.rawValue )
         defaults.set(GameSettings.GamePlayModeVALUES.valueMinimumKills.rawValue, forKey: GameSettings.UserSettingKEYS.keyGamePlayMode.rawValue)
         
-        //Initialize keys for WingmanTrack
+        //MARK: Initialize keys for WingmanTrack
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
@@ -90,7 +90,7 @@ class GameSettings{
 
 
 
-        //TODO: Initialize keys for BAT TRACK
+        //MARK: Initialize keys for BAT TRACK
         defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
@@ -122,7 +122,7 @@ class GameSettings{
         defaults.set(false, forKey: BatTrack.isCompleted.Level4.rawValue)
         defaults.set(false, forKey: BatTrack.isCompleted.Level5.rawValue)
 
-        //TODO: Initialize keys for STEALTH SHIP Track
+        //MARK: Initialize keys for STEALTH SHIP Track
         defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
@@ -156,7 +156,7 @@ class GameSettings{
         defaults.set(false, forKey: StealthShipTrack.isCompleted.Level5.rawValue)
 
         
-        //TODO: Initialize keys for UFO Track
+        //MARK: Initialize keys for UFO Track
         
         defaults.set(0, forKey: UFOTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: UFOTrack.Level1.keyTotalNumberOfKills.rawValue)
@@ -191,7 +191,7 @@ class GameSettings{
         
         
         
-        //TODO: Initialize keys for FLYING ALIENS Track
+        //MARK: Initialize keys for FLYING ALIENS Track
         
         defaults.set(0, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: FlyingAlienTrack.Level1.keyTotalNumberOfKills.rawValue)

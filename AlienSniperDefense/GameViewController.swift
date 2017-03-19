@@ -46,10 +46,11 @@ class GameViewController: UIViewController {
             trackScene.scaleMode = .aspectFill
             menuScene.scaleMode = .aspectFill
             instructionScene.scaleMode = .aspectFill
+            let summaryScene = SummaryScene(size: self.view.bounds.size, selectedTrackType: .Bat)
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(menuScene)
+                view.presentScene(summaryScene)
                     
                 view.ignoresSiblingOrder = true
                     

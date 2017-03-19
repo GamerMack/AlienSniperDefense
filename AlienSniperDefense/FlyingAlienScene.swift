@@ -417,7 +417,7 @@ extension FlyingAlienScene{
         case 5:
             //Load player status summary scene
             let transition = SKTransition.crossFade(withDuration: 2.00)
-            let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .FlyingAlien)
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .FlyingAlien)
             self.view?.presentScene(summaryScene, transition: transition)
             
             break

@@ -363,7 +363,7 @@ extension BatScene{
         case 5:
             //Load player stats summary scene
             let transition = SKTransition.crossFade(withDuration: 2.00)
-            let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: PlayerStatsSummaryScene.TrackType.Bat)
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: SummaryScene.TrackType.Bat)
             self.view?.presentScene(summaryScene, transition: transition)
             break
         default:

@@ -218,7 +218,7 @@ extension UFOScene{
         switch(self.levelNumber){
             case 5:
                 let transition = SKTransition.crossFade(withDuration: 2.00)
-                let summaryScene = PlayerStatsSummaryScene(size: self.size, selectedTrackType: .UFO)
+                let summaryScene = SummaryScene(size: self.size, selectedTrackType: .UFO)
                 self.view?.presentScene(summaryScene, transition: transition)
                 break
             case 4:
