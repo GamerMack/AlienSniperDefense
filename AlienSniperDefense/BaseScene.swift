@@ -91,7 +91,7 @@ class BaseScene: SKScene{
     var spawnInterval: TimeInterval = 5.00
     var enemiesSpawnedPerInterval: Int = 2
     var totalGameTime: TimeInterval = 0.00
-    var timeLimit: TimeInterval = 10.0 //Time Limit set for TimeLimit Mode only
+    var timeLimit: TimeInterval = 60.00 //Time Limit set for TimeLimit Mode only
     var gameTimer: TimeInterval = 0.00
     var modifiedCurrentTime: TimeInterval = 0.00
     
@@ -108,7 +108,7 @@ class BaseScene: SKScene{
     
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, timeLimit: TimeInterval = 60.00) {
     
         self.init(size: size)
         
@@ -122,6 +122,9 @@ class BaseScene: SKScene{
         self.backGroundMusic = backgroundMusic
         
         
+        //Configure Time Limit
+        self.timeLimit = timeLimit
+            
         //Configure Game Rules and basic AI logic
         self.spawnInterval = spawnInterval
         self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval

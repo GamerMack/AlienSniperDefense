@@ -133,6 +133,8 @@ class BatScene: BaseScene
         self.frameCount = 0.00
         
         //Configure SceneInterfaceManagerDelegate
+        sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
+
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
         }else{
