@@ -107,9 +107,8 @@ class BatScene: BaseScene
         performBasicSceneConfiguration()
         
         
-        //TODO: ********** Remove after debugging completed
-        self.backgroundColor = SKColor.gray
-        
+        //Configure background color
+        self.backgroundColor = SKColor.black
         
         
     }
