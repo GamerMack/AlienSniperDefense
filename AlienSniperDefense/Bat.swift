@@ -214,6 +214,8 @@ class Bat: SKSpriteNode{
     
     func updatePhysicsWithUniformRandom(){
         
+        print("Updating bat with GKUniformRandomFunction")
+        
         let randomVectorGenerator = RandomVectorUniform(algorithmType: .Faster)
         
         let randomVector = randomVectorGenerator.getRandomVectorBetween(xMinOf: Int(self.minXComponentVelocity)  , andXMaxOf: Int(self.maxXComponentVelocity), andBetweenYMinOf: Int(self.minYComponentVelocity), yMaxOf: Int(self.maxYComponentVelocity))

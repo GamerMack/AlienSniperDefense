@@ -237,7 +237,6 @@ class BaseScene: SKScene{
         //Keep track of total game time
         if(gameHasStarted){
             totalGameTime += currentTime - lastUpdateTime
-            lastUpdateTime = currentTime
         }
         
         

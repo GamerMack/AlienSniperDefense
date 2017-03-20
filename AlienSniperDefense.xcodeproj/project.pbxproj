@@ -36,6 +36,7 @@
 		BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */; };
 		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
 		BD2F1FA91E7CEFE8002023E8 /* TrackScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */; };
+		BD37DAA31E7F8CB50067A0BE /* WingmanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */; };
 		BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */; };
 		BD3A48891E7C21020072B576 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48881E7C21020072B576 /* UserSettings.swift */; };
 		BD3A488C1E7C21540072B576 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A488B1E7C21540072B576 /* PlayerStats.swift */; };
@@ -131,6 +132,7 @@
 		BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
 		BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackScene.swift; sourceTree = "<group>"; };
+		BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanController.swift; sourceTree = "<group>"; };
 		BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlienLevelLoader.swift; sourceTree = "<group>"; };
 		BD3A48881E7C21020072B576 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		BD3A488B1E7C21540072B576 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */,
 				BD07A3F81E7A561400B52128 /* BatController.swift */,
 				BD2777211E7A95F2009F641C /* UFOController.swift */,
+				BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				BD07A3FD1E7A563C00B52128 /* BackgroundObject.swift in Sources */,
 				BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */,
 				BD2777221E7A95F2009F641C /* UFOController.swift in Sources */,
+				BD37DAA31E7F8CB50067A0BE /* WingmanController.swift in Sources */,
 				BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */,
 				BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */,
 				BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */,

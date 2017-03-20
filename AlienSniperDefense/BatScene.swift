@@ -20,6 +20,8 @@ import GameplayKit
 class BatScene: BaseScene
 {
     
+    //MARK: ****************** Node-Level Randomization Flag
+    var nodeLevelRandomizationIsActive: Bool = false
 
     //MARK: ******************** Bat-Related Variables
     var batController: BatController!
@@ -33,12 +35,14 @@ class BatScene: BaseScene
             if(currentNumberOfEnemies <  0){
                 currentNumberOfEnemies = 0
             }
+            
         }
     }
     
     override var numberOfEnemiesKilled: Int{
         didSet{
             currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
+            
         }
     }
     
@@ -47,10 +51,14 @@ class BatScene: BaseScene
     
 
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int, nodeLevelRandomizationIsActive: Bool = false) {
         
+      
         //Delegate to designated initializer
         self.init(size: size)
+        
+        //Set nodeLevelRandomization
+        self.nodeLevelRandomizationIsActive = nodeLevelRandomizationIsActive
         
         //Configure Opening/Intro Start Window
         self.levelNumber = levelNumber
@@ -178,13 +186,20 @@ class BatScene: BaseScene
                 bat.physicsBody?.velocity = randomVector.getVector()
             }
         }
-        
-        
-        
+ 
         
     }
     
-   
+    override func didEvaluateActions() {
+        if(self.nodeLevelRandomizationIsActive){
+            for node in self.children{
+                if let node = node as? Bat{
+                    checkForRepositioning()
+                    node.updatePhysicsWithUniformRandom()
+                }
+            }
+        }
+    }
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)

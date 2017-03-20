@@ -12,6 +12,9 @@ import GameplayKit
 
 class WingmanScene: BaseScene{
     
+    
+    
+    
     //Enemy Prototype
     lazy var enemy: Enemy = {
         let randomScalingFactor = RandomFloatRange(min: 0.7, max: 1.4)
@@ -21,14 +24,36 @@ class WingmanScene: BaseScene{
     }()
     
     
+    override var currentNumberOfEnemies: Int{
+        didSet{
+            
+            if(currentNumberOfEnemies < 0){
+                currentNumberOfEnemies = 0
+            }
+            
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        }
+    }
+    
+    override var numberOfEnemiesKilled: Int{
+        didSet{
+            currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
+            
+            hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+        }
+    }
+    
+    
     //MARK: ********* Variables-Related to Wingman Configuration
     var randomVectorConfigurationForUpdate: RandomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -50.00, maximumVectorYComponent: 50.00, minimumVectorXComponent: -50.00, maximumVectorXComponent: 50.00)
     
     var hideIntervalFrameCount: TimeInterval = 0.00
     var hideInterval: TimeInterval = 8.00
+    var hideActionDuration: TimeInterval = 0.50
+    var adjustedCurrentTime: TimeInterval = 0.00
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, randomVectorConfigurationForUpdate: RandomVectorConfiguration, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, randomVectorConfigurationForUpdate: RandomVectorConfiguration, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, hideActionDuration: TimeInterval = 0.50) {
         
         
         //Delegate to designated initializer
@@ -56,6 +81,7 @@ class WingmanScene: BaseScene{
         
         //Configure Wingman-related properties
         self.hideInterval = hideInterval
+        self.hideActionDuration = hideActionDuration
         self.randomVectorConfigurationForUpdate = randomVectorConfigurationForUpdate
     }
     
@@ -75,21 +101,27 @@ class WingmanScene: BaseScene{
         
     
         for node in nodes(at: touchLocation){
-            if let node = node as? Wingman, player.contains(touchLocation){
-                node.run(SKAction.sequence([
-                    explosionSound,
-                    explosionAnimation
-                    ]))
-                
-                currentNumberOfEnemies -= 1
-                numberOfEnemiesKilled += 1
-                
-                hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-                
-            } else {
+            
+            if player.contains(touchLocation){
                 player.run(shootingSound)
+                
+                if let node = node as? BackgroundObject {
+                    return
+                }
+                
+                if let node = node as? Wingman{
+                    node.run(SKAction.sequence([
+                        explosionSound,
+                        explosionAnimation
+                        ]))
+                    
+                    numberOfEnemiesKilled += 1
+                }
+
+                
             }
+            
+
         }
     }
 
@@ -121,12 +153,21 @@ class WingmanScene: BaseScene{
         
         super.update(currentTime)
         
-    
-        frameCount += currentTime - lastUpdateTime
-        hideIntervalFrameCount += currentTime - lastUpdateTime
-    
-        player.update()
-    
+        if(!gameHasStarted){
+            adjustedCurrentTime = 0
+            frameCount = 0
+            hideIntervalFrameCount = 0
+        } else {
+            adjustedCurrentTime = currentTime
+            
+            frameCount += adjustedCurrentTime - lastUpdateTime
+            hideIntervalFrameCount += adjustedCurrentTime - lastUpdateTime
+            
+        }
+        
+       
+      
+        
         if(frameCount > spawnInterval){
                 spawnEnemyFromPrototype(numberOfEnemy: enemiesSpawnedPerInterval)
                 frameCount = 0
@@ -138,13 +179,16 @@ class WingmanScene: BaseScene{
                 hideIntervalFrameCount = 0
         }
     
+        player.update()
+        
         lastUpdateTime = currentTime
+
     }
     
     //MARK: Enemy Spawning Functions
     override func spawnEnemyFromPrototype(numberOfEnemy: Int){
         
-        for _ in 0..<numberOfEnemy{
+        for _ in 1...numberOfEnemy{
             let randomScaleFactor = RandomFloatRange(min: 0.4, max: 0.7)
             
             let enemy = self.enemy as! Wingman
@@ -161,10 +205,10 @@ class WingmanScene: BaseScene{
             
             currentNumberOfEnemies += 1
             enemyCopy.move(toParent: self)
+
             
         }
         
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         
     }
     
@@ -199,7 +243,16 @@ class WingmanScene: BaseScene{
     private func hideAllWingman(){
         for node in self.children{
             if let node = node as? Wingman{
-                node.run(SKAction.move(to: getPositionOfRandomBackgroundObject(), duration: 0.50))
+                let hideAction = SKAction.move(to: getPositionOfRandomBackgroundObject(), duration: self.hideActionDuration)
+                
+                let randomPoint = randomPointGenerator.getRandomPointInRandomQuadrant()
+                let moveToRandomPoint = SKAction.move(to: randomPoint, duration: 0.25)
+                
+                node.run(SKAction.sequence([
+                    hideAction,
+                    SKAction.wait(forDuration: 1.00),
+                    moveToRandomPoint
+                    ]))
                 node.zPosition = -2
             }
         }

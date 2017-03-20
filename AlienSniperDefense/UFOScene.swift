@@ -28,6 +28,9 @@ class UFOScene: BaseScene{
     //MARK: UFO-related variables
     var ufoController: UFOController!
     
+    //MARK: Timer-Related Variables
+    var adjustedCurrentTime: TimeInterval = 0.00
+    
     //MARK: ***************SCENE INITIALIZERS
     convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int, pathAnimationConfiguration: PathAnimationConfiguration) {
         
@@ -98,12 +101,19 @@ class UFOScene: BaseScene{
         
         frameCount += currentTime - lastUpdateTime
         
+        
+        if(!gameHasStarted){
+            adjustedCurrentTime = 0
+        } else {
+            adjustedCurrentTime = currentTime
+        }
+        
         //Update player CrossHair
         checkPlayerPositionForReposition()
         
         
         //Update controller to spawn UFOs at regular intervals
-        ufoController.update(withParentNode: self, currentTime: currentTime)
+        ufoController.update(withParentNode: self, currentTime: adjustedCurrentTime)
         
         //Update all of the UFO nodes spawned up to this point
         for node in self.children{
