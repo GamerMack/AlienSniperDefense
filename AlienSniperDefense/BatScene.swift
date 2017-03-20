@@ -306,7 +306,9 @@ extension BatScene{
     
     override func loadNextLevel() {
         
+        let mainTransition = SKTransition.crossFade(withDuration: 2.00)
         var nextLevelDifficulty: BatSceneLevelLoader.DifficultyLevel
+        var batScene: BatScene?
         
         switch(currentGameSettings.getGameDifficulty()){
             case .valueHard:
@@ -322,29 +324,35 @@ extension BatScene{
         
         switch(levelNumber){
             case 1:
-                BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: nextLevelDifficulty)
-            break
+                batScene = BatSceneLevelLoader.getLevel2Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
+                break
         case 2:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            batScene = BatSceneLevelLoader.getLevel3Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 3:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            batScene = BatSceneLevelLoader.getLevel4Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 4:
-            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: nextLevelDifficulty)
+            batScene = BatSceneLevelLoader.getLevel5Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 5:
             //Load player stats summary scene
-            let transition = SKTransition.crossFade(withDuration: 2.00)
             let summaryScene = SummaryScene(size: self.size, selectedTrackType: SummaryScene.TrackType.Bat)
-            self.view?.presentScene(summaryScene, transition: transition)
+            self.view?.presentScene(summaryScene, transition: mainTransition)
             break
         default:
             break
         }
+        
+        if let batScene = batScene{
+            self.view?.presentScene(batScene, transition: mainTransition)
+        }
     }
     
     override func reloadCurrentLevel() {
+        
+        let transition = SKTransition.crossFade(withDuration: 2.00)
+        var batScene: BatScene?
         
         var currentLevelDifficulty: BatSceneLevelLoader.DifficultyLevel
         
@@ -363,23 +371,27 @@ extension BatScene{
         
         switch(levelNumber){
         case 1:
-            BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+            let batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 2:
-            BatSceneLevelLoader.loadLevel2From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+             let batScene = BatSceneLevelLoader.getLevel2Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 3:
-            BatSceneLevelLoader.loadLevel3From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+             let batScene = BatSceneLevelLoader.getLevel3Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 4:
-            BatSceneLevelLoader.loadLevel4From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+             let batScene = BatSceneLevelLoader.getLevel4Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 5:
-            BatSceneLevelLoader.loadLevel5From(currentScene: self, difficultyLevel: currentLevelDifficulty)
+             let batScene = BatSceneLevelLoader.getLevel5Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         default:
-            //TODO: Not yet implemented
+            let batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
+        }
+        
+        if let batScene = batScene{
+            self.view?.presentScene(batScene, transition: transition)
         }
     }
     

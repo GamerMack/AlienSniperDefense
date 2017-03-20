@@ -21,6 +21,25 @@ class StealthShipScene: BaseScene{
     Orange Color: Orange1,Orange2,Orange3
      **/
     
+    override var currentNumberOfEnemies: Int{
+        didSet{
+            if(currentNumberOfEnemies < 0){
+                currentNumberOfEnemies = 0
+            }
+            
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        }
+    }
+    
+    override var numberOfEnemiesKilled: Int{
+        didSet{
+            currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
+            
+            hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        }
+    }
+    
     //SpaceShip Prototype
     var spaceShips: [SpaceShip] = [
         SpaceShip(spaceShipTypeOf: .Red1, travelSpeedOf: 5.0, scalingFactor: 0.8)!,
@@ -34,6 +53,7 @@ class StealthShipScene: BaseScene{
     
     var spaceShipTransitionInterval: TimeInterval = 3.00
     var spaceShipFlySpeed: TimeInterval = 5.00
+    var adjustedCurrentTime: TimeInterval = 0.00
     
     var currentSpaceShipIndex: Int = 0
     
@@ -113,14 +133,19 @@ class StealthShipScene: BaseScene{
     
     //MARK: *************** GAME LOOP FUNCTIONS
     
-    override func didSimulatePhysics() {
-        
-    }
-    
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         
-        frameCount += currentTime - lastUpdateTime
+        if(!gameHasStarted){
+            frameCount = 0
+            adjustedCurrentTime = 0
+        } else {
+            adjustedCurrentTime = currentTime
+        }
+        
+        frameCount += adjustedCurrentTime - lastUpdateTime
+        
+
         
         if(frameCount > spawnInterval){
             //spawn the spaceships from an array
@@ -128,8 +153,8 @@ class StealthShipScene: BaseScene{
             frameCount = 0
         }
         
-        updateAllSpaceShips(currentTime: currentTime)
-        lastUpdateTime = currentTime
+        updateAllSpaceShips(currentTime: adjustedCurrentTime)
+        lastUpdateTime = adjustedCurrentTime
     }
     
     
@@ -195,7 +220,6 @@ class StealthShipScene: BaseScene{
                             SKAction.wait(forDuration: 2.0),
                             SKAction.removeFromParent()
                             ]))
-                        currentNumberOfEnemies -= 1
                         numberOfEnemiesKilled += 1
                         break
                     default:
@@ -210,14 +234,11 @@ class StealthShipScene: BaseScene{
                             SKAction.removeFromParent()
                             ]))
             
-                        currentNumberOfEnemies -= 1
                         numberOfEnemiesKilled += 1
                         break
                     
                 }
                     
-                hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-                hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
                     
             }
         }
@@ -251,7 +272,6 @@ class StealthShipScene: BaseScene{
         currentSpaceShipIndex += 1
         currentNumberOfEnemies += 1
         
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
 
         
     }
@@ -267,8 +287,6 @@ class StealthShipScene: BaseScene{
         currentNumberOfEnemies += 1
         spaceShip.move(toParent: self)
         
-        
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         
     }
     
