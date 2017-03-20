@@ -23,6 +23,10 @@ class SoundEffects{
     static let Explosion1 = "rumble1.wav"
     static let Explosion2 = "rumble2.wav"
     static let Explosion3 = "rumble3.wav"
+    static let Click1 = "click1.wav"
+    static let Click3 = "click3.wav"
+    static let Click4 = "click4.wav"
+    static let Click5 = "click5.wav"
     
 }
 
@@ -39,5 +43,9 @@ class SoundEffectsNoFileExtension{
     static let Explosion1 = "rumble1"
     static let Explosion2 = "rumble2"
     static let Explosion3 = "rumble3"
+    static let Click1 = "click1"
+    static let Click3 = "click3"
+    static let Click4 = "click4"
+    static let Click5 = "click5"
     
 }

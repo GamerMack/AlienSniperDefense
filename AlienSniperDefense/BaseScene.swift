@@ -93,6 +93,7 @@ class BaseScene: SKScene{
     var totalGameTime: TimeInterval = 0.00
     var timeLimit: TimeInterval = 10.0 //Time Limit set for TimeLimit Mode only
     var gameTimer: TimeInterval = 0.00
+    var modifiedCurrentTime: TimeInterval = 0.00
     
     //MARK: ******************** Random Point Generator
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
@@ -235,8 +236,13 @@ class BaseScene: SKScene{
     
     override func update(_ currentTime: TimeInterval) {
         //Keep track of total game time
+        
         if(gameHasStarted){
-            totalGameTime += currentTime - lastUpdateTime
+            modifiedCurrentTime = currentTime
+            totalGameTime += modifiedCurrentTime - lastUpdateTime
+            lastUpdateTime = modifiedCurrentTime
+        } else {
+            modifiedCurrentTime = 0
         }
         
         
@@ -474,7 +480,7 @@ extension BaseScene{
             returnToMenuText.fontSize = 20.0
             returnToMenuText.fontColor = SKColor.white
             returnToMenuText.verticalAlignmentMode = .bottom
-            returnToMenuText.position = CGPoint(x: 0, y: -menuButton.size.height)
+            returnToMenuText.position = CGPoint(x: menuButton.position.x, y: -menuButton.size.height)
             returnToMenuText.name = NodeNames.ReturnToMenuButton
             returnToMenuText.move(toParent: menuButton)
             
@@ -483,7 +489,7 @@ extension BaseScene{
             restartGameText.fontSize = 20.0
             restartGameText.fontColor = SKColor.white
             restartGameText.verticalAlignmentMode = .bottom
-            restartGameText.position = CGPoint(x: 0, y: -restartButton.size.height)
+            restartGameText.position = CGPoint(x: restartButton.position.x, y: -restartButton.size.height)
             restartGameText.name = NodeNames.RestartGameButton
             restartGameText.move(toParent: restartButton)
             

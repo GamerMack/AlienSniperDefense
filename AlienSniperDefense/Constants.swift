@@ -63,9 +63,3 @@ class NodeNames{
     
 }
 
-//ZPosition Constants
-
-class ZPositionOrder{
-    static let background = CGFloat(-12.0)
-    static let hud = CGFloat(10.0)
-}

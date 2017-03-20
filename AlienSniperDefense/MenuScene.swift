@@ -22,6 +22,12 @@ import AVFoundation
 
 class MenuScene: SKScene{
     
+    //Cache for Click Sounds played when pressing UI buttons
+    let clickSound1 = SKAction.playSoundFileNamed(SoundEffects.Click1, waitForCompletion: false)
+    let clickSound3 = SKAction.playSoundFileNamed(SoundEffects.Click3, waitForCompletion: false)
+    let clickSound4 = SKAction.playSoundFileNamed(SoundEffects.Click4, waitForCompletion: false)
+
+    
     //Texture Atlas for MenuScene
     let textureAtlas: SKTextureAtlas? = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)
     
@@ -90,7 +96,10 @@ class MenuScene: SKScene{
             //User hits start button
             if nodeTouched.name == NodeNames.StartButton{
                 startButton.removeAllActions()
-                startButton.run(SKAction.removeFromParent())
+                startButton.run(SKAction.sequence([
+                    clickSound1,
+                    SKAction.removeFromParent()
+                    ]))
         
                 setupDifficultyOptionsButtons()
              
@@ -101,9 +110,13 @@ class MenuScene: SKScene{
             if nodeTouched.name == "Hard"{
                 gameSettingsManager.setGameDifficultyLevel(difficulty: .valueHard)
                 
-                hardButton.run(SKAction.wait(forDuration: 1.0))
-                removeDifficultyOptionsButtons()
                 
+                hardButton.run(SKAction.sequence([
+                    clickSound4,
+                    SKAction.wait(forDuration: 1.0)
+                    ]))
+                
+                removeDifficultyOptionsButtons()
                 setupGamePlayModeButtons()
         
             }
@@ -112,7 +125,11 @@ class MenuScene: SKScene{
             if nodeTouched.name == "Medium"{
                 gameSettingsManager.setGameDifficultyLevel(difficulty: .valueMedium)
                 
-                mediumButton.run(SKAction.wait(forDuration: 1.0))
+                mediumButton.run(SKAction.sequence([
+                    clickSound4,
+                    SKAction.wait(forDuration: 1.0)
+                    ]))
+                
                 removeDifficultyOptionsButtons()
                 setupGamePlayModeButtons()
              
@@ -121,7 +138,10 @@ class MenuScene: SKScene{
             if nodeTouched.name == "Easy"{
                 gameSettingsManager.setGameDifficultyLevel(difficulty: .valueEasy)
             
-                easyButton.run(SKAction.wait(forDuration: 5.0))
+                easyButton.run(SKAction.sequence([
+                    clickSound4,
+                    SKAction.wait(forDuration: 1.0)
+                    ]))
                 removeDifficultyOptionsButtons()
                 setupGamePlayModeButtons()
     
@@ -132,6 +152,8 @@ class MenuScene: SKScene{
             //User selects GamePlayMode
             if nodeTouched.name == "Time Limit"{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueTimeLimit)
+                nodeTouched.run(clickSound3)
+                
                 let transition = SKTransition.doorsOpenHorizontal(withDuration: 2.00)
                 removeGamePlayModeButtons()
                 let trackScene = TrackScene(size: self.size)
@@ -141,6 +163,8 @@ class MenuScene: SKScene{
             
             if nodeTouched.name == "Minimum Kills"{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueMinimumKills)
+                nodeTouched.run(clickSound3)
+
                 removeGamePlayModeButtons()
                 let transition = SKTransition.doorsOpenHorizontal(withDuration: 2.00)
                 let trackScene = TrackScene(size: self.size)

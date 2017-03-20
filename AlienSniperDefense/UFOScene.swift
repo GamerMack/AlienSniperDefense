@@ -28,7 +28,6 @@ class UFOScene: BaseScene{
     //MARK: UFO-related variables
     var ufoController: UFOController!
     
-    //MARK: Timer-Related Variables
     var adjustedCurrentTime: TimeInterval = 0.00
     
     //MARK: ***************SCENE INITIALIZERS

@@ -12,6 +12,10 @@ import AVFoundation
 
 class TrackScene: SKScene{
     
+    //MARK: ************ Cache for Button clicks
+    let clickSound = SKAction.playSoundFileNamed(SoundEffects.Click1, waitForCompletion: false)
+    
+    //MARK: ********* Track Type Enum
     enum TrackType{
         case Wingman, Bat, FlyingAlien, StealthShip, UFO
     }
@@ -106,6 +110,8 @@ class TrackScene: SKScene{
             }
             
             if node.name == NodeNames.StealthShipTrackButton{
+                node.run(clickSound)
+                
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .StealthShip)
 
                 self.view?.presentScene(instructionScene, transition: mainTransition)
@@ -113,17 +119,23 @@ class TrackScene: SKScene{
             
             
             if node.name == NodeNames.UFOTrackButton{
+                node.run(clickSound)
+
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .UFO)
                 self.view?.presentScene(instructionScene, transition: transition)
             }
             
             
             if node.name == NodeNames.WingmanTrackButton{
+                node.run(clickSound)
+
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .Wingman)
                 self.view?.presentScene(instructionScene, transition: transition)
             }
             
             if node.name == NodeNames.FlyingAlienTrackButton{
+                node.run(clickSound)
+
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .FlyingAlien)
                 self.view?.presentScene(instructionScene, transition: mainTransition)
             }

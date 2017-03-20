@@ -159,6 +159,7 @@ class ButtonManager{
                 if let node = node as? SKLabelNode{
                     node.text = "Time Limit: \(timeLimit)"
                     node.name = NodeNames.StartButton
+                    
                 }
             }
         }
@@ -224,7 +225,7 @@ class ButtonManager{
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.2 )
-        introText3.fontSize = 20.0
+        introText3.fontSize = 12.0
         introText3.text = levelTimeLimitWarning
         introText3.zPosition = 12
         introText3.name = "text3"
