@@ -292,7 +292,6 @@ class BaseScene: SKScene{
         for node in nodes(at: touchLocation){
             
             if node.name == NodeNames.PauseButton{
-                print("Game is now paused")
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.ResumeButton
                     
@@ -350,6 +349,7 @@ class BaseScene: SKScene{
                 //Remove the start window to begin game
                 gameHasStarted = true
                 node.removeFromParent()
+                currentGameState = .Running
             }
             
          

@@ -12,6 +12,11 @@ import Foundation
 import SpriteKit
 import GameplayKit
 
+/**
+ Randomization of velocity for bat movement is configured through scene-level parameters (minBatComponentVelocity and maxBatComponentVelocity), which are used to initialize a RandomVector in the didUpdatePhysics function; the minimum and maximum number of bats spawned is a controller-level parameter configured via the scene's initializer, which in turn calls the initializer for the controller
+ 
+ **/
+
 class BatScene: BaseScene
 {
     
@@ -28,6 +33,12 @@ class BatScene: BaseScene
             if(currentNumberOfEnemies <  0){
                 currentNumberOfEnemies = 0
             }
+        }
+    }
+    
+    override var numberOfEnemiesKilled: Int{
+        didSet{
+            currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
         }
     }
     
@@ -81,9 +92,6 @@ class BatScene: BaseScene
         //Set current track
         currenTrack = .Bat
         
-        //Set framecount to zero
-        frameCount = 0.00
-        
         //Perform basic scene configuration
         performBasicSceneConfiguration()
         
@@ -91,18 +99,7 @@ class BatScene: BaseScene
         //TODO: ********** Remove after debugging completed
         self.backgroundColor = SKColor.gray
         
-                
-        //Configure initial HUD display
-        currentNumberOfEnemies = 0
-        numberOfEnemiesKilled = 0
-        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        self.addChild(hud2)
-
-    
         
-        //Spawn initial number of bats
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         
     }
     
@@ -112,6 +109,12 @@ class BatScene: BaseScene
     override func performBasicSceneConfiguration() {
         //Register NSNotifications for Pause and Resume Method
         registerNotifications()
+        
+        //Configure pause button
+        configurePauseButton()
+        
+        //Set current game state to running
+        currentGameState = .Running
         
         //Set anchor point of current scene to center
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -146,6 +149,14 @@ class BatScene: BaseScene
         
         //Spawn Background Objects
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
+        
+        //Configure initial HUD display
+        currentNumberOfEnemies = 0
+        numberOfEnemiesKilled = 0
+        hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        self.addChild(hud2)
+
         
     }
 
@@ -227,7 +238,6 @@ class BatScene: BaseScene
                     
                     node.respondToHit()
                     self.numberOfEnemiesKilled += 1
-                    reduceCurrentNumberOfEnemiesBy(numberKilled: 1)
                     
                     //Bat Controller keeps track of the total number of bats on screen
                     hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
