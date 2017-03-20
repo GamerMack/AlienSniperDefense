@@ -70,19 +70,27 @@ class SummaryScene: SKScene{
         let killCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.20
         let killCount = getTotalKills()
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: killCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Kills: ", labelText: "\(killCount)")
+      
+        let killCounText = getNumberFormattedString(forStatisticOf: Double(killCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
+        
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: killCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Kills: ", labelText: killCounText)
 
         
         //Configure display for Total Number of Enemies Spawned
         let enemyCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.00
         let trackEnemyCount = getTotalEnemiesSpawned()
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: "\(trackEnemyCount)")
         
+        let enemyCountText = getNumberFormattedString(forStatisticOf: Double(trackEnemyCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
+        
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: enemyCountText)
+    
         //Configure display for Total GameTime
         let gameTimeHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.20
         let trackGameTime = getTotalGameTime()
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: "\(trackGameTime)")
+        let gameTimeText = getNumberFormattedString(forStatisticOf: trackGameTime, minFractionDigits: 2, maxFractionDigits: 2, minIntDigits: 2, maxIntDigits: 5)
+        
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: gameTimeText)
         
         
         
@@ -90,7 +98,10 @@ class SummaryScene: SKScene{
         let bulletCountHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.40
         let trackBulletCount = getTotalNumberOfBulletsFired()
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Bullets Fired: ", labelText: "\(trackBulletCount)")
+        
+        let bulletCountText = getNumberFormattedString(forStatisticOf: Double(trackBulletCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
+        
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Bullets Fired: ", labelText: bulletCountText)
         
         
         //Configure ReturnToMenu Button
@@ -102,6 +113,23 @@ class SummaryScene: SKScene{
         
     }
     
+    //MARK: ******** Helper function to convert player statistic to a custom-formatted string
+    private func getNumberFormattedString(forStatisticOf statistic: Double, minFractionDigits: Int, maxFractionDigits: Int, minIntDigits: Int, maxIntDigits: Int) -> String{
+        
+        let nf = NumberFormatter()
+        nf.minimumIntegerDigits = minIntDigits
+        nf.maximumIntegerDigits = maxIntDigits
+        nf.maximumFractionDigits = minFractionDigits
+        nf.maximumFractionDigits = maxFractionDigits
+        
+        let nsNumber = NSNumber(value: statistic)
+        
+        if let numberString = nf.string(from: nsNumber){
+            return numberString
+        }
+    
+        return "\(statistic)"
+    }
     
     private func configureStatLabels(titleXPos: CGFloat, labelXPos: CGFloat, commonYPos: CGFloat, titleFontType: String, labelFontType: String, titleFontSize: CGFloat, labelFontSize: CGFloat, titleText: String, labelText: String){
     
