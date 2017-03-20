@@ -369,14 +369,18 @@ class InstructionScene: SKScene{
             if node.name == NodeNames.BatTrackButton{
                 switch(gameSettings.getGameDifficulty()){
                     case .valueHard:
-                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Hard)
+                        nextScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: .Hard)
                         break
                     case .valueMedium:
-                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Medium)
+                        nextScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: .Medium)
                         break
                     case .valueEasy:
-                        BatSceneLevelLoader.loadLevel1From(currentScene: self, difficultyLevel: .Easy)
+                        nextScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: .Easy)
                         break
+                }
+                
+                if let nextScene = nextScene{
+                    self.view?.presentScene(nextScene, transition: mainTransition)
                 }
                 
             }
