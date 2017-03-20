@@ -324,6 +324,100 @@ extension GameSettings{
     typealias LevelTuple = (trackName: TrackType, levelNumber: Level)
     
     
+    //MARK: Track completion checks 
+    
+    
+    func hasAchievedSilverLevel() -> Bool{
+        
+        return (
+            
+            (!hasCompletedFlyingAlienTrack() && hasCompletedStealthShipTrack() && hasCompletedWingmanTrack() && hasCompletedBatTrack() && hasCompletedUFOTrack()) ||
+            (!hasCompletedStealthShipTrack() && hasCompletedFlyingAlienTrack() && hasCompletedWingmanTrack() && hasCompletedBatTrack() && hasCompletedUFOTrack())
+                ||
+            (!hasCompletedBatTrack() && hasCompletedStealthShipTrack() && hasCompletedFlyingAlienTrack() && hasCompletedWingmanTrack() && hasCompletedUFOTrack())
+                ||
+            (!hasCompletedUFOTrack() && hasCompletedStealthShipTrack() && hasCompletedWingmanTrack() && hasCompletedBatTrack() && hasCompletedFlyingAlienTrack())
+                ||
+            (!hasCompletedWingmanTrack() && hasCompletedStealthShipTrack() && hasCompletedFlyingAlienTrack() && hasCompletedBatTrack() && hasCompletedUFOTrack())
+            
+        )
+        
+    }
+    
+    func hasAchievedGoldLevel() -> Bool{
+        return (hasCompletedBatTrack() && hasCompletedUFOTrack() && hasCompletedWingmanTrack() && hasCompletedStealthShipTrack() && hasCompletedFlyingAlienTrack())
+    }
+    
+    func hasCompletedAtLeastOneTrack() -> Bool{
+        
+        return (
+            
+            (hasCompletedFlyingAlienTrack() && !hasCompletedStealthShipTrack() && !hasCompletedWingmanTrack() && !hasCompletedBatTrack() && !hasCompletedUFOTrack()) ||
+                (hasCompletedStealthShipTrack() && !hasCompletedFlyingAlienTrack() && !hasCompletedWingmanTrack() && !hasCompletedBatTrack() && !hasCompletedUFOTrack())
+                ||
+                (hasCompletedBatTrack() && !hasCompletedStealthShipTrack() && !hasCompletedFlyingAlienTrack() && !hasCompletedWingmanTrack() && !hasCompletedUFOTrack())
+                ||
+                (hasCompletedUFOTrack() && !hasCompletedStealthShipTrack() && !hasCompletedWingmanTrack() && !hasCompletedBatTrack() && !hasCompletedFlyingAlienTrack())
+                ||
+                (hasCompletedWingmanTrack() && !hasCompletedStealthShipTrack() && !hasCompletedFlyingAlienTrack() && !hasCompletedBatTrack() && !hasCompletedUFOTrack())
+            
+        )
+        
+    }
+    
+    func hasCompletedWingmanTrack() -> Bool{
+        let hasCompletedLevel1 = defaults.value(forKey: WingmanTrack.isCompleted.Level1.rawValue) as! Bool
+        let hasCompletedLevel2 = defaults.value(forKey: WingmanTrack.isCompleted.Level2.rawValue) as! Bool
+        let hasCompletedLevel3 = defaults.value(forKey: WingmanTrack.isCompleted.Level3.rawValue) as! Bool
+        let hasCompletedLevel4 = defaults.value(forKey: WingmanTrack.isCompleted.Level4.rawValue) as! Bool
+        let hasCompletedLevel5 = defaults.value(forKey: WingmanTrack.isCompleted.Level5.rawValue) as! Bool
+       
+        return (hasCompletedLevel1 && hasCompletedLevel2 && hasCompletedLevel3 && hasCompletedLevel4 && hasCompletedLevel5)
+    }
+    
+    func hasCompletedBatTrack() -> Bool{
+        let hasCompletedLevel1 = defaults.value(forKey: BatTrack.isCompleted.Level1.rawValue) as! Bool
+        let hasCompletedLevel2 = defaults.value(forKey: BatTrack.isCompleted.Level2.rawValue) as! Bool
+        let hasCompletedLevel3 = defaults.value(forKey: BatTrack.isCompleted.Level3.rawValue) as! Bool
+        let hasCompletedLevel4 = defaults.value(forKey: BatTrack.isCompleted.Level4.rawValue) as! Bool
+        let hasCompletedLevel5 = defaults.value(forKey: BatTrack.isCompleted.Level5.rawValue) as! Bool
+        
+        return (hasCompletedLevel1 && hasCompletedLevel2 && hasCompletedLevel3 && hasCompletedLevel4 && hasCompletedLevel5)
+    }
+    
+    func hasCompletedUFOTrack() -> Bool{
+        let hasCompletedLevel1 = defaults.value(forKey: UFOTrack.isCompleted.Level1.rawValue) as! Bool
+        let hasCompletedLevel2 = defaults.value(forKey: UFOTrack.isCompleted.Level2.rawValue) as! Bool
+        let hasCompletedLevel3 = defaults.value(forKey: UFOTrack.isCompleted.Level3.rawValue) as! Bool
+        let hasCompletedLevel4 = defaults.value(forKey: UFOTrack.isCompleted.Level4.rawValue) as! Bool
+        let hasCompletedLevel5 = defaults.value(forKey: UFOTrack.isCompleted.Level5.rawValue) as! Bool
+        
+        return (hasCompletedLevel1 && hasCompletedLevel2 && hasCompletedLevel3 && hasCompletedLevel4 && hasCompletedLevel5)
+    }
+    
+    
+    func hasCompletedFlyingAlienTrack() -> Bool{
+        let hasCompletedLevel1 = defaults.value(forKey: FlyingAlienTrack.isCompleted.Level1.rawValue) as! Bool
+        let hasCompletedLevel2 = defaults.value(forKey: FlyingAlienTrack.isCompleted.Level2.rawValue) as! Bool
+        let hasCompletedLevel3 = defaults.value(forKey: FlyingAlienTrack.isCompleted.Level3.rawValue) as! Bool
+        let hasCompletedLevel4 = defaults.value(forKey: FlyingAlienTrack.isCompleted.Level4.rawValue) as! Bool
+        let hasCompletedLevel5 = defaults.value(forKey: FlyingAlienTrack.isCompleted.Level5.rawValue) as! Bool
+        
+        return (hasCompletedLevel1 && hasCompletedLevel2 && hasCompletedLevel3 && hasCompletedLevel4 && hasCompletedLevel5)
+    }
+    
+    
+    func hasCompletedStealthShipTrack() -> Bool{
+        let hasCompletedLevel1 = defaults.value(forKey: StealthShipTrack.isCompleted.Level1.rawValue) as! Bool
+        let hasCompletedLevel2 = defaults.value(forKey: StealthShipTrack.isCompleted.Level2.rawValue) as! Bool
+        let hasCompletedLevel3 = defaults.value(forKey: StealthShipTrack.isCompleted.Level3.rawValue) as! Bool
+        let hasCompletedLevel4 = defaults.value(forKey: StealthShipTrack.isCompleted.Level4.rawValue) as! Bool
+        let hasCompletedLevel5 = defaults.value(forKey: StealthShipTrack.isCompleted.Level5.rawValue) as! Bool
+        
+        return (hasCompletedLevel1 && hasCompletedLevel2 && hasCompletedLevel3 && hasCompletedLevel4 && hasCompletedLevel5)
+    }
+    
+    
     //MARK: Public retrieval methods for Full Game Stats
     func getTotalRunningTime(levelTuple: LevelTuple) -> Double{
         

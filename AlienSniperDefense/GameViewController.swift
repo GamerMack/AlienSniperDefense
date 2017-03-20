@@ -55,9 +55,13 @@ class GameViewController: UIViewController {
         
             let summaryScene = SummaryScene(size: self.view.bounds.size, selectedTrackType: .Bat)
         
+        
+            let medalScene = MedalScene(size: self.view
+                .bounds.size, medalType: .Gold)
+        
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(menuScene)
+                view.presentScene(medalScene)
                     
                 view.ignoresSiblingOrder = true
                     

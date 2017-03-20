@@ -34,6 +34,7 @@
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
 		BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */; };
+		BD2B1DBF1E8018D600B9044B /* MedalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2B1DBE1E8018D600B9044B /* MedalScene.swift */; };
 		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
 		BD2F1FA91E7CEFE8002023E8 /* TrackScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */; };
 		BD37DAA31E7F8CB50067A0BE /* WingmanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */; };
@@ -130,6 +131,7 @@
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
 		BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		BD2B1DBE1E8018D600B9044B /* MedalScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalScene.swift; sourceTree = "<group>"; };
 		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
 		BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackScene.swift; sourceTree = "<group>"; };
 		BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanController.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */,
 				BD25E6181E7D418700D9F372 /* InstructionScene.swift */,
 				BD10CDE31E7E331A00C6BC5F /* SummaryScene.swift */,
+				BD2B1DBE1E8018D600B9044B /* MedalScene.swift */,
 			);
 			name = TransitionalScenes;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				BD07A41B1E7A56D300B52128 /* SceneInterfaceManager.swift in Sources */,
 				BD07A4091E7A56BD00B52128 /* RandomVectorGaussian.swift in Sources */,
 				BD07A41D1E7A56D300B52128 /* ScreenSize.swift in Sources */,
+				BD2B1DBF1E8018D600B9044B /* MedalScene.swift in Sources */,
 				BD4BBFBF1E7A540300808B90 /* TextureAtlasManager.swift in Sources */,
 				BD07A4191E7A56D300B52128 /* Constants.swift in Sources */,
 				BD3A48891E7C21020072B576 /* UserSettings.swift in Sources */,

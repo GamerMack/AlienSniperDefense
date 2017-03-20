@@ -395,9 +395,20 @@ class SummaryScene: SKScene{
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
         
+        let transition = SKTransition.crossFade(withDuration: 2.00)
+
+        if(gameSettings.hasAchievedGoldLevel()){
+            let medalScene = MedalScene(size: self.size, medalType: .Gold)
+            self.view?.presentScene(medalScene, transition: transition)
+
+        }else if (gameSettings.hasAchievedSilverLevel()){
+            let medalScene = MedalScene(size: self.size, medalType: .Silver)
+            self.view?.presentScene(medalScene, transition: transition)
+
+        }
+        
         for node in nodes(at: touchLocation){
             if node.name == NodeNames.ReturnToMenuButton{
-                let transition = SKTransition.crossFade(withDuration: 2.00)
                 let trackScene = TrackScene(size: self.size)
                 self.view?.presentScene(trackScene, transition: transition)
             }

@@ -25,7 +25,7 @@ class TextureAtlasManager{
         case SpaceShips
         case UFO
         case Bats
-        case DialogueAvatars
+        case Medals
     }
     
     func getTextureAtlasOfType(textureAtlasType: TextureAtlasType) -> SKTextureAtlas?{
@@ -54,8 +54,9 @@ class TextureAtlasManager{
             return spaceShipsAtlas
         case .Bats:
             return batsAtlas
-        case .DialogueAvatars:
-            return dialogueAvatarsAtlas
+        case .Medals:
+            return medalsAtlas
+        
             
         }
     }
@@ -70,7 +71,7 @@ class TextureAtlasManager{
     private var userInterfaceAtlas: SKTextureAtlas?
     private var spaceShipsAtlas: SKTextureAtlas?
     private var batsAtlas: SKTextureAtlas?
-    private var dialogueAvatarsAtlas: SKTextureAtlas?
+    private var medalsAtlas: SKTextureAtlas?
     
     private init(){
         setup()
@@ -87,7 +88,7 @@ class TextureAtlasManager{
         ufoAtlas = SKTextureAtlas(named: "UFO.atlas")
         userInterfaceAtlas = SKTextureAtlas(named: "UI.atlas")
         spaceShipsAtlas = SKTextureAtlas(named: "SpaceShips.atlas")
-        dialogueAvatarsAtlas = SKTextureAtlas(named: "DialogueAvatars.atlas")
+        medalsAtlas = SKTextureAtlas(named: "Medals.atlas")
     }
     
 }
