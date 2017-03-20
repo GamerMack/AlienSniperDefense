@@ -92,7 +92,16 @@ class SummaryScene: SKScene{
         
         configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Bullets Fired: ", labelText: "\(trackBulletCount)")
         
+        
+        //Configure ReturnToMenu Button
+        let mainMenuTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu")
+        let menuSprite = SKSpriteNode(texture: mainMenuTexture)
+        menuSprite.name = NodeNames.ReturnToMenuButton
+        menuSprite.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.90, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
+        self.addChild(menuSprite)
+        
     }
+    
     
     private func configureStatLabels(titleXPos: CGFloat, labelXPos: CGFloat, commonYPos: CGFloat, titleFontType: String, labelFontType: String, titleFontSize: CGFloat, labelFontSize: CGFloat, titleText: String, labelText: String){
     
@@ -319,5 +328,19 @@ class SummaryScene: SKScene{
     }
 
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first! as UITouch
+        let touchLocation = touch.location(in: self)
+        
+        for node in nodes(at: touchLocation){
+            if node.name == NodeNames.ReturnToMenuButton{
+                let transition = SKTransition.crossFade(withDuration: 2.00)
+                let trackScene = TrackScene(size: self.size)
+                self.view?.presentScene(trackScene, transition: transition)
+            }
+        }
+    }
     
 }
+
+

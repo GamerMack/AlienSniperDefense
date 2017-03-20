@@ -39,7 +39,7 @@ class ButtonManager{
         let boxTickTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_boxTick")
         
         //For completed levels, a checkmark is shown
-        let checkMarkTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_boxCheckmakr")
+        let checkMarkTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_boxCheckmark")
         
         //Indicator node is initialized based on completion status of the track
         let indicatorNode = isCompleted ? SKSpriteNode(texture: checkMarkTexture) : SKSpriteNode(texture: boxTickTexture)

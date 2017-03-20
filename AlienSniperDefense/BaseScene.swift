@@ -288,6 +288,10 @@ class BaseScene: SKScene{
         let touch = touches.first! as UITouch
         let touchLocation = touch.location(in: self)
         
+        if player.contains(touchLocation){
+            numberOfBulletsFired += 1
+        }
+        
         for node in nodes(at: touchLocation){
             
             if node.name == NodeNames.PauseButton{
