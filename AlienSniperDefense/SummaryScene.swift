@@ -396,11 +396,13 @@ class SummaryScene: SKScene{
         let touchLocation = touch.location(in: self)
         
         let transition = SKTransition.crossFade(withDuration: 2.00)
-
+        
+        //If player wins all 5 tracks, transition to the Gold Medal Scene
         if(gameSettings.hasAchievedGoldLevel()){
             let medalScene = MedalScene(size: self.size, medalType: .Gold)
             self.view?.presentScene(medalScene, transition: transition)
 
+            //If player wins 4 of the 5 tracks, transition to the Silver Medal Scene
         }else if (gameSettings.hasAchievedSilverLevel()){
             let medalScene = MedalScene(size: self.size, medalType: .Silver)
             self.view?.presentScene(medalScene, transition: transition)
