@@ -51,7 +51,7 @@ class BatScene: BaseScene
     
 
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int, nodeLevelRandomizationIsActive: Bool = false) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int, nodeLevelRandomizationIsActive: Bool = false, timeLimit: TimeInterval = 60.00) {
         
       
         //Delegate to designated initializer
@@ -68,6 +68,9 @@ class BatScene: BaseScene
         //Configure Player Type and Background Music
         self.playerType = playerType
         self.backGroundMusic = backgroundMusic
+        
+        //Configure Time Limit for Time Limit Mode
+        self.timeLimit = timeLimit
         
         
         //Configure basic AI logic
@@ -130,9 +133,13 @@ class BatScene: BaseScene
         self.frameCount = 0.00
         
         //Configure SceneInterfaceManagerDelegate
-        sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumNumberOFEnemies)
+        if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
+        }else{
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+        }
         
+
         
         //Configure particle emitter for background
         let emitterPath = Bundle.main.path(forResource: "StarryNight", ofType: "sks")!

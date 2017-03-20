@@ -31,16 +31,24 @@ class UFOScene: BaseScene{
     var adjustedCurrentTime: TimeInterval = 0.00
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int, pathAnimationConfiguration: PathAnimationConfiguration) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crossHairType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minUFOSpawnedPerInterval: Int, maxUFOSpawnedPerInterval: Int, minimumKillsForLevelCompletion: Int, maximumAllowableSpawnedUFO: Int, pathAnimationConfiguration: PathAnimationConfiguration, timeLimit: TimeInterval = 60.00) {
         
         self.init(size: size)
         
+        //Configure Time Limit for Time Limit Mode
+        self.timeLimit = timeLimit
+        
+        //Configure Scene Information
         self.levelNumber = levelNumber
         self.levelDescription = levelDescription
         self.enemyName = enemyName
+        
+        //Configure Scene Elements
         self.playerType = crossHairType
         self.backGroundMusic = backGroundMusic
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
+        
+        //Configure Spawning Settings
         self.spawnInterval = spawnInterval
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
         self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval

@@ -47,10 +47,10 @@ class SceneInterfaceManager: SKSpriteNode, SceneInterfaceManagerDelegate{
     
     
     
-    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int){
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int, minimumKillsForLevelCompletion: Int){
         
         
-        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, spawningLimit: spawningLimit){
+        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, spawningLimit: spawningLimit, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion){
             
             // self.parent!.addChild(introMessage)
             
@@ -64,10 +64,10 @@ class SceneInterfaceManager: SKSpriteNode, SceneInterfaceManagerDelegate{
     
 
     
-    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double){
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, spawningLimit: Int){
         
         
-        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, levelTimeLimit: levelTimeLimit){
+        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, levelTimeLimit: levelTimeLimit, spawningLimit: spawningLimit){
             
            // self.parent!.addChild(introMessage)
             

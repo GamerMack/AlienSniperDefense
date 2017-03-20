@@ -16,11 +16,11 @@ protocol SceneInterfaceManagerDelegate: class{
     weak var managedScene: SKEffectNode? { get set }
     
     
-   func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double)
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int, minimumKillsForLevelCompletion: Int)
     
+   
     
-    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int)
-    
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, spawningLimit: Int)
    
     
 

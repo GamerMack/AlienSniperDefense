@@ -67,13 +67,17 @@ class StealthShipScene: BaseScene{
     
 
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, spaceShipTravelSpeed: TimeInterval, spaceShipTransitionInterval: TimeInterval, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, spaceShipTravelSpeed: TimeInterval, spaceShipTransitionInterval: TimeInterval, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, timeLimit: TimeInterval = 60.00) {
         
         self.init(size: size)
         
         //Configure spaceship parameters
         self.spaceShipTransitionInterval = spaceShipTransitionInterval
         self.spaceShipFlySpeed = spaceShipTravelSpeed
+        
+        //Configure Time Limit for Time Limit Mode
+        self.timeLimit = timeLimit
+        
         
         //Configure Opening/Intro Start Window
         self.levelNumber = levelNumber

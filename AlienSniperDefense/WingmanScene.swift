@@ -53,7 +53,7 @@ class WingmanScene: BaseScene{
     var adjustedCurrentTime: TimeInterval = 0.00
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, randomVectorConfigurationForUpdate: RandomVectorConfiguration, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, hideActionDuration: TimeInterval = 0.50) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, randomVectorConfigurationForUpdate: RandomVectorConfiguration, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, hideActionDuration: TimeInterval = 0.50, timeLimit: TimeInterval = 60.00) {
         
         
         //Delegate to designated initializer
@@ -63,6 +63,9 @@ class WingmanScene: BaseScene{
         self.levelNumber = levelNumber
         self.levelDescription = levelDescription
         self.enemyName = enemyName
+        
+        //Configure Time Limit for Time Limit Mode
+        self.timeLimit = timeLimit
         
         //Configure Player Type and Background Music
         self.playerType = playerType

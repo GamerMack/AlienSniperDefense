@@ -202,13 +202,13 @@ class BaseScene: SKScene{
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
         }else{
-             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
-            
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
         
-       
+
+        
         
         
         //Configure initial HUD display

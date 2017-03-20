@@ -12,7 +12,7 @@ import SpriteKit
 class ButtonFactory{
     
     
-    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int, textureName: String = "yellow_panel") -> SKSpriteNode?{
+    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, spawningLimit: Int, minimumKillsForLevelCompletion: Int, textureName: String = "yellow_panel") -> SKSpriteNode?{
         
         
         //The texture for IntroMessage Box must be loaded in order for the rest of the function bloc to be executed
@@ -54,11 +54,20 @@ class ButtonFactory{
         //Configure the bottom text: Time Limit Reminder
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
-        introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.2 )
+        introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.10 )
         introText3.fontSize = 10.0
         introText3.text = "Shoot every \(enemyName). If \(spawningLimit) are spawned, you lose"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
+        
+        //Configure the bottom text: Time Limit Reminder
+        let introText4 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
+        introBox.addChild(introText4)
+        introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.20 )
+        introText4.fontSize = 10.0
+        introText4.text = "You must kill \(minimumKillsForLevelCompletion) minimum to win."
+        introText4.zPosition = 12
+        introText4.name = NodeNames.StartButton
         
         //Configure a pulsing action for the display box
         let introTextPulseAction = SKAction.sequence([
@@ -76,15 +85,11 @@ class ButtonFactory{
 
     
     
-    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: TimeInterval, textureName: String = "yellow_panel") -> SKSpriteNode?{
+    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: TimeInterval, spawningLimit: Int, textureName: String = "yellow_panel") -> SKSpriteNode?{
         
         
         //The texture for IntroMessage Box must be loaded in order for the rest of the function bloc to be executed
         guard let introBoxTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed(textureName) else { return nil }
-        
-        
-        
-        
         
         
         //The IntroMessage Box dimensions for width and height are 40% of the width and 40% of the height of the UIScreen, respectively; zPosition is set at 10 so that the IntroMessage Box appears in front of all other game objets
@@ -120,11 +125,20 @@ class ButtonFactory{
         //Configure the bottom text: Time Limit Reminder
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
-        introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.2 )
+        introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.15 )
         introText3.fontSize = 20.0
         introText3.text = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
+        
+        //Configure the bottom text: Time Limit Reminder
+        let introText4 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
+        introBox.addChild(introText4)
+        introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.25 )
+        introText4.fontSize = 20.0
+        introText4.text = "If more than \(spawningLimit) enemies are on screen, you lose."
+        introText4.zPosition = 12
+        introText4.name = NodeNames.StartButton
         
         //Configure a pulsing action for the display box
         let introTextPulseAction = SKAction.sequence([

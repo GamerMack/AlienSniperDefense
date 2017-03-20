@@ -83,7 +83,7 @@ class FlyingAlienScene: BaseScene{
     
     
     //MARK: ***************SCENE INITIALIZERS
-    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crosshairType: CrossHair.CrossHairType, backgroundMusic: String, fieldActionInterval: TimeInterval, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, enemiesSpawnedPerInterval: Int, initialNumberOfEnemiesSpawned: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, randomVectorConfiguration: RandomVectorConfiguration) {
+    convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crosshairType: CrossHair.CrossHairType, backgroundMusic: String, fieldActionInterval: TimeInterval, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, enemiesSpawnedPerInterval: Int, initialNumberOfEnemiesSpawned: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, randomVectorConfiguration: RandomVectorConfiguration, timeLimit: TimeInterval = 60.00) {
         
         self.init(size: size)
         
@@ -96,6 +96,8 @@ class FlyingAlienScene: BaseScene{
         self.playerType = crosshairType
         self.backGroundMusic = backgroundMusic
         
+        //Configure Time Limit for Time Limit Mode
+        self.timeLimit = timeLimit
         
         //Configure Game Rules and basic AI logic
         self.spawnInterval = spawnInterval
@@ -524,7 +526,14 @@ extension FlyingAlienScene{
         
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
-        sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies)
+        
+        if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
+        }else{
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+        }
+        
+
         
         
         //Configure initial HUD display
