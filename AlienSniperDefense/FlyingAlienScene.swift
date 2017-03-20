@@ -22,6 +22,28 @@ import GameplayKit
 class FlyingAlienScene: BaseScene{
     
     
+    override var currentNumberOfEnemies: Int{
+        didSet{
+            if(currentNumberOfEnemies < 0){
+                currentNumberOfEnemies = 0
+            }
+            
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
+        }
+    }
+    
+    override var numberOfEnemiesKilled: Int{
+        didSet{
+            currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
+            
+            hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+        }
+    }
+    
+    //MARK: Adjusted Current Velocity
+    var adjustedCurrentTime: TimeInterval = 0.00
+    
+    
     //Enemy Prototype
     lazy var enemy: FlyingAlien = {
         let randomScalingFactor = RandomFloatRange(min: 0.7, max: 1.4)
@@ -46,7 +68,7 @@ class FlyingAlienScene: BaseScene{
     var fieldActionInterval: TimeInterval = 8.00
     
     var velocityUpdateCounter: TimeInterval = 0.00
-    var velocityUpdateInterval: TimeInterval = 5.00
+    var velocityUpdateInterval: TimeInterval = 2.00
     
     //Random Vector Configuration (for providing level-specific customization of velocity changes)
     var randomVectorConfiguration: RandomVectorConfiguration!
@@ -101,6 +123,9 @@ class FlyingAlienScene: BaseScene{
         //Register NSNotifications for Pause and Resume
         registerNotifications()
         
+        //Configure Pause Button
+        configurePauseButton()
+        
         //Basic scene configuration (calls base class's version of spawnBackgroundObjects)
         performBasicSceneConfiguration()
         
@@ -152,7 +177,7 @@ class FlyingAlienScene: BaseScene{
     override func didSimulatePhysics() {
         
         if(velocityUpdateCounter > velocityUpdateInterval){
-            updatePhysicsForFlyingAliens()
+            updatePhysicsForFlyingAliens(randomVectorConfiguration: self.randomVectorConfiguration)
 
             velocityUpdateCounter = 0
         }
@@ -162,9 +187,21 @@ class FlyingAlienScene: BaseScene{
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         
-        frameCount += currentTime - lastUpdateTime
-        fieldActionIntervalCounter += currentTime - lastUpdateTime
-        velocityUpdateCounter += currentTime - lastUpdateTime
+        if(!gameHasStarted){
+            adjustedCurrentTime = 0
+            frameCount = 0
+            
+        } else {
+            adjustedCurrentTime = currentTime
+            
+            frameCount += adjustedCurrentTime - lastUpdateTime
+            fieldActionIntervalCounter += adjustedCurrentTime - lastUpdateTime
+            velocityUpdateCounter += adjustedCurrentTime - lastUpdateTime
+            
+        }
+        
+        
+      
         
         if(frameCount > spawnInterval){
             spawnEnemyFromPrototype(numberOfEnemy: self.enemiesSpawnedPerInterval)
@@ -178,7 +215,7 @@ class FlyingAlienScene: BaseScene{
         }
         
         //Update flying aliens' flying mode
-        updateFlyingModesForSpawnedAliens(currentTime: currentTime)
+        updateFlyingModesForSpawnedAliens(currentTime: adjustedCurrentTime)
         
         lastUpdateTime = currentTime
     }
@@ -220,7 +257,6 @@ class FlyingAlienScene: BaseScene{
             
         }
         
-        hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
     }
   
     
@@ -232,6 +268,9 @@ class FlyingAlienScene: BaseScene{
         enemyCopy.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
         enemyCopy.physicsBody?.collisionBitMask = PhysicsCategory.Ground
         enemyCopy.physicsBody?.contactTestBitMask = PhysicsCategory.Ground
+        
+        let randomVector = RandomVector(randomVectorConfiguration: self.randomVectorConfiguration)
+        enemyCopy.physicsBody?.velocity = randomVector.getVector()
     }
     
     //MARK: ******************* USER INPUT HANDLERS
@@ -281,8 +320,10 @@ class FlyingAlienScene: BaseScene{
             
             if player.contains(touchLocation){
                     player.run(shootingSound)
-
-                    performResponseForSpawnedAliens(touchLocation: touchLocation)
+                    if let node = node as? FlyingAlien{
+                        let userDict = node.userData
+                        node.respondToHit(userDictionary: userDict, parentScene: self)
+                    }
                 
             }
             
@@ -290,31 +331,20 @@ class FlyingAlienScene: BaseScene{
         
     }
     
-    //MARK: ************ Helper Functions for handling touch events
-
-    private func performResponseForSpawnedAliens(touchLocation: CGPoint){
-        for node in nodes(at: touchLocation){
-            if let node = node as? FlyingAlien{
-                let userDict = node.userData
-                node.respondToHit(userDictionary: userDict)
-            }
-        }
-    }
-    
-    
+   
     
     //MARK: ************** Helper Function that uses user dictionary to update physics and handle touch input for individual alien node
     
-    private func updatePhysicsForFlyingAliens(){
+    private func updatePhysicsForFlyingAliens(randomVectorConfiguration: RandomVectorConfiguration){
         
         for node in self.children{
             if let node = node as? FlyingAlien{
                 
-                let maxVectorX = self.randomVectorConfiguration.maxVectorX
-                let minVectorX = self.randomVectorConfiguration.minVectorX
+                let maxVectorX = randomVectorConfiguration.maxVectorX
+                let minVectorX = randomVectorConfiguration.minVectorX
                 
-                let maxVectorY = self.randomVectorConfiguration.maxVectorY
-                let minVectorY = self.randomVectorConfiguration.minVectorY
+                let maxVectorY = randomVectorConfiguration.maxVectorY
+                let minVectorY = randomVectorConfiguration.minVectorY
                 
                 let randomVector = RandomVector(yComponentMin: minVectorY, yComponentMax: maxVectorY, xComponentMin: minVectorX, xComponentMax: maxVectorX)
                 
@@ -328,20 +358,6 @@ class FlyingAlienScene: BaseScene{
     
     
    
-  
-    private func getPositionOfRandomBackgroundObject() -> CGPoint{
-        
-        let randomDist = GKRandomDistribution(lowestValue: 0, highestValue: backgroundObjectsPositions.count-1)
-        
-        let randomIndex = randomDist.nextInt()
-        
-        return backgroundObjectsPositions[randomIndex]
-        
-        
-    }
-    
-    
-    
 
     private func disableGravityFields(){
         for object in backgroundObjects{

@@ -157,7 +157,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
     }
     
     
-    func respondToHit(userDictionary: NSMutableDictionary?){
+    func respondToHit(userDictionary: NSMutableDictionary?, parentScene: FlyingAlienScene){
         
         if(!isManned) { return }
         
@@ -191,6 +191,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.wait(forDuration: 2.0),
                     SKAction.removeFromParent()
                     ]))
+                parentScene.numberOfEnemiesKilled += 1
                 return
             default:
                 AnimationsFactory.createExplosionFor(spriteNode: self)
@@ -198,6 +199,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
                     SKAction.wait(forDuration: 2.0),
                     SKAction.removeFromParent()
                     ]))
+                parentScene.numberOfEnemiesKilled += 1
                 
             }
         

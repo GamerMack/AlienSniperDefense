@@ -28,12 +28,12 @@ class GameViewController: UIViewController {
         
         let batScene = BatScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill the bats", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 1, minBatsSpawned: 0, maxBatsSpawned: 5, minBatComponentVelocity: 60.00, maxBatComponentVelocity: 80.00, lightNodeFallOff: 2.00, maximumBatsAllowedToSpawn: 40, minimumBatsKilledForLevelCompletion: 5)
         
-        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: 20.0, maximumVectorYComponent: 80.0, minimumVectorXComponent: 10.0, maximumVectorXComponent: 80.0)
+        let randomVectorConfiguration = RandomVectorConfiguration(minimumVectorYComponent: -80.0, maximumVectorYComponent: 80.0, minimumVectorXComponent: -80.0, maximumVectorXComponent: 80.0)
         
         let wingmanScene = WingmanScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Kill all the wingman", enemyName: "Wingman", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, hideInterval: 5.00, spawnInterval: 10.00, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 5)
         
         let stealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
-        let flyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        let flyingAlienScene = FlyingAlienScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the flying Alines", enemyName: "Flying Alines", crosshairType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, fieldActionInterval: 5.00, numberOfBackgroundObjects: 2, spawnInterval: 5.00, enemiesSpawnedPerInterval: 2, initialNumberOfEnemiesSpawned: 2, maximumNumberOfEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfiguration)
         
         let menuScene = MenuScene(size: self.view.bounds.size)
         let trackScene = TrackScene(size: self.view.bounds.size)
@@ -52,7 +52,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(wingmanScene)
+                view.presentScene(flyingAlienScene)
                     
                 view.ignoresSiblingOrder = true
                     
