@@ -16,22 +16,25 @@ class BatScene: BaseScene
 {
     
 
-    //MARK: ******************** BAT CONFIGURATION PARAMTERS
-
-    lazy var prototypeBat = Bat(scalingFactor: 0.80, startingHealth: 1, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10)!
-        
+    //MARK: ******************** Bat-Related Variables
+    var batController: BatController!
     
-    var minBatsSpawned: Int = 0
-    var maxBatsSpawned: Int = 0
     var minBatComponentVelocity: Double = 0
     var maxBatComponentVelocity: Double = 0
+    var adjustedCurrentTime: TimeInterval = 0.00
+    
+    override var currentNumberOfEnemies: Int{
+        didSet{
+            if(currentNumberOfEnemies <  0){
+                currentNumberOfEnemies = 0
+            }
+        }
+    }
     
     //MARK: ****************** CrossHair LightNode Configuration
     var lightNodeFallOff: CGFloat = 2.0
     
-   
-    
-    
+
     //MARK: ***************SCENE INITIALIZERS
     convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, minBatsSpawned: Int, maxBatsSpawned: Int, minBatComponentVelocity: Double, maxBatComponentVelocity: Double,lightNodeFallOff: CGFloat, maximumBatsAllowedToSpawn: Int, minimumBatsKilledForLevelCompletion: Int) {
         
@@ -53,12 +56,13 @@ class BatScene: BaseScene
         self.enemiesSpawnedPerInterval = enemiesSpawnedPerInterval
         self.initialNumberOfEnemiesSpawned = initialNumberOfEnemiesSpawned
         self.currentNumberOfEnemies = initialNumberOfEnemiesSpawned
-        self.minBatsSpawned = minBatsSpawned
-        self.maxBatsSpawned = maxBatsSpawned
         self.maxBatComponentVelocity = maxBatComponentVelocity
         self.minBatComponentVelocity = minBatComponentVelocity
         self.lightNodeFallOff = lightNodeFallOff
         
+        
+        //Configure Bat Controller
+        self.batController = BatController(hud2: self.hud2, batSpawningInterval: spawnInterval, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned)
         
         //Configure Game Rules
         self.maximumNumberOFEnemies = maximumBatsAllowedToSpawn
@@ -66,8 +70,6 @@ class BatScene: BaseScene
         
         //Configure background objects
         self.numberOfBackgroundObjects = numberOfBackgroundObjects
-        
-        
         
 
     }
@@ -97,6 +99,7 @@ class BatScene: BaseScene
         hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         self.addChild(hud2)
 
+    
         
         //Spawn initial number of bats
         hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
@@ -141,7 +144,6 @@ class BatScene: BaseScene
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
-        
         //Spawn Background Objects
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
         
@@ -171,13 +173,7 @@ class BatScene: BaseScene
         
     }
     
-    override func didEvaluateActions() {
-        if(frameCount > spawnInterval){
-            //Update the Bat Controller
-            spawnRandomNumberOfBatsFrom(minimum: self.minBatsSpawned, toMaximum: self.maxBatsSpawned)
-            frameCount = 0.00
-        }
-    }
+   
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
@@ -185,9 +181,16 @@ class BatScene: BaseScene
         if(!gameHasStarted) { frameCount = 0 }
         
         frameCount += currentTime - lastUpdateTime
-    
         
-      
+        if(!gameHasStarted){
+            adjustedCurrentTime = 0
+        } else {
+            adjustedCurrentTime = currentTime
+        }
+        //Update bat controller to spawn bats at regular intervals
+        batController.update(forParentNode: self, currentTime: adjustedCurrentTime)
+        
+    
         lastUpdateTime = currentTime
 
         
@@ -201,10 +204,8 @@ class BatScene: BaseScene
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        let node = touches.first! as UITouch
-        let touchLocation = node.location(in: self)
+        super.touchesMoved(touches, with: event)
         
-        player.updateTargetPosition(position: touchLocation)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -226,10 +227,11 @@ class BatScene: BaseScene
                     
                     node.respondToHit()
                     self.numberOfEnemiesKilled += 1
-                    self.currentNumberOfEnemies -= 1
+                    reduceCurrentNumberOfEnemiesBy(numberKilled: 1)
                     
-                    self.hud2.setNumberOfEnemiesKilledTo(numberKilled: self.numberOfEnemiesKilled)
-                    self.hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
+                    //Bat Controller keeps track of the total number of bats on screen
+                    hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
+                    hud2.setNumberOfEnemiesKilledTo(numberKilled: self.numberOfEnemiesKilled)
                     
             
                 }
@@ -242,72 +244,18 @@ class BatScene: BaseScene
     }
     
     
-
-    private func getPositionOfRandomBackgroundObject() -> CGPoint{
-        
-        let randomDist = GKRandomDistribution(lowestValue: 0, highestValue: backgroundObjectsPositions.count-1)
-        
-        let randomIndex = randomDist.nextInt()
-        
-        return backgroundObjectsPositions[randomIndex]
-        
-        
+    private func reduceCurrentNumberOfEnemiesBy(numberKilled: Int){
+        if(currentNumberOfEnemies < 0){
+            currentNumberOfEnemies = 0
+        } else {
+            currentNumberOfEnemies -= numberKilled
+        }
     }
-    
-    
   
 }
 
 
 extension BatScene{
-    //MARK: **************** Bat Spawning Functions
-    
-    func spawnBats(numberOfBats: Int?){
-        
-        let numberOfBatsToSpawn = numberOfBats ?? initialNumberOfEnemiesSpawned
-        
-        for _ in 0...numberOfBatsToSpawn{
-            
-            let batClone = prototypeBat.copy() as! Bat
-            batClone.name = "bat"
-            configurePhysicsForClone(batClone: batClone)
-            batClone.move(toParent: self)
-            self.currentNumberOfEnemies += 1
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
-
-        }
-        
-    }
-    
-    func spawnRandomNumberOfBatsFrom(minimum: Int, toMaximum maximum: Int){
-        let numberOfBats = GKRandomDistribution(lowestValue: minimum, highestValue: maximum).nextInt()
-        
-        if(frameCount < spawnInterval) { return }
-
-        
-        for _ in 0...numberOfBats{
-            
-            let batClone = prototypeBat.copy() as! Bat
-            batClone.name = "bat"
-            configurePhysicsForClone(batClone: batClone)
-            batClone.move(toParent: self)
-            self.currentNumberOfEnemies += 1
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
-        }
-        
-    }
-    
-    //MARK: ************* Configure properites on bat clone
-    private func configurePhysicsForClone(batClone: Bat){
-        let radius = batClone.size.width/2.0
-        batClone.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-        batClone.physicsBody?.affectedByGravity = false
-        batClone.physicsBody?.allowsRotation = false
-        batClone.physicsBody?.linearDamping = 0.0
-        batClone.physicsBody?.collisionBitMask = ~PhysicsCategory.Player
-        batClone.physicsBody?.contactTestBitMask = ~PhysicsCategory.Player
-        batClone.physicsBody?.categoryBitMask = PhysicsCategory.Enemy
-    }
     
     
     func checkForRepositioning(){

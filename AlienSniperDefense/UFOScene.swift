@@ -102,7 +102,7 @@ class UFOScene: BaseScene{
         checkPlayerPositionForReposition()
         
         
-        //Update UFOs managed by the controller
+        //Update controller to spawn UFOs at regular intervals
         ufoController.update(withParentNode: self, currentTime: currentTime)
         
         //Update all of the UFO nodes spawned up to this point

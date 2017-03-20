@@ -12,10 +12,15 @@ import GameplayKit
 
 class BatController: SKNode{
     
-    
     //MARK: ************  Timer-related variables
+    private var frameCount = 0.0
+    private var lastUpdateTime = 0.0
+    private var batSpawningInterval = 10.0
     private var minimumBatsSpawnedPerInterval: Int = 0
     private var maximumBatsSpawnedPerInterval: Int = 1
+    
+    //MARK: ********** HUD: Controller stores a reference to the HUD that must be updated
+    var hud2: HUD2!
     
     //MARK: ************ Variables related to bats array
     private var batsArray = [Bat]()
@@ -24,6 +29,11 @@ class BatController: SKNode{
             return GKRandomDistribution(lowestValue: 0, highestValue: batsArray.count-1).nextInt()
         }
     }
+    
+    //MARK: ************* TOTAL NUMBER OF UFO SPAWNED AND KILLED
+    private var totalNumberOfBatsSpawned: Int = 0
+    private var totalNumberOfBatsKilled: Int = 0
+    
     
     
     //MARK: ************* TOTAL NUMBER OF BATS SPAWNED
@@ -43,17 +53,32 @@ class BatController: SKNode{
     }
     
     
-    convenience init(minBatsSpawned: Int = 0,  maxBatsSpawned: Int = 1) {
+    convenience init(hud2: HUD2, batSpawningInterval: TimeInterval, minBatsSpawned: Int = 0,  maxBatsSpawned: Int = 1) {
         
         self.init()
-        setup()
+        setup()     //Call setup to populate the array with a variety of Bats
+        
+        //Initialize hud2 passed in from scene
+        self.hud2 = hud2
+        
+        
+        //Initialize timing-related variables
         self.minimumBatsSpawnedPerInterval = minBatsSpawned
         self.maximumBatsSpawnedPerInterval = maxBatsSpawned
+        self.batSpawningInterval = batSpawningInterval
+        
+        //Initialize spawn count and kill count to zero
+        self.totalNumberOfBatsSpawned = 0
+        self.totalNumberOfBatsKilled = 0
     }
 
     private func setup(){
-        
-        if let bat1 = Bat(scalingFactor: 0.3), let bat2 = Bat(scalingFactor: 0.6), let bat3 = Bat(scalingFactor: 1.0), let bat4 = Bat(scalingFactor: 2.0), let bat5 = Bat(scalingFactor: 4.0){
+   
+        if let bat1 =  Bat(scalingFactor: 0.7, startingHealth: 2, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10),
+            let bat2 =  Bat(scalingFactor: 1.5, startingHealth: 2, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10),
+            let bat3 =  Bat(scalingFactor: 0.5, startingHealth: 2, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10),
+            let bat4 =  Bat(scalingFactor: 1.8, startingHealth: 2, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10),
+            let bat5 =  Bat(scalingFactor: 0.9, startingHealth: 2, minXVelocity: 0, maxXVelocity: 10, minYVelocity: 0, maxYVelocity: 10){
                 batsArray = [ bat1, bat2, bat3, bat4, bat5 ]
             
         }
@@ -69,10 +94,19 @@ class BatController: SKNode{
     
     
     //********* update(minaBatsSpawnedPerInterval:maxBatsSpawnedPerInterval:) will spawn bats at random intervals (called in game scene's update function)
-    func update(forParentNode parentNode: BatScene, minBatsSpawnedPerInterval: Int, maxBatsSpawnedPerInterval: Int){
+    func update(forParentNode parentNode: BatScene, currentTime: TimeInterval){
         
-        spawnRandomNumberOfBatsFrom(forParentNode: parentNode, minimum: minBatsSpawnedPerInterval, toMaximum: maxBatsSpawnedPerInterval)
+        frameCount += currentTime - lastUpdateTime
         
+        if(frameCount > batSpawningInterval){
+            
+            spawnRandomNumberOfBatsFrom(forParentNode: parentNode, minimum: self.minimumBatsSpawnedPerInterval, toMaximum: self.maximumBatsSpawnedPerInterval)
+            
+            frameCount = 0.0
+        }
+       
+        
+        lastUpdateTime = currentTime
     }
     
     
@@ -87,7 +121,10 @@ class BatController: SKNode{
             let batClone = batsArray[batIndex].copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
             parentNode.addChild(batClone)
+            
+            //Update the current spawn count for the BatScene
             parentNode.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: parentNode.currentNumberOfEnemies)
         }
         
     }
@@ -100,7 +137,12 @@ class BatController: SKNode{
             let batClone = batsArray[batIndex].copy() as! Bat
             configurePhysicsForClone(batClone: batClone)
             parentNode.addChild(batClone)
+            
+            //Update the current spawn count for the BatScene
             parentNode.currentNumberOfEnemies += 1
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: parentNode.currentNumberOfEnemies)
+
+
         }
         
     }
@@ -118,24 +160,14 @@ class BatController: SKNode{
     }
     
     
-    func checkForRepositioning(){
-        for node in self.children{
-            if let bat = node as? Bat{
-                if(bat.position.x < -ScreenSizeFloatConstants.HalfScreenWidth*0.8 || bat.position.x > ScreenSizeFloatConstants.HalfScreenHeight*0.8){
-                    bat.setPosition()
-                }
-                
-                if(bat.position.y < -ScreenSizeFloatConstants.HalfScreenHeight*0.8 || bat.position.y > ScreenSizeFloatConstants.HalfScreenHeight*0.8){
-                    bat.setPosition()
-                }
-            }
-        }
+    func getTotalNumberOfBatSpawned() -> Int{
+        return totalNumberOfBatsSpawned
     }
     
+  
    
     
-   
-    
+
 
     
 }

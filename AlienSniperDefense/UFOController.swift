@@ -104,6 +104,7 @@ class UFOController: SKNode{
         frameCount += currentTime - lastUpdateTime
         
         if(frameCount > ufoSpawningInterval){
+            
             spawnRandomNumberOfUFOsFrom(forParentNode: parentNode, minimum: self.minimumUFOSpawnedPerInterval, toMaximum: self.maximumUFOSpawnedPerInterval)
             
             frameCount = 0
@@ -123,9 +124,6 @@ class UFOController: SKNode{
         for _ in 0...numberOfUFOs{
             
             let ufoClone = ufoArray[ufoIndex].copy() as! UFO
-            
-           
-            
             
             let duration1 = self.pathAnimationConfiguration.duration1
             let duration2 = self.pathAnimationConfiguration.duration2

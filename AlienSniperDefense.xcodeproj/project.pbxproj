@@ -405,6 +405,7 @@
 			children = (
 				BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */,
 				BD07A3F81E7A561400B52128 /* BatController.swift */,
+				BD2777211E7A95F2009F641C /* UFOController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -488,12 +489,11 @@
 		BD63137D1E7A614100EB10F9 /* DerivedScenes */ = {
 			isa = PBXGroup;
 			children = (
-				BD63135A1E7A58A800EB10F9 /* BatScene.swift */,
 				BD63137A1E7A59A700EB10F9 /* WingmanScene.swift */,
 				BD63135D1E7A58A800EB10F9 /* FlyingAlienScene.swift */,
 				BD63135C1E7A58A800EB10F9 /* StealthShipScene.swift */,
+				BD63135A1E7A58A800EB10F9 /* BatScene.swift */,
 				BD6313601E7A58A800EB10F9 /* UFOScene.swift */,
-				BD2777211E7A95F2009F641C /* UFOController.swift */,
 			);
 			name = DerivedScenes;
 			sourceTree = "<group>";
