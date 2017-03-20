@@ -52,6 +52,7 @@ class SummaryScene: SKScene{
         //Player Stats Title
         let title = SKLabelNode(fontNamed: FontTypes.MarkerFeltThin)
         title.text = "Well Done! Track Completed!"
+        title.fontColor = SKColor.yellow
         title.verticalAlignmentMode = .center
         title.horizontalAlignmentMode = .center
         title.fontSize = 30.0
@@ -67,7 +68,7 @@ class SummaryScene: SKScene{
         let labelFontSize = 30.0
         
         //Configure display for Total Number of Kills
-        let killCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.20
+        let killCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.25
         let killCount = getTotalKills()
         
       
@@ -77,7 +78,7 @@ class SummaryScene: SKScene{
 
         
         //Configure display for Total Number of Enemies Spawned
-        let enemyCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.00
+        let enemyCountHeight = ScreenSizeFloatConstants.ScrrenHeight*0.10
         let trackEnemyCount = getTotalEnemiesSpawned()
         
         let enemyCountText = getNumberFormattedString(forStatisticOf: Double(trackEnemyCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
@@ -85,17 +86,17 @@ class SummaryScene: SKScene{
         configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: enemyCountText)
     
         //Configure display for Total GameTime
-        let gameTimeHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.20
+        let gameTimeHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.05
         let trackGameTime = getTotalGameTime()
         
         let gameTimeText = getNumberFormattedString(forStatisticOf: trackGameTime, minFractionDigits: 2, maxFractionDigits: 2, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: gameTimeText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Game Time (seconds): ", labelText: gameTimeText)
         
         
         
         //Configure display for Total Bullets Fired
-        let bulletCountHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.40
+        let bulletCountHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.20
         let trackBulletCount = getTotalNumberOfBulletsFired()
         
         
@@ -104,12 +105,46 @@ class SummaryScene: SKScene{
         configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Bullets Fired: ", labelText: bulletCountText)
         
         
+        //Configure display for Firing Accuracy
+        let firingAccuracyHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.35
+        let firingAccuracy = Double(killCount)/Double(trackBulletCount)
+        
+        
+        let firingAccuracyText = getNumberFormattedString(forStatisticOf: firingAccuracy, minFractionDigits: 2, maxFractionDigits: 4, minIntDigits: 1, maxIntDigits: 1)
+        
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: firingAccuracyHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Firing Accuracy: ", labelText: firingAccuracyText)
+        
+        
+        
         //Configure ReturnToMenu Button
         let mainMenuTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu")
         let menuSprite = SKSpriteNode(texture: mainMenuTexture)
         menuSprite.name = NodeNames.ReturnToMenuButton
         menuSprite.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.90, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
         self.addChild(menuSprite)
+        
+        
+        //Author Label
+        
+        let authorLabel = SKLabelNode(fontNamed: FontTypes.FuturaMedium)
+        authorLabel.fontColor = SKColor.cyan
+        authorLabel.text = "Game Developed by Alex Makedonski."
+        authorLabel.fontSize = 7.0
+        authorLabel.horizontalAlignmentMode = .right
+        authorLabel.verticalAlignmentMode = .center
+        authorLabel.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.85, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.85)
+        self.addChild(authorLabel)
+        
+        //Acknowledgment to Kenney (for graphics)
+      
+        let acknowledgmentLabel = SKLabelNode(fontNamed: FontTypes.FuturaMedium)
+        acknowledgmentLabel.fontColor = SKColor.cyan
+        acknowledgmentLabel.text = "Graphics from Kenney."
+        acknowledgmentLabel.fontSize = 7.0
+        acknowledgmentLabel.horizontalAlignmentMode = .right
+        acknowledgmentLabel.verticalAlignmentMode = .center
+        acknowledgmentLabel.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.85, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
+        self.addChild(acknowledgmentLabel)
         
     }
     

@@ -182,20 +182,37 @@ class MenuScene: SKScene{
     private func setupGameTitle(){
         //Build the label for the GameTitle
         let topTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        topTitleNode.fontColor = SKColor.blue
-        topTitleNode.text = "Sneaky Alien"
+        topTitleNode.fontColor = SKColor.yellow
+        topTitleNode.text = "Alien"
         topTitleNode.zPosition = 2
-        topTitleNode.position = CGPoint(x: 0.0, y: 100)
+        topTitleNode.position = CGPoint(x: 0.0, y: 130)
         topTitleNode.fontSize = 60
         self.addChild(topTitleNode)
         
         let bottomTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        bottomTitleNode.fontColor = SKColor.blue
+        bottomTitleNode.fontColor = SKColor.yellow
         bottomTitleNode.text = "Sniper Defense"
-        bottomTitleNode.position = CGPoint(x: 0.0, y: 40)
+        bottomTitleNode.position = CGPoint(x: 0.0, y: 70)
         bottomTitleNode.zPosition = 2
         bottomTitleNode.fontSize = 60
         self.addChild(bottomTitleNode)
+        
+        let authorNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
+        authorNode.fontColor = SKColor.yellow
+        authorNode.text = "Game Developer: Alex Makedonski"
+        authorNode.position = CGPoint(x: 0.0, y: 40)
+        authorNode.zPosition = 2
+        authorNode.fontSize = 10
+        self.addChild(authorNode)
+        
+        let designerNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
+        designerNode.fontColor = SKColor.yellow
+        designerNode.text = "Graphics By: Kenney"
+        designerNode.position = CGPoint(x: 0.0, y: 20)
+        designerNode.zPosition = 2
+        designerNode.fontSize = 10
+        self.addChild(designerNode)
+        
     }
     
     private func setupStartButton(){
@@ -250,7 +267,7 @@ class MenuScene: SKScene{
         wingmanNode.yScale *= 1.2
         wingmanNode.position = randomPoint1
         wingmanNode.zPosition = 1
-        wingmanNode.zRotation = -30
+        wingmanNode.zRotation = -10
         self.addChild(wingmanNode)
         
         
@@ -261,7 +278,7 @@ class MenuScene: SKScene{
         ufoNode.yScale *= 1.2
         ufoNode.position = randomPoint2
         ufoNode.zPosition = 1
-        ufoNode.zRotation = 120
+        ufoNode.zRotation = 10
         self.addChild(ufoNode)
         
         
@@ -272,7 +289,7 @@ class MenuScene: SKScene{
         flyingAlienNode.yScale *= 1.2
         flyingAlienNode.position = randomPoint3
         flyingAlienNode.zPosition = 1
-        flyingAlienNode.zRotation = 120
+        flyingAlienNode.zRotation = 100
         self.addChild(flyingAlienNode)
         
         guard let stealthShipTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip1_red") else {return}
@@ -282,7 +299,7 @@ class MenuScene: SKScene{
         stealthShipNode.yScale *= 1.2
         stealthShipNode.position = randomPoint4
         stealthShipNode.zPosition = 1
-        stealthShipNode.zRotation = 120
+        stealthShipNode.zRotation = 10
         self.addChild(stealthShipNode)
         
         

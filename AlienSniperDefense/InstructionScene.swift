@@ -261,8 +261,8 @@ class InstructionScene: SKScene{
         labelNode.text = labelText
         labelNode.verticalAlignmentMode = .center
         labelNode.horizontalAlignmentMode = .center
-        labelNode.fontSize = 30.0
-        labelNode.fontColor = SKColor.blue
+        labelNode.fontSize = 25.0
+        labelNode.fontColor = SKColor.yellow
         
         return labelNode
     }
@@ -272,15 +272,16 @@ class InstructionScene: SKScene{
         
         let labelNode1 = getLabelNode(withTextOf: text1)
         let yPosLabelNode1 = ScreenSizeFloatConstants.HalfScreenHeight*0.20
+        labelNode1.fontSize = 25.0
         labelNode1.position = CGPoint(x: 0, y: -yPosLabelNode1)
         
         node.addChild(labelNode1)
         
         if let text2 = text2{
             let labelNode2 = getLabelNode(withTextOf: text2)
-            let yPosLabelNode = ScreenSizeFloatConstants.HalfScreenHeight*0.35
+            let yPosLabelNode = ScreenSizeFloatConstants.HalfScreenHeight*0.40
             labelNode2.position = CGPoint(x: 0, y: -yPosLabelNode)
-            labelNode2.fontSize = 20.0
+            labelNode2.fontSize = 25.0
             
             node.addChild(labelNode2)
 
@@ -288,9 +289,9 @@ class InstructionScene: SKScene{
         
         if let text3 = text3{
             let labelNode3 = getLabelNode(withTextOf: text3)
-            let yPosLabelNode = ScreenSizeFloatConstants.HalfScreenHeight*0.50
+            let yPosLabelNode = ScreenSizeFloatConstants.HalfScreenHeight*0.60
             labelNode3.position = CGPoint(x: 0, y: -yPosLabelNode)
-            labelNode3.fontSize = 20.0
+            labelNode3.fontSize = 25.0
             
             node.addChild(labelNode3)
         }
