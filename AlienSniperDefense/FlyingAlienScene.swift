@@ -427,31 +427,44 @@ extension FlyingAlienScene{
             break
         }
         
-        var nextLevelScene: FlyingAlienScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
-        
+        var nextLevelScene: FlyingAlienScene?
         
         
         switch(self.levelNumber){
+       
+        case 1:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
+            break
+        case 2:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
+            break
+        case 3:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
+            break
+        case 4:
+            nextLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
+            break
         case 5:
             //Load player status summary scene
             let transition = SKTransition.crossFade(withDuration: 2.00)
             let summaryScene = SummaryScene(size: self.size, selectedTrackType: .FlyingAlien)
             self.view?.presentScene(summaryScene, transition: transition)
-            
             break
-        case 4:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
-        case 3:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
-        case 2:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
-        case 1:
-            nextLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
+            
         default:
             nextLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
-        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+        if(nextLevelScene == nil){
+            //Load player status summary scene
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .FlyingAlien)
+            self.view?.presentScene(summaryScene, transition: transition)
+        } else {
+            self.view?.presentScene(nextLevelScene!, transition: mainTransition)
+
+        }
+        
     }
         
     
@@ -482,14 +495,19 @@ extension FlyingAlienScene{
         switch(self.levelNumber){
         case 5:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
+            break
         case 4:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
+            break
         case 3:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
+            break
         case 2:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
+            break
         case 1:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+            break
         default:
             currentLevelScene = FlyingAlienLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
         }

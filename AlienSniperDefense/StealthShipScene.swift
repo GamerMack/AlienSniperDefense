@@ -329,16 +329,22 @@ extension StealthShipScene{
         switch(self.levelNumber){
         case 5:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
+            break
         case 4:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
+            break
         case 3:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
+            break
         case 2:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
+            break
         case 1:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+            break
         default:
             currentLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+            break
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)

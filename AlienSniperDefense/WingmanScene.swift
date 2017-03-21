@@ -316,16 +316,22 @@ extension WingmanScene{
         switch(self.levelNumber){
         case 5:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: currentLevelDifficulty)
+            break
         case 4:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: currentLevelDifficulty)
+            break
         case 3:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: currentLevelDifficulty)
+            break
         case 2:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: currentLevelDifficulty)
+            break
         case 1:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+            break
         default:
             currentLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: currentLevelDifficulty)
+            break
         }
         
         self.view?.presentScene(currentLevelScene, transition: mainTransition)
