@@ -348,7 +348,8 @@ extension StealthShipScene{
     
     override func loadNextLevel() {
         let mainTransition = SKTransition.crossFade(withDuration: 2.00)
-        var nextLevelScene: StealthShipScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: .Easy)
+        
+        var nextLevelScene: StealthShipScene?
         
         var nextLevelDifficulty: StealthShipSceneLevelLoader.DifficultyLevel
         
@@ -365,25 +366,36 @@ extension StealthShipScene{
         }
         
         switch(self.levelNumber){
-        case 5:
-            let transition = SKTransition.crossFade(withDuration: 2.00)
-            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .StealthShip)
-            self.view?.presentScene(summaryScene, transition: transition)
-            
-            break
-        case 4:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
-        case 3:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
-        case 2:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
-        case 1:
-            nextLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
+       
+            case 1:
+                nextLevelScene = StealthShipSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
+                break
+            case 2:
+                nextLevelScene = StealthShipSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
+                break
+            case 3:
+                nextLevelScene = StealthShipSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
+                break
+            case 4:
+                nextLevelScene = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
+                break
+            case 5:
+                let transition = SKTransition.crossFade(withDuration: 2.00)
+                let summaryScene = SummaryScene(size: self.size, selectedTrackType: .StealthShip)
+                self.view?.presentScene(summaryScene, transition: transition)
+                break
         default:
             nextLevelScene = StealthShipSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
-        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+        if(nextLevelScene == nil){
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .StealthShip)
+            self.view?.presentScene(summaryScene, transition: transition)
+        } else {
+            self.view?.presentScene(nextLevelScene!, transition: mainTransition)
+        }
+        
     }
     
 }

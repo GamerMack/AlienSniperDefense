@@ -43,6 +43,7 @@ class GameViewController: UIViewController {
         let stealthShipScene1 = StealthShipScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the stealth ships", enemyName: "Stealth Ships", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, spaceShipTravelSpeed: 5.00, spaceShipTransitionInterval: 5.00, maximumNumberOfEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10)
         
         let ufo5 = UFOLevelLoader.getLevel5(difficultyLevel: .Easy)
+        let stealth5 = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
         
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
@@ -66,7 +67,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(ufo5)
+                view.presentScene(stealth5)
                     
                 view.ignoresSiblingOrder = true
                     
