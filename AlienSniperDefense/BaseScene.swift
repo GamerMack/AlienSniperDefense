@@ -139,8 +139,9 @@ class BaseScene: SKScene{
     }
     
     override func didMove(to view: SKView) {
-        //Set gameHasStarted to false
+        //Set gameHasStarted to false, set totalGameTime to zero
         gameHasStarted = false
+        totalGameTime = 0.00
         
         //Register Pause and Resume notifications with NSNotification center
         registerNotifications()
@@ -186,6 +187,7 @@ class BaseScene: SKScene{
         
         //Set initial game state to running
         self.currentGameState = .Running
+        self.gameHasStarted = false
         
         //Configure player
         player = CrossHair(crossHairType: self.playerType)
@@ -240,14 +242,16 @@ class BaseScene: SKScene{
     override func update(_ currentTime: TimeInterval) {
         //Keep track of total game time
         
+        
         if(gameHasStarted){
-            modifiedCurrentTime = currentTime
-            totalGameTime += modifiedCurrentTime - lastUpdateTime
-            lastUpdateTime = modifiedCurrentTime
-        } else {
-            modifiedCurrentTime = 0
+            totalGameTime += currentTime - lastUpdateTime
+            lastUpdateTime = currentTime
         }
         
+       
+        
+        print("The totalGameTime is: \(totalGameTime)")
+        print("The time limit is \(timeLimit)")
         
         if(currentGameState == .Paused) { return }
         
@@ -273,7 +277,7 @@ class BaseScene: SKScene{
         
         player.update()
        
-        
+
     }
     
   
@@ -318,7 +322,6 @@ class BaseScene: SKScene{
 
                 
             } else if node.name == NodeNames.ResumeButton{
-                print("Game is now resumed")
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.PauseButton
                     

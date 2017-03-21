@@ -51,6 +51,7 @@ class WingmanScene: BaseScene{
     var hideInterval: TimeInterval = 8.00
     var hideActionDuration: TimeInterval = 0.50
     var adjustedCurrentTime: TimeInterval = 0.00
+    var adjustedLastUpdateTime: TimeInterval = 0.00
     
     //MARK: ***************SCENE INITIALIZERS
     convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, playerType: CrossHair.CrossHairType, backgroundMusic: String, numberOfBackgroundObjects: Int, hideInterval: TimeInterval, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, randomVectorConfigurationForUpdate: RandomVectorConfiguration, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, hideActionDuration: TimeInterval = 0.50, timeLimit: TimeInterval = 60.00) {
@@ -160,16 +161,16 @@ class WingmanScene: BaseScene{
             adjustedCurrentTime = 0
             frameCount = 0
             hideIntervalFrameCount = 0
+    
         } else {
             adjustedCurrentTime = currentTime
-            
-            frameCount += adjustedCurrentTime - lastUpdateTime
-            hideIntervalFrameCount += adjustedCurrentTime - lastUpdateTime
-            
         }
         
-       
-      
+        frameCount += adjustedCurrentTime - adjustedLastUpdateTime
+        hideIntervalFrameCount += adjustedCurrentTime - adjustedLastUpdateTime
+     
+        print("The framecount is \(frameCount)")
+        print("The hideIntervalFrameCount is \(hideIntervalFrameCount)")
         
         if(frameCount > spawnInterval){
                 spawnEnemyFromPrototype(numberOfEnemy: enemiesSpawnedPerInterval)
@@ -184,6 +185,7 @@ class WingmanScene: BaseScene{
     
         player.update()
         
+        adjustedLastUpdateTime = adjustedCurrentTime
         lastUpdateTime = currentTime
 
     }
