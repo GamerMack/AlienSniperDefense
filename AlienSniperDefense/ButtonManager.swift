@@ -27,6 +27,27 @@ class ButtonManager{
     
     private var introMessageButton: SKSpriteNode?
     
+    
+    static func getClearPlayerDataButton(buttonPosition: CGPoint) -> SKSpriteNode{
+        let clearButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_button04")
+        let clearButtonSprite = SKSpriteNode(texture: clearButtonTexture)
+        clearButtonSprite.name = NodeNames.ClearPlayerDataButton
+        clearButtonSprite.position = buttonPosition
+        clearButtonSprite.zPosition = 31
+        
+        let clearButtonLabel = SKLabelNode(fontNamed: FontTypes.MarkerFeltThin)
+        clearButtonLabel.name = NodeNames.ClearPlayerDataButton
+        clearButtonLabel.text = "Clear Player Data"
+        clearButtonLabel.horizontalAlignmentMode = .center
+        clearButtonLabel.verticalAlignmentMode = .center
+        clearButtonLabel.zPosition = 32
+        clearButtonLabel.position = CGPoint(x: 0, y: 0)
+        
+        clearButtonSprite.addChild(clearButtonLabel)
+        return clearButtonSprite
+        
+    }
+    
     static func getTrackButton(isCompleted: Bool, trackType: TrackType, size: CGSize, position: CGPoint) -> SKSpriteNode{
         
         //Configure Track Node properties
@@ -97,6 +118,8 @@ class ButtonManager{
         indicatorNode.position = CGPoint(x: 0, y: indicatorNodeYPos)
         indicatorNode.xScale *= 1.7
         indicatorNode.yScale *= 1.7
+        
+     
         
         //Add subnodes to the track node
         trackNode.addChild(indicatorNode)

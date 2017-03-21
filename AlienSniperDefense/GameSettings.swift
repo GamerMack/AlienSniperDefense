@@ -47,7 +47,14 @@ class GameSettings{
     
     //MARK: Private helper methods
     private func firstLaunch(){
-        //MARK: Initialize Game-Wide, Player-State KEYS
+        resetPlayerStatData()
+    }
+    
+    
+    //MARK: Reset All Player Stats to default
+    func resetPlayerStatData(){
+        
+        //MARK: Initialize Game-Wide Settings
         defaults.set(0.00, forKey: keyTotalRunningTime)
         defaults.set(0, forKey: keyTotalNumberOfBulletsFired)
         defaults.set(0, forKey: keyTotalNumberOfKills)
@@ -61,7 +68,7 @@ class GameSettings{
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level1.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level1.keyTotalRunningTime.rawValue)
-
+        
         defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level2.keyTotalNumberOfSpawnedEnemies.rawValue)
@@ -71,12 +78,12 @@ class GameSettings{
         defaults.set(0, forKey: WingmanTrack.Level3.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level3.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level3.keyTotalRunningTime.rawValue)
-
+        
         defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level4.keyTotalNumberOfSpawnedEnemies.rawValue)
         defaults.set(0.00, forKey: WingmanTrack.Level4.keyTotalRunningTime.rawValue)
-
+        
         defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfKills.rawValue)
         defaults.set(0, forKey: WingmanTrack.Level5.keyTotalNumberOfSpawnedEnemies.rawValue)
@@ -87,9 +94,9 @@ class GameSettings{
         defaults.set(false, forKey: WingmanTrack.isCompleted.Level3.rawValue)
         defaults.set(false, forKey: WingmanTrack.isCompleted.Level4.rawValue)
         defaults.set(false, forKey: WingmanTrack.isCompleted.Level5.rawValue)
-
-
-
+        
+        
+        
         //MARK: Initialize keys for BAT TRACK
         defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: BatTrack.Level1.keyTotalNumberOfKills.rawValue)
@@ -121,7 +128,7 @@ class GameSettings{
         defaults.set(false, forKey: BatTrack.isCompleted.Level3.rawValue)
         defaults.set(false, forKey: BatTrack.isCompleted.Level4.rawValue)
         defaults.set(false, forKey: BatTrack.isCompleted.Level5.rawValue)
-
+        
         //MARK: Initialize keys for STEALTH SHIP Track
         defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfBulletsFired.rawValue)
         defaults.set(0, forKey: StealthShipTrack.Level1.keyTotalNumberOfKills.rawValue)
@@ -154,7 +161,7 @@ class GameSettings{
         defaults.set(false, forKey: StealthShipTrack.isCompleted.Level3.rawValue)
         defaults.set(false, forKey: StealthShipTrack.isCompleted.Level4.rawValue)
         defaults.set(false, forKey: StealthShipTrack.isCompleted.Level5.rawValue)
-
+        
         
         //MARK: Initialize keys for UFO Track
         
@@ -229,8 +236,8 @@ class GameSettings{
         defaults.setValue(false, forKey: keyFirstRun)
         
         defaults.synchronize()
+        
     }
-    
     
     //MARK: Public Method for Game-Wide Settings
     

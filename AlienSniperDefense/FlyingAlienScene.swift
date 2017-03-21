@@ -123,6 +123,9 @@ class FlyingAlienScene: BaseScene{
         //Set current track
         currenTrack = .FlyingAlien
         
+        //Set current GamePlayMode
+        setCurrentGamePlayMode()
+        
         //Register NSNotifications for Pause and Resume
         registerNotifications()
         
@@ -193,15 +196,16 @@ class FlyingAlienScene: BaseScene{
         if(!gameHasStarted){
             adjustedCurrentTime = 0
             frameCount = 0
-            
         } else {
             adjustedCurrentTime = currentTime
         
         }
         
+        
         frameCount += adjustedCurrentTime - adjustedLastUpdateTime
         fieldActionIntervalCounter += adjustedCurrentTime - adjustedLastUpdateTime
         velocityUpdateCounter += adjustedCurrentTime - adjustedLastUpdateTime
+        
         
         
         if(frameCount > spawnInterval){

@@ -20,12 +20,9 @@ class BaseScene: SKScene{
     
     //MARK: **************** Reference to Game Settings Singleton
     let currentGameSettings = GameSettings.sharedInstance
-    var currentGamePlayMode: CurrentGamePlayMode = .MinimumKills
+    var currentGamePlayMode: GameSettings.GamePlayModeVALUES = .valueMinimumKills
     
-    enum CurrentGamePlayMode{
-        case MinimumKills, TimeLimit
-    }
-    
+  
     //MARK: *****************Number for the Current Level
     enum CurrentTrack{
         case Wingman, Bat, UFO, StealthShip, FlyingAlien, None
@@ -168,14 +165,7 @@ class BaseScene: SKScene{
     
     //MARK: ****************** Set Current GamePlay Mode
     func setCurrentGamePlayMode(){
-        switch(currentGameSettings.getGamePlayMode()){
-            case .valueMinimumKills:
-                currentGamePlayMode = .MinimumKills
-                break
-            case .valueTimeLimit:
-                currentGamePlayMode = .TimeLimit
-                break
-        }
+        currentGamePlayMode = currentGameSettings.getGamePlayMode()
     }
     
     //MARK: ************** Basic Scene Configuration
@@ -250,10 +240,14 @@ class BaseScene: SKScene{
         
        
        
-        
         if(currentGameState == .Paused) { return }
         
-        if(currentGamePlayMode == .TimeLimit){
+        
+        //Lose Condition in TimeLimit Mode: Total Game Time exceeds Maximum Time Limit
+        if(currentGamePlayMode == .valueTimeLimit){
+            
+            print("From base sceen: The totalGameTime is:\(totalGameTime)")
+            
             if(totalGameTime > timeLimit){
                 self.isPaused = true
                 showTimeUpLabel()
@@ -262,21 +256,30 @@ class BaseScene: SKScene{
             }
         }
         
-        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
-            savePlayerStatsForLevel()
-            loadNextLevel()
+        
+        //Lose Condition in Minimum Kills Mode: Number of OnScreen Enemies exceeds Maximum Number of Enemies Allowed
+        if(currentGamePlayMode == .valueMinimumKills){
+            if(currentNumberOfEnemies > maximumNumberOFEnemies){
+                
+                //Configure label for "Too many enemies spawned" notice
+                showTooManyEnemiesLabel()
+                
+                
+                self.isPaused = true
+                self.showRestartButtons()
+                
+            }
+            
         }
         
-        if(currentNumberOfEnemies > maximumNumberOFEnemies){
-            
-            //Configure label for "Too many enemies spawned" notice
-            showTooManyEnemiesLabel()
-    
-            
-            self.isPaused = true
-            self.showRestartButtons()
-    
+        
+        
+        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+                savePlayerStatsForLevel()
+                loadNextLevel()
         }
+            
+       
         
         player.update()
        
@@ -440,6 +443,13 @@ class BaseScene: SKScene{
         }
     }
     
+    
+    final func setGamePlayModeForScene(){
+        
+        currentGamePlayMode = currentGameSettings.getGamePlayMode()
+        
+
+    }
     
     //MARK: *************  Game State Functions (registered with NotificationCenter)
     func pauseGame(){

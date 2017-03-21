@@ -60,7 +60,7 @@ class NodeNames{
     static let FlyingAlienTrackButton = "FlyingAlienTrack"
     static let UFOTrackButton = "UFOTrack"
     static let TooManyEnemiesNotice = "TooManyEnemiesOnScreen"
-
+    static let ClearPlayerDataButton = "ClearPlayerDataButton"
     
 }
 

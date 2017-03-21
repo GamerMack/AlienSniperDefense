@@ -29,12 +29,14 @@ class TrackScene: SKScene{
         //Configure background
         configureBackground()
         
+        
+     
         self.anchorPoint = CGPoint(x: 0, y: 0.4)
         
         let sceneTitle = SKLabelNode(fontNamed: FontTypes.MarkerFeltWie)
         sceneTitle.fontSize = 40.0
         sceneTitle.text = "Click on a level track below:"
-        let sceneTitleYPos = ScreenSizeFloatConstants.HalfScreenHeight*0.8
+        let sceneTitleYPos = ScreenSizeFloatConstants.HalfScreenHeight*0.9
         let sceneTitleXPos = ScreenSizeFloatConstants.HalfScreenWidth
         sceneTitle.position = CGPoint(x: sceneTitleXPos, y: sceneTitleYPos)
         self.addChild(sceneTitle)
@@ -53,35 +55,46 @@ class TrackScene: SKScene{
             let trackHeight = (self.size.height)*0.90
             let trackSize = CGSize(width: trackWidth, height: trackHeight)
             
+            let trackButtonYPos: CGFloat = 20.00
+            let trackButtonZPos: CGFloat = -10.00
+            
             switch(index){
                 case 0:
                     let completionStatus = getCompletionStatusFor(trackTypeOf: .Wingman)
-                    let wingmanTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Wingman, size: trackSize, position: CGPoint(x: xStartPos, y: 0))
+                    let wingmanTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Wingman, size: trackSize, position: CGPoint(x: xStartPos, y: trackButtonYPos))
+                    wingmanTrackButton.zPosition = trackButtonZPos
                     wingmanTrackButton.name = NodeNames.WingmanTrackButton
                     self.addChild(wingmanTrackButton)
                     break
                 case 1:
                     let completionStatus = getCompletionStatusFor(trackTypeOf: .Bat)
-                    let batTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Bat, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let batTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .Bat, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: trackButtonYPos))
                     batTrackButton.name = NodeNames.BatTrackButton
+                    batTrackButton.zPosition = trackButtonZPos
+
                     self.addChild(batTrackButton)
                     break
                 case 2:
                     let completionStatus = getCompletionStatusFor(trackTypeOf: .UFO)
-                    let ufoTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .UFO, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let ufoTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .UFO, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: trackButtonYPos))
                     ufoTrackButton.name = NodeNames.UFOTrackButton
+                    ufoTrackButton.zPosition = trackButtonZPos
+
                     self.addChild(ufoTrackButton)
                     break
                 case 3:
                     let completionStatus = getCompletionStatusFor(trackTypeOf: .StealthShip)
-                    let stealthTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .StealthShip, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let stealthTrackButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .StealthShip, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: trackButtonYPos))
                     stealthTrackButton.name = NodeNames.StealthShipTrackButton
+                    stealthTrackButton.zPosition = trackButtonZPos
                     self.addChild(stealthTrackButton)
                     break
                 case 4:
                     let completionStatus = getCompletionStatusFor(trackTypeOf: .FlyingAlien)
-                    let flyingAlienButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .FlyingAlien, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: 0))
+                    let flyingAlienButton = ButtonManager.getTrackButton(isCompleted: completionStatus, trackType: .FlyingAlien, size: trackSize, position: CGPoint(x: xStartPos + (trackWidth)*CGFloat(index), y: trackButtonYPos))
                     flyingAlienButton.name = NodeNames.FlyingAlienTrackButton
+                    flyingAlienButton.zPosition = trackButtonZPos
+
                     self.addChild(flyingAlienButton)
                     break
                 default:
@@ -89,6 +102,10 @@ class TrackScene: SKScene{
             }
             
         }
+        
+        
+      
+        
     }
     
     
@@ -102,6 +119,7 @@ class TrackScene: SKScene{
         for node in nodes(at: touchLocation){
             
             let mainTransition = SKTransition.crossFade(withDuration: 2.00)
+            
             
             if node.name == NodeNames.BatTrackButton{
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .Bat)
@@ -139,6 +157,8 @@ class TrackScene: SKScene{
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .FlyingAlien)
                 self.view?.presentScene(instructionScene, transition: mainTransition)
             }
+            
+           
         }
     }
     

@@ -103,6 +103,9 @@ class BatScene: BaseScene
         //Set current track
         currenTrack = .Bat
         
+        //Set Current GamePlayMode
+        setCurrentGamePlayMode()
+        
         //Perform basic scene configuration
         performBasicSceneConfiguration()
         
