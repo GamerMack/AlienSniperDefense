@@ -35,7 +35,7 @@ class WingmanSceneLevelLoader{
         case .Medium:
             return makeLevel5(numberOfBackgroundObjects: 6, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, randomVectorConfiguration: randomVectorConfigurationMedium)
         case .Easy:
-            return makeLevel5(numberOfBackgroundObjects: 6, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
+            return makeLevel5(numberOfBackgroundObjects: 6, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 3, randomVectorConfiguration: randomVectorConfigurationEasy)
         }
         
         
@@ -57,11 +57,11 @@ class WingmanSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel3(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 20, randomVectorConfiguration: randomVectorConfigurationHard)
+            return makeLevel4(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 20, randomVectorConfiguration: randomVectorConfigurationHard)
         case .Medium:
-            return makeLevel3(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, randomVectorConfiguration: randomVectorConfigurationMedium)
+            return makeLevel4(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, randomVectorConfiguration: randomVectorConfigurationMedium)
         case .Easy:
-            return makeLevel3(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
+            return makeLevel4(numberOfBackgroundObjects: 5, hideInterval: 5.0, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, randomVectorConfiguration: randomVectorConfigurationEasy)
         }
         
         

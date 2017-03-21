@@ -38,7 +38,7 @@ class GameViewController: UIViewController {
         let menuScene = MenuScene(size: self.view.bounds.size)
         let trackScene = TrackScene(size: self.view.bounds.size)
         let instructionScene = InstructionScene(size: self.view.bounds.size, selectedTrackType: .Wingman)
-        
+        let wingman5 = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
         
         let stealthShipScene1 = StealthShipScene(size: self.view.bounds.size, levelNumber: 1, levelDescription: "Shoot all the stealth ships", enemyName: "Stealth Ships", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, spaceShipTravelSpeed: 5.00, spaceShipTransitionInterval: 5.00, maximumNumberOfEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10)
         
@@ -53,6 +53,8 @@ class GameViewController: UIViewController {
             instructionScene.scaleMode = .aspectFill
             stealthShipScene1.scaleMode = .aspectFill
         
+            wingman5.scaleMode = .aspectFill
+
             let summaryScene = SummaryScene(size: self.view.bounds.size, selectedTrackType: .Bat)
         
         
@@ -61,7 +63,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(menuScene)
+                view.presentScene(wingman5)
                     
                 view.ignoresSiblingOrder = true
                     

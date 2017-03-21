@@ -24,7 +24,9 @@ class WingmanScene: BaseScene{
     }()
     
     
-    override var currentNumberOfEnemies: Int{
+    //Stored reference to any class implementing the EnemyTrackerDelegateProtocol
+    
+    override var currentNumberOfEnemies: Int {
         didSet{
             
             if(currentNumberOfEnemies < 0){
@@ -35,13 +37,17 @@ class WingmanScene: BaseScene{
         }
     }
     
-    override var numberOfEnemiesKilled: Int{
+    
+    override var numberOfEnemiesKilled: Int {
+    
         didSet{
             currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
             
             hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
+            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         }
     }
+
     
     
     //MARK: ********* Variables-Related to Wingman Configuration
@@ -87,6 +93,12 @@ class WingmanScene: BaseScene{
         self.hideInterval = hideInterval
         self.hideActionDuration = hideActionDuration
         self.randomVectorConfigurationForUpdate = randomVectorConfigurationForUpdate
+        
+        
+        //Reset number of enemies and current number of enemies to zero
+        self.numberOfEnemiesKilled = 0
+        self.currentNumberOfEnemies = 0
+        
     }
     
     
@@ -119,7 +131,8 @@ class WingmanScene: BaseScene{
                         explosionAnimation
                         ]))
                     
-                    numberOfEnemiesKilled += 1
+                    self.numberOfEnemiesKilled += 1
+                    
                 }
 
                 
@@ -145,6 +158,7 @@ class WingmanScene: BaseScene{
         //Populate WingmanArray
         spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
         
+        
     }
     
     //MARK: ************ Game Loop Functions
@@ -169,9 +183,6 @@ class WingmanScene: BaseScene{
         frameCount += adjustedCurrentTime - adjustedLastUpdateTime
         hideIntervalFrameCount += adjustedCurrentTime - adjustedLastUpdateTime
      
-        print("The framecount is \(frameCount)")
-        print("The hideIntervalFrameCount is \(hideIntervalFrameCount)")
-        
         if(frameCount > spawnInterval){
                 spawnEnemyFromPrototype(numberOfEnemy: enemiesSpawnedPerInterval)
                 frameCount = 0
@@ -209,6 +220,7 @@ class WingmanScene: BaseScene{
             enemyCopy.name = "wingman"
             
             currentNumberOfEnemies += 1
+            
             enemyCopy.move(toParent: self)
 
             
@@ -339,30 +351,38 @@ extension WingmanScene{
             break
         }
         
-        var nextLevelScene: WingmanScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
-        
+        var nextLevelScene: WingmanScene?
         
         
         switch(self.levelNumber){
-        case 5:
+            case 1:
+                nextLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
+                break
+            case 2:
+                nextLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
+                break
+            case 3:
+                nextLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
+                break
+            case 4:
+                nextLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
+                break
+            case 5:
                 //Load player status summary scene
-                let transition = SKTransition.crossFade(withDuration: 2.00)
                 let summaryScene = SummaryScene(size: self.size, selectedTrackType: .Wingman)
-                self.view?.presentScene(summaryScene, transition: transition)
-            break
-        case 4:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel5(difficultyLevel: nextLevelDifficulty)
-        case 3:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel4(difficultyLevel: nextLevelDifficulty)
-        case 2:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel3(difficultyLevel: nextLevelDifficulty)
-        case 1:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel2(difficultyLevel: nextLevelDifficulty)
-        default:
-            nextLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
+                self.view?.presentScene(summaryScene, transition: mainTransition)
+                break
+            default:
+                nextLevelScene = WingmanSceneLevelLoader.loadLevel1(difficultyLevel: nextLevelDifficulty)
+                break
         }
         
-        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+        if(nextLevelScene == nil){
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .Wingman)
+            self.view?.presentScene(summaryScene, transition: mainTransition)
+        } else {
+            self.view?.presentScene(nextLevelScene!, transition: mainTransition)
+        }
         
     }
     
