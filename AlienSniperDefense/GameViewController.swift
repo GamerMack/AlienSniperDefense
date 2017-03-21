@@ -45,6 +45,8 @@ class GameViewController: UIViewController {
         let ufo5 = UFOLevelLoader.getLevel5(difficultyLevel: .Easy)
         let stealth5 = StealthShipSceneLevelLoader.loadLevel5(difficultyLevel: .Easy)
         
+        
+        let flyingAlien5 = FlyingAlienScene(size: self.view.bounds.size, levelNumber: 4, levelDescription: "Get em", enemyName: "Borgs", crosshairType: .BlueLarge, backgroundMusic: BackgroundMusic.DrummingSticks, fieldActionInterval: 10.0, numberOfBackgroundObjects: 5, spawnInterval: 10.0, enemiesSpawnedPerInterval: 3, initialNumberOfEnemiesSpawned: 2, maximumNumberOfEnemiesAllowed: 5, minimumKillsForLevelCompletion: 5, randomVectorConfiguration: randomVectorConfiguration)
             // Set the scale mode to scale to fit the window
             ufoScene.scaleMode = .aspectFill
             batScene.scaleMode = .aspectFill
@@ -67,7 +69,7 @@ class GameViewController: UIViewController {
         
             // Present the scene
             if let view = self.view as! SKView? {
-                view.presentScene(stealth5)
+                view.presentScene(flyingAlien5)
                     
                 view.ignoresSiblingOrder = true
                     

@@ -18,7 +18,9 @@ class BackgroundObject: SKSpriteNode{
         case Cloud3
         case Cloud4
         case Cloud5
-        case Cloud6
+        case Cloud7
+        case Cloud8
+        case Cloud9
         case Sun
         case FullMoon
         case HalfMoon
@@ -59,9 +61,14 @@ class BackgroundObject: SKSpriteNode{
         case .Cloud5:
             texture = backgroundObjectsAtlas.textureNamed("cloud5")
             break
-        case .Cloud6:
-            texture = backgroundObjectsAtlas.textureNamed("cloud6")
+        case .Cloud7:
+            texture = backgroundObjectsAtlas.textureNamed("cloud7")
             break
+        case .Cloud8:
+            texture = backgroundObjectsAtlas.textureNamed("cloud8")
+            break
+        case .Cloud9:
+            texture = backgroundObjectsAtlas.textureNamed("cloud9")
         case .Sun:
             texture = backgroundObjectsAtlas.textureNamed("sun")
             break

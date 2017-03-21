@@ -342,13 +342,17 @@ class FlyingAlienScene: BaseScene{
         for node in self.children{
             if let node = node as? FlyingAlien{
                 
+        
                 let maxVectorX = randomVectorConfiguration.maxVectorX
                 let minVectorX = randomVectorConfiguration.minVectorX
                 
                 let maxVectorY = randomVectorConfiguration.maxVectorY
                 let minVectorY = randomVectorConfiguration.minVectorY
                 
-                let randomVector = RandomVector(yComponentMin: minVectorY, yComponentMax: maxVectorY, xComponentMin: minVectorX, xComponentMax: maxVectorX)
+                var randomVector = RandomVector(yComponentMin: minVectorY, yComponentMax: maxVectorY, xComponentMin: minVectorX, xComponentMax: maxVectorX)
+                
+                randomVector.randomizeXComponentSign()
+                randomVector.randomizeYComponentSign()
                 
                 node.updatePhysics(randomVector: randomVector)
                 
@@ -466,8 +470,6 @@ extension FlyingAlienScene{
         }
         
     }
-        
-    
     
     override func reloadCurrentLevel() {
         //TODO: Implement reload current level function

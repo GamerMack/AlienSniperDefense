@@ -59,6 +59,7 @@ class NodeNames{
     static let StealthShipTrackButton = "StealthShipTrack"
     static let FlyingAlienTrackButton = "FlyingAlienTrack"
     static let UFOTrackButton = "UFOTrack"
+    static let TooManyEnemiesNotice = "TooManyEnemiesOnScreen"
 
     
 }

@@ -64,7 +64,7 @@ class BaseScene: SKScene{
         BackgroundObject(backgroundObjectType: .HalfMoon),
         BackgroundObject(backgroundObjectType: .Cloud3),
         BackgroundObject(backgroundObjectType: .Cloud5),
-        BackgroundObject(backgroundObjectType: .Cloud6),
+        BackgroundObject(backgroundObjectType: .Cloud7),
         BackgroundObject(backgroundObjectType: .Cloud4)
     
     ]
@@ -249,9 +249,7 @@ class BaseScene: SKScene{
         }
         
        
-        
-        print("The totalGameTime is: \(totalGameTime)")
-        print("The time limit is \(timeLimit)")
+       
         
         if(currentGameState == .Paused) { return }
         
@@ -270,6 +268,11 @@ class BaseScene: SKScene{
         }
         
         if(currentNumberOfEnemies > maximumNumberOFEnemies){
+            
+            //Configure label for "Too many enemies spawned" notice
+            showTooManyEnemiesLabel()
+    
+            
             self.isPaused = true
             self.showRestartButtons()
     
@@ -281,7 +284,6 @@ class BaseScene: SKScene{
     }
     
   
-    
     
     
     //MARK: ******************* USER INPUT HANDLERS (these will be overriden and customized in subclasses)
@@ -462,6 +464,35 @@ class BaseScene: SKScene{
 //MARK: *****************************SCENE EXTENSION
 
 extension BaseScene{
+    
+    func showTooManyEnemiesLabel(){
+        
+        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
+        labelNode.fontColor = SKColor.yellow
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.verticalAlignmentMode = .center
+        labelNode.fontSize = 45.0
+        labelNode.text = "Too many enemies on screen!"
+        labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.30)
+        let scalingAction = SKAction.repeatForever(SKAction.sequence([
+            SKAction.scale(to: 1.5, duration: 2.0),
+            SKAction.scale(to: 0.7, duration: 2.0)
+            ]))
+        labelNode.run(scalingAction)
+        labelNode.zPosition = 30
+        labelNode.name = NodeNames.TooManyEnemiesNotice
+        
+        
+        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.90, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
+        shapeNode.strokeColor = SKColor.black
+        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
+        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
+        shapeNode.zPosition = 29
+        self.addChild(shapeNode)
+        self.addChild(labelNode)
+        
+    }
+    
     
     final func setupMenuAndRestartButtons(){
         
