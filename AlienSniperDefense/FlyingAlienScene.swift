@@ -42,6 +42,7 @@ class FlyingAlienScene: BaseScene{
     
     //MARK: Adjusted Current Velocity
     var adjustedCurrentTime: TimeInterval = 0.00
+    var adjustedLastUpdateTime: TimeInterval = 0.00
     
     
     //Enemy Prototype
@@ -195,22 +196,20 @@ class FlyingAlienScene: BaseScene{
             
         } else {
             adjustedCurrentTime = currentTime
-            
-            frameCount += adjustedCurrentTime - lastUpdateTime
-            fieldActionIntervalCounter += adjustedCurrentTime - lastUpdateTime
-            velocityUpdateCounter += adjustedCurrentTime - lastUpdateTime
-            
+        
         }
         
+        frameCount += adjustedCurrentTime - adjustedLastUpdateTime
+        fieldActionIntervalCounter += adjustedCurrentTime - adjustedLastUpdateTime
+        velocityUpdateCounter += adjustedCurrentTime - adjustedLastUpdateTime
         
-      
         
         if(frameCount > spawnInterval){
             spawnEnemyFromPrototype(numberOfEnemy: self.enemiesSpawnedPerInterval)
             frameCount = 0.0
         }
         
-        
+    
         if(fieldActionIntervalCounter > fieldActionInterval){
             disableGravityFields()
             fieldActionIntervalCounter = 0
@@ -219,6 +218,7 @@ class FlyingAlienScene: BaseScene{
         //Update flying aliens' flying mode
         updateFlyingModesForSpawnedAliens(currentTime: adjustedCurrentTime)
         
+        adjustedLastUpdateTime = adjustedCurrentTime
         lastUpdateTime = currentTime
     }
     
