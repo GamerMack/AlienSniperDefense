@@ -54,6 +54,7 @@ class StealthShipScene: BaseScene{
     var spaceShipTransitionInterval: TimeInterval = 3.00
     var spaceShipFlySpeed: TimeInterval = 5.00
     var adjustedCurrentTime: TimeInterval = 0.00
+    var adjustedLastUpdateTime: TimeInterval = 0.00
     
     var currentSpaceShipIndex: Int = 0
     
@@ -147,9 +148,8 @@ class StealthShipScene: BaseScene{
             adjustedCurrentTime = currentTime
         }
         
-        frameCount += adjustedCurrentTime - lastUpdateTime
+        frameCount += adjustedCurrentTime - adjustedLastUpdateTime
         
-
         
         if(frameCount > spawnInterval){
             //spawn the spaceships from an array
@@ -158,7 +158,9 @@ class StealthShipScene: BaseScene{
         }
         
         updateAllSpaceShips(currentTime: adjustedCurrentTime)
-        lastUpdateTime = adjustedCurrentTime
+        
+        adjustedLastUpdateTime = adjustedCurrentTime
+        lastUpdateTime = currentTime
     }
     
     

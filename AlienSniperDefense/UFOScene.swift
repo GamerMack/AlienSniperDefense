@@ -230,27 +230,39 @@ extension UFOScene{
         }
         
         
-        var nextLevelScene: UFOScene = UFOLevelLoader.getLevel1(difficultyLevel: nextLevelDifficulty)
+        var nextLevelScene: UFOScene?
         
         switch(self.levelNumber){
+
+            case 1:
+                nextLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: nextLevelDifficulty)
+                break
+            case 2:
+                nextLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: nextLevelDifficulty)
+                break
+            case 3:
+                nextLevelScene = UFOLevelLoader.getLevel4(difficultyLevel: nextLevelDifficulty)
+                break
+            case 4:
+                nextLevelScene = UFOLevelLoader.getLevel5(difficultyLevel: nextLevelDifficulty)
+                break
             case 5:
                 let transition = SKTransition.crossFade(withDuration: 2.00)
                 let summaryScene = SummaryScene(size: self.size, selectedTrackType: .UFO)
                 self.view?.presentScene(summaryScene, transition: transition)
                 break
-            case 4:
-                nextLevelScene = UFOLevelLoader.getLevel5(difficultyLevel: nextLevelDifficulty)
-            case 3:
-                nextLevelScene = UFOLevelLoader.getLevel4(difficultyLevel: nextLevelDifficulty)
-            case 2:
-                nextLevelScene = UFOLevelLoader.getLevel3(difficultyLevel: nextLevelDifficulty)
-            case 1:
-                nextLevelScene = UFOLevelLoader.getLevel2(difficultyLevel: nextLevelDifficulty)
             default:
                 nextLevelScene = UFOLevelLoader.getLevel1(difficultyLevel: nextLevelDifficulty)
         }
         
-        self.view?.presentScene(nextLevelScene, transition: mainTransition)
+        if(nextLevelScene == nil){
+            let transition = SKTransition.crossFade(withDuration: 2.00)
+            let summaryScene = SummaryScene(size: self.size, selectedTrackType: .UFO)
+        } else {
+            self.view?.presentScene(nextLevelScene!, transition: mainTransition)
+
+        }
+        
         
         
     }
