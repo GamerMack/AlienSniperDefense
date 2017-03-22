@@ -1,6 +1,6 @@
 //
 //  UFO.swift
-//  AlienBusters
+//  AlienSniperDefense
 //
 //  Created by Aleksander Makedonski on 3/15/17.
 //  Copyright © 2017 AlexMakedonski. All rights reserved.

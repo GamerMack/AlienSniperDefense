@@ -7,19 +7,7 @@
 //
 
 import Foundation
-//
-//  GameSettings.swift
-//  BatInvasion
-//
-//  Created by Aleksander Makedonski on 3/10/17.
-//  Copyright © 2017 AlexMakedonski. All rights reserved.
-//
-
-import Foundation
 import SpriteKit
-
-
-
 
 class GameSettings{
     

@@ -1,6 +1,6 @@
 //
-//  LevelLoader.swift
-//  AlienBusters
+//  WingmanSceneLevelLoader.swift
+//  AlienSniperDefense
 //
 //  Created by Aleksander Makedonski on 3/14/17.
 //  Copyright © 2017 AlexMakedonski. All rights reserved.

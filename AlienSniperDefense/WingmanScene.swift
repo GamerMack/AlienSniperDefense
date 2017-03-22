@@ -1,5 +1,5 @@
 //
-//  BaseScene.swift
+//  WingmanScene.swift
 //  AlienSniperDefense
 //
 //  Created by Aleksander Makedonski on 3/16/17.
