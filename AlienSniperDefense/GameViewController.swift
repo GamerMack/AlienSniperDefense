@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     var authenticationViewController: UIViewController?
     var enableGameCenter: Bool = false
     var lastError: Error?
+    var match: GKMatch?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,12 +125,134 @@ class GameViewController: UIViewController {
     }
     
     func showAuthenticationViewController(){
-        //TODO: Need to access the authentication view controller from GameCenter
-       // present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: true, completion: nil)
+        //Authentication view controller is passed in as an argument to the callback function that is set for the event handler;
+        if let authenticationViewController = self.authenticationViewController{
+            present(authenticationViewController, animated: true, completion: nil)
+        }
     }
     
+    
+    //MARK: ********* When the player selects the multiplayer option in the MenuScene,a notification is posted, whose observer is implemented in the GameViewController class and which calls the startMultiplayerGamePlay method
+    //TODO: ********* Register/post notifications for the StartMultiplayerGameplay Option
+    func startMultiplayerGamePlay(minPlayers: Int, maxPlayers: Int){
+        
+        if(!enableGameCenter) { return }
+        
+        let matchRequest = GKMatchRequest()
+        matchRequest.maxPlayers = maxPlayers
+        matchRequest.minPlayers = minPlayers
+        
+        let matchMakerController = GKMatchmakerViewController(matchRequest: matchRequest)
+        
+        if let mmvc = matchMakerController{
+            mmvc.delegate = self
+            present(mmvc, animated: false, completion: nil)
+        }
+    }
+    
+
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 }
+
+//MARK: ************ Conformance to GKMatchmakerViewControllerDelegate methods
+extension GameViewController: GKMatchmakerViewControllerDelegate{
+    
+    //MARK: ********* The user has cancelled matchmaking
+    func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: ********* Matchmaking failed with an error
+    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFailWithError error: Error) {
+        viewController.dismiss(animated: true, completion: nil)
+        print("Error finding match: \(error.localizedDescription)")
+        
+    }
+    
+    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
+        viewController.dismiss(animated: true, completion: nil)
+        
+        self.match = match
+        match.delegate = self
+        
+        if(match.expectedPlayerCount == 0){
+            print("Ready to start match")
+        }
+        
+    }
+    
+    func matchmakerViewController(_ viewController: GKMatchmakerViewController, hostedPlayerDidAccept player: GKPlayer) {
+        //TODO: Not yet implemented
+    }
+    
+    func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFindHostedPlayers players: [GKPlayer]) {
+        //TODO: Not yet implemented
+    }
+    
+}
+
+
+//MARK: ************ Conformance to GKMatchDelegate Methods
+extension GameViewController: GKMatchDelegate{
+    func match(_ match: GKMatch, didFailWithError error: Error?) {
+        
+    }
+    
+    func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
+        
+    }
+    
+    //MARK: ********* For 1v1 games, will attempt to reconnect to the player if connection was interrupted
+    func match(_ match: GKMatch, shouldReinviteDisconnectedPlayer player: GKPlayer) -> Bool {
+        return true
+    }
+    
+    func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
+        
+    }
+    
+    func match(_ match: GKMatch, didReceive data: Data, forRecipient recipient: GKPlayer, fromRemotePlayer player: GKPlayer) {
+        
+    }
+    
+}
+
+//MARK: ********** Conformance to UINavigationControllerDelegate methods
+extension GameViewController: UINavigationControllerDelegate{
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        
+    }
+    
+    //TODO: ****** Refactor to use UITraitEnvironment and UITraitCollection APIs
+    func navigationControllerSupportedInterfaceOrientations(_ navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+            return UIInterfaceOrientationMask.landscape
+    }
+    
+    /**
+    func navigationControllerPreferredInterfaceOrientationForPresentation(_ navigationController: UINavigationController) -> UIInterfaceOrientation {
+    
+    }
+     **/
+    
+    /**
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+    }
+     **/
+    
+    /**
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+    }
+     **/
+}
+
+

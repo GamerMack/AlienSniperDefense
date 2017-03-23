@@ -23,6 +23,10 @@ class TrackScene: SKScene{
     let gameSettings = GameSettings.sharedInstance
     
     override func didMove(to view: SKView) {
+        //Add observer for PresentAuthenticationViewController notification
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
+        
         //Configure Background Musics
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.FarmFrolics, forParentNode: self)
         
@@ -220,6 +224,11 @@ class TrackScene: SKScene{
         }
         
       
+    }
+    
+    deinit {
+        let nc = NotificationCenter.default
+        nc.removeObserver(self)
     }
     
     

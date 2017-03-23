@@ -136,6 +136,11 @@ class BaseScene: SKScene{
     }
     
     override func didMove(to view: SKView) {
+        //Add an observer for the PresentAuthenticationViewController notification
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
+        
+        
         //Set gameHasStarted to false, set totalGameTime to zero
         gameHasStarted = false
         totalGameTime = 0.00
@@ -462,7 +467,7 @@ class BaseScene: SKScene{
         self.isPaused = false
     }
     
-    //MARK: *********** Remove observers for Pause and Resume Notifications
+    //MARK: *********** Remove observers for Pause and Resume Notifications, as well as for PresentAuthenticationViewController
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

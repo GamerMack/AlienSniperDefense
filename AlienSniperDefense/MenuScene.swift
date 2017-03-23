@@ -24,6 +24,7 @@ import AVFoundation
 
 
 class MenuScene: SKScene{
+ 
     
     //Cache for Click Sounds played when pressing UI buttons
     let clickSound1 = SKAction.playSoundFileNamed(SoundEffects.Click1, waitForCompletion: false)
@@ -53,6 +54,9 @@ class MenuScene: SKScene{
     let randomPointGenerator = RandomPoint(algorithmType: .Faster)
     
     override func didMove(to view: SKView) {
+        //Add observer for PresentAuthenticationViewController notification
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
         
         //Configure Anchor Point
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
@@ -372,6 +376,11 @@ class MenuScene: SKScene{
     private func removeGamePlayModeButtons(){
         minimumKillsModeButton.removeFromParent()
         noTimeLimitModeButton.removeFromParent()
+    }
+    
+    deinit {
+        let nc = NotificationCenter.default
+        nc.removeObserver(self)
     }
     
 }
