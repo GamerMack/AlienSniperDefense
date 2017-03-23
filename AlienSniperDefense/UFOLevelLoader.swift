@@ -38,13 +38,13 @@ class UFOLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 4, minUFOSpawnedPerInterval: 6, maxUFOSpawnedPerInterval: 10, minimumKilledForLevelCompletion: 20, maximumAllowableUFOonScreen: 20, pathAnimationConfiguration: hardConfig)
+            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 4, minUFOSpawnedPerInterval: 6, maxUFOSpawnedPerInterval: 10, minimumKilledForLevelCompletion: 60, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: hardConfig)
             
         case .Medium:
-            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 15, maximumAllowableUFOonScreen: 30, pathAnimationConfiguration: mediumConfig)
+            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 50, maximumAllowableUFOonScreen: 50, pathAnimationConfiguration: mediumConfig)
             
         case .Easy:
-            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 10, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: easyConfig)
+            return makeLevel5Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 40, maximumAllowableUFOonScreen: 60, pathAnimationConfiguration: easyConfig)
             
         }
         
@@ -68,13 +68,13 @@ class UFOLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 3, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 20, maximumAllowableUFOonScreen: 20, pathAnimationConfiguration: hardConfig)
+            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 3, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 50, maximumAllowableUFOonScreen: 30, pathAnimationConfiguration: hardConfig)
             
         case .Medium:
-            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 15, maximumAllowableUFOonScreen: 30, pathAnimationConfiguration: mediumConfig)
+            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 40, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: mediumConfig)
             
         case .Easy:
-            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 10, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: easyConfig)
+            return makeLevel4Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 5, maxUFOSpawnedPerInterval: 8, minimumKilledForLevelCompletion: 30, maximumAllowableUFOonScreen: 50, pathAnimationConfiguration: easyConfig)
             
         }
         
@@ -98,13 +98,13 @@ class UFOLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 1, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 20, maximumAllowableUFOonScreen: 20, pathAnimationConfiguration: hardConfig)
+            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 1, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 40, maximumAllowableUFOonScreen: 20, pathAnimationConfiguration: hardConfig)
             
         case .Medium:
-            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 3, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 15, maximumAllowableUFOonScreen: 30, pathAnimationConfiguration: mediumConfig)
+            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 3, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 35, maximumAllowableUFOonScreen: 30, pathAnimationConfiguration: mediumConfig)
             
         case .Easy:
-            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 3, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 10, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: easyConfig)
+            return makeLevel3Scene(spawnInterval: 5.0, initialNumberOfUFOSpawned: 2, minUFOSpawnedPerInterval: 3, maxUFOSpawnedPerInterval: 5, minimumKilledForLevelCompletion: 30, maximumAllowableUFOonScreen: 40, pathAnimationConfiguration: easyConfig)
             
         }
         

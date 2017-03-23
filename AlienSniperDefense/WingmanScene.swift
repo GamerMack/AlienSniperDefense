@@ -26,28 +26,7 @@ class WingmanScene: BaseScene{
     
     //Stored reference to any class implementing the EnemyTrackerDelegateProtocol
     
-    override var currentNumberOfEnemies: Int {
-        didSet{
-            
-            if(currentNumberOfEnemies < 0){
-                currentNumberOfEnemies = 0
-            }
-            
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        }
-    }
-    
-    
-    override var numberOfEnemiesKilled: Int {
-    
-        didSet{
-            currentNumberOfEnemies -= (numberOfEnemiesKilled - oldValue)
-            
-            hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
-            hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
-        }
-    }
-
+    var enemyCounter: EnemyCounterDelegate!
     
     
     //MARK: ********* Variables-Related to Wingman Configuration
@@ -99,6 +78,9 @@ class WingmanScene: BaseScene{
         self.numberOfEnemiesKilled = 0
         self.currentNumberOfEnemies = 0
         
+        //Initialize the EnemyCounter
+        enemyCounter = EnemyCounter(baseScene: self)
+        
     }
     
     
@@ -121,7 +103,7 @@ class WingmanScene: BaseScene{
             if player.contains(touchLocation){
                 player.run(shootingSound)
                 
-                if let node = node as? BackgroundObject {
+                if node is BackgroundObject {
                     return
                 }
                 
@@ -131,7 +113,7 @@ class WingmanScene: BaseScene{
                         explosionAnimation
                         ]))
                     
-                    self.numberOfEnemiesKilled += 1
+                    enemyCounter.didKillOnScreenEnemies(numberOfEnemiesKilled: 1)
                     
                 }
 
@@ -156,7 +138,7 @@ class WingmanScene: BaseScene{
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
         //Populate WingmanArray
-        spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
+        //spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
         
         
     }
@@ -181,6 +163,8 @@ class WingmanScene: BaseScene{
         }
         
         frameCount += adjustedCurrentTime - adjustedLastUpdateTime
+        print("The frame count is: \(frameCount)")
+        
         hideIntervalFrameCount += adjustedCurrentTime - adjustedLastUpdateTime
      
         if(frameCount > spawnInterval){
@@ -219,12 +203,13 @@ class WingmanScene: BaseScene{
             enemyCopy.position = randomSpawnPoint
             enemyCopy.name = "wingman"
             
-            currentNumberOfEnemies += 1
             
-            enemyCopy.move(toParent: self)
-
+            enemyCounter.didIncreaseOnScreenEnemyCountBy(amountOfIncrease: 1)
+            
+            self.addChild(enemyCopy)
             
         }
+        
         
         
     }

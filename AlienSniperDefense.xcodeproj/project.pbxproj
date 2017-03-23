@@ -41,6 +41,8 @@
 		BD29B0591E82BAED0028A468 /* LaunchScreenImg2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD29B0581E82BAED0028A468 /* LaunchScreenImg2.png */; };
 		BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */; };
 		BD2B1DBF1E8018D600B9044B /* MedalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2B1DBE1E8018D600B9044B /* MedalScene.swift */; };
+		BD2DB7D21E83E2D400193C91 /* EnemyCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2DB7D11E83E2D400193C91 /* EnemyCounter.swift */; };
+		BD2DB7D41E83E8C600193C91 /* EnemyCounterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2DB7D31E83E8C600193C91 /* EnemyCounterDelegate.swift */; };
 		BD2EF3D91E7ACD3B00CDEEBB /* UFOLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */; };
 		BD2F1FA91E7CEFE8002023E8 /* TrackScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */; };
 		BD37DAA31E7F8CB50067A0BE /* WingmanController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */; };
@@ -146,6 +148,8 @@
 		BD29B0581E82BAED0028A468 /* LaunchScreenImg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenImg2.png; sourceTree = "<group>"; };
 		BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		BD2B1DBE1E8018D600B9044B /* MedalScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalScene.swift; sourceTree = "<group>"; };
+		BD2DB7D11E83E2D400193C91 /* EnemyCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyCounter.swift; sourceTree = "<group>"; };
+		BD2DB7D31E83E8C600193C91 /* EnemyCounterDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyCounterDelegate.swift; sourceTree = "<group>"; };
 		BD2EF3D81E7ACD3B00CDEEBB /* UFOLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOLevelLoader.swift; sourceTree = "<group>"; };
 		BD2F1FA81E7CEFE8002023E8 /* TrackScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackScene.swift; sourceTree = "<group>"; };
 		BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanController.swift; sourceTree = "<group>"; };
@@ -312,6 +316,8 @@
 			children = (
 				BD07A4161E7A56D300B52128 /* SceneInterfaceManagerDelegate.swift */,
 				BD07A4151E7A56D300B52128 /* SceneInterfaceManager.swift */,
+				BD2DB7D31E83E8C600193C91 /* EnemyCounterDelegate.swift */,
+				BD2DB7D11E83E2D400193C91 /* EnemyCounter.swift */,
 				BD1014C51E80E2E1000CAB88 /* EnemyTrackerDelegate.swift */,
 				BD1014C31E80E0C7000CAB88 /* EnemyTracker.swift */,
 			);
@@ -720,6 +726,8 @@
 				BD2777221E7A95F2009F641C /* UFOController.swift in Sources */,
 				BD37DAA31E7F8CB50067A0BE /* WingmanController.swift in Sources */,
 				BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */,
+				BD2DB7D21E83E2D400193C91 /* EnemyCounter.swift in Sources */,
+				BD2DB7D41E83E8C600193C91 /* EnemyCounterDelegate.swift in Sources */,
 				BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */,
 				BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */,
 				BD07A3FF1E7A564B00B52128 /* UFO.swift in Sources */,

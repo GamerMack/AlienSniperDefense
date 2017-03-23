@@ -136,6 +136,60 @@ class GameViewController: UIViewController {
         }
     }
     
+    //MARK: Call this method to present the GKGameCenterViewController that allows users to view current achievements; the game should pause before using this interface
+    func viewCurrentAchievements(){
+        
+        if(!enableGameCenter) { return }
+        
+        
+        let gameCenterViewController = GKGameCenterViewController()
+        gameCenterViewController.gameCenterDelegate = self
+        
+        gameCenterViewController.viewState = .achievements
+    
+        present(gameCenterViewController, animated: false, completion: nil)
+        
+    }
+    
+    //MARK: *********** Call this method to update progress on achievements that are not hidden to the player (e.g. progress towards completion of certain tracks
+    func reportProgressTowardsAnAchievement(){
+        if(!enableGameCenter) { return }
+        
+        let newAchievement = GKAchievement()
+        var achievements = [GKAchievement]()
+        achievements.append(newAchievement)
+        
+        GKAchievement.report(achievements, withCompletionHandler: { (error: Error?) -> Void in
+            
+            if(error != nil){
+                //TODO: handle error in reporting achievement
+            }
+        
+        })
+    }
+    
+    
+    //MARK: *********** Load the player's achievements up-to-date
+    func loadAchievementsForCurrentPlayer(){
+        
+        if(!enableGameCenter) { return }
+        
+        GKAchievement.loadAchievements(completionHandler:{ (achievements: [GKAchievement]?, error: Error?) -> Void in
+            
+            if(error != nil){
+                //TODO: handle the error
+            } else if let achievements = achievements {
+                
+                for achievement in achievements{
+                    //achievement.identifier
+                    //achievement.percentComplete
+                    //achievement.isCompleted
+                    
+                }
+            }
+        })
+    }
+    
     
     //MARK: ********* When the player selects the multiplayer option in the MenuScene,a notification is posted, whose observer is implemented in the GameViewController class and which calls the startMultiplayerGamePlay method
     //TODO: ********* Register/post notifications for the StartMultiplayerGameplay Option
@@ -203,6 +257,17 @@ extension GameViewController: GKMatchmakerViewControllerDelegate{
     
 }
 
+
+
+//MARK: ************ Conformance to GKGameCenterControllerDelegate
+extension GameViewController: GKGameCenterControllerDelegate{
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        
+    
+        
+    }
+}
 
 //MARK: ************ Conformance to GKMatchDelegate Methods
 extension GameViewController: GKMatchDelegate{
