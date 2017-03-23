@@ -61,7 +61,7 @@ class ButtonFactory{
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.10 )
         introText3.fontSize = 13.0
-        introText3.text = "Shoot every \(enemyName). If \(spawningLimit) are spawned, you lose"
+        introText3.text = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
         introText3.fontColor = SKColor.blue

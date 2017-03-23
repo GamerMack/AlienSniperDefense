@@ -139,6 +139,8 @@ class BatScene: BaseScene
 
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            
+                configureTimerButton()
         }else{
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }

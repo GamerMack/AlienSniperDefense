@@ -24,7 +24,7 @@ class HUD2: SKSpriteNode{
     //MARK: Displays/Indicators (static and preconfigured)
     
     var numberKilledTexture: SKTexture?
-    var numberEnemiesLabel = SKLabelNode(text: "Number of Enemies Spawned: ")
+    var numberEnemiesLabel = SKLabelNode(text: "Number of Enemies Present: ")
     
     //MARK:*********** INITIALIZATION METHODS
     

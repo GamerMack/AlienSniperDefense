@@ -37,8 +37,20 @@ class BaseScene: SKScene{
     var pauseButton = SKSpriteNode()
     var menuButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
+    var timerLabel: SKLabelNode?
+    
+    let timerLabelNumberFormatter: NumberFormatter = {
+        let nf = NumberFormatter()
+        
+        nf.maximumIntegerDigits = 2
+        nf.minimumIntegerDigits = 2
+        
+        return nf
+    }()
+    
     var sceneInterfaceManagerDelegate: SceneInterfaceManagerDelegate!
     var gameHasStarted: Bool = false
+    
     
     //MARK: ********************* Explosion Animation (cached in the scene file for efficiency)
     var explosionAnimation = SKAction()
@@ -203,6 +215,10 @@ class BaseScene: SKScene{
         
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            
+            configureTimerButton()
+            
+            
         }else{
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
@@ -230,6 +246,52 @@ class BaseScene: SKScene{
         
     }
     
+    //MARK: *********** Function for Configuring and Updating Timer Button
+    
+    final func configureTimerButton(){
+        self.timerLabel = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
+        if let timerLabel = timerLabel {
+            timerLabel.fontColor = SKColor.yellow
+            timerLabel.verticalAlignmentMode = .center
+            timerLabel.horizontalAlignmentMode = .right
+            timerLabel.fontSize = 15.0
+        
+            let timerYPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.85
+            let timerXPos = ScreenSizeFloatConstants.HalfScreenWidth*0.90
+            timerLabel.position = CGPoint(x: timerXPos, y: timerYPos)
+        
+           
+            let timeRemaining = self.timeLimit - self.totalGameTime
+            
+            
+            let timerNumber = NSNumber(value: timeRemaining)
+            let numberString = timerLabelNumberFormatter.string(from: timerNumber)
+            
+            if(numberString != nil){
+                let timerText = "Time Remaining: \(numberString!)"
+                timerLabel.text = timerText
+            }
+        
+            self.addChild(timerLabel)
+        }
+    }
+    
+    final func updateTimerButton(){
+        if let timerLabel = self.timerLabel{
+           
+            var timeRemaining = self.timeLimit - self.totalGameTime
+            
+            timeRemaining = timeRemaining < 0.00 ? 0.00 : timeRemaining
+
+            let timerNumber = NSNumber(value: timeRemaining)
+            let numberString = timerLabelNumberFormatter.string(from: timerNumber)
+            
+            if(numberString != nil){
+                let timerText = "Time Remaining: \(numberString!)"
+                timerLabel.text = timerText
+            }
+        }
+    }
  
     
     //MARK: *************** GAME LOOP FUNCTIONS (these will be overriden and customized in subclasses)
@@ -241,6 +303,8 @@ class BaseScene: SKScene{
         if(gameHasStarted){
             totalGameTime += currentTime - lastUpdateTime
             lastUpdateTime = currentTime
+            
+            
         }
         
        
@@ -251,6 +315,8 @@ class BaseScene: SKScene{
         //Lose Condition in TimeLimit Mode: Total Game Time exceeds Maximum Time Limit
         if(currentGamePlayMode == .valueTimeLimit){
             
+            updateTimerButton()
+
             
             if(totalGameTime > timeLimit){
                 

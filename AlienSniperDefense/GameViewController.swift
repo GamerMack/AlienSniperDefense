@@ -40,6 +40,10 @@ class GameViewController: UIViewController {
         
         let testScene = TestScene(size: self.view.bounds.size)
         testScene.scaleMode = .aspectFit
+        
+        let batScene4 = BatSceneLevelLoader.getLevel4Scene(size: self.view.bounds.size, difficultyLevel: .Easy)
+        let batScene5 = BatSceneLevelLoader.getLevel5Scene(size: self.view.bounds.size, difficultyLevel: .Easy)
+        
             // Present the scene
             if let view = self.view as! SKView? {
                 view.presentScene(menuScene)

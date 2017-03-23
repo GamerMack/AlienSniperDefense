@@ -31,13 +31,13 @@ class BatSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 8.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 10, minimumKillsForLevelCompletion: 20, minBatsSpawned: 3, maxBatsSpawned: 5, minBatComponentVelocity: 50, maxBatComponentVelocity: 120, lightNodeFalloff: 1.0)
+            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 7, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 40, minBatsSpawned: 2, maxBatsSpawned: 6, minBatComponentVelocity: 80, maxBatComponentVelocity: 180, lightNodeFalloff: 1.5)
             
         case .Medium:
-            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 9.0, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 20, minBatsSpawned: 3, maxBatsSpawned: 5, minBatComponentVelocity: 50, maxBatComponentVelocity: 120, lightNodeFalloff: 1.0)
+            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 9.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 7, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 30, minBatsSpawned: 2, maxBatsSpawned: 6, minBatComponentVelocity: 80, maxBatComponentVelocity: 180, lightNodeFalloff: 1.5)
             
         case .Easy:
-            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 20, minBatsSpawned: 3, maxBatsSpawned: 5, minBatComponentVelocity: 50, maxBatComponentVelocity: 120, lightNodeFalloff: 1.0)
+            return makeLevel5(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 7, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 20, minBatsSpawned: 2, maxBatsSpawned: 6, minBatComponentVelocity: 80, maxBatComponentVelocity: 180, lightNodeFalloff: 1.5)
             
         }
         
@@ -57,13 +57,13 @@ class BatSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 20, minBatsSpawned: 0, maxBatsSpawned: 5, minBatComponentVelocity: 30, maxBatComponentVelocity: 100, lightNodeFalloff: 1.0)
+            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 3.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 8, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 40, minBatsSpawned: 5, maxBatsSpawned: 8, minBatComponentVelocity: 70, maxBatComponentVelocity: 150, lightNodeFalloff: 1.5)
             
         case .Medium:
-            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 2, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, minBatsSpawned: 0, maxBatsSpawned: 5, minBatComponentVelocity: 30, maxBatComponentVelocity: 100, lightNodeFalloff: 1.0)
+            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 5, enemiesSpawnedPerInterval: 8, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 30, minBatsSpawned: 5, maxBatsSpawned: 8, minBatComponentVelocity: 70, maxBatComponentVelocity: 130, lightNodeFalloff: 1.5)
             
         case .Easy:
-            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10, minBatsSpawned: 0, maxBatsSpawned: 5, minBatComponentVelocity: 30, maxBatComponentVelocity: 100, lightNodeFalloff: 1.0)
+            return makeLevel4(numberOfBackgroundObjects: 3, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 8, maximumEnemiesAllowed: 50, minimumKillsForLevelCompletion: 20, minBatsSpawned: 5, maxBatsSpawned: 8, minBatComponentVelocity: 50, maxBatComponentVelocity: 130, lightNodeFalloff: 1.5)
             
         }
         
