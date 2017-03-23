@@ -46,6 +46,7 @@ class MenuScene: SKScene{
     //GamePlayMode Configuration Buttons
     var noTimeLimitModeButton = SKSpriteNode()
     var minimumKillsModeButton = SKSpriteNode()
+    var multiplayerModeButton = SKSpriteNode()
     
     //User Options Manager
     let gameSettingsManager = GameSettings.sharedInstance
@@ -157,7 +158,7 @@ class MenuScene: SKScene{
             
             
             //User selects GamePlayMode
-            if nodeTouched.name == "Time Limit"{
+            if nodeTouched.name == NodeNames.TimeLimitModeButton{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueTimeLimit)
                 nodeTouched.run(clickSound3)
                 
@@ -168,7 +169,7 @@ class MenuScene: SKScene{
 
             }
             
-            if nodeTouched.name == "Minimum Kills"{
+            if nodeTouched.name == NodeNames.MinimumKillsModeButton{
                 gameSettingsManager.setGamePlayMode(gamePlayMode: .valueMinimumKills)
                 nodeTouched.run(clickSound3)
 
@@ -178,6 +179,11 @@ class MenuScene: SKScene{
                 self.view?.presentScene(trackScene, transition: transition)
 
 
+            }
+            
+            if nodeTouched.name == NodeNames.StartMultiplayerButton{
+                let nc = NotificationCenter.default
+                nc.post(name: Notification.Name(rawValue: GameKitHelper.StartMultiplayerGame), object: nil)
             }
             
         }
@@ -192,22 +198,22 @@ class MenuScene: SKScene{
         topTitleNode.fontColor = SKColor.yellow
         topTitleNode.text = "Alien"
         topTitleNode.zPosition = 2
-        topTitleNode.position = CGPoint(x: 0.0, y: 130)
-        topTitleNode.fontSize = 60
+        topTitleNode.position = CGPoint(x: 0.0, y: 100)
+        topTitleNode.fontSize = 50
         self.addChild(topTitleNode)
         
         let bottomTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         bottomTitleNode.fontColor = SKColor.yellow
         bottomTitleNode.text = "Sniper Defense"
-        bottomTitleNode.position = CGPoint(x: 0.0, y: 70)
+        bottomTitleNode.position = CGPoint(x: 0.0, y: 40)
         bottomTitleNode.zPosition = 2
-        bottomTitleNode.fontSize = 60
+        bottomTitleNode.fontSize = 50
         self.addChild(bottomTitleNode)
         
         let authorNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         authorNode.fontColor = SKColor.yellow
         authorNode.text = "Game Developer: Alex Makedonski"
-        authorNode.position = CGPoint(x: 0.0, y: 40)
+        authorNode.position = CGPoint(x: 0.0, y: 20)
         authorNode.zPosition = 2
         authorNode.fontSize = 10
         self.addChild(authorNode)
@@ -215,7 +221,7 @@ class MenuScene: SKScene{
         let designerNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         designerNode.fontColor = SKColor.yellow
         designerNode.text = "Graphics By: Kenney"
-        designerNode.position = CGPoint(x: 0.0, y: 20)
+        designerNode.position = CGPoint(x: 0.0, y: 0)
         designerNode.zPosition = 2
         designerNode.fontSize = 10
         self.addChild(designerNode)
@@ -316,9 +322,14 @@ class MenuScene: SKScene{
     //MARK: *********** Helper Functions for setting up menu buttons
     
     private func setupDifficultyOptionsButtons(){
-        hardButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Hard", atPosition: CGPoint(x: 0, y: 100))
-        mediumButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Medium", atPosition: CGPoint(x: 0, y: 10))
-        easyButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Easy", atPosition: CGPoint(x: 0, y: -75))
+        
+        let hardButtonYPos = ScreenSizeFloatConstants.HalfScreenHeight*0.30
+        let mediumButtonYPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.20
+        let easyButtonYPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.70
+            
+        hardButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Hard", atPosition: CGPoint(x: 0, y: hardButtonYPos))
+        mediumButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Medium", atPosition: CGPoint(x: 0, y: mediumButtonYPos))
+        easyButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Easy", atPosition: CGPoint(x: 0, y: easyButtonYPos))
         
         self.addChild(hardButton)
         self.addChild(mediumButton)
@@ -326,12 +337,21 @@ class MenuScene: SKScene{
     }
     
     private func setupGamePlayModeButtons(){
-        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Time Limit", atPosition: CGPoint(x: 0, y: 100))
         
-        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: "Minimum Kills", atPosition: CGPoint(x: 0, y: 10))
+        let buttonWidth = ScreenSizeFloatConstants.HalfScreenWidth*0.90
+        let buttonHeight = ScreenSizeFloatConstants.HalfScreenHeight*0.50
+        let buttonSize = CGSize(width: buttonWidth, height: buttonHeight)
+        
+        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.TimeLimitModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.50), andWithSizeOf: buttonSize)
+        
+        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.MinimumKillsModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.00), andWithSizeOf: buttonSize)
+        
+        
+        multiplayerModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.StartMultiplayerButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.50), andWithSizeOf: buttonSize)
         
         self.addChild(noTimeLimitModeButton)
         self.addChild(minimumKillsModeButton)
+        self.addChild(multiplayerModeButton)
         
     }
     
@@ -354,8 +374,8 @@ class MenuScene: SKScene{
         let buttonTextLabel = SKLabelNode(fontNamed: kFuturaCondensedMedium)
         buttonTextLabel.text = buttonText
         buttonTextLabel.verticalAlignmentMode = .center
-        buttonTextLabel.position = CGPoint(x: 100, y: 40)
-        buttonTextLabel.fontSize = 40
+        buttonTextLabel.position = CGPoint(x: button.size.width*0.50, y: button.size.height*0.50)
+        buttonTextLabel.fontSize = 35
         buttonTextLabel.fontColor = SKColor.blue
         buttonTextLabel.name = buttonText
         buttonTextLabel.zPosition = 20
@@ -376,6 +396,7 @@ class MenuScene: SKScene{
     private func removeGamePlayModeButtons(){
         minimumKillsModeButton.removeFromParent()
         noTimeLimitModeButton.removeFromParent()
+        multiplayerModeButton.removeFromParent()
     }
     
     deinit {

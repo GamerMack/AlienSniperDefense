@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     
     //TODO: Add observers for Notification(that is, PresentAuthenticationViewController) to the base scene as well as the TitleScene, TrackScene, and other transitional scenes, since the authentication handler is executed asynchronously and may complete after TitleScene/TrackScene/BaseScene is loaded
     
+    let localPlayer = GKLocalPlayer.localPlayer()
     var authenticationViewController: UIViewController?
     var enableGameCenter: Bool = false
     var lastError: Error?
@@ -28,36 +29,9 @@ class GameViewController: UIViewController {
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
         
+        nc.addObserver(self, selector: #selector(GameViewController.startMultiplayerGamePlay), name: Notification.Name(rawValue: GameKitHelper.StartMultiplayerGame), object: nil)
         
-        //Authenticate the local player to access GameCenter services
-        let localPlayer = GKLocalPlayer.localPlayer()
-      
-        localPlayer.authenticateHandler = {
-            (viewController: UIViewController?, error: Error?) -> Void in
-            
-            self.setLastError(lastError: error)
-            
-            if(viewController != nil){
-                
-                self.setAuthenticationViewController(authenticationViewController: viewController)
-                
-            } else if(localPlayer.isAuthenticated){
-                
-                self.enableGameCenter = true
-                
-            } else {
-                
 
-                self.enableGameCenter = false
-                
-            }
-            
-        
-                
-        }
-        
-        
-        
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
         // including entities and graphs.
         
@@ -100,6 +74,33 @@ class GameViewController: UIViewController {
         return true
     }
     
+    func authenticateLocalPlayer(){
+        let localPlayer = self.localPlayer
+        
+        localPlayer.authenticateHandler = {
+            (viewController: UIViewController?, error: Error?) -> Void in
+            
+            self.setLastError(lastError: error)
+            
+            if(viewController != nil){
+                
+                self.setAuthenticationViewController(authenticationViewController: viewController)
+                
+            } else if(localPlayer.isAuthenticated){
+                
+                self.enableGameCenter = true
+                
+            } else {
+                
+                
+                self.enableGameCenter = false
+                
+            }
+            
+            
+            
+        }
+    }
     
     private func setAuthenticationViewController(authenticationViewController: UIViewController?){
         if(authenticationViewController != nil){
@@ -134,13 +135,17 @@ class GameViewController: UIViewController {
     
     //MARK: ********* When the player selects the multiplayer option in the MenuScene,a notification is posted, whose observer is implemented in the GameViewController class and which calls the startMultiplayerGamePlay method
     //TODO: ********* Register/post notifications for the StartMultiplayerGameplay Option
-    func startMultiplayerGamePlay(minPlayers: Int, maxPlayers: Int){
+    func startMultiplayerGamePlay(){
         
-        if(!enableGameCenter) { return }
+        if(!enableGameCenter) {
+            //If GameCenter is not enabled, make sure the player is logged in
+            authenticateLocalPlayer()
+        }
+        
         
         let matchRequest = GKMatchRequest()
-        matchRequest.maxPlayers = maxPlayers
-        matchRequest.minPlayers = minPlayers
+        matchRequest.maxPlayers = 2
+        matchRequest.minPlayers = 2
         
         let matchMakerController = GKMatchmakerViewController(matchRequest: matchRequest)
         

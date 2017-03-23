@@ -14,6 +14,6 @@ import GameKit
 class GameKitHelper{
     
     static let PresentAuthenticationViewController = "present_authentication_view_controller"
-
+    static let StartMultiplayerGame = "start_multiplayer_game"
 
 }
