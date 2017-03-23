@@ -55,7 +55,7 @@ class HUD2: SKSpriteNode{
         
         //Configure the size and position of the Kill score icon (assume a scene anchore point of (0.5,0.5)
         let iconYPos = CGFloat(ScreenSizeFloatConstants.HalfScreenHeight*0.8)
-        let iconXPos = CGFloat(-ScreenSizeFloatConstants.HalfScreenWidth*0.8)
+        let iconXPos = CGFloat(-ScreenSizeFloatConstants.HalfScreenWidth*0.75)
         killCountIcon.position = CGPoint(x: iconXPos, y: iconYPos)
         
         

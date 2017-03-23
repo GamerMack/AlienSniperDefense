@@ -202,7 +202,7 @@ class BaseScene: SKScene{
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }else{
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
@@ -251,12 +251,33 @@ class BaseScene: SKScene{
         //Lose Condition in TimeLimit Mode: Total Game Time exceeds Maximum Time Limit
         if(currentGamePlayMode == .valueTimeLimit){
             
-            print("From base sceen: The totalGameTime is:\(totalGameTime)")
             
             if(totalGameTime > timeLimit){
-                self.isPaused = true
-                showTimeUpLabel()
-                self.showRestartButtons()
+                
+                if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+                    /**If player exceeds minimum kill count at the expiration of the timer,
+                        then advance to the next level **/
+
+                        self.run(SKAction.sequence([
+                            SKAction.run({
+                                self.showLevelCompleteLabel()
+
+                            }),
+                            SKAction.wait(forDuration: 2.00),
+                            SKAction.run({
+                                self.loadNextLevel()
+                            })]))
+
+                    
+                } else {
+                    /**If player fails to meet the minimum kill count by the end of timer countdown, then show Menu and Restart Buttons
+                        **/
+                        showTimeUpLabel()
+                        showLevelIncompleteLabel()
+                        self.isPaused = true
+                        self.showRestartButtons()
+                }
+                
 
             }
         }
@@ -275,14 +296,16 @@ class BaseScene: SKScene{
                 
             }
             
-        }
-        
-        
-        
-        if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
+            
+            if(numberOfEnemiesKilled > minimumKillsForLevelCompletion){
                 savePlayerStatsForLevel()
                 loadNextLevel()
+            }
+            
         }
+        
+        
+       
             
        
         
@@ -584,6 +607,62 @@ extension BaseScene{
         let trackScene = TrackScene(size: self.size)
         self.view?.presentScene(trackScene, transition: transition)
     }
+    
+    final func showLevelCompleteLabel(){
+        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
+        labelNode.fontColor = SKColor.yellow
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.verticalAlignmentMode = .center
+        labelNode.fontSize = 45.0
+        labelNode.text = "Level Complete! Well Done!"
+        labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.10)
+        let scalingAction = SKAction.repeatForever(SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.7, duration: 0.5),
+            SKAction.fadeAlpha(to: 1.0, duration: 0.5)
+            ]))
+        labelNode.run(scalingAction)
+        labelNode.zPosition = 30
+        
+        
+        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.90, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
+        shapeNode.strokeColor = SKColor.black
+        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
+        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
+        shapeNode.zPosition = 29
+        self.addChild(shapeNode)
+        self.addChild(labelNode)
+        
+    }
+    
+    final func showLevelIncompleteLabel(){
+        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
+        labelNode.fontColor = SKColor.yellow
+        labelNode.horizontalAlignmentMode = .center
+        labelNode.verticalAlignmentMode = .center
+        labelNode.fontSize = 20.0
+        labelNode.text = "Not Enough Enemies Killed! Better luck next time!"
+        labelNode.position = CGPoint(x: 30, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
+        let scalingAction = SKAction.repeatForever(SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.7, duration: 0.5),
+            SKAction.fadeAlpha(to: 1.0, duration: 0.5)
+            ]))
+        labelNode.run(scalingAction)
+        labelNode.zPosition = 30
+        
+        
+        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.85, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
+        shapeNode.strokeColor = SKColor.black
+        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
+        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
+        shapeNode.zPosition = 29
+        self.addChild(shapeNode)
+        self.addChild(labelNode)
+        
+        
+    }
+    
+    
+    
     
     final func showTimeUpLabel(){
         

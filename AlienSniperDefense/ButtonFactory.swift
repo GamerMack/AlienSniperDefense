@@ -92,7 +92,7 @@ class ButtonFactory{
 
     
     
-    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: TimeInterval, spawningLimit: Int, textureName: String = "yellow_panel") -> SKSpriteNode?{
+    static func createIntroMessageWith(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: TimeInterval, minimumKillsForLevelCompletion: Int, textureName: String = "yellow_panel") -> SKSpriteNode?{
         
         
         //The texture for IntroMessage Box must be loaded in order for the rest of the function bloc to be executed
@@ -148,7 +148,7 @@ class ButtonFactory{
         introBox.addChild(introText4)
         introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.25 )
         introText4.fontSize = 13.0
-        introText4.text = "More than \(spawningLimit) enemies on screen and you lose."
+        introText4.text = "Must kill at least \(minimumKillsForLevelCompletion)."
         introText4.zPosition = 12
         introText4.name = NodeNames.StartButton
         introText4.fontColor = SKColor.blue

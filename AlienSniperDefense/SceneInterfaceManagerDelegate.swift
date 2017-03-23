@@ -20,7 +20,7 @@ protocol SceneInterfaceManagerDelegate: class{
     
    
     
-    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, spawningLimit: Int)
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, minimumKillsForLevelCompletion: Int)
    
     
 

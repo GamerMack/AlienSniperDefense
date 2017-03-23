@@ -552,7 +552,7 @@ extension FlyingAlienScene{
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }else{
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }

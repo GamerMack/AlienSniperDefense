@@ -64,10 +64,10 @@ class SceneInterfaceManager: SKSpriteNode, SceneInterfaceManagerDelegate{
     
 
     
-    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, spawningLimit: Int){
+    func setupIntroMessageBox(levelTitle: String, levelDescription: String, enemyName: String, levelTimeLimit: Double, minimumKillsForLevelCompletion: Int){
         
         
-        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, levelTimeLimit: levelTimeLimit, spawningLimit: spawningLimit){
+        if let introMessage = ButtonFactory.createIntroMessageWith(levelTitle: levelTitle, levelDescription: levelDescription, enemyName: enemyName, levelTimeLimit: levelTimeLimit, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion){
             
            // self.parent!.addChild(introMessage)
             

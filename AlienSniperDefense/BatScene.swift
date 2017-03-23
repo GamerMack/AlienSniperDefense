@@ -138,7 +138,7 @@ class BatScene: BaseScene
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
 
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", levelTimeLimit: self.timeLimit, spawningLimit: self.maximumNumberOFEnemies)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }else{
             sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Bat", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
@@ -382,22 +382,22 @@ extension BatScene{
         
         switch(levelNumber){
         case 1:
-            let batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+            batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 2:
-             let batScene = BatSceneLevelLoader.getLevel2Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+             batScene = BatSceneLevelLoader.getLevel2Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 3:
-             let batScene = BatSceneLevelLoader.getLevel3Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+             batScene = BatSceneLevelLoader.getLevel3Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 4:
-             let batScene = BatSceneLevelLoader.getLevel4Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+             batScene = BatSceneLevelLoader.getLevel4Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         case 5:
-             let batScene = BatSceneLevelLoader.getLevel5Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+             batScene = BatSceneLevelLoader.getLevel5Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         default:
-            let batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
+            batScene = BatSceneLevelLoader.getLevel1Scene(size: self.size, difficultyLevel: currentLevelDifficulty)
             break
         }
         
