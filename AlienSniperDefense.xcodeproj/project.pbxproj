@@ -32,13 +32,10 @@
 		BD1014C41E80E0C7000CAB88 /* EnemyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1014C31E80E0C7000CAB88 /* EnemyTracker.swift */; };
 		BD1014C61E80E2E1000CAB88 /* EnemyTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1014C51E80E2E1000CAB88 /* EnemyTrackerDelegate.swift */; };
 		BD10CDE41E7E331A00C6BC5F /* SummaryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD10CDE31E7E331A00C6BC5F /* SummaryScene.swift */; };
-		BD1D7A5D1E82372C0014C377 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1D7A5C1E82372C0014C377 /* GameKit.framework */; };
 		BD25E6191E7D418700D9F372 /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD25E6181E7D418700D9F372 /* InstructionScene.swift */; };
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
 		BD29B0541E82B96F0028A468 /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD29B0531E82B96F0028A468 /* TestScene.swift */; };
-		BD29B0571E82BAE60028A468 /* LaundScreenImg1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD29B0561E82BAE60028A468 /* LaundScreenImg1.png */; };
-		BD29B0591E82BAED0028A468 /* LaunchScreenImg2.png in Resources */ = {isa = PBXBuildFile; fileRef = BD29B0581E82BAED0028A468 /* LaunchScreenImg2.png */; };
 		BD2AE74A1E7C40DD00EDEBE7 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */; };
 		BD2B1DBF1E8018D600B9044B /* MedalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2B1DBE1E8018D600B9044B /* MedalScene.swift */; };
 		BD2DB7D21E83E2D400193C91 /* EnemyCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2DB7D11E83E2D400193C91 /* EnemyCounter.swift */; };
@@ -93,6 +90,7 @@
 		BD4BBFC91E7A550000808B90 /* CrossHair.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFC81E7A550000808B90 /* CrossHair.swift */; };
 		BD4BBFCB1E7A550600808B90 /* HUD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFCA1E7A550600808B90 /* HUD2.swift */; };
 		BD4BBFCD1E7A550D00808B90 /* FlyingAlien.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBFCC1E7A550D00808B90 /* FlyingAlien.swift */; };
+		BD53A3B11E88EEA400446DBC /* launchScreenImg1.png in Resources */ = {isa = PBXBuildFile; fileRef = BD53A3B01E88EEA400446DBC /* launchScreenImg1.png */; };
 		BD6313611E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */; };
 		BD6313621E7A58A800EB10F9 /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6313591E7A58A800EB10F9 /* BaseScene.swift */; };
 		BD6313631E7A58A800EB10F9 /* BatScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD63135A1E7A58A800EB10F9 /* BatScene.swift */; };
@@ -138,14 +136,11 @@
 		BD1014C31E80E0C7000CAB88 /* EnemyTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTracker.swift; sourceTree = "<group>"; };
 		BD1014C51E80E2E1000CAB88 /* EnemyTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTrackerDelegate.swift; sourceTree = "<group>"; };
 		BD10CDE31E7E331A00C6BC5F /* SummaryScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
-		BD1D7A5C1E82372C0014C377 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		BD1D7A5E1E8237AF0014C377 /* AlienSniperDefense.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlienSniperDefense.entitlements; sourceTree = "<group>"; };
 		BD25E6181E7D418700D9F372 /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
 		BD29B0531E82B96F0028A468 /* TestScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestScene.swift; sourceTree = "<group>"; };
-		BD29B0561E82BAE60028A468 /* LaundScreenImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaundScreenImg1.png; sourceTree = "<group>"; };
-		BD29B0581E82BAED0028A468 /* LaunchScreenImg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreenImg2.png; sourceTree = "<group>"; };
 		BD2AE7491E7C40DD00EDEBE7 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		BD2B1DBE1E8018D600B9044B /* MedalScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalScene.swift; sourceTree = "<group>"; };
 		BD2DB7D11E83E2D400193C91 /* EnemyCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyCounter.swift; sourceTree = "<group>"; };
@@ -202,6 +197,7 @@
 		BD4BBFC81E7A550000808B90 /* CrossHair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossHair.swift; sourceTree = "<group>"; };
 		BD4BBFCA1E7A550600808B90 /* HUD2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD2.swift; sourceTree = "<group>"; };
 		BD4BBFCC1E7A550D00808B90 /* FlyingAlien.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlien.swift; sourceTree = "<group>"; };
+		BD53A3B01E88EEA400446DBC /* launchScreenImg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreenImg1.png; sourceTree = "<group>"; };
 		BD6313581E7A58A800EB10F9 /* WingmanSceneLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WingmanSceneLevelLoader.swift; sourceTree = "<group>"; };
 		BD6313591E7A58A800EB10F9 /* BaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScene.swift; sourceTree = "<group>"; };
 		BD63135A1E7A58A800EB10F9 /* BatScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatScene.swift; sourceTree = "<group>"; };
@@ -227,7 +223,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD4BBF731E7A4C7300808B90 /* GameplayKit.framework in Frameworks */,
-				BD1D7A5D1E82372C0014C377 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,13 +257,12 @@
 		BD29B0551E82BACA0028A468 /* GameAssets */ = {
 			isa = PBXGroup;
 			children = (
+				BD53A3B01E88EEA400446DBC /* launchScreenImg1.png */,
 				BD4BBFC01E7A549500808B90 /* SKSfiles */,
 				BD4BBFA11E7A502400808B90 /* Idents */,
 				BD4BBF661E7A4C4E00808B90 /* Assets.xcassets */,
 				BD4BBF751E7A4F2D00808B90 /* SoundEffects */,
 				BD4BBF761E7A4F3400808B90 /* BackgroundMusic */,
-				BD29B0561E82BAE60028A468 /* LaundScreenImg1.png */,
-				BD29B0581E82BAED0028A468 /* LaunchScreenImg2.png */,
 			);
 			name = GameAssets;
 			sourceTree = "<group>";
@@ -379,7 +373,6 @@
 		BD4BBF711E7A4C7300808B90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BD1D7A5C1E82372C0014C377 /* GameKit.framework */,
 				BD4BBF721E7A4C7300808B90 /* GameplayKit.framework */,
 			);
 			name = Frameworks;
@@ -615,13 +608,13 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -666,7 +659,6 @@
 				BD4BBFB71E7A532E00808B90 /* click5.wav in Resources */,
 				BD4BBFA51E7A50AC00808B90 /* Beat ident.mp3 in Resources */,
 				BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */,
-				BD29B0571E82BAE60028A468 /* LaundScreenImg1.png in Resources */,
 				BD4BBF9D1E7A500700808B90 /* Space Cadet.mp3 in Resources */,
 				BD4BBF9E1E7A500700808B90 /* Swinging Pants.mp3 in Resources */,
 				BD4BBF671E7A4C4E00808B90 /* Assets.xcassets in Resources */,
@@ -683,10 +675,10 @@
 				BD4BBF8E1E7A500700808B90 /* Alpha Dance.mp3 in Resources */,
 				BD4BBF6A1E7A4C4E00808B90 /* LaunchScreen.storyboard in Resources */,
 				BD4BBF931E7A500700808B90 /* Game Over.mp3 in Resources */,
+				BD53A3B11E88EEA400446DBC /* launchScreenImg1.png in Resources */,
 				BD4BBF911E7A500700808B90 /* Farm Frolics.mp3 in Resources */,
 				BD4BBFA91E7A50C500808B90 /* Serious ident.mp3 in Resources */,
 				BD4BBFA01E7A500700808B90 /* Wacky Waiting.mp3 in Resources */,
-				BD29B0591E82BAED0028A468 /* LaunchScreenImg2.png in Resources */,
 				BD4BBF951E7A500700808B90 /* Infinite Descent.mp3 in Resources */,
 				BD4BBF921E7A500700808B90 /* Flowing Rocks.mp3 in Resources */,
 				BD4BBFA61E7A50AC00808B90 /* Country ident.mp3 in Resources */,
@@ -881,7 +873,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AlienSniperDefense/AlienSniperDefense.entitlements;
 				DEVELOPMENT_TEAM = T9J39WJJ9G;
 				INFOPLIST_FILE = AlienSniperDefense/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -897,7 +888,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AlienSniperDefense/AlienSniperDefense.entitlements;
 				DEVELOPMENT_TEAM = T9J39WJJ9G;
 				INFOPLIST_FILE = AlienSniperDefense/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;

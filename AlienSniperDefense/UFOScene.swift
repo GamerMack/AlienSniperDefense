@@ -129,6 +129,9 @@ class UFOScene: BaseScene{
             }
         }
        
+        //Update the player's position
+        player.update()
+        
         lastUpdateTime = currentTime
     }
     
@@ -258,6 +261,7 @@ extension UFOScene{
         if(nextLevelScene == nil){
             let transition = SKTransition.crossFade(withDuration: 2.00)
             let summaryScene = SummaryScene(size: self.size, selectedTrackType: .UFO)
+            self.view?.presentScene(summaryScene, transition: transition)
         } else {
             self.view?.presentScene(nextLevelScene!, transition: mainTransition)
 

@@ -37,9 +37,9 @@ class StealthShipSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return  makeLevel5(numberOfBackgroundObjects: 4, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 4, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 20, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return  makeLevel5(numberOfBackgroundObjects: 4, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 4, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 20, spaceShipTravelSpeed: Double(randomDistHardTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistHardTI.nextUniform()))
         case .Medium:
-            return  makeLevel5(numberOfBackgroundObjects: 4, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 4, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return  makeLevel5(numberOfBackgroundObjects: 4, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 4, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistMediumTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistMediumTI.nextUniform()))
         case .Easy:
             return makeLevel5(numberOfBackgroundObjects: 4, spawnInterval: 4.0, initialNumberOfEnemiesSpawned: 4, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
         }
@@ -62,9 +62,9 @@ class StealthShipSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return  makeLevel4(numberOfBackgroundObjects: 4, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 7, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return  makeLevel4(numberOfBackgroundObjects: 4, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 7, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistHardTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistHardTI.nextUniform()))
         case .Medium:
-            return  makeLevel4(numberOfBackgroundObjects: 4, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return  makeLevel4(numberOfBackgroundObjects: 4, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 6, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistMediumTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistMediumTI.nextUniform()))
         case .Easy:
             return makeLevel4(numberOfBackgroundObjects: 4, spawnInterval: 5.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 5, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
         }
@@ -88,9 +88,9 @@ class StealthShipSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel3(numberOfBackgroundObjects: 4, spawnInterval: 7.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 4, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 20, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return makeLevel3(numberOfBackgroundObjects: 4, spawnInterval: 7.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 4, maximumEnemiesAllowed: 20, minimumKillsForLevelCompletion: 20, spaceShipTravelSpeed: Double(randomDistHardTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistHardTI.nextUniform()))
         case .Medium:
-            return makeLevel3(numberOfBackgroundObjects: 4, spawnInterval: 7.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 4, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return makeLevel3(numberOfBackgroundObjects: 4, spawnInterval: 7.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 4, maximumEnemiesAllowed: 30, minimumKillsForLevelCompletion: 15, spaceShipTravelSpeed: Double(randomDistMediumTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistMediumTI.nextUniform()))
         case .Easy:
             return makeLevel3(numberOfBackgroundObjects: 4, spawnInterval: 7.0, initialNumberOfEnemiesSpawned: 3, enemiesSpawnedPerInterval: 4, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
         }
@@ -115,9 +115,9 @@ class StealthShipSceneLevelLoader{
         
         switch(difficultyLevel){
         case .Hard:
-            return makeLevel2(numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return makeLevel2(numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistHardTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistHardTI.nextUniform()))
         case .Medium:
-            return makeLevel2(numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
+            return makeLevel2(numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistMediumTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistMediumTI.nextUniform()))
         case .Easy:
             return makeLevel2(numberOfBackgroundObjects: 4, spawnInterval: 10.0, initialNumberOfEnemiesSpawned: 2, enemiesSpawnedPerInterval: 3, maximumEnemiesAllowed: 40, minimumKillsForLevelCompletion: 10, spaceShipTravelSpeed: Double(randomDistEasyTS.nextUniform()), spaceShipTransitionInterval: Double(randomDistEasyTI.nextUniform()))
         }

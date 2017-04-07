@@ -237,7 +237,7 @@ class ButtonManager{
         introBox.addChild(introText2)
         introText2.position = CGPoint(x: 0, y: 0 )
         introText2.text = levelDescription
-        introText2.fontSize = 20.0
+        introText2.fontSize = 25.0
         introText2.zPosition = 12
         introText2.name = "text2"
         
@@ -245,7 +245,7 @@ class ButtonManager{
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.2 )
-        introText3.fontSize = 12.0
+        introText3.fontSize = 15.0
         introText3.text = levelTimeLimitWarning
         introText3.zPosition = 12
         introText3.name = "text3"

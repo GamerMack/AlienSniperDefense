@@ -42,7 +42,7 @@ class SceneInterfaceManager: SKSpriteNode, SceneInterfaceManagerDelegate{
         self.init(texture: nil, color: .clear, size: CGSize.zero)
         //parentNode.addChild(self)
        // managedScene = parentNode as! SKEffectNode
-        managedScene = newManagedScene as! SKEffectNode
+        managedScene = (newManagedScene as! SKEffectNode)
     }
     
     

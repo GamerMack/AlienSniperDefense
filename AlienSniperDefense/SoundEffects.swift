@@ -31,7 +31,7 @@ class SoundEffects{
 }
 
 class SoundEffectsNoFileExtension{
-    static let Laser1 = "laser2"
+    static let Laser1 = "laser1"
     static let Laser2 = "laser2"
     static let Laser3 = "laser3"
     static let Laser4 = "laser4"

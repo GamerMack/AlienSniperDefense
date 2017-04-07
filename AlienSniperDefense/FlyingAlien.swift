@@ -99,8 +99,6 @@ class FlyingAlien: SKSpriteNode, Enemy{
         case .green:
             texture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipGreen")
             break
-        default:
-            texture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipBlue")
         }
         
         guard let alienTexture = texture else { return nil }
@@ -185,7 +183,8 @@ class FlyingAlien: SKSpriteNode, Enemy{
                 userDictionary?.setValue(0, forKey: "health")
                 return
             case 0:
-
+                
+                userDictionary?.setValue(true, forKey: "isBeingRemoved")
                 AnimationsFactory.createExplosionFor(spriteNode: self)
                 self.run(SKAction.sequence([
                     SKAction.wait(forDuration: 2.0),
@@ -194,6 +193,7 @@ class FlyingAlien: SKSpriteNode, Enemy{
                 parentScene.numberOfEnemiesKilled += 1
                 return
             default:
+                userDictionary?.setValue(true, forKey: "isBeingRemoved")
                 AnimationsFactory.createExplosionFor(spriteNode: self)
                 self.run(SKAction.sequence([
                     SKAction.wait(forDuration: 2.0),

@@ -24,8 +24,11 @@ class TrackScene: SKScene{
     
     override func didMove(to view: SKView) {
         //Add observer for PresentAuthenticationViewController notification
+        /** FUTURE VERSIONS
+         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
+       **/
         
         //Configure Background Musics
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.FarmFrolics, forParentNode: self)
@@ -54,7 +57,7 @@ class TrackScene: SKScene{
             let xStartPos = (self.size.width/CGFloat(numberOfTracks))/2 + horizontalOffset
             
             let trackWidth = (self.size.width/CGFloat(numberOfTracks))*0.90
-            let trackMargin = (self.size.width/CGFloat(numberOfTracks))*0.10
+            //let trackMargin = (self.size.width/CGFloat(numberOfTracks))*0.10
             
             let trackHeight = (self.size.height)*0.90
             let trackSize = CGSize(width: trackWidth, height: trackHeight)
@@ -109,7 +112,30 @@ class TrackScene: SKScene{
         
         
       
+        //Configure ReturnToMenu Button
+        let mainMenuTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu")
+        let menuSprite = SKSpriteNode(texture: mainMenuTexture)
+        menuSprite.name = NodeNames.ReturnToMenuButton
+        menuSprite.xScale *= 0.80
+        menuSprite.yScale *= 0.80
+        menuSprite.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.05, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.70)
+        self.addChild(menuSprite)
         
+        //TODO: Configure Achievements Button
+        /**
+        let achievementsButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UI)?.textureNamed("yellow_button02")
+        let achievementSprite = SKSpriteNode(texture: achievementsButtonTexture)
+        achievementSprite.name = NodeNames.AchievementsButton
+        achievementSprite.position = CGPoint(x: ScreenSizeFloatConstants.ScreenWidth*0.90, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.70)
+        let achievementsLabel = SKLabelNode(fontNamed: FontTypes.FuturaMedium)
+        achievementsLabel.text = "See Achievements"
+        achievementsLabel.name = NodeNames.AchievementsButton
+        achievementsLabel.horizontalAlignmentMode = .center
+        achievementsLabel.verticalAlignmentMode = .center
+        achievementsLabel.position = CGPoint(x: achievementSprite.position.x, y: achievementSprite.position.y)
+        achievementSprite.addChild(achievementsLabel)
+        self.addChild(achievementSprite)
+        **/
     }
     
     
@@ -124,6 +150,21 @@ class TrackScene: SKScene{
             
             let mainTransition = SKTransition.crossFade(withDuration: 2.00)
             
+            
+            for node in nodes(at: touchLocation){
+                
+                /**
+                if node.name == NodeNames.AchievementsButton{
+                    let nc = NotificationCenter.default
+                    nc.post(name: Notification.Name(rawValue: GameKitHelper.ShowAchievements), object: nil)
+                    
+                } **/
+                
+                if node.name == NodeNames.ReturnToMenuButton{
+                    let menuScene = MenuScene(size: self.size)
+                    self.view?.presentScene(menuScene, transition: transition)
+                }
+            }
             
             if node.name == NodeNames.BatTrackButton{
                 let instructionScene = InstructionScene(size: self.size, selectedTrackType: .Bat)

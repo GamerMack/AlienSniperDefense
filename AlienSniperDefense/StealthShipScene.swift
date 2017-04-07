@@ -157,7 +157,12 @@ class StealthShipScene: BaseScene{
             frameCount = 0
         }
         
+        
         updateAllSpaceShips(currentTime: adjustedCurrentTime)
+        
+        
+        //Update the player's position
+        player.update()
         
         adjustedLastUpdateTime = adjustedCurrentTime
         lastUpdateTime = currentTime
@@ -182,7 +187,7 @@ class StealthShipScene: BaseScene{
         let node = touches.first! as UITouch
         let touchLocation = node.location(in: self)
         
-        player.updateTargetPosition(position: touchLocation)
+        player.setTargetPosition(position: touchLocation)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -202,31 +207,48 @@ class StealthShipScene: BaseScene{
                     
                     guard let node = node as? SpaceShip else { return }
                     
-                    print("The space ship's health is \(node.getHealth())")
+                    if(kDebug){
+                        print("The space ship's health is \(node.getHealth())")
+                    }
                     
                     switch(node.getHealth()){
                     case 2:
-                        print("The space ship took damage")
+                        if(kDebug){
+                            print("The space ship took damage")
+                        }
                         node.takeDamage1()
 
                         break
                     case 1:
-                        print("The space ship took damage")
+                        if(kDebug){
+                            print("The space ship took damage")
+                        }
                         node.takeDamage2()
         
                         break
                     case 0:
-                        print("The space ship died")
-                    
-                        node.run(SKAction.group([
-                            explosionSound,
-                            explosionAnimation
-                            ]))
-                        node.run(SKAction.sequence([
-                            SKAction.wait(forDuration: 2.0),
-                            SKAction.removeFromParent()
-                            ]))
-                        numberOfEnemiesKilled += 1
+                        if(kDebug){
+                            print("The space ship died")
+                        }
+                        
+                        let isBeingRemovedStatus = node.userData?.value(forKey: "isBeingRemovedStatus")
+                        
+                        if(isBeingRemovedStatus != nil), let isBeingRemovedStatus = isBeingRemovedStatus as? Bool, isBeingRemovedStatus == true{
+                            return
+                        } else {
+                            node.userData = NSMutableDictionary()
+                            node.userData?.setValue(true, forKey: "isBeingRemovedStatus")
+                            
+                            node.run(SKAction.group([
+                                explosionSound,
+                                explosionAnimation
+                                ]))
+                            node.run(SKAction.sequence([
+                                SKAction.wait(forDuration: 2.0),
+                                SKAction.removeFromParent()
+                                ]))
+                            numberOfEnemiesKilled += 1
+                        }
                         break
                     default:
                         print("The space ship died")

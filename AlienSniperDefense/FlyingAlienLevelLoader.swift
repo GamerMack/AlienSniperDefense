@@ -154,7 +154,7 @@ class FlyingAlienLevelLoader{
     static private func makeLevel1(numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, initialNumberOfEnemiesSpawned: Int, enemiesSpawnedPerInterval: Int, maximumEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, fieldActionInterval: TimeInterval, randomVectorConfiguration: RandomVectorConfiguration) -> FlyingAlienScene{
         
         
-        return FlyingAlienScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: "Shoot all the aliens", enemyName: "Hover Borg", crosshairType: .OutlineLarge, backgroundMusic: BackgroundMusic.FarmFrolics, fieldActionInterval: fieldActionInterval, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, maximumNumberOfEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion, randomVectorConfiguration: randomVectorConfiguration)
+        return FlyingAlienScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: "Shoot all the Hover Borg", enemyName: "Hover Borg", crosshairType: .OutlineLarge, backgroundMusic: BackgroundMusic.FarmFrolics, fieldActionInterval: fieldActionInterval, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, maximumNumberOfEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion, randomVectorConfiguration: randomVectorConfiguration)
         
         
     }

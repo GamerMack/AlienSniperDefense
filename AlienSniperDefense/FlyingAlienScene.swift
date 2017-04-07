@@ -82,6 +82,8 @@ class FlyingAlienScene: BaseScene{
         }
     }
     
+    //Customized laser sound that can be used instead of the base scene's laser sound
+    let laserSound: SKAction = SKAction.playSoundFileNamed(SoundEffects.Laser9, waitForCompletion: false)
     
     //MARK: ***************SCENE INITIALIZERS
     convenience init(size: CGSize, levelNumber: Int, levelDescription: String, enemyName: String, crosshairType: CrossHair.CrossHairType, backgroundMusic: String, fieldActionInterval: TimeInterval, numberOfBackgroundObjects: Int, spawnInterval: TimeInterval, enemiesSpawnedPerInterval: Int, initialNumberOfEnemiesSpawned: Int, maximumNumberOfEnemiesAllowed: Int, minimumKillsForLevelCompletion: Int, randomVectorConfiguration: RandomVectorConfiguration, timeLimit: TimeInterval = 60.00) {
@@ -166,12 +168,10 @@ class FlyingAlienScene: BaseScene{
         let cgRect = CGRect(origin: startingPoint, size: cgSize)
         barrierNode.physicsBody = SKPhysicsBody(edgeLoopFrom: cgRect)
         
-        print(barrierNode.size)
-        print(barrierNode.position)
         
         barrierNode.physicsBody?.categoryBitMask = PhysicsCategory.Ground
-        barrierNode.physicsBody?.collisionBitMask = PhysicsCategory.Enemy
-        barrierNode.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy
+        barrierNode.physicsBody?.collisionBitMask = PhysicsCategory.Enemy | ~PhysicsCategory.Player
+        barrierNode.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy | ~PhysicsCategory.Player
         
         self.addChild(barrierNode)
         
@@ -221,6 +221,9 @@ class FlyingAlienScene: BaseScene{
         
         //Update flying aliens' flying mode
         updateFlyingModesForSpawnedAliens(currentTime: adjustedCurrentTime)
+        
+        //Update the player's position
+        player.update()
         
         adjustedLastUpdateTime = adjustedCurrentTime
         lastUpdateTime = currentTime
@@ -328,7 +331,14 @@ class FlyingAlienScene: BaseScene{
                     player.run(shootingSound)
                     if let node = node as? FlyingAlien{
                         let userDict = node.userData
-                        node.respondToHit(userDictionary: userDict, parentScene: self)
+                        
+                        let isBeingRemovedStatus = userDict?.value(forKey: "isBeingRemoved") as? Bool
+                        
+                        if(isBeingRemovedStatus != nil), isBeingRemovedStatus == true{
+                            return
+                        } else {
+                            node.respondToHit(userDictionary: userDict, parentScene: self)
+                        }
                     }
                 
             }
@@ -536,6 +546,7 @@ extension FlyingAlienScene{
         
         //Configure player
         player = CrossHair(crossHairType: self.playerType)
+        player.physicsBody?.collisionBitMask = PhysicsCategory.NoCategory
         self.addChild(player)
         
         //Configure explosion animation
@@ -568,7 +579,8 @@ extension FlyingAlienScene{
         hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         hud2.setNumberOfEnemiesKilledTo(numberKilled: numberOfEnemiesKilled)
         
-    
+        //Configure the Pause State Buttons
+        setupPauseStateButtons()
     }
     
     

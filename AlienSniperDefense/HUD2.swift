@@ -76,6 +76,7 @@ class HUD2: SKSpriteNode{
         numberEnemiesLabel.fontSize = 15.0
         numberEnemiesLabel.verticalAlignmentMode = .top
         numberEnemiesLabel.horizontalAlignmentMode = .center
+        numberEnemiesLabel.isHidden = true
         
         currentNumberOfEnemies.fontName = FontTypes.NoteWorthyBold
         currentNumberOfEnemies.fontColor = SKColor.white
@@ -88,6 +89,7 @@ class HUD2: SKSpriteNode{
         
         numberEnemiesLabel.move(toParent: self)
         currentNumberOfEnemies.move(toParent: self)
+        currentNumberOfEnemies.isHidden = true
         
        
         

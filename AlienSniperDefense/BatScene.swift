@@ -11,6 +11,7 @@
 import Foundation
 import SpriteKit
 import GameplayKit
+import GameKit
 
 /**
  Randomization of velocity for bat movement is configured through scene-level parameters (minBatComponentVelocity and maxBatComponentVelocity), which are used to initialize a RandomVector in the didUpdatePhysics function; the minimum and maximum number of bats spawned is a controller-level parameter configured via the scene's initializer, which in turn calls the initializer for the controller
@@ -20,6 +21,7 @@ import GameplayKit
 class BatScene: BaseScene
 {
     
+   
     //MARK: ****************** Node-Level Randomization Flag
     var nodeLevelRandomizationIsActive: Bool = false
 
@@ -178,7 +180,8 @@ class BatScene: BaseScene
         hud2.setNumberOfEnemiesTo(numberOfEnemies: currentNumberOfEnemies)
         self.addChild(hud2)
 
-        
+        //Configure Pause State Buttons
+        setupPauseStateButtons()
     }
 
     
@@ -229,7 +232,10 @@ class BatScene: BaseScene
         //Update bat controller to spawn bats at regular intervals
         batController.update(forParentNode: self, currentTime: adjustedCurrentTime)
         
-    
+        
+        //Update the player's position
+        player.update()
+        
         lastUpdateTime = currentTime
 
         
@@ -264,13 +270,35 @@ class BatScene: BaseScene
                 
                 if let node = node as? Bat{
                     
-                    node.respondToHit()
-                    self.numberOfEnemiesKilled += 1
                     
-                    //Bat Controller keeps track of the total number of bats on screen
-                    hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
-                    hud2.setNumberOfEnemiesKilledTo(numberKilled: self.numberOfEnemiesKilled)
+
+                    let removalStatus = node.userData?.value(forKey: "isBeingRemoved")
                     
+
+                    if(removalStatus != nil), let removalStatus = removalStatus as? Bool, removalStatus == true{
+                        return
+                    } else {
+                    
+                    node.userData = NSMutableDictionary()
+                    node.userData?.setValue(true, forKey: "isBeingRemoved")
+                        
+                    node.run(SKAction.sequence([
+                     
+                        SKAction.run {
+                            node.respondToHit()
+                            self.numberOfEnemiesKilled += 1
+                            
+                            //Bat Controller keeps track of the total number of bats on screen
+                            self.hud2.setNumberOfEnemiesTo(numberOfEnemies: self.currentNumberOfEnemies)
+                            self.hud2.setNumberOfEnemiesKilledTo(numberKilled: self.numberOfEnemiesKilled)
+                            
+                        }
+                        
+                       
+                    ]))
+                    
+                    
+                    }
             
                 }
             }
@@ -337,18 +365,60 @@ extension BatScene{
         
         switch(levelNumber){
             case 1:
+                //Report to GameCenter progress towards track completion
+                /** FUTURE VERSIONS
+                let achievement = (GameSettings.sharedInstance.getGamePlayMode() == .valueMinimumKills) ? GKAchievement(identifier: "CompletedBatTrack_MinimumKillsMode") : GKAchievement(identifier: "CompletedBatTrack_TimeLimitMode")
+                achievement.percentComplete = 0.20
+                GameViewController.reportProgressTowardsAnAchievement(achievement: achievement)
+                **/
+                
                 batScene = BatSceneLevelLoader.getLevel2Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
                 break
         case 2:
+            //Report to GameCenter progress towards track completion
+            /** FUTURE VERSIONS
+            let achievement = (GameSettings.sharedInstance.getGamePlayMode() == .valueMinimumKills) ? GKAchievement(identifier: "CompletedBatTrack_MinimumKillsMode") : GKAchievement(identifier: "CompletedBatTrack_TimeLimitMode")
+            
+            achievement.percentComplete = 0.40
+            
+            GameViewController.reportProgressTowardsAnAchievement(achievement: achievement)
+            **/
+            
             batScene = BatSceneLevelLoader.getLevel3Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 3:
+            //Report to GameCenter progress towards track completion
+            /** FUTURE VERSIONS 
+            let achievement = (GameSettings.sharedInstance.getGamePlayMode() == .valueMinimumKills) ? GKAchievement(identifier: "CompletedBatTrack_MinimumKillsMode") : GKAchievement(identifier: "CompletedBatTrack_TimeLimitMode")
+            
+            achievement.percentComplete = 0.60
+            
+            GameViewController.reportProgressTowardsAnAchievement(achievement: achievement)
+            **/
+            
             batScene = BatSceneLevelLoader.getLevel4Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 4:
+            //Report to GameCenter progress towards track completion
+            /** FUTURE VERSIONS
+            let achievement = (GameSettings.sharedInstance.getGamePlayMode() == .valueMinimumKills) ? GKAchievement(identifier: "CompletedBatTrack_MinimumKillsMode") : GKAchievement(identifier: "CompletedBatTrack_TimeLimitMode")
+            
+            achievement.percentComplete = 0.80
+            
+            GameViewController.reportProgressTowardsAnAchievement(achievement: achievement)
+            **/
             batScene = BatSceneLevelLoader.getLevel5Scene(size: self.size, difficultyLevel: nextLevelDifficulty)
             break
         case 5:
+            //Report to GameCenter progress towards track completion
+            /** FUTURE VERSIONS
+            let achievement = (GameSettings.sharedInstance.getGamePlayMode() == .valueMinimumKills) ? GKAchievement(identifier: "CompletedBatTrack_MinimumKillsMode") : GKAchievement(identifier: "CompletedBatTrack_TimeLimitMode")
+            
+            achievement.percentComplete = 1.00
+            
+            GameViewController.reportProgressTowardsAnAchievement(achievement: achievement)
+            **/
+            
             //Load player stats summary scene
             let summaryScene = SummaryScene(size: self.size, selectedTrackType: SummaryScene.TrackType.Bat)
             self.view?.presentScene(summaryScene, transition: mainTransition)

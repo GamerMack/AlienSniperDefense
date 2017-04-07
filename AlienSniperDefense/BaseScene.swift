@@ -37,6 +37,10 @@ class BaseScene: SKScene{
     var pauseButton = SKSpriteNode()
     var menuButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
+    
+    var restartFromPauseState: SKSpriteNode?
+    var returnToMenuFromPauseState: SKSpriteNode?
+    
     var timerLabel: SKLabelNode?
     
     let timerLabelNumberFormatter: NumberFormatter = {
@@ -149,9 +153,12 @@ class BaseScene: SKScene{
     
     override func didMove(to view: SKView) {
         //Add an observer for the PresentAuthenticationViewController notification
+        /** FUTURE VERSIONS
+         
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
-        
+    
+        **/
         
         //Set gameHasStarted to false, set totalGameTime to zero
         gameHasStarted = false
@@ -240,8 +247,12 @@ class BaseScene: SKScene{
         spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects, scaledByFactorOf: 0.40)
         
         
-        //Add the pause button
+        //Add the Pause Button
         configurePauseButton()
+        
+        
+        //Configure the Pause State Buttons
+        setupPauseStateButtons()
     
         
     }
@@ -298,19 +309,12 @@ class BaseScene: SKScene{
     
     override func update(_ currentTime: TimeInterval) {
         //Keep track of total game time
-        
-        
         if(gameHasStarted){
             totalGameTime += currentTime - lastUpdateTime
             lastUpdateTime = currentTime
-            
-            
         }
         
-       
-       
         if(currentGameState == .Paused) { return }
-        
         
         //Lose Condition in TimeLimit Mode: Total Game Time exceeds Maximum Time Limit
         if(currentGamePlayMode == .valueTimeLimit){
@@ -371,11 +375,8 @@ class BaseScene: SKScene{
         }
         
         
-       
-            
-       
-        
-        player.update()
+        //player.update()
+
        
 
     }
@@ -392,7 +393,9 @@ class BaseScene: SKScene{
         let node = touches.first! as UITouch
         let touchLocation = node.location(in: self)
         
-        player.updateTargetPosition(position: touchLocation)
+        player.setTargetPosition(position: touchLocation)
+        
+      
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -406,31 +409,51 @@ class BaseScene: SKScene{
         
         for node in nodes(at: touchLocation){
             
-            if node.name == NodeNames.PauseButton{
+            if node.name == NodeNames.PauseButton, let node = node as? SKLabelNode{
+                
+                //Ensures that pause button is not activated if player is shooting enemies close by
+                if player.contains(touchLocation){
+                    return
+                }
+                
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.ResumeButton
-                    
+                
+                node.text = "Resume"
+                /**
                 for subNode in node.children{
                     if let subNode = subNode as? SKLabelNode{
                         subNode.text = "Resume"
                         subNode.name = NodeNames.ResumeButton
                     }
                 }
+                 **/
                 
+                showPauseStateButtons()
                 pauseGame()
-
                 
-            } else if node.name == NodeNames.ResumeButton{
+                
+                
+            } else if node.name == NodeNames.ResumeButton, let node = node as? SKLabelNode{
+                //Ensures that resume button is not activated if player is shooting enemies close by
+                if player.contains(touchLocation){
+                    return
+                }
+                
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.PauseButton
-                    
+                node.text = "Pause"
+                
+                /**
                 for subNode in node.children{
                     if let subNode = subNode as? SKLabelNode{
                         subNode.text = "Pause"
                         subNode.name = NodeNames.PauseButton
                     }
                 }
+                **/
                 
+                removePauseStateButtons()
                 resumeGame()
 
                 
@@ -438,8 +461,7 @@ class BaseScene: SKScene{
             
         }
         
-        if(currentGameState == .Paused) { return }
-        
+      
         if(restartButton.contains(touchLocation)){
             
             //Remove time up display when restarting
@@ -455,6 +477,19 @@ class BaseScene: SKScene{
         if(menuButton.contains(touchLocation)){
            loadMenuScene()
         }
+        
+        
+        for node in nodes(at: touchLocation){
+            if node.name == NodeNames.ReturnToMenuButton{
+                loadMenuScene()
+            }
+            
+            if node.name == NodeNames.RestartGameButton{
+                reloadCurrentLevel()
+            }
+        }
+        
+        if(currentGameState == .Paused) { return }
         
 
         for node in nodes(at: touchLocation){
@@ -532,7 +567,7 @@ class BaseScene: SKScene{
                 textureAtlas.textureNamed("regularExplosion06"),
                 textureAtlas.textureNamed("regularExplosion07"),
                 textureAtlas.textureNamed("regularExplosion08")
-                ], timePerFrame: 0.25)
+                ], timePerFrame: 0.05)
             
         }
     }
@@ -554,6 +589,8 @@ class BaseScene: SKScene{
     func resumeGame(){
         currentGameState = .Running
         self.isPaused = false
+        
+    
     }
     
     //MARK: *********** Remove observers for Pause and Resume Notifications, as well as for PresentAuthenticationViewController
@@ -594,6 +631,89 @@ extension BaseScene{
         shapeNode.zPosition = 29
         self.addChild(shapeNode)
         self.addChild(labelNode)
+        
+    }
+    
+    
+    final func setupPauseStateButtons(){
+        guard let menuButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu") else { return }
+        
+        guard let restartButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-restart") else { return }
+        
+        self.returnToMenuFromPauseState = SKSpriteNode(texture: menuButtonTexture)
+        self.restartFromPauseState = SKSpriteNode(texture: restartButtonTexture)
+        
+        
+        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState, let restartFromPauseState = self.restartFromPauseState else { return }
+        
+        
+        returnToMenuFromPauseState.name = NodeNames.ReturnToMenuButton
+        restartFromPauseState.name = NodeNames.RestartGameButton
+        
+        let returnToMenuText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
+        returnToMenuText.text = "Main Menu"
+        returnToMenuText.fontSize = 20.0
+        returnToMenuText.fontColor = SKColor.white
+        returnToMenuText.verticalAlignmentMode = .bottom
+        returnToMenuText.position = CGPoint(x: returnToMenuFromPauseState.position.x, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.4)
+        returnToMenuText.name = NodeNames.ReturnToMenuButton
+        returnToMenuText.move(toParent: returnToMenuFromPauseState)
+        
+        let restartGameText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
+        restartGameText.text = "Restart Level"
+        restartGameText.fontSize = 20.0
+        restartGameText.fontColor = SKColor.white
+        restartGameText.verticalAlignmentMode = .bottom
+        restartGameText.position = CGPoint(x: restartFromPauseState.position.x, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.4)
+        restartGameText.name = NodeNames.RestartGameButton
+        restartGameText.move(toParent: restartFromPauseState)
+        
+        returnToMenuFromPauseState.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        restartFromPauseState.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        returnToMenuFromPauseState.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
+        restartFromPauseState.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
+        
+        returnToMenuFromPauseState.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.25, y: 20)
+        restartFromPauseState.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.25, y: 20)
+        
+        
+    }
+    
+    final func showPauseStateButtons(){
+        
+        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState else { return }
+        
+        guard let restartFromPauseState = self.restartFromPauseState else { return }
+        
+     
+    
+            restartFromPauseState.zPosition = 15
+            returnToMenuFromPauseState.zPosition = 15
+        
+        
+            returnToMenuFromPauseState.alpha = 1
+            restartFromPauseState.alpha = 1
+            
+            restartFromPauseState.move(toParent: self)
+            returnToMenuFromPauseState.move(toParent: self)
+        
+    }
+    
+    
+    final func removePauseStateButtons(){
+        
+        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState else { return }
+        guard let restartFromPauseState = self.restartFromPauseState else { return }
+        
+        returnToMenuFromPauseState.zPosition = -15
+        restartFromPauseState.zPosition = -15
+        
+        returnToMenuFromPauseState.alpha = 0
+        restartFromPauseState.alpha = 0
+        
+        returnToMenuFromPauseState.move(toParent: pauseButton)
+        restartFromPauseState.move(toParent: pauseButton)
         
     }
     
@@ -726,9 +846,6 @@ extension BaseScene{
         
         
     }
-    
-    
-    
     
     final func showTimeUpLabel(){
         

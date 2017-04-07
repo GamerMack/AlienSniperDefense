@@ -102,9 +102,6 @@ class SpaceShip: SKSpriteNode, Enemy{
         case .Red3:
             texture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip3_red")
             break
-        default:
-            texture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip1_blue")
-            break
             
         }
         
@@ -255,7 +252,7 @@ class SpaceShip: SKSpriteNode, Enemy{
                self.die()
                 break
             default:
-                self.die()
+                break
             }
         
     }
@@ -311,7 +308,9 @@ class SpaceShip: SKSpriteNode, Enemy{
     
     
     deinit{
-        print("I've been deinitialized")
+        if(kDebug){
+            print("I've been deinitialized")
+        }
     }
     
 

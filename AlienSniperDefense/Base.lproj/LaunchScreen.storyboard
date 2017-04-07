@@ -21,16 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreenImg1" translatesAutoresizingMaskIntoConstraints="NO" id="M0k-95-CVo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenImg1" translatesAutoresizingMaskIntoConstraints="NO" id="jiz-hP-LIJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="M0k-95-CVo" secondAttribute="bottom" id="dC0-Lh-8Ca"/>
-                            <constraint firstAttribute="trailing" secondItem="M0k-95-CVo" secondAttribute="trailing" id="f8U-rr-Y6H"/>
-                            <constraint firstItem="M0k-95-CVo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="qax-7L-5YJ"/>
-                            <constraint firstItem="M0k-95-CVo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="vQo-gA-QWS"/>
+                            <constraint firstAttribute="trailing" secondItem="jiz-hP-LIJ" secondAttribute="trailing" id="2Zd-Xr-dVm"/>
+                            <constraint firstItem="jiz-hP-LIJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="cZc-uH-zed"/>
+                            <constraint firstItem="jiz-hP-LIJ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="d9l-hA-ytm"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="jiz-hP-LIJ" secondAttribute="bottom" id="rq8-YI-qz0"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreenImg1" width="2198" height="1224"/>
+        <image name="launchScreenImg1" width="2204" height="1220"/>
     </resources>
 </document>

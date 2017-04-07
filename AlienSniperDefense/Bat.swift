@@ -300,17 +300,39 @@ class Bat: SKSpriteNode{
     
     //MARK:  User input event handlers
     
-    func respondToHit(){
+    func respondToHit() -> Bool{
         
         
                 AnimationsFactory.createExplosionFor(spriteNode: self)
+        
                 self.run(SKAction.sequence([
                     SKAction.wait(forDuration: 2.0),
-                    SKAction.removeFromParent()
+                    SKAction.removeFromParent(),
                     ]))
-                
         
-            
+                return true
+        
+        /**
+ 
+         if(enemyIsBeingRemoved) { return }
+         
+         node.run(SKAction.sequence([
+         SKAction.run {
+         self.enemyCounter.didKillOnScreenEnemies(numberOfEnemiesKilled: 1)
+         self.enemyIsBeingRemoved = true
+         },
+         explosionSound,
+         explosionAnimation,
+         SKAction.removeFromParent(),
+         SKAction.run {
+         self.enemyIsBeingRemoved = false
+         }
+         ]))
+ 
+        **/
+        
+        
+        
     }
 
 

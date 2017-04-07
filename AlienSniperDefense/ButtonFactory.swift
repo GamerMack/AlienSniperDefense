@@ -60,7 +60,7 @@ class ButtonFactory{
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.10 )
-        introText3.fontSize = 13.0
+        introText3.fontSize = 10.0
         introText3.text = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
@@ -70,7 +70,7 @@ class ButtonFactory{
         let introText4 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText4)
         introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.20 )
-        introText4.fontSize = 13.0
+        introText4.fontSize = 10.0
         introText4.text = "You must kill \(minimumKillsForLevelCompletion) minimum to win."
         introText4.zPosition = 12
         introText4.name = NodeNames.StartButton
@@ -127,7 +127,7 @@ class ButtonFactory{
         introBox.addChild(introText2)
         introText2.position = CGPoint(x: 0, y: 0 )
         introText2.text = levelDescription
-        introText2.fontSize = 13.0
+        introText2.fontSize = 20.0
         introText2.zPosition = 12
         introText2.name = NodeNames.StartButton
         introText1.fontColor = SKColor.blue
@@ -136,7 +136,7 @@ class ButtonFactory{
         let introText3 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.15 )
-        introText3.fontSize = 13.0
+        introText3.fontSize = 15.0
         introText3.text = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds"
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
@@ -147,7 +147,7 @@ class ButtonFactory{
         let introText4 = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
         introBox.addChild(introText4)
         introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.25 )
-        introText4.fontSize = 13.0
+        introText4.fontSize = 15.0
         introText4.text = "Must kill at least \(minimumKillsForLevelCompletion)."
         introText4.zPosition = 12
         introText4.name = NodeNames.StartButton

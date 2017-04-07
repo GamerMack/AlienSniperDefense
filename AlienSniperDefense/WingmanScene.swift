@@ -13,7 +13,8 @@ import GameplayKit
 class WingmanScene: BaseScene{
     
     
-    
+    //Temporary Boolean Flag for Enemy in the Process of Being Removed from Parent 
+    var enemyIsBeingRemoved = false
     
     //Enemy Prototype
     lazy var enemy: Enemy = {
@@ -88,6 +89,8 @@ class WingmanScene: BaseScene{
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
+        
+       
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -108,12 +111,24 @@ class WingmanScene: BaseScene{
                 }
                 
                 if let node = node as? Wingman{
+                    
+                    if(enemyIsBeingRemoved) { return }
+                    
                     node.run(SKAction.sequence([
+                        SKAction.run {
+                            self.enemyCounter.didKillOnScreenEnemies(numberOfEnemiesKilled: 1)
+                            self.enemyIsBeingRemoved = true
+                        },
                         explosionSound,
-                        explosionAnimation
+                        explosionAnimation,
+                        SKAction.removeFromParent(),
+                        SKAction.run {
+                            self.enemyIsBeingRemoved = false
+                        }
                         ]))
                     
-                    enemyCounter.didKillOnScreenEnemies(numberOfEnemiesKilled: 1)
+                
+                    
                     
                 }
 
@@ -163,7 +178,10 @@ class WingmanScene: BaseScene{
         }
         
         frameCount += adjustedCurrentTime - adjustedLastUpdateTime
-        print("The frame count is: \(frameCount)")
+        
+        if(kDebug){
+            print("The frame count is: \(frameCount)")
+        }
         
         hideIntervalFrameCount += adjustedCurrentTime - adjustedLastUpdateTime
      
@@ -189,7 +207,7 @@ class WingmanScene: BaseScene{
     override func spawnEnemyFromPrototype(numberOfEnemy: Int){
         
         for _ in 1...numberOfEnemy{
-            let randomScaleFactor = RandomFloatRange(min: 0.4, max: 0.7)
+            let randomScaleFactor = RandomFloatRange(min: 0.8, max: 1.2)
             
             let enemy = self.enemy as! Wingman
             let enemyCopy = enemy.copy() as! Wingman

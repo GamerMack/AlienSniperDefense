@@ -56,8 +56,10 @@ class MenuScene: SKScene{
     
     override func didMove(to view: SKView) {
         //Add observer for PresentAuthenticationViewController notification
+        /** Future Versions
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
+        **/
         
         //Configure Anchor Point
         self.anchorPoint = CGPoint(x: 0.5,y: 0.5)
@@ -74,7 +76,6 @@ class MenuScene: SKScene{
         //Setup start button
         setupStartButton()
         
-
         //Add characters for background decoration
         setupBackgroundDecoration()
      
@@ -342,18 +343,20 @@ class MenuScene: SKScene{
         let buttonHeight = ScreenSizeFloatConstants.HalfScreenHeight*0.50
         let buttonSize = CGSize(width: buttonWidth, height: buttonHeight)
         
-        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.TimeLimitModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.50), andWithSizeOf: buttonSize)
+        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.TimeLimitModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.25), andWithSizeOf: buttonSize)
         
-        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.MinimumKillsModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.00), andWithSizeOf: buttonSize)
+        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.MinimumKillsModeButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.30), andWithSizeOf: buttonSize)
         
         
-        multiplayerModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.StartMultiplayerButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.50), andWithSizeOf: buttonSize)
+        multiplayerModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.StartMultiplayerButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.85), andWithSizeOf: buttonSize)
         
         self.addChild(noTimeLimitModeButton)
         self.addChild(minimumKillsModeButton)
-        self.addChild(multiplayerModeButton)
+        //self.addChild(multiplayerModeButton)
         
     }
+    
+    
     
     
     //MARK: ************ Helper Function for setting up Difficulty/GamePlayMode buttons

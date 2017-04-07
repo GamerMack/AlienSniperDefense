@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "bat-fly.png",
       "scale" : "1x"
     },
     {

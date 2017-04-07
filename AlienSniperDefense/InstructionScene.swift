@@ -37,8 +37,10 @@ class InstructionScene: SKScene{
     
     override func didMove(to view: SKView) {
         //Add observer for PresentAuthenticationViewController notification
+        /**
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
+        **/
         
         //Configure Background Musics
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.FarmFrolics, forParentNode: self)
@@ -295,7 +297,7 @@ class InstructionScene: SKScene{
             let labelNode3 = getLabelNode(withTextOf: text3)
             let yPosLabelNode = ScreenSizeFloatConstants.HalfScreenHeight*0.60
             labelNode3.position = CGPoint(x: 0, y: -yPosLabelNode)
-            labelNode3.fontSize = 25.0
+            labelNode3.fontSize = 20.0
             
             node.addChild(labelNode3)
         }

@@ -22,8 +22,6 @@ class UFOLevelLoader{
     
     static func getLevel5(difficultyLevel: DifficultyLevel) -> UFOScene{
         
-        var scene: UFOScene
-        
         let randomDistHard = GKRandomDistribution(lowestValue: 25, highestValue: 35)
         let randomDistMedium = GKRandomDistribution(lowestValue: 15, highestValue: 25)
         let randomDistEasy = GKRandomDistribution(lowestValue: 10, highestValue: 15)
@@ -52,7 +50,6 @@ class UFOLevelLoader{
     
     static func getLevel4(difficultyLevel: DifficultyLevel) -> UFOScene{
         
-        var scene: UFOScene
         
         let randomDistHard = GKRandomDistribution(lowestValue: 15, highestValue: 25)
         let randomDistMedium = GKRandomDistribution(lowestValue: 10, highestValue: 15)
@@ -81,9 +78,7 @@ class UFOLevelLoader{
     }
     
     static func getLevel3(difficultyLevel: DifficultyLevel) -> UFOScene{
-        
-        var scene: UFOScene
-        
+                
         let randomDistHard = GKRandomDistribution(lowestValue: 15, highestValue: 25)
         let randomDistMedium = GKRandomDistribution(lowestValue: 10, highestValue: 15)
         let randomDistEasy = GKRandomDistribution(lowestValue: 5, highestValue: 10)
@@ -111,8 +106,6 @@ class UFOLevelLoader{
     }
     
     static func getLevel2(difficultyLevel: DifficultyLevel) -> UFOScene{
-        
-        var scene: UFOScene
         
         let randomDistHard = GKRandomDistribution(lowestValue: 15, highestValue: 25)
         let randomDistMedium = GKRandomDistribution(lowestValue: 10, highestValue: 15)
@@ -142,8 +135,6 @@ class UFOLevelLoader{
     
     
     static func getLevel1(difficultyLevel: DifficultyLevel) -> UFOScene{
-        
-        var scene: UFOScene
         
         let randomDistHard = GKRandomDistribution(lowestValue: 0, highestValue: 3)
         let randomDistMedium = GKRandomDistribution(lowestValue: 0, highestValue: 3)

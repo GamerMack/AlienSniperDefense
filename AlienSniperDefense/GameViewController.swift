@@ -15,43 +15,46 @@ class GameViewController: UIViewController {
     
     //TODO: Add observers for Notification(that is, PresentAuthenticationViewController) to the base scene as well as the TitleScene, TrackScene, and other transitional scenes, since the authentication handler is executed asynchronously and may complete after TitleScene/TrackScene/BaseScene is loaded
     
+    /** FUTURE VERSIONS
+    static var enableGameCenter: Bool = false
+
     let localPlayer = GKLocalPlayer.localPlayer()
     var authenticationViewController: UIViewController?
-    var enableGameCenter: Bool = false
     var lastError: Error?
     var match: GKMatch?
+    
+     **/
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SoundLoader.preloadSounds()
         
         //Add to Notification Center an observer for the PresentAuthenticationNotification
+        
+        /** FUTURE VERSIONS
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(GameViewController.showAuthenticationViewController), name: Notification.Name(rawValue: GameKitHelper.PresentAuthenticationViewController), object: nil)
         
         nc.addObserver(self, selector: #selector(GameViewController.startMultiplayerGamePlay), name: Notification.Name(rawValue: GameKitHelper.StartMultiplayerGame), object: nil)
         
-
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
         
+        authenticateLocalPlayer()
+         **/
+  
            let menuScene = MenuScene(size: self.view.bounds.size)
             menuScene.scaleMode = .aspectFill
-        
-        let testScene = TestScene(size: self.view.bounds.size)
-        testScene.scaleMode = .aspectFit
-        
-        let batScene4 = BatSceneLevelLoader.getLevel4Scene(size: self.view.bounds.size, difficultyLevel: .Easy)
-        let batScene5 = BatSceneLevelLoader.getLevel5Scene(size: self.view.bounds.size, difficultyLevel: .Easy)
-        
+                
             // Present the scene
             if let view = self.view as! SKView? {
                 view.presentScene(menuScene)
-                    
+                
+                /**
                 view.ignoresSiblingOrder = true
                     
                 view.showsFPS = true
                 view.showsNodeCount = true
+                **/
                 }
         
         
@@ -77,7 +80,13 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+
+
+}
+
+    //Code for GameCenter Support (to be fully implemented in future versions of the game)
+    /** FUTURE VERSIONS
+ 
     func authenticateLocalPlayer(){
         let localPlayer = self.localPlayer
         
@@ -92,12 +101,14 @@ class GameViewController: UIViewController {
                 
             } else if(localPlayer.isAuthenticated){
                 
-                self.enableGameCenter = true
+                GameViewController.enableGameCenter = true
+                
+                self.viewCurrentAchievements()
                 
             } else {
                 
                 
-                self.enableGameCenter = false
+                GameViewController.enableGameCenter = false
                 
             }
             
@@ -139,7 +150,7 @@ class GameViewController: UIViewController {
     //MARK: Call this method to present the GKGameCenterViewController that allows users to view current achievements; the game should pause before using this interface
     func viewCurrentAchievements(){
         
-        if(!enableGameCenter) { return }
+        if(!GameViewController.enableGameCenter) { return }
         
         
         let gameCenterViewController = GKGameCenterViewController()
@@ -152,12 +163,12 @@ class GameViewController: UIViewController {
     }
     
     //MARK: *********** Call this method to update progress on achievements that are not hidden to the player (e.g. progress towards completion of certain tracks
-    func reportProgressTowardsAnAchievement(){
-        if(!enableGameCenter) { return }
+    static func reportProgressTowardsAnAchievement(achievement: GKAchievement){
+        if(!GameViewController.enableGameCenter) { return }
         
-        let newAchievement = GKAchievement()
+        
         var achievements = [GKAchievement]()
-        achievements.append(newAchievement)
+        achievements.append(achievement)
         
         GKAchievement.report(achievements, withCompletionHandler: { (error: Error?) -> Void in
             
@@ -170,9 +181,9 @@ class GameViewController: UIViewController {
     
     
     //MARK: *********** Load the player's achievements up-to-date
-    func loadAchievementsForCurrentPlayer(){
+    static func loadAchievementsForCurrentPlayer(){
         
-        if(!enableGameCenter) { return }
+        if(!GameViewController.enableGameCenter) { return }
         
         GKAchievement.loadAchievements(completionHandler:{ (achievements: [GKAchievement]?, error: Error?) -> Void in
             
@@ -195,7 +206,7 @@ class GameViewController: UIViewController {
     //TODO: ********* Register/post notifications for the StartMultiplayerGameplay Option
     func startMultiplayerGamePlay(){
         
-        if(!enableGameCenter) {
+        if(!GameViewController.enableGameCenter) {
             //If GameCenter is not enabled, make sure the player is logged in
             authenticateLocalPlayer()
         }
@@ -262,11 +273,16 @@ extension GameViewController: GKMatchmakerViewControllerDelegate{
 //MARK: ************ Conformance to GKGameCenterControllerDelegate
 extension GameViewController: GKGameCenterControllerDelegate{
     
+    
+    /** Dismisses the AchievementsViewController when the user clicks finished
+ 
+    **/
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         
-    
+        gameCenterViewController.dismiss(animated: true, completion: nil)
         
     }
+    
 }
 
 //MARK: ************ Conformance to GKMatchDelegate Methods
@@ -329,4 +345,5 @@ extension GameViewController: UINavigationControllerDelegate{
      **/
 }
 
+**/
 

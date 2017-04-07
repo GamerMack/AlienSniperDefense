@@ -14,11 +14,11 @@ class CrossHair: SKSpriteNode{
     //MARK: Private class constants
     private let textureAtlas = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .CrossHair)
     
-    private let touchOffset = 44.0
+    private var touchOffset = 0
     private let moveFilter = 0.80
     
     //MARK: Private class variables
-    private var targetPosition = CGPoint()
+    private var newPosition = CGPoint()
     
     
     enum CrossHairType{
@@ -80,7 +80,7 @@ class CrossHair: SKSpriteNode{
     
     private func setup(){
         self.position = CGPoint(x: 0, y: 0)
-        targetPosition = self.position
+        newPosition = CGPoint(x: 0, y: 0)
     }
     
     private func configureLighting(){
@@ -94,7 +94,22 @@ class CrossHair: SKSpriteNode{
     }
     
     private func configurePhysics(){
-        let radius = self.size.width/2.0
+        
+        var radius = self.size.width
+        
+        
+        //Crosshair radius is larger for easier difficulty mode
+        let gameDifficulty = GameSettings.sharedInstance.getGameDifficulty()
+        
+        switch(gameDifficulty){
+            case .valueHard:
+                radius /= 1.5
+            case .valueMedium:
+                radius /= 1.0
+            case .valueEasy:
+                radius /= 0.5
+        }
+        
         self.physicsBody = SKPhysicsBody(circleOfRadius: radius)
         
         self.physicsBody?.fieldBitMask = PhysicsCategory.Player
@@ -112,15 +127,36 @@ class CrossHair: SKSpriteNode{
     }
     
     //MARK: - Movement
+    /**
     func updateTargetPosition(position: CGPoint){
-        targetPosition = CGPoint(x: Double(position.x), y: Double(position.y) + touchOffset)
+        newPosition = position
+ 
+    }
+    **/
+    
+    
+    func setTargetPosition(position: CGPoint){
+        newPosition = position
     }
     
     private func move(){
-        let newX = Smooth(startPoint: self.position.x, endPoint: targetPosition.x, percentToMove: NumberUnit(moveFilter))
-        let newY = Smooth(startPoint: self.position.y, endPoint: targetPosition.y, percentToMove: NumberUnit(moveFilter))
+        
+        
+        
+        let newX = Smooth(startPoint: self.position.x, endPoint: newPosition.x, percentToMove: NumberUnit(moveFilter))
+        let newY = Smooth(startPoint: self.position.y, endPoint: newPosition.y, percentToMove: NumberUnit(moveFilter))
+    
+        
+        /** CONSIDER IMPLEMENTING BASED ON USER FEEDBACK FROM BETA TESTING
+        let offsetCondition1 = self.position.x < ScreenSizeFloatConstants.HalfScreenWidth*0.80
+        let offsetCondition2 = self.position.x > -ScreenSizeFloatConstants.HalfScreenWidth*0.80
+        let offsetCondition3 = self.position.y > -ScreenSizeFloatConstants.HalfScreenHeight*0.80
+        let offsetCondition4 = self.position.y < ScreenSizeFloatConstants.HalfScreenHeight*0.80
+        **/
+        
         
         self.position = CGPoint(x: newX, y: newY)
+        
     }
     
 }
