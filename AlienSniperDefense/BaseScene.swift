@@ -221,13 +221,13 @@ class BaseScene: SKScene{
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: NSLocalizedString("Level \(levelNumber)", comment: ""), levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
             
             configureTimerButton()
             
             
         }else{
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: NSLocalizedString("Level \(levelNumber)", comment: ""), levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
         
 
@@ -279,7 +279,7 @@ class BaseScene: SKScene{
             let numberString = timerLabelNumberFormatter.string(from: timerNumber)
             
             if(numberString != nil){
-                let timerText = "Time Remaining: \(numberString!)"
+                let timerText = NSLocalizedString("Time Remaining: \(numberString!)", comment: "")
                 timerLabel.text = timerText
             }
         
@@ -298,7 +298,7 @@ class BaseScene: SKScene{
             let numberString = timerLabelNumberFormatter.string(from: timerNumber)
             
             if(numberString != nil){
-                let timerText = "Time Remaining: \(numberString!)"
+                let timerText = NSLocalizedString("Time Remaining: \(numberString!)", comment: "")
                 timerLabel.text = timerText
             }
         }
@@ -419,7 +419,7 @@ class BaseScene: SKScene{
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.ResumeButton
                 
-                node.text = "Resume"
+                node.text = NSLocalizedString("Resume", comment: "")
                 /**
                 for subNode in node.children{
                     if let subNode = subNode as? SKLabelNode{
@@ -442,7 +442,7 @@ class BaseScene: SKScene{
                 
                 //Reconfigure Pause Button to become a Resume button
                 node.name = NodeNames.PauseButton
-                node.text = "Pause"
+                node.text = NSLocalizedString("Pause", comment: "")
                 
                 /**
                 for subNode in node.children{
@@ -613,7 +613,7 @@ extension BaseScene{
         labelNode.horizontalAlignmentMode = .center
         labelNode.verticalAlignmentMode = .center
         labelNode.fontSize = 45.0
-        labelNode.text = "Too many enemies on screen!"
+        labelNode.text = NSLocalizedString("Too many enemies on screen!", comment: "")
         labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.30)
         let scalingAction = SKAction.repeatForever(SKAction.sequence([
             SKAction.scale(to: 1.5, duration: 2.0),
@@ -651,7 +651,7 @@ extension BaseScene{
         restartFromPauseState.name = NodeNames.RestartGameButton
         
         let returnToMenuText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-        returnToMenuText.text = "Main Menu"
+        returnToMenuText.text = NSLocalizedString("Main Menu", comment: "")
         returnToMenuText.fontSize = 20.0
         returnToMenuText.fontColor = SKColor.white
         returnToMenuText.verticalAlignmentMode = .bottom
@@ -660,7 +660,7 @@ extension BaseScene{
         returnToMenuText.move(toParent: returnToMenuFromPauseState)
         
         let restartGameText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-        restartGameText.text = "Restart Level"
+        restartGameText.text = NSLocalizedString("Restart Level", comment: "")
         restartGameText.fontSize = 20.0
         restartGameText.fontColor = SKColor.white
         restartGameText.verticalAlignmentMode = .bottom
@@ -737,7 +737,7 @@ extension BaseScene{
             restartButton.position = CGPoint(x: menuButton.position.x - menuButton.size.width - 30, y: menuButton.position.y)
             
             let returnToMenuText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-            returnToMenuText.text = "Main Menu"
+            returnToMenuText.text = NSLocalizedString("Main Menu", comment: "")
             returnToMenuText.fontSize = 20.0
             returnToMenuText.fontColor = SKColor.white
             returnToMenuText.verticalAlignmentMode = .bottom
@@ -746,7 +746,7 @@ extension BaseScene{
             returnToMenuText.move(toParent: menuButton)
             
             let restartGameText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-            restartGameText.text = "Restart Level"
+            restartGameText.text = NSLocalizedString("Restart Level", comment: "")
             restartGameText.fontSize = 20.0
             restartGameText.fontColor = SKColor.white
             restartGameText.verticalAlignmentMode = .bottom
@@ -800,7 +800,7 @@ extension BaseScene{
         labelNode.horizontalAlignmentMode = .center
         labelNode.verticalAlignmentMode = .center
         labelNode.fontSize = 45.0
-        labelNode.text = "Level Complete! Well Done!"
+        labelNode.text = NSLocalizedString("Level Complete! Well Done!", comment: "")
         labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.10)
         let scalingAction = SKAction.repeatForever(SKAction.sequence([
             SKAction.fadeAlpha(to: 0.7, duration: 0.5),
@@ -826,7 +826,7 @@ extension BaseScene{
         labelNode.horizontalAlignmentMode = .center
         labelNode.verticalAlignmentMode = .center
         labelNode.fontSize = 20.0
-        labelNode.text = "Not Enough Enemies Killed! Better luck next time!"
+        labelNode.text = NSLocalizedString("Not Enough Enemies Killed! Better luck next time!", comment: "")
         labelNode.position = CGPoint(x: 30, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
         let scalingAction = SKAction.repeatForever(SKAction.sequence([
             SKAction.fadeAlpha(to: 0.7, duration: 0.5),

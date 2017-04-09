@@ -46,9 +46,10 @@ class FlyingAlienScene: BaseScene{
     
     
     //Enemy Prototype
-    lazy var enemy: FlyingAlien = {
+    lazy var enemy: FlyingAlien? = {
         let randomScalingFactor = RandomFloatRange(min: 0.7, max: 1.4)
-        let flyingAlien = FlyingAlien(alienColor: .blue)!
+        
+        guard let flyingAlien = FlyingAlien(alienColor: .blue) else { return nil }
         flyingAlien.xScale *= randomScalingFactor
         flyingAlien.yScale *= randomScalingFactor
         
@@ -245,6 +246,8 @@ class FlyingAlienScene: BaseScene{
         for _ in 0..<numberOfEnemy{
             let randomScaleFactor = RandomFloatRange(min: 0.4, max: 0.7)
             
+            guard let enemy = enemy else { return }
+            
             let enemyCopy = enemy.copy() as! FlyingAlien
             
             
@@ -270,6 +273,9 @@ class FlyingAlienScene: BaseScene{
   
     
     private func configurePhysicsForEnemyCopy(enemyCopy: FlyingAlien){
+        
+        guard let enemy = enemy else { return }
+        
         let radius = enemy.size.width/2
         enemyCopy.physicsBody = SKPhysicsBody(circleOfRadius: radius, center: self.position)
         enemyCopy.physicsBody?.allowsRotation = false

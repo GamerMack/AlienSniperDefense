@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  AlienSniperDefense
+
+  Created by Aleksander Makedonski on 4/9/17.
+  Copyright © 2017 AlexMakedonski. All rights reserved.
+*/
+
+
+//Base Scene
+/**
+"Time Remaining: \(numberString!)"
+
+"Pause"
+
+"Resume"
+
+"Level" //di yi ji, di er ji
+
+//Screen Interface Manager
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
+
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
+
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
+
+"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
+
+//Instruction Scene
+
+"Wingman can hide behind sky objects." = "Wingman can hide behind sky objects.";
+
+"When hiding, they cannot be hit" = "When hiding, they cannot be hit";
+
+"Hover Borg can be manned or unmanned.",
+text2: "When unmanned, they cannot be hit.",
+text3: "Shoot background objects to generate blackholes that capture Hover Borgs.")
+
+"Stealth mode is indicated by fading action.",
+text2: "When in stealth mode, stealth ships cannot take damage.",
+text3: "Stealth ships require multiple hits to be destroyed")
+
+
+withTextOf: "When in emitting mode, UFOreos expand and contract.",
+text2: "In emitting mode, UFOreos cannot take damage, and",
+text3: "may emit gravity fields that disrupt player movement")
+
+"Bats can be hard to see in the dark.",
+text2: "When targeted with the cross hair, they can be illuminated",
+text3: nil)
+
+//Menu Scene
+
+"Alien"
+
+"Game Developer: Alex Makedonski"
+
+"Game Developer: Alex Makedonski"
+
+"Graphics By: Kenney"
+
+"Sniper Defense"
+
+//Track Scene
+
+"Click on a level track below:"
+
+//Player Stats Summary Scene
+
+"Well Done! Track Completed!"
+
+"Total Number of Kills: "
+
+"Total Number of Enemies Spawned: "
+
+"Total Game Time (seconds): "
+
+"Total Number of Bullets Fired: "
+
+"Firing Accuracy: "
+
+"Game Developed by Alex Makedonski."
+
+"Graphics from Kenney."
+
+
+//Button Manager
+
+"Fluorescent Bats" = "Fluorescent Bats";
+
+"Hover Borgs" = "Hover Borgs";
+
+"Stealth Ships" =  "Stealth Ships";
+
+"UFOreos" = "UFOreos";
+
+"Wingman" = "Wingman";
+
+**/

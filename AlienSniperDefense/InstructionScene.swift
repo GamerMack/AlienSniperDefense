@@ -112,8 +112,8 @@ class InstructionScene: SKScene{
         
       
         makeLabelForNode(node: mainNode,
-                         withTextOf: "Wingman can hide behind sky objects.",
-                         text2: "When hiding, they cannot be hit",
+                         withTextOf: NSLocalizedString("Wingman can hide behind sky objects.", comment: ""),
+                         text2: NSLocalizedString("When hiding, they cannot be hit", comment: ""),
                          text3: nil)
     }
     
@@ -142,9 +142,9 @@ class InstructionScene: SKScene{
         mainNode.addChild(unmannedShip)
         
         makeLabelForNode(node: mainNode,
-                         withTextOf: "Hover Borg can be manned or unmanned.",
-                         text2: "When unmanned, they cannot be hit.",
-                         text3: "Shoot background objects to generate blackholes that capture Hover Borgs.")
+                         withTextOf: NSLocalizedString("Hover Borg can be manned or unmanned.", comment: ""),
+                         text2: NSLocalizedString("When unmanned, they cannot be hit.", comment: ""),
+                         text3: NSLocalizedString("Shoot background objects to generate blackholes that capture Hover Borgs.", comment: ""))
     }
     
     private func configureNodeForStealthShipTrack(mainNode: SKNode){
@@ -177,9 +177,9 @@ class InstructionScene: SKScene{
         
         
         makeLabelForNode(node: mainNode,
-                         withTextOf: "Stealth mode is indicated by fading action.",
-                         text2: "When in stealth mode, stealth ships cannot take damage.",
-                         text3: "Stealth ships require multiple hits to be destroyed")
+                         withTextOf: NSLocalizedString("Stealth mode is indicated by fading action.", comment: ""),
+                         text2: NSLocalizedString("When in stealth mode, stealth ships cannot take damage.", comment: ""),
+                         text3: NSLocalizedString("Stealth ships require multiple hits to be destroyed", comment: ""))
     }
     
     private func configureNodeForUFOTrack(mainNode: SKNode){
@@ -217,9 +217,9 @@ class InstructionScene: SKScene{
         mainNode.addChild(arrowSprite)
         
         makeLabelForNode(node: mainNode,
-                         withTextOf: "When in emitting mode, UFOreos expand and contract.",
-                         text2: "In emitting mode, UFOreos cannot take damage, and",
-                         text3: "may emit gravity fields that disrupt player movement")
+                         withTextOf: NSLocalizedString("When in emitting mode, UFOreos expand and contract.", comment: ""),
+                         text2: NSLocalizedString("In emitting mode, UFOreos cannot take damage, and", comment: ""),
+                         text3: NSLocalizedString( "may emit gravity fields that disrupt player movement", comment: ""))
     }
     
     private func configureNodeForBatTrack(mainNode: SKNode){
@@ -255,8 +255,8 @@ class InstructionScene: SKScene{
     
         
         makeLabelForNode(node: mainNode,
-                         withTextOf: "Bats can be hard to see in the dark.",
-                         text2: "When targeted with the cross hair, they can be illuminated",
+                         withTextOf: NSLocalizedString("Bats can be hard to see in the dark.", comment: ""),
+                         text2: NSLocalizedString("When targeted with the cross hair, they can be illuminated", comment: ""),
                          text3: nil)
     }
     

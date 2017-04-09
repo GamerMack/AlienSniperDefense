@@ -74,25 +74,25 @@ class ButtonManager{
         switch(trackType){
             case .Bat:
                 trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Bats)?.textureNamed("bat")
-                labelText = "Fluorescent Bats"
+                labelText = NSLocalizedString("Fluorescent Bats", comment: "")
                 scaleFactor = 2
                 break
             case .FlyingAlien:
                 trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipBlue_manned")
                 scaleFactor = 0.70
-                labelText = "Hover Borgs"
+                labelText = NSLocalizedString("Hover Borgs", comment: "")
                 break
             case .StealthShip:
                 trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .SpaceShips)?.textureNamed("playerShip2_blue")
-                labelText = "Stealth Ships"
+                labelText = NSLocalizedString("Stealth Ships", comment: "")
                 break
             case .UFO:
                 trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .UFO)?.textureNamed("ufoGreen")
-                labelText = "UFOreos"
+                labelText = NSLocalizedString("UFOreos", comment: "")
                 break
             case .Wingman:
                 trackTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .Enemies)?.textureNamed("wingMan1")
-                labelText = "Wingman"
+                labelText = NSLocalizedString("Wingman", comment: "")
                 scaleFactor = 0.70
                 break
         }
@@ -142,7 +142,7 @@ class ButtonManager{
         pauseNode.zPosition = 15
         
         let pauseLabel = SKLabelNode(fontNamed: FontTypes.FuturaMediumItalic)
-        pauseLabel.text = "Pause"
+        pauseLabel.text = NSLocalizedString("Pause", comment: "")
         pauseLabel.name = NodeNames.PauseButton
         pauseNode.addChild(pauseLabel)
         pauseLabel.horizontalAlignmentMode = .center
@@ -180,7 +180,7 @@ class ButtonManager{
             
             if(node.name == "text3"){
                 if let node = node as? SKLabelNode{
-                    node.text = "Time Limit: \(timeLimit)"
+                    node.text = NSLocalizedString("Time Limit: \(timeLimit)", comment: "")
                     node.name = NodeNames.StartButton
                     
                 }

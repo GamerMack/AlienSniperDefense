@@ -46,6 +46,7 @@
 		BD3A48861E7C1A760072B576 /* FlyingAlienLevelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */; };
 		BD3A48891E7C21020072B576 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A48881E7C21020072B576 /* UserSettings.swift */; };
 		BD3A488C1E7C21540072B576 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A488B1E7C21540072B576 /* PlayerStats.swift */; };
+		BD444A1A1E9A35A7008B4E6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BD444A1C1E9A35A7008B4E6D /* Localizable.strings */; };
 		BD4BBF5A1E7A4C4E00808B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */; };
 		BD4BBF621E7A4C4E00808B90 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */; };
 		BD4BBF651E7A4C4E00808B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4BBF631E7A4C4E00808B90 /* Main.storyboard */; };
@@ -151,6 +152,14 @@
 		BD3A48851E7C1A760072B576 /* FlyingAlienLevelLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlyingAlienLevelLoader.swift; sourceTree = "<group>"; };
 		BD3A48881E7C21020072B576 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		BD3A488B1E7C21540072B576 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		BD444A161E9A3587008B4E6D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BD444A171E9A3587008B4E6D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		BD444A181E9A358E008B4E6D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		BD444A191E9A358E008B4E6D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		BD444A1B1E9A35A7008B4E6D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BD444A1D1E9A35AA008B4E6D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		BD444A1E1E9A35AC008B4E6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BD444A1F1E9A35B4008B4E6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BD4BBF561E7A4C4E00808B90 /* AlienSniperDefense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlienSniperDefense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4BBF591E7A4C4E00808B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD4BBF611E7A4C4E00808B90 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +251,7 @@
 				BD07A4131E7A56D300B52128 /* Constants.swift */,
 				BD07A4141E7A56D300B52128 /* HelperFunctions.swift */,
 				BD07A4171E7A56D300B52128 /* ScreenSize.swift */,
+				BD444A1C1E9A35A7008B4E6D /* Localizable.strings */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -627,6 +637,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = BD4BBF4D1E7A4C4E00808B90;
 			productRefGroup = BD4BBF571E7A4C4E00808B90 /* Products */;
@@ -675,6 +686,7 @@
 				BD4BBF8E1E7A500700808B90 /* Alpha Dance.mp3 in Resources */,
 				BD4BBF6A1E7A4C4E00808B90 /* LaunchScreen.storyboard in Resources */,
 				BD4BBF931E7A500700808B90 /* Game Over.mp3 in Resources */,
+				BD444A1A1E9A35A7008B4E6D /* Localizable.strings in Resources */,
 				BD53A3B11E88EEA400446DBC /* launchScreenImg1.png in Resources */,
 				BD4BBF911E7A500700808B90 /* Farm Frolics.mp3 in Resources */,
 				BD4BBFA91E7A50C500808B90 /* Serious ident.mp3 in Resources */,
@@ -759,10 +771,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BD444A1C1E9A35A7008B4E6D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD444A1B1E9A35A7008B4E6D /* zh-Hans */,
+				BD444A1D1E9A35AA008B4E6D /* zh-Hant */,
+				BD444A1E1E9A35AC008B4E6D /* en */,
+				BD444A1F1E9A35B4008B4E6D /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		BD4BBF631E7A4C4E00808B90 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BD4BBF641E7A4C4E00808B90 /* Base */,
+				BD444A171E9A3587008B4E6D /* zh-Hans */,
+				BD444A191E9A358E008B4E6D /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -771,6 +796,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				BD4BBF691E7A4C4E00808B90 /* Base */,
+				BD444A161E9A3587008B4E6D /* zh-Hans */,
+				BD444A181E9A358E008B4E6D /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -782,6 +809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -831,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

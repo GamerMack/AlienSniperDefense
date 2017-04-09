@@ -1,0 +1,122 @@
+/* 
+  Localizable.strings
+  AlienSniperDefense
+
+  Created by Aleksander Makedonski on 4/9/17.
+  Copyright © 2017 AlexMakedonski. All rights reserved.
+*/
+
+
+//Instruction Scene
+
+"Wingman can hide behind sky objects." = "Wingman can hide behind sky objects.";
+
+"When hiding, they cannot be hit" = "When hiding, they cannot be hit";
+
+"Hover Borg can be manned or unmanned." = "Hover Borg can be manned or unmanned.";
+"When unmanned, they cannot be hit." = "When unmanned, they cannot be hit.";
+"Shoot background objects to generate blackholes that capture Hover Borgs." = "Shoot background objects to generate blackholes that capture Hover Borgs.";
+
+"Stealth mode is indicated by fading action." = "Stealth mode is indicated by fading action.";
+"When in stealth mode, stealth ships cannot take damage."= "When in stealth mode, stealth ships cannot take damage.";
+"Stealth ships require multiple hits to be destroyed" = "Stealth ships require multiple hits to be destroyed";
+
+
+"When in emitting mode, UFOreos expand and contract." = "When in emitting mode, UFOreos expand and contract.";
+"In emitting mode, UFOreos cannot take damage, and" = "In emitting mode, UFOreos cannot take damage, and";
+"may emit gravity fields that disrupt player movement" = "may emit gravity fields that disrupt player movement";
+
+"Bats can be hard to see in the dark." = "Bats can be hard to see in the dark.";
+"When targeted with the cross hair, they can be illuminated" = "When targeted with the cross hair, they can be illuminated";
+
+//Button Manager
+
+"Fluorescent Bats" = "Fluorescent Bats";
+
+"Hover Borgs" = "Hover Borgs";
+
+"Stealth Ships" =  "Stealth Ships";
+
+"UFOreos" = "UFOreos";
+
+"Wingman" = "Wingman";
+
+//Base Scene
+
+
+"Time Remaining: \(numberString!)" = "Time Remaining: \(numberString!)";
+
+"Pause" = "Pause";
+
+"Resume" = "Resume";
+
+"Level \(levelNumber)" = "Level \(levelNumber)";
+
+
+
+"Not Enough Enemies Killed! Better luck next time!" = "Not Enough Enemies Killed! Better luck next time!";
+
+"Level Complete! Well Done!" = "Level Complete! Well Done!";
+
+"Main Menu" = "Main Menu";
+
+"Restart Level" = "Restart Level";
+
+"Too many enemies on screen!" = "Too many enemies on screen!";
+
+
+//Screen Interface Manager
+
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
+
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
+
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
+
+"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
+
+
+
+
+
+//Menu Scene
+/**
+"Alien"
+
+"Game Developer: Alex Makedonski"
+
+"Game Developer: Alex Makedonski"
+
+"Graphics By: Kenney"
+
+"Sniper Defense"
+
+//Track Scene
+
+"Click on a level track below:"
+
+//Player Stats Summary Scene
+
+"Well Done! Track Completed!"
+
+"Total Number of Kills: "
+
+"Total Number of Enemies Spawned: "
+
+"Total Game Time (seconds): "
+
+"Total Number of Bullets Fired: "
+
+"Firing Accuracy: "
+
+"Game Developed by Alex Makedonski."
+
+"Graphics from Kenney."
+
+
+
+
+**/
