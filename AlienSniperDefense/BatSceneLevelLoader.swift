@@ -155,7 +155,7 @@ class BatSceneLevelLoader{
         
         
         
-        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 5, levelDescription: "The Bats make their last stand!", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
+        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 5, levelDescription: NSLocalizedString("The Bats make their last stand!", comment: ""), enemyName: NSLocalizedString("Bat", comment: ""), playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -165,7 +165,7 @@ class BatSceneLevelLoader{
         
         
         
-        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 4, levelDescription: "The bats are spawning like crazy!", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
+        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 4, levelDescription: NSLocalizedString( "The bats are spawning like crazy!", comment: ""), enemyName: NSLocalizedString("Bat", comment: ""), playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -175,7 +175,7 @@ class BatSceneLevelLoader{
         
         
         
-        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 3, levelDescription: "The bats just got harder to see!", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
+        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 3, levelDescription: NSLocalizedString("The bats just got harder to see!", comment: ""), enemyName: NSLocalizedString("Bat", comment: ""), playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -184,7 +184,7 @@ class BatSceneLevelLoader{
         
         
         
-        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 2, levelDescription: "The bats just got a little faster!", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
+        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 2, levelDescription: NSLocalizedString("The bats just got a little faster!", comment: ""), enemyName: NSLocalizedString("Bat", comment: ""), playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -194,7 +194,7 @@ class BatSceneLevelLoader{
         
         
         
-        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: "Shoot all the bats!", enemyName: "Bat", playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
+        return BatScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: NSLocalizedString("Shoot all the bats!", comment: ""), enemyName: NSLocalizedString("Fluorescent Bat", comment: ""), playerType: .BlueLarge, backgroundMusic: BackgroundMusic.CheerfulAnnoyance, numberOfBackgroundObjects: numberOfBackgroundObjects, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, minBatsSpawned: minBatsSpawned, maxBatsSpawned: maxBatsSpawned, minBatComponentVelocity: minBatComponentVelocity, maxBatComponentVelocity: maxBatComponentVelocity, lightNodeFallOff: lightNodeFalloff, maximumBatsAllowedToSpawn: maximumEnemiesAllowed, minimumBatsKilledForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }

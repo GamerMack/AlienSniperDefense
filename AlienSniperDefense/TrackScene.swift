@@ -42,7 +42,7 @@ class TrackScene: SKScene{
         
         let sceneTitle = SKLabelNode(fontNamed: FontTypes.MarkerFeltWie)
         sceneTitle.fontSize = 40.0
-        sceneTitle.text = "Click on a level track below:"
+        sceneTitle.text = NSLocalizedString("Click on a level track below:", comment: "")
         let sceneTitleYPos = ScreenSizeFloatConstants.HalfScreenHeight*0.9
         let sceneTitleXPos = ScreenSizeFloatConstants.HalfScreenWidth
         sceneTitle.position = CGPoint(x: sceneTitleXPos, y: sceneTitleYPos)

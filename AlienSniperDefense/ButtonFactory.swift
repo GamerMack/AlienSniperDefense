@@ -61,7 +61,17 @@ class ButtonFactory{
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.10 )
         introText3.fontSize = 10.0
-        introText3.text = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose"
+        
+        let tempText3a = NSLocalizedString("Shoot every ", comment: "")
+        let tempText3b = tempText3a.appending(NSLocalizedString("\(enemyName)", comment: ""))
+        let tempText3c = tempText3b.appending(NSLocalizedString("If", comment: ""))
+        let tempText3d = tempText3c.appending(NSLocalizedString("\(spawningLimit)", comment: ""))
+        let tempText3e = tempText3d.appending(NSLocalizedString(" are on screen, you lose", comment: ""))
+        
+        introText3.text = tempText3e
+            
+            //Original text (version 1.0-3.0): NSLocalizedString("Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose", comment: "")
+        
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
         introText3.fontColor = SKColor.blue
@@ -71,7 +81,16 @@ class ButtonFactory{
         introBox.addChild(introText4)
         introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.20 )
         introText4.fontSize = 10.0
-        introText4.text = "You must kill \(minimumKillsForLevelCompletion) minimum to win."
+        
+        let tempText4a = NSLocalizedString("You must kill", comment: "")
+        let tempText4b = tempText4a.appending(" \(minimumKillsForLevelCompletion)")
+        let tempText4c = tempText4b.appending(NSLocalizedString(" minimum to win", comment: ""))
+        
+        introText4.text = tempText4c
+            
+            //Original string(version 1.0-3.0): NSLocalizedString("You must kill \(minimumKillsForLevelCompletion) minimum to win.", comment: "")
+        
+    
         introText4.zPosition = 12
         introText4.name = NodeNames.StartButton
         introText4.fontColor = SKColor.blue
@@ -137,7 +156,16 @@ class ButtonFactory{
         introBox.addChild(introText3)
         introText3.position = CGPoint(x: 0, y: -introxBoxHeight*0.15 )
         introText3.fontSize = 15.0
-        introText3.text = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds"
+        
+        let tempText3a = NSLocalizedString("Enemy: ", comment: "")
+        let tempText3b = tempText3a.appending("\(enemyName)")
+        let tempText3c = tempText3b.appending(NSLocalizedString(" Time Limit:", comment: ""))
+        let tempText3d = tempText3c.appending("\(levelTimeLimit)")
+        let tempText3e = tempText3d.appending(NSLocalizedString(" seconds", comment: ""))
+        
+        introText3.text = tempText3e
+            
+            //Original text(version 1.0-3.0): NSLocalizedString("Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds", comment: "")
         introText3.zPosition = 12
         introText3.name = NodeNames.StartButton
         introText3.fontColor = SKColor.blue
@@ -148,7 +176,13 @@ class ButtonFactory{
         introBox.addChild(introText4)
         introText4.position = CGPoint(x: 0, y: -introxBoxHeight*0.25 )
         introText4.fontSize = 15.0
-        introText4.text = "Must kill at least \(minimumKillsForLevelCompletion)."
+        
+        let tempText4a = NSLocalizedString("Must kill at least ", comment: "")
+        let tempText4b = tempText4a.appending("\(minimumKillsForLevelCompletion).")
+        
+        introText4.text = tempText4b
+        
+            //OriginalText (version 1.0 - 3.0): NSLocalizedString("Must kill at least \(minimumKillsForLevelCompletion).", comment: "")
         introText4.zPosition = 12
         introText4.name = NodeNames.StartButton
         introText4.fontColor = SKColor.blue

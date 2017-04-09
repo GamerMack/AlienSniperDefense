@@ -48,11 +48,24 @@ class HUD2: SKSpriteNode{
         
         guard let numberKilledTexture = hudAtlas?.textureNamed("text_score") else { return }
         
-        let killCountIcon = SKSpriteNode(texture: numberKilledTexture)
+        var killCountIcon: SKNode = SKSpriteNode(texture: numberKilledTexture)
         
         killCountIcon.xScale *= 0.7
         killCountIcon.yScale *= 0.7
         
+        let chineseFlagText = NSLocalizedString("If", comment: "")
+        
+        if(chineseFlagText == "如果"){
+            killCountIcon = SKLabelNode(text: "分数")
+            let killCountLabel = killCountIcon as! SKLabelNode
+            killCountLabel.fontSize = 40.0
+            killCountLabel.horizontalAlignmentMode = .center
+            killCountLabel.verticalAlignmentMode = .center
+            killCountLabel.fontColor = SKColor.yellow
+            
+        }
+        
+
         //Configure the size and position of the Kill score icon (assume a scene anchore point of (0.5,0.5)
         let iconYPos = CGFloat(ScreenSizeFloatConstants.HalfScreenHeight*0.8)
         let iconXPos = CGFloat(-ScreenSizeFloatConstants.HalfScreenWidth*0.75)

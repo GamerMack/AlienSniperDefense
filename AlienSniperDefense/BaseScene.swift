@@ -220,14 +220,49 @@ class BaseScene: SKScene{
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
+        let tempTexta = NSLocalizedString("Level ", comment: "")
+        
+        var tempTextb: String
+        
+        if(tempTexta == "等级 "){
+            switch(levelNumber){
+            case 1:
+                tempTextb = tempTexta.appending("-")
+                break
+            case 2:
+                tempTextb = tempTexta.appending("二")
+                break
+            case 3:
+                tempTextb = tempTexta.appending("三")
+                break
+            case 4:
+                tempTextb = tempTexta.appending("四")
+                break
+            case 5:
+                tempTextb = tempTexta.appending("五")
+                break
+            default:
+                tempTextb = tempTexta.appending("零")
+                break
+            }
+        } else {
+            tempTextb = tempTexta.appending("\(levelNumber)")
+            
+        }
+        
+        
+        
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: NSLocalizedString("Level \(levelNumber)", comment: ""), levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: tempTextb, levelDescription: self.levelDescription, enemyName: self.enemyName, levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
             
             configureTimerButton()
             
             
         }else{
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: NSLocalizedString("Level \(levelNumber)", comment: ""), levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            
+           
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: tempTextb, levelDescription: self.levelDescription, enemyName: self.enemyName, spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
         
 
@@ -298,7 +333,10 @@ class BaseScene: SKScene{
             let numberString = timerLabelNumberFormatter.string(from: timerNumber)
             
             if(numberString != nil){
-                let timerText = NSLocalizedString("Time Remaining: \(numberString!)", comment: "")
+                let tempTexta = NSLocalizedString("Time Remaining: ", comment: "")
+                let tempTextb = tempTexta.appending("\(numberString!)")
+                
+                let timerText = NSLocalizedString(tempTextb, comment: "")
                 timerLabel.text = timerText
             }
         }
@@ -850,7 +888,26 @@ extension BaseScene{
     final func showTimeUpLabel(){
         
         let timeUpTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("text_timeup")
-        let timeUpSprite = SKSpriteNode(texture: timeUpTexture)
+        var timeUpSprite = SKNode()
+        
+        let chineseFlagText = NSLocalizedString("If", comment: "")
+        
+        if(chineseFlagText == "如果"){
+            timeUpSprite = SKLabelNode(text: "时间到了!")
+            let timeUpLabel = timeUpSprite as! SKLabelNode
+            timeUpLabel.fontSize = 40.0
+            timeUpLabel.horizontalAlignmentMode = .center
+            timeUpLabel.verticalAlignmentMode = .center
+            timeUpLabel.fontColor = SKColor.yellow
+    
+            
+        } else {
+            
+            timeUpSprite = SKSpriteNode(texture: timeUpTexture)
+
+        }
+        
+        
         timeUpSprite.position = CGPoint(x: 0.00, y: ScreenSizeFloatConstants.HalfScreenHeight*0.8)
         
         let originalZRotation = timeUpSprite.zRotation

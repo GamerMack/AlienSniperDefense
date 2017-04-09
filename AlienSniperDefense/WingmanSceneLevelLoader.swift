@@ -143,7 +143,7 @@ class WingmanSceneLevelLoader{
         
         
         
-        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 5, levelDescription: "Wingman make their last stand!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 5, levelDescription: NSLocalizedString("Wingman make their last stand!", comment: ""), enemyName: NSLocalizedString("Wingman", comment: ""), playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -159,7 +159,7 @@ class WingmanSceneLevelLoader{
         
         
         
-        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 4, levelDescription: "Wingman are spawning like crazy!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 4, levelDescription: NSLocalizedString("Wingman are spawning like crazy!", comment: ""), enemyName: NSLocalizedString("Wingman", comment: ""), playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -174,7 +174,7 @@ class WingmanSceneLevelLoader{
         
         
         
-        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 3, levelDescription: "The wingman are moving faster now!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 3, levelDescription: NSLocalizedString("The wingman are moving faster now!", comment: ""), enemyName: NSLocalizedString("Wingman", comment: ""), playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -187,7 +187,7 @@ class WingmanSceneLevelLoader{
         
         
         
-        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 2, levelDescription: "The wingman want to hide more!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 2, levelDescription: NSLocalizedString("The wingman want to hide more!", comment: ""), enemyName: NSLocalizedString("Wingman", comment: ""), playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
         
         
     }
@@ -198,7 +198,7 @@ class WingmanSceneLevelLoader{
         
     
         
-        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: "Shoot all the wingman!", enemyName: "Wingman", playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
+        return WingmanScene(size: ScreenSizeFloatConstants.ScreenSize.size, levelNumber: 1, levelDescription: NSLocalizedString("Shoot all the wingman!", comment: ""), enemyName: NSLocalizedString("Wingman", comment: ""), playerType: .RedLarge, backgroundMusic: BackgroundMusic.AlphaDance, numberOfBackgroundObjects: numberOfBackgroundObjects, hideInterval: hideInterval, spawnInterval: spawnInterval, initialNumberOfEnemiesSpawned: initialNumberOfEnemiesSpawned, enemiesSpawnedPerInterval: enemiesSpawnedPerInterval, randomVectorConfigurationForUpdate: randomVectorConfiguration, maximumEnemiesAllowed: maximumEnemiesAllowed, minimumKillsForLevelCompletion: minimumKillsForLevelCompletion)
             
        
     }

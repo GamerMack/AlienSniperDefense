@@ -568,10 +568,41 @@ extension FlyingAlienScene{
         //Configure SceneInterfaceManagerDelegate
         sceneInterfaceManagerDelegate = SceneInterfaceManager(newManagedScene: self)
         
+        let tempTexta = NSLocalizedString("Level ", comment: "")
+        
+        var tempTextb: String
+        
+        if(tempTexta == "等级 "){
+            switch(levelNumber){
+            case 1:
+                tempTextb = tempTexta.appending("-")
+                break
+            case 2:
+                tempTextb = tempTexta.appending("二")
+                break
+            case 3:
+                tempTextb = tempTexta.appending("三")
+                break
+            case 4:
+                tempTextb = tempTexta.appending("四")
+                break
+            case 5:
+                tempTextb = tempTexta.appending("五")
+                break
+            default:
+                tempTextb = tempTexta.appending("零")
+                break
+            }
+        } else {
+            tempTextb = tempTexta.appending("\(levelNumber)")
+            
+        }
+        
+        
         if(currentGameSettings.getGamePlayMode() == .valueTimeLimit){
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: tempTextb, levelDescription: self.levelDescription, enemyName: "Hover Borg", levelTimeLimit: self.timeLimit, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }else{
-            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: "Level \(levelNumber)", levelDescription: self.levelDescription, enemyName: "Hover Borg", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
+            sceneInterfaceManagerDelegate.setupIntroMessageBox(levelTitle: tempTextb, levelDescription: self.levelDescription, enemyName: "Hover Borg", spawningLimit: self.maximumNumberOFEnemies, minimumKillsForLevelCompletion: self.minimumKillsForLevelCompletion)
         }
         
 

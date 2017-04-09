@@ -7,6 +7,31 @@
 */
 
 
+//Scene Intro Text
+
+"You must kill" = "玩着必须打死";
+
+" minimum to win" = " 才能晋级到上一级";
+
+"Shoot every " = "打死 ";
+
+"If" = "如果";
+
+" are on screen, you lose" = " 出现在屏幕上，玩着就输了";
+
+"Enemy: " = "敌人名: ";
+
+" Time Limit:" = " 时间限制:";
+
+" seconds" = " 秒";
+
+"Must kill at least " = "必须至少杀到 ";
+
+"Time Remaining: " = "计时表: ";
+
+"Level " = "等级 ";
+
+
 //Instruction Scene
 
 "Wingman can hide behind sky objects." = "翅膀怪兽能够躲在背景中的物体后面";
@@ -80,43 +105,138 @@
 
 "Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉 \(minimumKillsForLevelCompletion)";
 
-/**
+"Time Remaining: \(numberString!)" = "计时表: \(numberString!)";
+
+
+"Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "敌人名: \(enemyName)，时间线: \(levelTimeLimit)秒";
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit) 同时在屏幕上，玩着就输了";
+
+
+
+//Level Loader
+
+"Shoot all the UFOreos!" = "打到所有的调皮小球!";
+
+"UFOreo" = "调皮小球";
+
+"UFOreo just got faster!!" = "调皮小球变快了!!";
+
+"UFOreos are spawning faster!!" = "调皮小球要出现越来越快!";
+
+"UFOreos are spawning like crazy!!" = "调皮小球发疯了!!";
+
+"UFOreos make their last stand!!" = "调皮小球最后一次坚持奋斗!!";
+
+"Shoot all the wingman!" = "打到所有的翅膀怪兽";
+
+"Wingman" = "翅膀怪兽";
+
+"The wingman want to hide more!" = "翅膀怪兽要躲得越来越多!";
+
+"The wingman are moving faster now!" = "翅膀怪兽变快了";
+
+"Wingman are spawning like crazy!" = "翅膀怪兽发疯了";
+
+"Wingman make their last stand!" = "翅膀怪兽最后一次坚持奋斗!!";
+
+
+"Shoot all the bats!" = "打到所有的恶蝙蝠！";
+
+"Bat" = "恶蝙蝠";
+
+"Fluorescent Bat" = "恶蝙蝠";
+
+"The bats just got a little faster!" = "恶蝙蝠变快了!";
+
+"The bats just got harder to see!" = "恶蝙蝠越来越不容易看到！";
+
+"The bats are spawning like crazy!" =  "邪恶蝙蝠发疯了!";
+
+"The Bats make their last stand!" = "恶蝙蝠最后一次坚持奋斗！";
+
+
+"The stealth ships are getting faster!" = "无形航天器变快了";
+
+"Stealth Ship" = "无形航天器";
+
+"Shoot all the Stealth Ships!" = "打到所有的无形航天器";
+
+"The stealth ships are getting stealthier!" = "无形航天器要变得越来越狡猾！";
+
+"The stealth ships are spawning like crazy now!" = "无形航天器发疯了";
+
+"Stealth ships make their last stand!" = "无形航天器最后一次坚持奋斗";
+
+
+"Hover Borg" = "外星导航者";
+
+"Shoot all the Hover Borg" = "打到所有的外星导航者";
+
+"The Hover Borg are upset with you!" = "外星导航者跟你生气了";
+
+"The Hover Borg are really upset now!!" = "外星导航者受不了你了";
+
+"The Hover Borg are spawning like mad!!" = "外星导航者发疯了!!";
+
+"The Hover Borg make their last stand!!" = "外星导航者最后一次坚持奋斗!!";
+
+
+//Player Stats Summary Level
+
+"Well Done! Track Completed!" = "你好厉害！这个挑战完成了";
+
+"Total Number of Kills: " = "被杀的敌人总数量:";
+
+"Total Number of Enemies Spawned: " = "出现的敌人总数量:"
+;
+
+"Total Game Time (seconds): " = "总时间(按秒):"
+;
+
+"Total Number of Bullets Fired: " = "开枪次数: "
+;
+
+"Firing Accuracy: " = "设计准确性: "
+;
+
+"Game Developed by Alex Makedonski." = "软体开发者: Alex Makedonski."
+;
+
+"Graphics from Kenney." = "图片设计师: Kenney."
+;
 
 
 //Menu Scene
 
-"Alien"
+"Alien" = "反外星怪兽的";
 
-"Game Developer: Alex Makedonski"
+"Sniper Defense" = "突击手";
 
-"Game Developer: Alex Makedonski"
+"Game Developer: Alex Makedonski" = "软体开发者: Alex Makedonski";
 
-"Graphics By: Kenney"
+"Graphics By: Kenney" = "图片设计师: Kenney";
 
-"Sniper Defense"
+"Start Game" = "开始";
+
+"Hard" = "超难";
+
+"Medium" = "还行";
+
+"Easy" = "没问题";
+
+"Time Limit Mode" = "时间限制模式";
+
+"Minimum Kills Mode" = "杀敌人模式";
 
 //Track Scene
 
-"Click on a level track below:"
+"Click on a level track below:" = "请选下面的一个挑战:";
 
-//Player Stats Summary Scene
 
-"Well Done! Track Completed!"
-
-"Total Number of Kills: "
-
-"Total Number of Enemies Spawned: "
-
-"Total Game Time (seconds): "
-
-"Total Number of Bullets Fired: "
-
-"Firing Accuracy: "
-
-"Game Developed by Alex Makedonski."
-
-"Graphics from Kenney."
-
-**/
 
 

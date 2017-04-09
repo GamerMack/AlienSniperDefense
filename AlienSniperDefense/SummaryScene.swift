@@ -51,7 +51,7 @@ class SummaryScene: SKScene{
         
         //Player Stats Title
         let title = SKLabelNode(fontNamed: FontTypes.MarkerFeltThin)
-        title.text = "Well Done! Track Completed!"
+        title.text = NSLocalizedString("Well Done! Track Completed!", comment: "")
         title.fontColor = SKColor.yellow
         title.verticalAlignmentMode = .center
         title.horizontalAlignmentMode = .center
@@ -74,7 +74,7 @@ class SummaryScene: SKScene{
       
         let killCounText = getNumberFormattedString(forStatisticOf: Double(killCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: killCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Kills: ", labelText: killCounText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: killCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Number of Kills: ", comment: ""), labelText: killCounText)
 
         
         //Configure display for Total Number of Enemies Spawned
@@ -83,7 +83,7 @@ class SummaryScene: SKScene{
         
         let enemyCountText = getNumberFormattedString(forStatisticOf: Double(trackEnemyCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Enemies Spawned: ", labelText: enemyCountText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Number of Enemies Spawned: ", comment: ""), labelText: enemyCountText)
     
         //Configure display for Total GameTime
         let gameTimeHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.05
@@ -91,7 +91,7 @@ class SummaryScene: SKScene{
         
         let gameTimeText = getNumberFormattedString(forStatisticOf: trackGameTime, minFractionDigits: 2, maxFractionDigits: 2, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Game Time (seconds): ", labelText: gameTimeText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: gameTimeHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Game Time (seconds): ", comment: ""), labelText: gameTimeText)
         
         
         
@@ -102,7 +102,7 @@ class SummaryScene: SKScene{
         
         let bulletCountText = getNumberFormattedString(forStatisticOf: Double(trackBulletCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Total Number of Bullets Fired: ", labelText: bulletCountText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: bulletCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Number of Bullets Fired: ", comment: ""), labelText: bulletCountText)
         
         
         //Configure display for Firing Accuracy
@@ -112,7 +112,7 @@ class SummaryScene: SKScene{
         
         let firingAccuracyText = getNumberFormattedString(forStatisticOf: firingAccuracy, minFractionDigits: 2, maxFractionDigits: 4, minIntDigits: 1, maxIntDigits: 1)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: firingAccuracyHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: "Firing Accuracy: ", labelText: firingAccuracyText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: firingAccuracyHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Firing Accuracy: ", comment: ""), labelText: firingAccuracyText)
         
         
         
@@ -128,7 +128,7 @@ class SummaryScene: SKScene{
         
         let authorLabel = SKLabelNode(fontNamed: FontTypes.FuturaMedium)
         authorLabel.fontColor = SKColor.cyan
-        authorLabel.text = "Game Developed by Alex Makedonski."
+        authorLabel.text = NSLocalizedString("Game Developed by Alex Makedonski.", comment: "")
         authorLabel.fontSize = 7.0
         authorLabel.horizontalAlignmentMode = .right
         authorLabel.verticalAlignmentMode = .center
@@ -139,7 +139,7 @@ class SummaryScene: SKScene{
       
         let acknowledgmentLabel = SKLabelNode(fontNamed: FontTypes.FuturaMedium)
         acknowledgmentLabel.fontColor = SKColor.cyan
-        acknowledgmentLabel.text = "Graphics from Kenney."
+        acknowledgmentLabel.text = NSLocalizedString("Graphics from Kenney.", comment: "")
         acknowledgmentLabel.fontSize = 7.0
         acknowledgmentLabel.horizontalAlignmentMode = .right
         acknowledgmentLabel.verticalAlignmentMode = .center

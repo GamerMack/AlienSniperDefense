@@ -7,6 +7,32 @@
 */
 
 
+//Scene Intro Text
+
+"You must kill" = "You must kill";
+
+" minimum to win" = " minimum to win";
+
+"Shoot every " = "Shoot every ";
+
+"If" = "If";
+
+" are on screen, you lose" = " are on screen, you lose";
+
+
+"Enemy: " = "Enemy: ";
+
+" Time Limit:" = " Time Limit:";
+
+" seconds" = " seconds";
+
+"Must kill at least " = "Must kill at least ";
+
+"Time Remaining: " = "Time Remaining: ";
+
+"Level " = "Level ";
+
+
 //Instruction Scene
 
 "Wingman can hide behind sky objects." = "Wingman can hide behind sky objects.";
@@ -78,45 +104,131 @@
 
 "Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
 
+"Time Remaining: \(numberString!)" = "Time Remaining: \(numberString!)";
 
 
+"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
+
+//Level Loader
+
+"Shoot all the UFOreos!" = "Shoot all the UFOreos!";
+
+"UFOreo" = "UFOreo";
+
+"UFOreo just got faster!!" = "UFOreo just got faster!!";
+
+"UFOreos are spawning faster!!" = "UFOreos are spawning faster!!";
+
+"UFOreos are spawning like crazy!!" = "UFOreos are spawning like crazy!!";
+
+"UFOreos make their last stand!!" = "UFOreos make their last stand!!";
+
+"Shoot all the wingman!" = "Shoot all the wingman!";
+
+"Wingman" = "Wingman";
+
+"The wingman want to hide more!" = "The wingman want to hide more!";
+
+"The wingman are moving faster now!" = "The wingman are moving faster now!";
+
+"Wingman are spawning like crazy!" = "Wingman are spawning like crazy!";
+
+"Wingman make their last stand!" = "Wingman make their last stand!";
 
 
-//Menu Scene
-/**
-"Alien"
+"Shoot all the bats!" = "Shoot all the bats!";
 
-"Game Developer: Alex Makedonski"
+"Bat" = "Bat";
 
-"Game Developer: Alex Makedonski"
+"Fluorescent Bat" = "Fluorescent Bat";
 
-"Graphics By: Kenney"
+"The bats just got a little faster!" = "The bats just got a little faster!";
 
-"Sniper Defense"
+"The bats just got harder to see!" = "The bats just got harder to see!";
 
-//Track Scene
+ "The bats are spawning like crazy!" =  "The bats are spawning like crazy!";
 
-"Click on a level track below:"
+"The Bats make their last stand!" = "The Bats make their last stand!";
+
+
+"The stealth ships are getting faster!" = "The stealth ships are getting faster!";
+
+"Stealth Ship" = "Stealth Ship";
+
+"Shoot all the Stealth Ships!" = "Shoot all the Stealth Ships!";
+
+"The stealth ships are getting stealthier!" = "The stealth ships are getting stealthier!";
+
+"The stealth ships are spawning like crazy now!" = "The stealth ships are spawning like crazy now!";
+
+"Stealth ships make their last stand!" = "Stealth ships make their last stand!";
+
+"Hover Borg" = "Hover Borg";
+
+"Shoot all the Hover Borg" = "Shoot all the Hover Borg";
+
+"The Hover Borg are upset with you!" = "The Hover Borg are upset with you!";
+
+"The Hover Borg are really upset now!!" = "The Hover Borg are really upset now!!";
+
+"The Hover Borg are spawning like mad!!" = "The Hover Borg are spawning like mad!!";
+
+"The Hover Borg make their last stand!!" = "The Hover Borg make their last stand!!";
 
 //Player Stats Summary Scene
 
-"Well Done! Track Completed!"
+"Well Done! Track Completed!" = "Well Done! Track Completed!";
 
-"Total Number of Kills: "
+"Total Number of Kills: " = "Total Number of Kills: ";
 
-"Total Number of Enemies Spawned: "
+"Total Number of Enemies Spawned: " = "Total Number of Enemies Spawned: ";
+;
 
-"Total Game Time (seconds): "
+"Total Game Time (seconds): " = "Total Game Time (seconds): ";
+;
 
-"Total Number of Bullets Fired: "
+"Total Number of Bullets Fired: " = "Total Number of Bullets Fired: ";
+;
 
-"Firing Accuracy: "
+"Firing Accuracy: " = "Firing Accuracy: ";
+;
 
-"Game Developed by Alex Makedonski."
+"Game Developed by Alex Makedonski." = "Game Developed by Alex Makedonski.";
+;
 
-"Graphics from Kenney."
+"Graphics from Kenney." = "Graphics from Kenney.";
+;
+
+//Menu Scene
+
+"Alien" = "Alien";
+
+"Sniper Defense" = "Sniper Defense";
+
+"Game Developer: Alex Makedonski" = "Game Developer: Alex Makedonski";
+
+"Graphics By: Kenney" = "Graphics By: Kenney";
+
+"Start Game" = "Start Game";
+
+"Hard" = "Hard";
+
+"Medium" = "Medium";
+
+"Easy" = "Easy";
+
+"Time Limit Mode" = "Time Limit Mode";
+
+"Minimum Kills Mode" = "Minimum Kills Mode";
+
+//Track Scene
+
+"Click on a level track below:" = "Click on a level track below:";
 
 
-
-
-**/

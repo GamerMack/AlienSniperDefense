@@ -7,85 +7,27 @@
 */
 
 
-//Base Scene
-/**
-"Time Remaining: \(numberString!)"
-
-"Pause"
-
-"Resume"
-
-"Level" //di yi ji, di er ji
-
-//Screen Interface Manager
-
-"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
-
-
-"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
-
-
-"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
-
-"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
-
 //Instruction Scene
 
 "Wingman can hide behind sky objects." = "Wingman can hide behind sky objects.";
 
 "When hiding, they cannot be hit" = "When hiding, they cannot be hit";
 
-"Hover Borg can be manned or unmanned.",
-text2: "When unmanned, they cannot be hit.",
-text3: "Shoot background objects to generate blackholes that capture Hover Borgs.")
+"Hover Borg can be manned or unmanned." = "Hover Borg can be manned or unmanned.";
+"When unmanned, they cannot be hit." = "When unmanned, they cannot be hit.";
+"Shoot background objects to generate blackholes that capture Hover Borgs." = "Shoot background objects to generate blackholes that capture Hover Borgs.";
 
-"Stealth mode is indicated by fading action.",
-text2: "When in stealth mode, stealth ships cannot take damage.",
-text3: "Stealth ships require multiple hits to be destroyed")
+"Stealth mode is indicated by fading action." = "Stealth mode is indicated by fading action.";
+"When in stealth mode, stealth ships cannot take damage."= "When in stealth mode, stealth ships cannot take damage.";
+"Stealth ships require multiple hits to be destroyed" = "Stealth ships require multiple hits to be destroyed";
 
 
-withTextOf: "When in emitting mode, UFOreos expand and contract.",
-text2: "In emitting mode, UFOreos cannot take damage, and",
-text3: "may emit gravity fields that disrupt player movement")
+"When in emitting mode, UFOreos expand and contract." = "When in emitting mode, UFOreos expand and contract.";
+"In emitting mode, UFOreos cannot take damage, and" = "In emitting mode, UFOreos cannot take damage, and";
+"may emit gravity fields that disrupt player movement" = "may emit gravity fields that disrupt player movement";
 
-"Bats can be hard to see in the dark.",
-text2: "When targeted with the cross hair, they can be illuminated",
-text3: nil)
-
-//Menu Scene
-
-"Alien"
-
-"Game Developer: Alex Makedonski"
-
-"Game Developer: Alex Makedonski"
-
-"Graphics By: Kenney"
-
-"Sniper Defense"
-
-//Track Scene
-
-"Click on a level track below:"
-
-//Player Stats Summary Scene
-
-"Well Done! Track Completed!"
-
-"Total Number of Kills: "
-
-"Total Number of Enemies Spawned: "
-
-"Total Game Time (seconds): "
-
-"Total Number of Bullets Fired: "
-
-"Firing Accuracy: "
-
-"Game Developed by Alex Makedonski."
-
-"Graphics from Kenney."
-
+"Bats can be hard to see in the dark." = "Bats can be hard to see in the dark.";
+"When targeted with the cross hair, they can be illuminated" = "When targeted with the cross hair, they can be illuminated";
 
 //Button Manager
 
@@ -99,4 +41,167 @@ text3: nil)
 
 "Wingman" = "Wingman";
 
-**/
+//Base Scene
+
+
+"Time Remaining: \(numberString!)" = "Time Remaining: \(numberString!)";
+
+"Pause" = "Pause";
+
+"Resume" = "Resume";
+
+"Level \(levelNumber)" = "Level \(levelNumber)";
+
+
+
+"Not Enough Enemies Killed! Better luck next time!" = "Not Enough Enemies Killed! Better luck next time!";
+
+"Level Complete! Well Done!" = "Level Complete! Well Done!";
+
+"Main Menu" = "Main Menu";
+
+"Restart Level" = "Restart Level";
+
+"Too many enemies on screen!" = "Too many enemies on screen!";
+
+
+//Screen Interface Manager
+
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
+
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
+
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
+
+"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
+
+"Time Remaining: \(numberString!)" = "Time Remaining: \(numberString!)";
+
+
+"Must kill at least \(minimumKillsForLevelCompletion)." = "Must kill at least \(minimumKillsForLevelCompletion).";
+
+"Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds";
+
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "You must kill \(minimumKillsForLevelCompletion) minimum to win.";
+
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose";
+
+//Level Loader
+
+"Shoot all the UFOreos!" = "Shoot all the UFOreos!";
+
+"UFOreo" = "UFOreo";
+
+"UFOreo just got faster!!" = "UFOreo just got faster!!";
+
+"UFOreos are spawning faster!!" = "UFOreos are spawning faster!!";
+
+"UFOreos are spawning like crazy!!" = "UFOreos are spawning like crazy!!";
+
+"UFOreos make their last stand!!" = "UFOreos make their last stand!!";
+
+"Shoot all the wingman!" = "Shoot all the wingman!";
+
+"Wingman" = "Wingman";
+
+"The wingman want to hide more!" = "The wingman want to hide more!";
+
+"The wingman are moving faster now!" = "The wingman are moving faster now!";
+
+"Wingman are spawning like crazy!" = "Wingman are spawning like crazy!";
+
+"Wingman make their last stand!" = "Wingman make their last stand!";
+
+
+"Shoot all the bats!" = "Shoot all the bats!";
+
+"Bat" = "Bat";
+
+"Fluorescent Bat" = "Fluorescent Bat";
+
+"The bats just got a little faster!" = "The bats just got a little faster!";
+
+"The bats just got harder to see!" = "The bats just got harder to see!";
+
+"The bats are spawning like crazy!" =  "The bats are spawning like crazy!";
+
+"The Bats make their last stand!" = "The Bats make their last stand!";
+
+
+"The stealth ships are getting faster!" = "The stealth ships are getting faster!";
+
+"Stealth Ship" = "Stealth Ship";
+
+"Shoot all the Stealth Ships!" = "Shoot all the Stealth Ships!";
+
+"The stealth ships are getting stealthier!" = "The stealth ships are getting stealthier!";
+
+"The stealth ships are spawning like crazy now!" = "The stealth ships are spawning like crazy now!";
+
+"Stealth ships make their last stand!" = "Stealth ships make their last stand!";
+
+"Hover Borg" = "Hover Borg";
+
+"Shoot all the Hover Borg" = "Shoot all the Hover Borg";
+
+"The Hover Borg are upset with you!" = "The Hover Borg are upset with you!";
+
+"The Hover Borg are really upset now!!" = "The Hover Borg are really upset now!!";
+
+"The Hover Borg are spawning like mad!!" = "The Hover Borg are spawning like mad!!";
+
+"The Hover Borg make their last stand!!" = "The Hover Borg make their last stand!!";
+
+//Player Stats Summary Scene
+
+"Well Done! Track Completed!" = "Well Done! Track Completed!";
+
+"Total Number of Kills: " = "Total Number of Kills: ";
+
+"Total Number of Enemies Spawned: " = "Total Number of Enemies Spawned: ";
+;
+
+"Total Game Time (seconds): " = "Total Game Time (seconds): ";
+;
+
+"Total Number of Bullets Fired: " = "Total Number of Bullets Fired: ";
+;
+
+"Firing Accuracy: " = "Firing Accuracy: ";
+;
+
+"Game Developed by Alex Makedonski." = "Game Developed by Alex Makedonski.";
+;
+
+"Graphics from Kenney." = "Graphics from Kenney.";
+;
+
+//Menu Scene
+
+"Alien" = "Alien";
+
+"Sniper Defense" = "Sniper Defense";
+
+"Game Developer: Alex Makedonski" = "Game Developer: Alex Makedonski";
+
+"Graphics By: Kenney" = "Graphics By: Kenney";
+
+"Start Game" = "Start Game";
+
+"Hard" = "Hard";
+
+"Medium" = "Medium";
+
+"Easy" = "Easy";
+
+"Time Limit Mode" = "Time Limit Mode";
+
+"Minimum Kills Mode" = "Minimum Kills Mode";
+
+//Track Scene
+
+"Click on a level track below:" = "Click on a level track below:";
+

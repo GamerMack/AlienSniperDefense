@@ -62,8 +62,8 @@ class NodeNames{
     static let TooManyEnemiesNotice = "TooManyEnemiesOnScreen"
     static let ClearPlayerDataButton = "ClearPlayerDataButton"
     static let StartMultiplayerButton = "Multiplayer Mode"
-    static let TimeLimitModeButton = "Time Limit Mode"
-    static let MinimumKillsModeButton = "Minimum Kills Mode"
+    static let TimeLimitModeButton = "Time Limit Mode";
+    static let MinimumKillsModeButton = "Minimum Kills Mode";
     static let AchievementsButton = "AchievementsButton"
     
 }

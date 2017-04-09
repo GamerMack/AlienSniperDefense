@@ -197,7 +197,7 @@ class MenuScene: SKScene{
         //Build the label for the GameTitle
         let topTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         topTitleNode.fontColor = SKColor.yellow
-        topTitleNode.text = "Alien"
+        topTitleNode.text = NSLocalizedString("Alien", comment: "")
         topTitleNode.zPosition = 2
         topTitleNode.position = CGPoint(x: 0.0, y: 100)
         topTitleNode.fontSize = 50
@@ -205,7 +205,7 @@ class MenuScene: SKScene{
         
         let bottomTitleNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         bottomTitleNode.fontColor = SKColor.yellow
-        bottomTitleNode.text = "Sniper Defense"
+        bottomTitleNode.text = NSLocalizedString("Sniper Defense", comment: "")
         bottomTitleNode.position = CGPoint(x: 0.0, y: 40)
         bottomTitleNode.zPosition = 2
         bottomTitleNode.fontSize = 50
@@ -213,7 +213,7 @@ class MenuScene: SKScene{
         
         let authorNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         authorNode.fontColor = SKColor.yellow
-        authorNode.text = "Game Developer: Alex Makedonski"
+        authorNode.text = NSLocalizedString("Game Developer: Alex Makedonski", comment: "")
         authorNode.position = CGPoint(x: 0.0, y: 20)
         authorNode.zPosition = 2
         authorNode.fontSize = 10
@@ -221,7 +221,7 @@ class MenuScene: SKScene{
         
         let designerNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
         designerNode.fontColor = SKColor.yellow
-        designerNode.text = "Graphics By: Kenney"
+        designerNode.text = NSLocalizedString("Graphics By: Kenney", comment: "")
         designerNode.position = CGPoint(x: 0.0, y: 0)
         designerNode.zPosition = 2
         designerNode.fontSize = 10
@@ -247,7 +247,7 @@ class MenuScene: SKScene{
         
         //Build label text for Start Button
         let startButtonText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-        startButtonText.text = "Start Game"
+        startButtonText.text = NSLocalizedString("Start Game", comment: "")
         startButtonText.verticalAlignmentMode = .center
         startButtonText.position = CGPoint(x: 0, y: 2)
         startButtonText.fontSize = 40
@@ -328,13 +328,29 @@ class MenuScene: SKScene{
         let mediumButtonYPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.20
         let easyButtonYPos = -ScreenSizeFloatConstants.HalfScreenHeight*0.70
             
-        hardButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Hard", atPosition: CGPoint(x: 0, y: hardButtonYPos))
-        mediumButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Medium", atPosition: CGPoint(x: 0, y: mediumButtonYPos))
-        easyButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: "Easy", atPosition: CGPoint(x: 0, y: easyButtonYPos))
+        hardButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: NSLocalizedString("Hard", comment: ""), atPosition: CGPoint(x: 0, y: hardButtonYPos))
+        hardButton.name = "Hard"
+        setNameOfChildLabelTo(nodeName: "Hard", forNode: hardButton)
+        
+        mediumButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: NSLocalizedString("Medium", comment: ""), atPosition: CGPoint(x: 0, y: mediumButtonYPos))
+        mediumButton.name = "Medium"
+        setNameOfChildLabelTo(nodeName: "Medium", forNode: mediumButton)
+        
+        easyButton = getButtonWith(textureNamed: "yellow_button06", andWithTextOf: NSLocalizedString("Easy", comment: ""), atPosition: CGPoint(x: 0, y: easyButtonYPos))
+        easyButton.name = "Easy"
+        setNameOfChildLabelTo(nodeName: "Easy", forNode: easyButton)
         
         self.addChild(hardButton)
         self.addChild(mediumButton)
         self.addChild(easyButton)
+    }
+    
+    private func setNameOfChildLabelTo(nodeName: String, forNode node: SKNode){
+        for node in node.children{
+            if let node = node as? SKLabelNode{
+                node.name = nodeName
+            }
+        }
     }
     
     private func setupGamePlayModeButtons(){
@@ -343,10 +359,15 @@ class MenuScene: SKScene{
         let buttonHeight = ScreenSizeFloatConstants.HalfScreenHeight*0.50
         let buttonSize = CGSize(width: buttonWidth, height: buttonHeight)
         
-        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.TimeLimitModeButton, atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.25), andWithSizeOf: buttonSize)
+        noTimeLimitModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NSLocalizedString("Time Limit Mode", comment: ""), atPosition: CGPoint(x: 0, y: ScreenSizeFloatConstants.HalfScreenHeight*0.25), andWithSizeOf: buttonSize)
         
-        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.MinimumKillsModeButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.30), andWithSizeOf: buttonSize)
+        noTimeLimitModeButton.name = NodeNames.TimeLimitModeButton
+        setNameOfChildLabelTo(nodeName: NodeNames.TimeLimitModeButton, forNode: noTimeLimitModeButton)
         
+        minimumKillsModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NSLocalizedString("Minimum Kills Mode", comment: ""), atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.30), andWithSizeOf: buttonSize)
+        
+        minimumKillsModeButton.name = NodeNames.MinimumKillsModeButton
+        setNameOfChildLabelTo(nodeName: NodeNames.MinimumKillsModeButton, forNode: minimumKillsModeButton)
         
         multiplayerModeButton = getButtonWith(textureNamed: "yellow_button02", andWithTextOf: NodeNames.StartMultiplayerButton, atPosition: CGPoint(x: 0, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.85), andWithSizeOf: buttonSize)
         
