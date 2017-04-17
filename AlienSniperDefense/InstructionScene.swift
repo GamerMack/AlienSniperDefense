@@ -120,6 +120,7 @@ class InstructionScene: SKScene{
     private func configureNodeForFlyingAlienTrack(mainNode: SKNode){
         mainNode.name = NodeNames.FlyingAlienTrackButton
         
+        
         //Configure manned ship
        let unmannedTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .FlyingAliens)?.textureNamed("shipBlue")
         let unmannedShip = SKSpriteNode(texture: unmannedTexture)

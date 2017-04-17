@@ -15,6 +15,26 @@
 //
 
 
+/** 
+ 
+ Previous version did not call the base class's didMove(to view:) function but instead individually called the overridden functions that were executed when calling the base class's method
+ //Set current GamePlayMode
+ setCurrentGamePlayMode()
+ 
+ //Register NSNotifications for Pause and Resume
+ registerNotifications()
+ 
+ 
+ //Basic scene configuration (calls base class's version of spawnBackgroundObjects)
+ performBasicSceneConfiguration()
+ 
+ 
+ //Call overridden version of spawnBackGroundObjects
+ self.spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects)
+ **/
+ 
+
+
 import Foundation
 import SpriteKit
 import GameplayKit
@@ -126,21 +146,8 @@ class FlyingAlienScene: BaseScene{
         //Set current track
         currenTrack = .FlyingAlien
         
-        //Set current GamePlayMode
-        setCurrentGamePlayMode()
-        
-        //Register NSNotifications for Pause and Resume
-        registerNotifications()
-        
-        //Configure Pause Button
-        configurePauseButton()
-        
-        //Basic scene configuration (calls base class's version of spawnBackgroundObjects)
-        performBasicSceneConfiguration()
-        
-        //Call overridden version of spawnBackGroundObjects
-        self.spawnBackgroundObjects(numberOfBackgroundObjects: self.numberOfBackgroundObjects)
-        
+        super.didMove(to: view)
+    
         //Configure Background music
         BackgroundMusic.configureBackgroundMusicFrom(fileNamed: BackgroundMusic.MissionPlausible, forParentNode: self)
         
@@ -150,6 +157,7 @@ class FlyingAlienScene: BaseScene{
  
         //Spawn initial number of flying aliens
         spawnEnemyFromPrototype(numberOfEnemy: self.initialNumberOfEnemiesSpawned)
+        
        
         
         
@@ -173,6 +181,7 @@ class FlyingAlienScene: BaseScene{
         barrierNode.physicsBody?.categoryBitMask = PhysicsCategory.Ground
         barrierNode.physicsBody?.collisionBitMask = PhysicsCategory.Enemy | ~PhysicsCategory.Player
         barrierNode.physicsBody?.contactTestBitMask = PhysicsCategory.Enemy | ~PhysicsCategory.Player
+        player.physicsBody?.collisionBitMask = 0
         
         self.addChild(barrierNode)
         
@@ -618,6 +627,9 @@ extension FlyingAlienScene{
         
         //Configure the Pause State Buttons
         setupPauseStateButtons()
+        
+        //Configure the Pause Buttons
+        configurePauseButton()
     }
     
     

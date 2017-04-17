@@ -9,23 +9,23 @@
 
 //Scene Intro Text
 
-"You must kill" = "玩着必须打死";
+"You must kill" = "玩家必须打死至少";
 
-" minimum to win" = " 才能晋级到上一级";
+" minimum to win" = "个敌人，才能晋级到下一级";
 
 "Shoot every " = "打死 ";
 
-"If" = "如果";
+"If" = "，如果";
 
-" are on screen, you lose" = " 出现在屏幕上，玩着就输了";
+" are on screen, you lose" = " 个敌人出现在屏幕上，玩家就输了";
 
 "Enemy: " = "敌人名: ";
 
-" Time Limit:" = " 时间限制:";
+" Time Limit:" = "，时间限制:";
 
 " seconds" = " 秒";
 
-"Must kill at least " = "必须至少杀到 ";
+"Must kill at least " = "必须打到至少 ";
 
 "Time Remaining: " = "计时表: ";
 
@@ -38,21 +38,21 @@
 
 "When hiding, they cannot be hit" = "躲着的时候，他们是不会受伤的。";
 
-"Hover Borg can be manned or unmanned." = "外星导航者可以处于两种状态：无人的和有人的";
-"When unmanned, they cannot be hit." = "当他们没有人的时候，就不会受伤。";
-"Shoot background objects to generate blackholes that capture Hover Borgs." = "玩着可以试着设计背景中的物体，因为这样它们有可能变成洗掉敌人的黑洞。";
+"Hover Borg can be manned or unmanned." = "外星导航者可以换到无人驾驶的状态。在这时候，";
+"When unmanned, they cannot be hit." = "他们是不会受伤的。玩家可以试着射击背景中的物体";
+"Shoot background objects to generate blackholes that capture Hover Borgs." = "把这些物体变成黑洞。这些黑洞可以让玩家更方便去射击敌人。";
 
-"Stealth mode is indicated by fading action." = "无形模式是通过消失的方式表示的。";
-"When in stealth mode, stealth ships cannot take damage."= "当它们换到无形模式的时候，就不会受伤的。";
+"Stealth mode is indicated by fading action." = "隐形模式是通过消失的方式表示的。";
+"When in stealth mode, stealth ships cannot take damage."= "当航天器换到隐形模式的时候，就不会受伤的。";
 "Stealth ships require multiple hits to be destroyed" = "无形航天器需要被打几次，才能够被打败。";
 
 
-"When in emitting mode, UFOreos expand and contract." = "当它们换到变形模式的时候，调皮小球可以经过缩小和膨胀的周期";
-"In emitting mode, UFOreos cannot take damage, and" = "在这时候它们是不会受伤的";
-"may emit gravity fields that disrupt player movement" = "它们偶尔有可能用磁力影响玩着的稳定性。";
+"When in emitting mode, UFOreos expand and contract." = "当它们换到变形模式的时候，调皮小球可以";
+"In emitting mode, UFOreos cannot take damage, and" = "经过缩小和膨胀。在这时候它们是不会受伤的";
+"may emit gravity fields that disrupt player movement" = "它们偶尔有可能用磁力影响玩家的稳定性。";
 
 "Bats can be hard to see in the dark." = "恶蝙蝠在黑暗中很难看到。";
-"When targeted with the cross hair, they can be illuminated" = "但是被对准的时候，就可以亮起来。";
+"When targeted with the cross hair, they can be illuminated" = "但是被瞄准的时候，就可以发亮。";
 
 
 //Button Manager
@@ -61,7 +61,7 @@
 
 "Hover Borgs" = "外星导航者";
 
-"Stealth Ships" = "无形航天器";
+"Stealth Ships" = "隐形航天器";
 
 "UFOreos" = "调皮小球";
 
@@ -75,7 +75,7 @@
 
 "Pause" = "暂停";
 
-"Resume" = "开始";
+"Resume" = "继续";
  
 
 
@@ -95,26 +95,26 @@
 
 //Screen Interface Manager
 
-"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit) 同时在屏幕上，玩着就输了";
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName)， 如果 \(spawningLimit) 个敌人同时在屏幕上，玩家就输了";
 
 
-"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩家至少要打掉\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
 
 "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "敌人名: \(enemyName)，时间线: \(levelTimeLimit)秒";
 
-"Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉 \(minimumKillsForLevelCompletion)";
+"Must kill at least \(minimumKillsForLevelCompletion)." = "玩家至少要打掉 \(minimumKillsForLevelCompletion)";
 
 "Time Remaining: \(numberString!)" = "计时表: \(numberString!)";
 
 
-"Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"Must kill at least \(minimumKillsForLevelCompletion)." = "玩家必须打掉至少\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
 "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "敌人名: \(enemyName)，时间线: \(levelTimeLimit)秒";
 
-"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩家必须打掉至少\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
-"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit) 同时在屏幕上，玩着就输了";
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit)个敌人 同时在屏幕上，玩家就输了";
 
 
 
@@ -136,7 +136,7 @@
 
 "Wingman" = "翅膀怪兽";
 
-"The wingman want to hide more!" = "翅膀怪兽要躲得越来越多!";
+"The wingman want to hide more!" = "翅膀怪兽要躲得越来越快!";
 
 "The wingman are moving faster now!" = "翅膀怪兽变快了";
 
@@ -160,17 +160,17 @@
 "The Bats make their last stand!" = "恶蝙蝠最后一次坚持奋斗！";
 
 
-"The stealth ships are getting faster!" = "无形航天器变快了";
+"The stealth ships are getting faster!" = "隐形航天器变快了";
 
-"Stealth Ship" = "无形航天器";
+"Stealth Ship" = "隐形航天器";
 
-"Shoot all the Stealth Ships!" = "打到所有的无形航天器";
+"Shoot all the Stealth Ships!" = "打到所有的隐形航天器";
 
-"The stealth ships are getting stealthier!" = "无形航天器要变得越来越狡猾！";
+"The stealth ships are getting stealthier!" = "隐形航天器要变得越来越狡猾！";
 
-"The stealth ships are spawning like crazy now!" = "无形航天器发疯了";
+"The stealth ships are spawning like crazy now!" = "隐形航天器发疯了";
 
-"Stealth ships make their last stand!" = "无形航天器最后一次坚持奋斗";
+"Stealth ships make their last stand!" = "隐形航天器最后一次坚持奋斗";
 
 
 "Hover Borg" = "外星导航者";
@@ -190,9 +190,9 @@
 
 "Well Done! Track Completed!" = "你好厉害！这个挑战完成了";
 
-"Total Number of Kills: " = "被杀的敌人总数量:";
+"Total Number of Kills: " = "杀敌总数:";
 
-"Total Number of Enemies Spawned: " = "出现的敌人总数量:"
+"Total Number of Enemies Missed: " = "失手总数:"
 ;
 
 "Total Game Time (seconds): " = "总时间(按秒):"
@@ -201,7 +201,7 @@
 "Total Number of Bullets Fired: " = "开枪次数: "
 ;
 
-"Firing Accuracy: " = "设计准确性: "
+"Firing Accuracy: " = "命中率: "
 ;
 
 "Game Developed by Alex Makedonski." = "软体开发者: Alex Makedonski."
@@ -213,9 +213,9 @@
 
 //Menu Scene
 
-"Alien" = "反外星怪兽的";
+"Alien" = "外星突击";
 
-"Sniper Defense" = "突击手";
+"Sniper Defense" = "(简体字版)";
 
 "Game Developer: Alex Makedonski" = "软体开发者: Alex Makedonski";
 
@@ -223,15 +223,15 @@
 
 "Start Game" = "开始";
 
-"Hard" = "超难";
+"Hard" = "困难";
 
-"Medium" = "还行";
+"Medium" = "普通";
 
-"Easy" = "没问题";
+"Easy" = "简单";
 
-"Time Limit Mode" = "时间限制模式";
+"Time Limit Mode" = "限时模式";
 
-"Minimum Kills Mode" = "杀敌人模式";
+"Minimum Kills Mode" = "杀敌模式";
 
 //Track Scene
 

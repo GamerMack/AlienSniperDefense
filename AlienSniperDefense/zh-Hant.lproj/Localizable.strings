@@ -6,209 +6,236 @@
   Copyright © 2017 AlexMakedonski. All rights reserved.
 */
 
+//Scene Intro Text
+
+"You must kill" = "玩家必須打死至少";
+
+" minimum to win" = "個敵人，才能晉級到下壹級";
+
+"Shoot every " = "打死 ";
+
+"If" = "，如果";
+
+" are on screen, you lose" = " 個敵人出現在屏幕上，玩家就輸了";
+
+"Enemy: " = "敵人名: ";
+
+" Time Limit:" = "，時間限制:";
+
+" seconds" = " 秒";
+
+"Must kill at least " = "必須打到至少 ";
+
+"Time Remaining: " = "計時表: ";
+
+"Level " = "等級 ";
+
+
 //Instruction Scene
 
-"Wingman can hide behind sky objects." = "翅膀怪兽能够躲在背景中的物体后面";
+"Wingman can hide behind sky objects." = "翅膀怪獸能夠躲在背景中的物體後面";
 
-"When hiding, they cannot be hit" = "躲着的时候，他们是不会受伤的。";
+"When hiding, they cannot be hit" = "躲著的時候，他們是不會受傷的。";
 
-"Hover Borg can be manned or unmanned." = "外星导航者可以处于两种状态：无人的和有人的";
-"When unmanned, they cannot be hit." = "当他们没有人的时候，就不会受伤。";
-"Shoot background objects to generate blackholes that capture Hover Borgs." = "玩着可以试着设计背景中的物体，因为这样它们有可能变成洗掉敌人的黑洞。";
+"Hover Borg can be manned or unmanned." = "外星導航者可以換到無人駕駛的狀態。在這時候，";
+"When unmanned, they cannot be hit." = "他們是不會受傷的。玩家可以試著射擊背景中的物體";
+"Shoot background objects to generate blackholes that capture Hover Borgs." = "把這些物體變成黑洞。這些黑洞可以讓玩家更方便去射擊敵人。";
 
-"Stealth mode is indicated by fading action." = "无形模式是通过消失的方式表示的。";
-"When in stealth mode, stealth ships cannot take damage."= "当它们换到无形模式的时候，就不会受伤的。";
-"Stealth ships require multiple hits to be destroyed" = "无形航天器需要被打几次，才能够被打败。";
+"Stealth mode is indicated by fading action." = "隱形模式是通過消失的方式表示的。";
+"When in stealth mode, stealth ships cannot take damage."= "當航天器換到隱形模式的時候，就不會受傷的。";
+"Stealth ships require multiple hits to be destroyed" = "隱形航天器需要被打幾次，才能夠被打敗。";
 
 
-"When in emitting mode, UFOreos expand and contract." = "当它们换到变形模式的时候，调皮小球可以经过缩小和膨胀的周期";
-"In emitting mode, UFOreos cannot take damage, and" = "在这时候它们是不会受伤的";
-"may emit gravity fields that disrupt player movement" = "它们偶尔有可能用磁力影响玩着的稳定性。";
+"When in emitting mode, UFOreos expand and contract." = "當它們換到變形模式的時候，調皮小球可以";
+"In emitting mode, UFOreos cannot take damage, and" = "經過縮小和膨脹。在這時候它們是不會受傷的";
+"may emit gravity fields that disrupt player movement" = "它們偶爾有可能用磁力影響玩家的穩定性。";
 
-"Bats can be hard to see in the dark." = "恶蝙蝠在黑暗中很难看到。";
-"When targeted with the cross hair, they can be illuminated" = "但是被对准的时候，就可以亮起来。";
+"Bats can be hard to see in the dark." = "惡蝙蝠在黑暗中很難看到。";
+"When targeted with the cross hair, they can be illuminated" = "但是被瞄準的時候，就可以發亮。";
 
 
 //Button Manager
 
-"Fluorescent Bats" = "恶蝙蝠";
+"Fluorescent Bats" = "惡蝙蝠";
 
-"Hover Borgs" = "外星导航者";
+"Hover Borgs" = "外星導航者";
 
-"Stealth Ships" = "无形航天器";
+"Stealth Ships" = "隱形航天器";
 
-"UFOreos" = "调皮小球";
+"UFOreos" = "調皮小球";
 
-"Wingman" = "翅膀怪兽";
+"Wingman" = "翅膀怪獸";
 
 
 //Base Scene
 
 
-"Time Remaining: \(numberString!)" = "计时表： \(numberString!)";
+"Time Remaining: \(numberString!)" = "計時表： \(numberString!)";
 
-"Pause" = "暂停";
+"Pause" = "暫停";
 
-"Resume" = "开始";
-
-
-
-"Level \(levelNumber)" = "等级 \(levelNumber)";
+"Resume" = "繼續";
 
 
-"Not Enough Enemies Killed! Better luck next time!" = "你没有打败足够的敌人！欢迎你再来一次，加油!";
 
-"Level Complete! Well Done!" = "成功了！好厉害!";
+"Level \(levelNumber)" = "等級 \(levelNumber)";
 
-"Main Menu" = "主页";
 
-"Restart Level" = "重新开始";
+"Not Enough Enemies Killed! Better luck next time!" = "妳沒有打敗足夠的敵人！歡迎妳再來壹次，加油!";
 
-"Too many enemies on screen!" = "敌人数超过了数量限制";
+"Level Complete! Well Done!" = "成功了！好厲害!";
+
+"Main Menu" = "主頁";
+
+"Restart Level" = "重新開始";
+
+"Too many enemies on screen!" = "敵人數超過了數量限制";
 
 
 //Screen Interface Manager
 
-"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit) 同时在屏幕上，玩着就输了";
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName)， 如果 \(spawningLimit) 个敌人同时在屏幕上，玩家就输了";
 
 
-"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩家至少要打掉\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
 
 "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "敌人名: \(enemyName)，时间线: \(levelTimeLimit)秒";
 
-"Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉 \(minimumKillsForLevelCompletion)";
+"Must kill at least \(minimumKillsForLevelCompletion)." = "玩家至少要打掉 \(minimumKillsForLevelCompletion)";
 
 "Time Remaining: \(numberString!)" = "计时表: \(numberString!)";
 
 
-"Must kill at least \(minimumKillsForLevelCompletion)." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"Must kill at least \(minimumKillsForLevelCompletion)." = "玩家必须打掉至少\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
 "Enemy: \(enemyName), Time Limit: \(levelTimeLimit) seconds" = "敌人名: \(enemyName)，时间线: \(levelTimeLimit)秒";
 
-"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩着至少要打掉\(minimumKillsForLevelCompletion)才能升级到上一级.";
+"You must kill \(minimumKillsForLevelCompletion) minimum to win." = "玩家必须打掉至少\(minimumKillsForLevelCompletion)才能晋级到下一级.";
 
-"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit) 同时在屏幕上，玩着就输了";
+"Shoot every \(enemyName). If \(spawningLimit) are on screen, you lose" = "打每个 \(enemyName). 如果 \(spawningLimit)个敌人 同时在屏幕上，玩家就输了";
 
 
 
 //Level Loader
 
-"Shoot all the UFOreos!" = "打到所有的调皮小球!";
+"Shoot all the UFOreos!" = "打到所有的調皮小球!";
 
 "UFOreo" = "调皮小球";
 
-"UFOreo just got faster!!" = "调皮小球变快了!!";
+"UFOreo just got faster!!" = "調皮小球變快了!!";
 
-"UFOreos are spawning faster!!" = "调皮小球要出现越来越快!";
+"UFOreos are spawning faster!!" = "調皮小球要出現越來越快!";
 
-"UFOreos are spawning like crazy!!" = "调皮小球发疯了!!";
+"UFOreos are spawning like crazy!!" = "調皮小球發瘋了!!";
 
-"UFOreos make their last stand!!" = "调皮小球最后一次坚持奋斗!!";
+"UFOreos make their last stand!!" = "調皮小球最後壹次堅持奮鬥!!";
 
-"Shoot all the wingman!" = "打到所有的翅膀怪兽";
+"Shoot all the wingman!" = "打到所有的翅膀怪獸";
 
-"Wingman" = "翅膀怪兽";
+"Wingman" = "翅膀怪獸";
 
-"The wingman want to hide more!" = "翅膀怪兽要躲得越来越多!";
+"The wingman want to hide more!" = "翅膀怪獸要躲得越來越快!";
 
-"The wingman are moving faster now!" = "翅膀怪兽变快了";
+"The wingman are moving faster now!" = "翅膀怪獸變快了";
 
-"Wingman are spawning like crazy!" = "翅膀怪兽发疯了";
+"Wingman are spawning like crazy!" = "翅膀怪獸發瘋了";
 
-"Wingman make their last stand!" = "翅膀怪兽最后一次坚持奋斗!!";
-
-
-"Shoot all the bats!" = "打到所有的恶蝙蝠！";
-
-"Bat" = "恶蝙蝠";
-
-"Fluorescent Bat" = "恶蝙蝠";
-
-"The bats just got a little faster!" = "恶蝙蝠变快了!";
-
-"The bats just got harder to see!" = "恶蝙蝠越来越不容易看到！";
-
-"The bats are spawning like crazy!" =  "邪恶蝙蝠发疯了!";
-
-"The Bats make their last stand!" = "恶蝙蝠最后一次坚持奋斗！";
+"Wingman make their last stand!" = "翅膀怪獸最後壹次堅持奮鬥!!";
 
 
-"The stealth ships are getting faster!" = "无形航天器变快了";
+"Shoot all the bats!" = "打到所有的惡蝙蝠！";
 
-"Stealth Ship" = "无形航天器";
+"Bat" = "惡蝙蝠";
 
-"Shoot all the Stealth Ships!" = "打到所有的无形航天器";
+"Fluorescent Bat" = "惡蝙蝠";
 
-"The stealth ships are getting stealthier!" = "无形航天器要变得越来越狡猾！";
+"The bats just got a little faster!" = "惡蝙蝠變快了!";
 
-"The stealth ships are spawning like crazy now!" = "无形航天器发疯了";
+"The bats just got harder to see!" = "惡蝙蝠越來越不容易看到！";
 
-"Stealth ships make their last stand!" = "无形航天器最后一次坚持奋斗";
+"The bats are spawning like crazy!" =  "邪惡蝙蝠發瘋了!";
+
+"The Bats make their last stand!" = "惡蝙蝠最後壹次堅持奮鬥！";
 
 
-"Hover Borg" = "外星导航者";
+"The stealth ships are getting faster!" = "隱形航天器變快了";
 
-"Shoot all the Hover Borg" = "打到所有的外星导航者";
+"Stealth Ship" = "隱形航天器";
 
-"The Hover Borg are upset with you!" = "外星导航者跟你生气了";
+"Shoot all the Stealth Ships!" = "打到所有的隱形航天器";
 
-"The Hover Borg are really upset now!!" = "外星导航者受不了你了";
+"The stealth ships are getting stealthier!" = "隱形航天器要變得越來越狡猾！";
 
-"The Hover Borg are spawning like mad!!" = "外星导航者发疯了!!";
+"The stealth ships are spawning like crazy now!" = "隱形航天器發瘋了";
 
-"The Hover Borg make their last stand!!" = "外星导航者最后一次坚持奋斗!!";
+"Stealth ships make their last stand!" = "隱形航天器最後壹次堅持奮鬥";
+
+
+"Hover Borg" = "外星導航者";
+
+"Shoot all the Hover Borg" = "打到所有的外星導航者";
+
+"The Hover Borg are upset with you!" = "外星導航者跟妳生氣了";
+
+"The Hover Borg are really upset now!!" = "外星導航者受不了妳了";
+
+"The Hover Borg are spawning like mad!!" = "外星導航者發瘋了!!";
+
+"The Hover Borg make their last stand!!" = "外星導航者最後壹次堅持奮鬥!!";
 
 
 //Player Stats Summary Level
 
-"Well Done! Track Completed!" = "你好厉害！这个挑战完成了";
+"Well Done! Track Completed!" = "妳好厲害！這個挑戰完成了";
 
-"Total Number of Kills: " = "被杀的敌人总数量:";
+"Total Number of Kills: " = "殺敵總數:";
 
-"Total Number of Enemies Spawned: " = "出现的敌人总数量:"
+"Total Number of Enemies Missed: " = "失手總數:"
 ;
 
-"Total Game Time (seconds): " = "总时间(按秒):"
+"Total Game Time (seconds): " = "總時間(按秒):"
 ;
 
-"Total Number of Bullets Fired: " = "开枪次数: "
+"Total Number of Bullets Fired: " = "開槍次數: "
 ;
 
-"Firing Accuracy: " = "设计准确性: "
+"Firing Accuracy: " = "命中率: "
 ;
 
-"Game Developed by Alex Makedonski." = "软体开发者: Alex Makedonski."
+"Game Developed by Alex Makedonski." = "軟體開發者: Alex Makedonski."
 ;
 
-"Graphics from Kenney." = "图片设计师: Kenney."
+"Graphics from Kenney." = "圖片設計師: Kenney."
 ;
 
 
 //Menu Scene
 
-"Alien" = "反外星怪兽的";
+"Alien" = "外星突擊";
 
-"Sniper Defense" = "突击手";
+"Sniper Defense" = "(繁體字版)";
 
-"Game Developer: Alex Makedonski" = "软体开发者: Alex Makedonski";
+"Game Developer: Alex Makedonski" = "軟體開發者: Alex Makedonski";
 
-"Graphics By: Kenney" = "图片设计师: Kenney";
+"Graphics By: Kenney" = "圖片設計師: Kenney";
 
-"Start Game" = "开始";
+"Start Game" = "開始";
 
-"Hard" = "超难";
+"Hard" = "困難";
 
-"Medium" = "还行";
+"Medium" = "普通";
 
-"Easy" = "没问题";
+"Easy" = "簡單";
 
-"Time Limit Mode" = "时间限制模式";
+"Time Limit Mode" = "限時模式";
 
-"Minimum Kills Mode" = "杀敌人模式";
+"Minimum Kills Mode" = "殺敵模式";
 
 //Track Scene
 
-"Click on a level track below:" = "请选下面的一个挑战:";
+"Click on a level track below:" = "請選下面的壹個挑戰:";
+
+
 
 

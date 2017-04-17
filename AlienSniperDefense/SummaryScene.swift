@@ -83,7 +83,7 @@ class SummaryScene: SKScene{
         
         let enemyCountText = getNumberFormattedString(forStatisticOf: Double(trackEnemyCount), minFractionDigits: 0, maxFractionDigits: 0, minIntDigits: 2, maxIntDigits: 5)
         
-        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Number of Enemies Spawned: ", comment: ""), labelText: enemyCountText)
+        configureStatLabels(titleXPos: titlePositionX, labelXPos: labelPositionX, commonYPos: enemyCountHeight, titleFontType: titleFont, labelFontType: labelFont, titleFontSize: CGFloat(titleFontSize), labelFontSize: CGFloat(labelFontSize), titleText: NSLocalizedString("Total Number of Enemies Missed: ", comment: ""), labelText: enemyCountText)
     
         //Configure display for Total GameTime
         let gameTimeHeight = -ScreenSizeFloatConstants.ScrrenHeight*0.05
