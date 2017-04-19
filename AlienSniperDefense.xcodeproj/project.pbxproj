@@ -32,6 +32,9 @@
 		BD1014C41E80E0C7000CAB88 /* EnemyTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1014C31E80E0C7000CAB88 /* EnemyTracker.swift */; };
 		BD1014C61E80E2E1000CAB88 /* EnemyTrackerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1014C51E80E2E1000CAB88 /* EnemyTrackerDelegate.swift */; };
 		BD10CDE41E7E331A00C6BC5F /* SummaryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD10CDE31E7E331A00C6BC5F /* SummaryScene.swift */; };
+		BD23893F1EA751B900B574D8 /* BaseScene+ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD23893E1EA751B900B574D8 /* BaseScene+ScreenRecorder.swift */; };
+		BD2389411EA752E700B574D8 /* ScreenRecorderOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2389401EA752E700B574D8 /* ScreenRecorderOptionsVC.swift */; };
+		BD2389431EA766E200B574D8 /* BaseScene+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2389421EA766E200B574D8 /* BaseScene+Buttons.swift */; };
 		BD25E6191E7D418700D9F372 /* InstructionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD25E6181E7D418700D9F372 /* InstructionScene.swift */; };
 		BD2777201E7A7D1D009F641C /* TestScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BD27771F1E7A7D1D009F641C /* TestScene.sks */; };
 		BD2777221E7A95F2009F641C /* UFOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2777211E7A95F2009F641C /* UFOController.swift */; };
@@ -138,6 +141,9 @@
 		BD1014C51E80E2E1000CAB88 /* EnemyTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyTrackerDelegate.swift; sourceTree = "<group>"; };
 		BD10CDE31E7E331A00C6BC5F /* SummaryScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryScene.swift; sourceTree = "<group>"; };
 		BD1D7A5E1E8237AF0014C377 /* AlienSniperDefense.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlienSniperDefense.entitlements; sourceTree = "<group>"; };
+		BD23893E1EA751B900B574D8 /* BaseScene+ScreenRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseScene+ScreenRecorder.swift"; sourceTree = "<group>"; };
+		BD2389401EA752E700B574D8 /* ScreenRecorderOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenRecorderOptionsVC.swift; sourceTree = "<group>"; };
+		BD2389421EA766E200B574D8 /* BaseScene+Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseScene+Buttons.swift"; sourceTree = "<group>"; };
 		BD25E6181E7D418700D9F372 /* InstructionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionScene.swift; sourceTree = "<group>"; };
 		BD27771F1E7A7D1D009F641C /* TestScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TestScene.sks; sourceTree = "<group>"; };
 		BD2777211E7A95F2009F641C /* UFOController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UFOController.swift; sourceTree = "<group>"; };
@@ -460,6 +466,7 @@
 				BD07A3F81E7A561400B52128 /* BatController.swift */,
 				BD2777211E7A95F2009F641C /* UFOController.swift */,
 				BD37DAA21E7F8CB50067A0BE /* WingmanController.swift */,
+				BD2389401EA752E700B574D8 /* ScreenRecorderOptionsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -537,6 +544,8 @@
 			isa = PBXGroup;
 			children = (
 				BD6313591E7A58A800EB10F9 /* BaseScene.swift */,
+				BD23893E1EA751B900B574D8 /* BaseScene+ScreenRecorder.swift */,
+				BD2389421EA766E200B574D8 /* BaseScene+Buttons.swift */,
 			);
 			name = BaseScene;
 			sourceTree = "<group>";
@@ -724,6 +733,7 @@
 				BD07A4191E7A56D300B52128 /* Constants.swift in Sources */,
 				BD3A48891E7C21020072B576 /* UserSettings.swift in Sources */,
 				BD07A40C1E7A56BD00B52128 /* RandomVectorUniform.swift in Sources */,
+				BD2389431EA766E200B574D8 /* BaseScene+Buttons.swift in Sources */,
 				BD6313661E7A58A800EB10F9 /* FlyingAlienScene.swift in Sources */,
 				BD07A3FD1E7A563C00B52128 /* BackgroundObject.swift in Sources */,
 				BD07A41E1E7A56D300B52128 /* PhysicsCategories.swift in Sources */,
@@ -732,6 +742,7 @@
 				BD07A4121E7A56C900B52128 /* SoundEffects.swift in Sources */,
 				BD2DB7D21E83E2D400193C91 /* EnemyCounter.swift in Sources */,
 				BD2DB7D41E83E8C600193C91 /* EnemyCounterDelegate.swift in Sources */,
+				BD2389411EA752E700B574D8 /* ScreenRecorderOptionsVC.swift in Sources */,
 				BD6313741E7A591100EB10F9 /* AnimationsManager.swift in Sources */,
 				BD63137B1E7A59A700EB10F9 /* WingmanScene.swift in Sources */,
 				BD07A3FF1E7A564B00B52128 /* UFO.swift in Sources */,
@@ -741,6 +752,7 @@
 				BD6313701E7A590300EB10F9 /* ButtonManager.swift in Sources */,
 				BD4BBFCB1E7A550600808B90 /* HUD2.swift in Sources */,
 				BD07A40A1E7A56BD00B52128 /* RandomVector.swift in Sources */,
+				BD23893F1EA751B900B574D8 /* BaseScene+ScreenRecorder.swift in Sources */,
 				BD07A4111E7A56C900B52128 /* BackgroundMusic.swift in Sources */,
 				BD4BBFC71E7A54F800808B90 /* Wingman.swift in Sources */,
 				BD6313761E7A592800EB10F9 /* ButtonFactory.swift in Sources */,

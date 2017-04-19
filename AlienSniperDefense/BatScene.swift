@@ -213,6 +213,9 @@ class BatScene: BaseScene
 
         //Configure Pause State Buttons
         setupPauseStateButtons()
+        
+        //Configure Record Buttons
+        setupRecordButtons()
     }
 
     

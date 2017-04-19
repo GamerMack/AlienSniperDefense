@@ -42,20 +42,32 @@ class GameViewController: UIViewController {
         authenticateLocalPlayer()
          **/
   
-           let menuScene = MenuScene(size: self.view.bounds.size)
+        
+        /**
+        let screenRecordOptionViewController =  ScreenRecorderOptionsVC(nibName: nil, bundle: nil)
+    
+        navigationController?.pushViewController(screenRecordOptionViewController, animated: true)
+        **/
+        
+        UserDefaults.standard.set(true, forKey: "screenRecordingEnabled")
+       
+        
+            let menuScene = MenuScene(size: self.view.bounds.size)
             menuScene.scaleMode = .aspectFill
-                
+            
             // Present the scene
             if let view = self.view as! SKView? {
                 view.presentScene(menuScene)
                 
                 /**
-                view.ignoresSiblingOrder = true
-                    
-                view.showsFPS = true
-                view.showsNodeCount = true
-                **/
-                }
+                 view.ignoresSiblingOrder = true
+                 
+                 view.showsFPS = true
+                 view.showsNodeCount = true
+                 **/
+        }
+        
+        
         
         
     }

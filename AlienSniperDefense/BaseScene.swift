@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import ReplayKit
 
 /**  The Base Scene represent the essential functionality for scenes in different Game Tracks, including the Wingman Track, Bat Track, UFO Track, Flying Aliens Track, and Stealth Ship Track; Derived classes that inherit from the Base Scene will have unique game logic related to the AI for specific enemy characters as well as their own custom, convenience initializers that can be called in their respective level loaders but which will call the convenience initializer defined here for initializing basic scene properties (maximumNumberOfEnemies, numberOfEnemiesKilled, etc.)
  
@@ -34,6 +35,14 @@ class BaseScene: SKScene{
     
     
     //MARK: ******************** UI Buttons
+    
+    //Reference to previewViewController that gets stored after the user finishes a recording of the game play
+    var previewViewController: RPPreviewViewController?
+    
+    var previewButton = SKSpriteNode()
+    var startRecordButton = SKSpriteNode()
+    var stopRecordButton = SKSpriteNode()
+    
     var pauseButton = SKSpriteNode()
     var menuButton = SKSpriteNode()
     var restartButton = SKSpriteNode()
@@ -172,6 +181,9 @@ class BaseScene: SKScene{
         
         //Set current GamePlay mode
         setCurrentGamePlayMode()
+        
+        //Setup the ReplayKit buttons (Record, Stop, and Preview)
+        setupRecordButtons()
 
     }
     
@@ -542,6 +554,27 @@ class BaseScene: SKScene{
          
         }
         
+        if startRecordButton.contains(touchLocation){
+            //TODO: Not yet implemented
+            startScreenRecording()
+        }
+        
+        
+        if stopRecordButton.contains(touchLocation){
+            
+            //TODO: Not yet implemented
+            stopScreenRecording(withHandler: {})
+            
+        }
+        
+        if previewButton.contains(touchLocation){
+            
+            //TODO: Not yet implemented
+            if let previewViewController = previewViewController{
+                view?.window?.rootViewController?.present(previewViewController, animated: true, completion: nil)
+            }
+            
+        }
     }
     
     
@@ -641,307 +674,6 @@ class BaseScene: SKScene{
 
 
 //MARK: *****************************SCENE EXTENSION
-
-extension BaseScene{
-    
-    func showTooManyEnemiesLabel(){
-        
-        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        labelNode.fontColor = SKColor.yellow
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        labelNode.fontSize = 45.0
-        labelNode.text = NSLocalizedString("Too many enemies on screen!", comment: "")
-        labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.30)
-        let scalingAction = SKAction.repeatForever(SKAction.sequence([
-            SKAction.scale(to: 1.5, duration: 2.0),
-            SKAction.scale(to: 0.7, duration: 2.0)
-            ]))
-        labelNode.run(scalingAction)
-        labelNode.zPosition = 30
-        labelNode.name = NodeNames.TooManyEnemiesNotice
-        
-        
-        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.90, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
-        shapeNode.strokeColor = SKColor.black
-        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
-        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
-        shapeNode.zPosition = 29
-        self.addChild(shapeNode)
-        self.addChild(labelNode)
-        
-    }
-    
-    
-    final func setupPauseStateButtons(){
-        guard let menuButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu") else { return }
-        
-        guard let restartButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-restart") else { return }
-        
-        self.returnToMenuFromPauseState = SKSpriteNode(texture: menuButtonTexture)
-        self.restartFromPauseState = SKSpriteNode(texture: restartButtonTexture)
-        
-        
-        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState, let restartFromPauseState = self.restartFromPauseState else { return }
-        
-        
-        returnToMenuFromPauseState.name = NodeNames.ReturnToMenuButton
-        restartFromPauseState.name = NodeNames.RestartGameButton
-        
-        let returnToMenuText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-        returnToMenuText.text = NSLocalizedString("Main Menu", comment: "")
-        returnToMenuText.fontSize = 20.0
-        returnToMenuText.fontColor = SKColor.white
-        returnToMenuText.verticalAlignmentMode = .bottom
-        returnToMenuText.position = CGPoint(x: returnToMenuFromPauseState.position.x, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.4)
-        returnToMenuText.name = NodeNames.ReturnToMenuButton
-        returnToMenuText.move(toParent: returnToMenuFromPauseState)
-        
-        let restartGameText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-        restartGameText.text = NSLocalizedString("Restart Level", comment: "")
-        restartGameText.fontSize = 20.0
-        restartGameText.fontColor = SKColor.white
-        restartGameText.verticalAlignmentMode = .bottom
-        restartGameText.position = CGPoint(x: restartFromPauseState.position.x, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.4)
-        restartGameText.name = NodeNames.RestartGameButton
-        restartGameText.move(toParent: restartFromPauseState)
-        
-        returnToMenuFromPauseState.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        restartFromPauseState.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        returnToMenuFromPauseState.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
-        restartFromPauseState.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
-        
-        returnToMenuFromPauseState.position = CGPoint(x: -ScreenSizeFloatConstants.HalfScreenWidth*0.25, y: 20)
-        restartFromPauseState.position = CGPoint(x: ScreenSizeFloatConstants.HalfScreenWidth*0.25, y: 20)
-        
-        
-    }
-    
-    final func showPauseStateButtons(){
-        
-        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState else { return }
-        
-        guard let restartFromPauseState = self.restartFromPauseState else { return }
-        
-     
-    
-            restartFromPauseState.zPosition = 15
-            returnToMenuFromPauseState.zPosition = 15
-        
-        
-            returnToMenuFromPauseState.alpha = 1
-            restartFromPauseState.alpha = 1
-            
-            restartFromPauseState.move(toParent: self)
-            returnToMenuFromPauseState.move(toParent: self)
-        
-    }
-    
-    
-    final func removePauseStateButtons(){
-        
-        guard let returnToMenuFromPauseState = self.returnToMenuFromPauseState else { return }
-        guard let restartFromPauseState = self.restartFromPauseState else { return }
-        
-        returnToMenuFromPauseState.zPosition = -15
-        restartFromPauseState.zPosition = -15
-        
-        returnToMenuFromPauseState.alpha = 0
-        restartFromPauseState.alpha = 0
-        
-        returnToMenuFromPauseState.move(toParent: pauseButton)
-        restartFromPauseState.move(toParent: pauseButton)
-        
-    }
-    
-    
-    final func setupMenuAndRestartButtons(){
-        
-        guard let menuButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-menu") else { return }
-        
-        guard let restartButtonTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("button-restart") else { return }
-        
-            menuButton = SKSpriteNode(texture: menuButtonTexture)
-            restartButton = SKSpriteNode(texture: restartButtonTexture)
-        
-            menuButton.name = NodeNames.ReturnToMenuButton
-            restartButton.name = NodeNames.RestartGameButton
-            
-            menuButton.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
-            restartButton.size = CGSize(width: kViewWidth*0.2, height: kViewHeight*0.3)
-            
-            menuButton.position = CGPoint(x: kViewWidth*0.5*0.2, y: 0)
-            restartButton.position = CGPoint(x: menuButton.position.x - menuButton.size.width - 30, y: menuButton.position.y)
-            
-            let returnToMenuText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-            returnToMenuText.text = NSLocalizedString("Main Menu", comment: "")
-            returnToMenuText.fontSize = 20.0
-            returnToMenuText.fontColor = SKColor.white
-            returnToMenuText.verticalAlignmentMode = .bottom
-            returnToMenuText.position = CGPoint(x: menuButton.position.x, y: -menuButton.size.height)
-            returnToMenuText.name = NodeNames.ReturnToMenuButton
-            returnToMenuText.move(toParent: menuButton)
-            
-            let restartGameText = SKLabelNode(fontNamed: FontTypes.NoteWorthyLight)
-            restartGameText.text = NSLocalizedString("Restart Level", comment: "")
-            restartGameText.fontSize = 20.0
-            restartGameText.fontColor = SKColor.white
-            restartGameText.verticalAlignmentMode = .bottom
-            restartGameText.position = CGPoint(x: restartButton.position.x, y: -restartButton.size.height)
-            restartGameText.name = NodeNames.RestartGameButton
-            restartGameText.move(toParent: restartButton)
-            
-            restartButton.zPosition = -15
-            menuButton.zPosition = -15
-            
-            restartButton.alpha = 0
-            menuButton.alpha = 0
-            
-        
-            
-        
-        
-    }
-    
-    final func showRestartButtons(){
-        //Set the button alpha to zero
-        
-            setupMenuAndRestartButtons()
-            
-            restartButton.alpha = 1
-            menuButton.alpha = 1
-        
-            menuButton.move(toParent: self)
-            restartButton.move(toParent: self)
-            
-            menuButton.zPosition = 15
-            restartButton.zPosition = 15
-            
-            
-            let fadeAnimation = SKAction.fadeAlpha(to: 1.0, duration: 1.0)
-            
-            restartButton.run(fadeAnimation)
-            menuButton.run(fadeAnimation)
-    }
-    
-    
-    final func loadMenuScene(){
-        let transition = SKTransition.crossFade(withDuration: 2.00)
-        let trackScene = TrackScene(size: self.size)
-        self.view?.presentScene(trackScene, transition: transition)
-    }
-    
-    final func showLevelCompleteLabel(){
-        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        labelNode.fontColor = SKColor.yellow
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        labelNode.fontSize = 45.0
-        labelNode.text = NSLocalizedString("Level Complete! Well Done!", comment: "")
-        labelNode.position = CGPoint(x: 0, y: ScreenSizeFloatConstants.ScrrenHeight*0.10)
-        let scalingAction = SKAction.repeatForever(SKAction.sequence([
-            SKAction.fadeAlpha(to: 0.7, duration: 0.5),
-            SKAction.fadeAlpha(to: 1.0, duration: 0.5)
-            ]))
-        labelNode.run(scalingAction)
-        labelNode.zPosition = 30
-        
-        
-        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.90, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
-        shapeNode.strokeColor = SKColor.black
-        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
-        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
-        shapeNode.zPosition = 29
-        self.addChild(shapeNode)
-        self.addChild(labelNode)
-        
-    }
-    
-    final func showLevelIncompleteLabel(){
-        let labelNode = SKLabelNode(fontNamed: FontTypes.NoteWorthyBold)
-        labelNode.fontColor = SKColor.yellow
-        labelNode.horizontalAlignmentMode = .center
-        labelNode.verticalAlignmentMode = .center
-        labelNode.fontSize = 20.0
-        labelNode.text = NSLocalizedString("Not Enough Enemies Killed! Better luck next time!", comment: "")
-        labelNode.position = CGPoint(x: 30, y: -ScreenSizeFloatConstants.HalfScreenHeight*0.90)
-        let scalingAction = SKAction.repeatForever(SKAction.sequence([
-            SKAction.fadeAlpha(to: 0.7, duration: 0.5),
-            SKAction.fadeAlpha(to: 1.0, duration: 0.5)
-            ]))
-        labelNode.run(scalingAction)
-        labelNode.zPosition = 30
-        
-        
-        let shapeNode = SKShapeNode(rectOf: CGSize(width: ScreenSizeFloatConstants.ScreenWidth*0.85, height: ScreenSizeFloatConstants.HalfScreenHeight*0.35))
-        shapeNode.strokeColor = SKColor.black
-        shapeNode.fillColor = SKColor(colorLiteralRed: 0.20, green: 0.20, blue: 0.60, alpha: 1.0)
-        shapeNode.position = CGPoint(x: labelNode.position.x, y: labelNode.position.y)
-        shapeNode.zPosition = 29
-        self.addChild(shapeNode)
-        self.addChild(labelNode)
-        
-        
-    }
-    
-    final func showTimeUpLabel(){
-        
-        let timeUpTexture = TextureAtlasManager.sharedInstance.getTextureAtlasOfType(textureAtlasType: .HUD)?.textureNamed("text_timeup")
-        var timeUpSprite = SKNode()
-        
-        let chineseFlagText = NSLocalizedString("If", comment: "")
-        
-        if(chineseFlagText == "如果"){
-            timeUpSprite = SKLabelNode(text: "时间到了!")
-            let timeUpLabel = timeUpSprite as! SKLabelNode
-            timeUpLabel.fontSize = 40.0
-            timeUpLabel.horizontalAlignmentMode = .center
-            timeUpLabel.verticalAlignmentMode = .center
-            timeUpLabel.fontColor = SKColor.yellow
-    
-            
-        } else {
-            
-            timeUpSprite = SKSpriteNode(texture: timeUpTexture)
-
-        }
-        
-        
-        timeUpSprite.position = CGPoint(x: 0.00, y: ScreenSizeFloatConstants.HalfScreenHeight*0.8)
-        
-        let originalZRotation = timeUpSprite.zRotation
-        
-        let scalingSequence = SKAction.sequence([
-            SKAction.group([
-                SKAction.scale(to: 1.30, duration: 1.0),
-                SKAction.rotate(toAngle: 20, duration: 1.0)
-                ]),
-            SKAction.group([
-                SKAction.scale(to: 0.70, duration: 1.0),
-                SKAction.rotate(toAngle: originalZRotation, duration: 1.0)
-                ])
-            ])
-        let scalingAction = SKAction.repeatForever(scalingSequence)
-        
-        timeUpSprite.run(scalingAction)
-        timeUpSprite.name = NodeNames.TimeUpDisplay
-        
-        self.addChild(timeUpSprite)
-        
-    }
-    
-    
-    func reloadCurrentLevel(){
-        //To be overridden in derived classes
-    }
-    
-    func loadNextLevel(){
-        //To be overridden in derived classes
-    }
-
-    
-}
 
 extension BaseScene{
     
